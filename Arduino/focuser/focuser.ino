@@ -210,7 +210,7 @@ void initialize()
   sensors.setResolution(insideThermometer, 10);
   
   // Initialize stepper motor
-  stepper.setSpeed(20);
+  stepper.setSpeed(EEPROM.read(STEPPER_SPEED_ADD));
   
   // Initialize encoder pins
   pinMode(encoder0PinA, INPUT); 
