@@ -18,7 +18,7 @@
 #define SINGLE_MOVE_STEPS 20       // Stepper steps during one single motion
 
 // Temperature sensor config (one wire protocol)
-#define TEMP_SENSOR_PIN 1
+#define TEMP_SENSOR_PIN 5
 OneWire oneWire(TEMP_SENSOR_PIN);
 DallasTemperature sensors(&oneWire);
 DeviceAddress insideThermometer;
@@ -28,8 +28,11 @@ DeviceAddress insideThermometer;
 #define encoder0PinB 4
 #define encoderButtonPin 3
 
+// Buzzer pin
+#define BUZZER_PIN 5
+
 // Stepper config
-Stepper stepper(STEPS, 8, 9, 10, 11);
+Stepper stepper(STEPS, 6, 7, 8, 9);
 
 byte focuserPositionPointer;        
 word currentFocuserPosition;
@@ -227,6 +230,10 @@ void initialize()
   digitalWrite(encoder0PinB, HIGH);       // turn on pullup resistor
   pinMode(encoderButtonPin, INPUT);
   digitalWrite(encoderButtonPin, HIGH);   // turn on pullup resistor
+  
+  // Buzzer init
+  pinMode(BUZZER_PIN, OUTPUT);
+  digitalWrite(BUZZER_PIN, LOW);
 
   attachInterrupt(0, doEncoder, CHANGE);  // encoder pin on interrupt 0 - pin 2
 }
