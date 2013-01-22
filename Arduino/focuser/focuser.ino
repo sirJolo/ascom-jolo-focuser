@@ -1,3 +1,11 @@
+// ASCOM focuser arduino sketch
+// ascom-jolo-focuser Google code project
+// 
+// Author: jolo drjolo@gmail.com
+//
+// 2013-01-22  0.0.1  first version
+//
+
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <EEPROM.h>
