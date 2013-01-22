@@ -3,23 +3,27 @@
 #include <EEPROM.h>
 #include <Stepper.h>
 
+// EEPROM addresses
 #define MANUAL_STEP_ADD 104        // EEPROM address of encoder tick stepper steps
 #define STEPPER_SPEED_ADD 103      // EEPROM address of stepper speed in RPMs
 #define STEPS 400                  // Stepper steps for one shaft rotation (including internal gear if available)
 #define SINGLE_MOVE_STEPS 20       // Stepper steps during one single motion
 
-#define encoder0PinA  2
-#define encoder0PinB  4
-
-// Data wire is plugged into pin 2 on the Arduino
-#define ONE_WIRE_BUS 2
-OneWire oneWire(ONE_WIRE_BUS);
+// Temperature sensor config (one wire protocol)
+#define TEMP_SENSOR_PIN 1
+OneWire oneWire(TEMP_SENSOR_PIN);
 DallasTemperature sensors(&oneWire);
 DeviceAddress insideThermometer;
 
+// Encoder config
+#define encoder0PinA 2
+#define encoder0PinB 4
+#define encoderButtonPin 3
+
+// Stepper config
 Stepper stepper(STEPS, 8, 9, 10, 11);
 
-byte focuserPositionPointer;
+byte focuserPositionPointer;        
 word currentFocuserPosition;
 word newFocuserPosition;
 
@@ -44,6 +48,7 @@ void loop()
     else {
       last_step = true;
     }    
+    
     stepper.step(steps);
     currentFocuserPosition += steps;
     if(last_step) saveFocuserPos(currentFocuserPosition);
@@ -51,69 +56,85 @@ void loop()
 }
 
 
-// Interrupt sourced serial event
+// Interrupt serial event
 void serialEvent()
 {
   if(Serial.available() > 2) {
     char buffer[10];
     byte len = Serial.readBytesUntil('\n', buffer, 10);
-    
-    
+   
     if(len > 3) {
       String command = String(buffer).substring(2);
       switch(buffer[0]) {
-        case 't':    // Read temperature
+        case 'T':    // Read temperature
           printTemp();
           break;
-        case 'p':    // Return current position
+        case 'P':    // Return current position
           printCurrentPosition();
           break;
-        case 'h':    // Halt focuser
+        case 'H':    // Halt focuser
           halt();   
           break;
-        case 'm':    // Move focuser to new position
+        case 'I':
+          printInMoveStatus();
+          break;
+        case 'M':    // Move focuser to new position
           moveTo(stringToNumber(command)); 
           break;
-        case 's':
+        case 'A':
           printSettings();
           break;
         case 'S':
-          EEPROM.write(STEPPER_SPEED_ADD, stringToNumber(command));
-          stepper.setSpeed(buffer[1]);
-          break;
-        case 'M':
-          EEPROM.write(MANUAL_STEP_ADD, stringToNumber(command));
+          saveStepperSpeed(stringToNumber(command));
           break;
         default:
-          Serial.print("ERR");       
+          Serial.print("ERR:");      
+          Serial.print(buffer); 
       }
      Serial.print('\n'); 
     }
   }  
 }
 
-// Serial commands routines
+// Serial commands subroutines
 void printTemp() {
-  sensors.requestTemperaturesByAddress(insideThermometer); // Send the command to get temperatures. For 9 bit res it takes 94ms
+  sensors.requestTemperaturesByAddress(insideThermometer); // Send the command to get temperature. For 10 bit res it takes 188ms
   float tempC = sensors.getTempC(insideThermometer);
+  Serial.print("T:");
   Serial.print(tempC, 1);  
 }
 
 void printCurrentPosition() {
+  Serial.print("P:");
   Serial.print(currentFocuserPosition);
+}
+
+void printInMoveStatus() {
+  Serial.print("I:");
+  if(newFocuserPosition == currentFocuserPosition) 
+    Serial.print("false");
+  else
+    Serial.print("true");
 }
 
 void moveTo(word focuserPosition) {
   newFocuserPosition = focuserPosition;
+  Serial.print("M");
 }
 
 void halt() {
   newFocuserPosition = currentFocuserPosition;
   saveFocuserPos(currentFocuserPosition);
+  Serial.print("H");
 }
 
+void saveStepperSpeed(byte stepperSpeed) {
+  EEPROM.write(STEPPER_SPEED_ADD, stepperSpeed);
+  stepper.setSpeed(stepperSpeed);
+  Serial.print("S");
+}
 
-// Manual encoder routine
+// Interrupt manual encoder routine
 void doEncoder() {
   /* If pinA and pinB are both high or both low, it is spinning
    * forward. If they're different, it's going backward.
@@ -133,10 +154,12 @@ void doEncoder() {
 String printSettings() {
   Serial.print("M:" + EEPROM.read(MANUAL_STEP_ADD));
   Serial.print(",S:" + EEPROM.read(STEPPER_SPEED_ADD));
-  Serial.print(",P:" + currentFocuserPosition);
-  Serial.print(",T:");
+  Serial.print(",");
+  printCurrentPosition();
+  Serial.print(",");
   printTemp();
-  Serial.print('\n');
+  Serial.print(",");
+  printInMoveStatus();
 }
 
 // Current focuser position storage
@@ -165,17 +188,16 @@ void initialize()
     // Do it here only once
     EEPROM.write(MANUAL_STEP_ADD, 16);
     EEPROM.write(STEPPER_SPEED_ADD, 100);
-    EEPROM.write(101, 100);
-    focuserPositionPointer = 0;
-    EEPROM.write(102, focuserPositionPointer); //Pointer to current focuser position storage point
+    EEPROM.write(102, 0);        //Pointer to current focuser position storage value
     saveFocuserPos(0);
+    EEPROM.write(101, 100);      // Dont do this block any more
   } 
   // We rotate focuser pointer storage place to avoid EEPROM damage after 100 000 cycles (0...100)
-  focuserPositionPointer = EEPROM.read(101);
+  focuserPositionPointer = EEPROM.read(102);
   word tempFocus = readFocuserPos();
   focuserPositionPointer += 2;
   if(focuserPositionPointer > 98) focuserPositionPointer = 0;
-  EEPROM.write(101, focuserPositionPointer);
+  EEPROM.write(102, focuserPositionPointer);
   saveFocuserPos(tempFocus);
   currentFocuserPosition = newFocuserPosition = tempFocus;
   
@@ -183,17 +205,20 @@ void initialize()
   Serial.begin(9600);
   
   // Initialize temperature sensor
-  sensors.begin(); // IC Default 9 bit. 
+  sensors.begin(); 
   sensors.getAddress(insideThermometer, 0);
-  sensors.setResolution(insideThermometer, 9);
+  sensors.setResolution(insideThermometer, 10);
   
   // Initialize stepper motor
   stepper.setSpeed(20);
   
+  // Initialize encoder pins
   pinMode(encoder0PinA, INPUT); 
   digitalWrite(encoder0PinA, HIGH);       // turn on pullup resistor
   pinMode(encoder0PinB, INPUT); 
   digitalWrite(encoder0PinB, HIGH);       // turn on pullup resistor
+  pinMode(encoderButtonPin, INPUT);
+  digitalWrite(encoderButtonPin, HIGH);   // turn on pullup resistor
 
   attachInterrupt(0, doEncoder, CHANGE);  // encoder pin on interrupt 0 - pin 2
 }
