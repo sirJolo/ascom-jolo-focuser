@@ -1,0 +1,10 @@
+C:\Users\lukasz.socha\AppData\Local\Temporary Projects\JoloFocuser\bin\Release\JoloFocuser.dll.config
+C:\Users\lukasz.socha\AppData\Local\Temporary Projects\JoloFocuser\bin\Release\JoloFocuser.dll
+C:\Users\lukasz.socha\AppData\Local\Temporary Projects\JoloFocuser\bin\Release\JoloFocuser.pdb
+C:\Users\lukasz.socha\AppData\Local\Temporary Projects\JoloFocuser\bin\Release\JoloFocuser.tlb
+C:\Users\lukasz.socha\AppData\Local\Temporary Projects\JoloFocuser\obj\Release\ResolveAssemblyReference.cache
+C:\Users\lukasz.socha\AppData\Local\Temporary Projects\JoloFocuser\obj\Release\ASCOM.JoloFocuser.Resources.resources
+C:\Users\lukasz.socha\AppData\Local\Temporary Projects\JoloFocuser\obj\Release\ASCOM.JoloFocuser.SetupDialogForm.resources
+C:\Users\lukasz.socha\AppData\Local\Temporary Projects\JoloFocuser\obj\Release\JoloFocuser.vbproj.GenerateResource.Cache
+C:\Users\lukasz.socha\AppData\Local\Temporary Projects\JoloFocuser\obj\Release\JoloFocuser.dll
+C:\Users\lukasz.socha\AppData\Local\Temporary Projects\JoloFocuser\obj\Release\JoloFocuser.pdb
