@@ -23,6 +23,7 @@ Partial Class SetupDialogForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SetupDialogForm))
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel
         Me.OK_Button = New System.Windows.Forms.Button
         Me.Cancel_Button = New System.Windows.Forms.Button
@@ -37,6 +38,7 @@ Partial Class SetupDialogForm
         Me.Label6 = New System.Windows.Forms.Label
         Me.Label7 = New System.Windows.Forms.Label
         Me.Label8 = New System.Windows.Forms.Label
+        Me.COM1 = New System.Windows.Forms.ComboBox
         Me.NumericUpDown6 = New System.Windows.Forms.NumericUpDown
         Me.CheckBox1 = New System.Windows.Forms.CheckBox
         Me.NumericUpDown5 = New System.Windows.Forms.NumericUpDown
@@ -44,7 +46,9 @@ Partial Class SetupDialogForm
         Me.NumericUpDown3 = New System.Windows.Forms.NumericUpDown
         Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown
         Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown
-        Me.COM1 = New System.Windows.Forms.ComboBox
+        Me.NumericUpDown7 = New System.Windows.Forms.NumericUpDown
+        Me.Label9 = New System.Windows.Forms.Label
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,6 +57,8 @@ Partial Class SetupDialogForm
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -63,7 +69,7 @@ Partial Class SetupDialogForm
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(201, 366)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(201, 417)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -160,7 +166,7 @@ Partial Class SetupDialogForm
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(15, 265)
+        Me.Label6.Location = New System.Drawing.Point(15, 309)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(88, 13)
         Me.Label6.TabIndex = 17
@@ -169,7 +175,7 @@ Partial Class SetupDialogForm
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(15, 301)
+        Me.Label7.Location = New System.Drawing.Point(15, 345)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(83, 13)
         Me.Label7.TabIndex = 18
@@ -183,6 +189,16 @@ Partial Class SetupDialogForm
         Me.Label8.Size = New System.Drawing.Size(71, 13)
         Me.Label8.TabIndex = 21
         Me.Label8.Text = "Stepper RPM"
+        '
+        'COM1
+        '
+        Me.COM1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "CommPort", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.COM1.FormattingEnabled = True
+        Me.COM1.Location = New System.Drawing.Point(84, 48)
+        Me.COM1.Name = "COM1"
+        Me.COM1.Size = New System.Drawing.Size(96, 21)
+        Me.COM1.TabIndex = 22
+        Me.COM1.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.CommPort
         '
         'NumericUpDown6
         '
@@ -200,7 +216,7 @@ Partial Class SetupDialogForm
         Me.CheckBox1.AutoSize = True
         Me.CheckBox1.Checked = Global.ASCOM.JoloFocuser.My.MySettings.Default.TempComp
         Me.CheckBox1.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.ASCOM.JoloFocuser.My.MySettings.Default, "TempComp", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.CheckBox1.Location = New System.Drawing.Point(125, 337)
+        Me.CheckBox1.Location = New System.Drawing.Point(125, 381)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(127, 17)
         Me.CheckBox1.TabIndex = 19
@@ -210,7 +226,7 @@ Partial Class SetupDialogForm
         'NumericUpDown5
         '
         Me.NumericUpDown5.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "StepsPerC", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown5.Location = New System.Drawing.Point(125, 299)
+        Me.NumericUpDown5.Location = New System.Drawing.Point(125, 343)
         Me.NumericUpDown5.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.NumericUpDown5.Name = "NumericUpDown5"
         Me.NumericUpDown5.Size = New System.Drawing.Size(55, 20)
@@ -220,8 +236,9 @@ Partial Class SetupDialogForm
         'NumericUpDown4
         '
         Me.NumericUpDown4.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "TempCycle", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown4.Location = New System.Drawing.Point(125, 263)
-        Me.NumericUpDown4.Maximum = New Decimal(New Integer() {60, 0, 0, 0})
+        Me.NumericUpDown4.Location = New System.Drawing.Point(125, 307)
+        Me.NumericUpDown4.Maximum = New Decimal(New Integer() {120, 0, 0, 0})
+        Me.NumericUpDown4.Minimum = New Decimal(New Integer() {3, 0, 0, 0})
         Me.NumericUpDown4.Name = "NumericUpDown4"
         Me.NumericUpDown4.Size = New System.Drawing.Size(55, 20)
         Me.NumericUpDown4.TabIndex = 15
@@ -256,15 +273,33 @@ Partial Class SetupDialogForm
         Me.NumericUpDown1.TabIndex = 8
         Me.NumericUpDown1.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserMax
         '
-        'COM1
+        'NumericUpDown7
         '
-        Me.COM1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "CommPort", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.COM1.FormattingEnabled = True
-        Me.COM1.Location = New System.Drawing.Point(84, 48)
-        Me.COM1.Name = "COM1"
-        Me.COM1.Size = New System.Drawing.Size(96, 21)
-        Me.COM1.TabIndex = 22
-        Me.COM1.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.CommPort
+        Me.NumericUpDown7.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "Backslash", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.NumericUpDown7.Location = New System.Drawing.Point(125, 225)
+        Me.NumericUpDown7.Name = "NumericUpDown7"
+        Me.NumericUpDown7.Size = New System.Drawing.Size(55, 20)
+        Me.NumericUpDown7.TabIndex = 23
+        Me.NumericUpDown7.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.Backslash
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(15, 227)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(56, 13)
+        Me.Label9.TabIndex = 24
+        Me.Label9.Text = "Backslash"
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
+        Me.PictureBox2.Location = New System.Drawing.Point(298, 95)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(48, 49)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 25
+        Me.PictureBox2.TabStop = False
         '
         'SetupDialogForm
         '
@@ -272,7 +307,10 @@ Partial Class SetupDialogForm
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
-        Me.ClientSize = New System.Drawing.Size(359, 407)
+        Me.ClientSize = New System.Drawing.Size(359, 458)
+        Me.Controls.Add(Me.PictureBox2)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.NumericUpDown7)
         Me.Controls.Add(Me.COM1)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.NumericUpDown6)
@@ -307,6 +345,8 @@ Partial Class SetupDialogForm
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -333,5 +373,8 @@ Partial Class SetupDialogForm
     Friend WithEvents NumericUpDown6 As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents COM1 As System.Windows.Forms.ComboBox
+    Friend WithEvents NumericUpDown7 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
 
 End Class

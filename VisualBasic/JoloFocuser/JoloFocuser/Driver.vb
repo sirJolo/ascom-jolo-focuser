@@ -19,10 +19,11 @@
 ' -----------	---	-----	-------------------------------------------------------
 ' 21-Jan-2013	Jol	1.0.0	Initial edit, from Focuser template
 ' 22-Jan-2013	Jol	1.0.1	Interface implementation, serial communication commands
+' 23-Jan-2013   Jol 1.0.2   Temperature compensation, backslash
 ' ---------------------------------------------------------------------------------
 '
 ' RS232 command (LF term)   OUT             IN
-' Read settings             S               I:0,P:2322,R:200,T:-3.12
+' Read settings             S               P:2322,R:200,T:-3.12,I:false,M:32
 ' Set RPM                   R:230           R
 ' Move                      M:32442         M
 ' Temperature               T               T:-3.14
@@ -43,24 +44,25 @@
 
 Imports ASCOM.Utilities
 Imports ASCOM.DeviceInterface
-
 <Guid("7a3855b3-8917-48ab-b1f3-7bc29f41f6d6")> _
 <ClassInterface(ClassInterfaceType.None)> _
 Public Class Focuser
     '	==========
     ' Early-bind interface implemented by this driver
-    ' TODO - implement temperature compensation
     '
     Implements IFocuserV2
-
-
     '
     ' Driver ID and descriptive string that shows in the Chooser
     '
+    Private Const DELTA_T As Double = 0.5
+
     Private Shared driverID As String = "ASCOM.JoloFocuser.Focuser"
     Private Shared driverDescription As String = "Jolo main focuser"
-    Private Shared serialPort As Serial
-    Private Shared timer As System.Timers.Timer
+    Private serialPort As Serial
+    Private timer As System.Timers.Timer
+    Private compTemp As Double
+    Private compPos As Integer = -1
+    Private lastDirection As Integer = 0
 
     '
     ' Constructor - Must be public for COM registration!
@@ -175,8 +177,6 @@ Public Class Focuser
             Return IsConnected
         End Get
         Set(ByVal value As Boolean)
-            ' timer.Interval = 1000 * My.Settings.TempCycle
-            ' timer.Enabled = value
             If (value = IsConnected) Then
                 Return
             End If
@@ -246,6 +246,7 @@ Public Class Focuser
     Private Sub Disconnect()
         serialPort.ClearBuffers()
         serialPort.Connected = False
+        timer.Enabled = False
     End Sub
 
     ''' <summary>
@@ -258,10 +259,39 @@ Public Class Focuser
         End If
     End Sub
 
+    ' Temperature compensation routine
+    ' Works only when enabled and when focuser is not moving
+    Private Sub OnTempCompensation(ByVal source As Object, ByVal e As System.Timers.ElapsedEventArgs)
+        If (My.Settings.TempComp AndAlso Not IsMoving AndAlso My.Settings.StepsPerC > 0) Then
+            Dim temp As Double = Temperature
+            Dim pos As Integer = Position
 
-    Private Shared Sub OnTempCompensation(ByVal source As Object, ByVal e As System.Timers.ElapsedEventArgs)
-        '
+            If (compTemp = -1) Then
+                CheckConnected("OnTempCompensation")
+                compTemp = temp
+                compPos = pos
+            Else
+                If (Math.Abs(compTemp - temp) > DELTA_T) Then
+                    compPos += (temp - TempComp) * My.Settings.StepsPerC
+                    Move(compPos)
+                End If
+            End If
+        End If
     End Sub
+
+    ' Backslash compensation
+    Function BackslashCompensation(ByVal newPos As Integer) As Integer
+        Dim backslash As Integer = 0
+        If (My.Settings.Backslash > 0) Then
+            Dim currentPos As Integer = Position
+            Dim moveDirection As Integer = Math.Sign(newPos - currentPos)
+            If (moveDirection <> lastDirection) Then
+                backslash = My.Settings.Backslash
+                lastDirection = moveDirection
+            End If
+        End If
+        Return backslash
+    End Function
 
 #End Region
 
@@ -312,10 +342,12 @@ Public Class Focuser
     End Property
 
     Public Sub Move(ByVal Position As Integer) Implements DeviceInterface.IFocuserV2.Move
+        Position += BackslashCompensation(Position)
         Dim answer As String = CommandString("M:" + Position.ToString)
         If (answer <> "M") Then
             Throw New ASCOM.DriverException()
         End If
+        compPos = -1 ' Reset compensation position
     End Sub
 
     Public ReadOnly Property Name() As String Implements DeviceInterface.IFocuserV2.Name

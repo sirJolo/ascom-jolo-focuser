@@ -13,3 +13,10 @@ D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\bin
 D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj\x86\Debug\JoloFocuserTest.exe
 D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj\x86\Debug\JoloFocuserTest.xml
 D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj\x86\Debug\JoloFocuserTest.pdb
+D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\bin\Debug\JoloFocuserTest.exe
+D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\bin\Debug\JoloFocuserTest.pdb
+D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\bin\Debug\JoloFocuserTest.xml
+D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj\x86\Debug\ASCOM.JoloFocuser.Form1.resources
+D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj\x86\Debug\ASCOM.JoloFocuser.Resources.resources
+D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj\x86\Debug\JoloFocuserTest.vbproj.GenerateResource.Cache

@@ -149,6 +149,18 @@ Namespace My
                 Me("StepperRPM") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property Backslash() As Decimal
+            Get
+                Return CType(Me("Backslash"),Decimal)
+            End Get
+            Set
+                Me("Backslash") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
