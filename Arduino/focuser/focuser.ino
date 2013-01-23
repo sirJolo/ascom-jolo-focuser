@@ -29,7 +29,7 @@ DeviceAddress insideThermometer;
 #define encoderButtonPin 3
 
 // Buzzer pin
-#define BUZZER_PIN 5
+#define BUZZER_PIN 10
 
 // Stepper config
 Stepper stepper(STEPS, 6, 7, 8, 9);
@@ -37,6 +37,7 @@ Stepper stepper(STEPS, 6, 7, 8, 9);
 byte focuserPositionPointer;        
 word currentFocuserPosition;
 word newFocuserPosition;
+unsigned long tempReadMilis;
 
 void setup() 
 {
@@ -46,6 +47,9 @@ void setup()
 
 void loop() 
 {
+  // Send temperature read if conversion time elapsed
+  if(tempReadMilis != 0 && millis() > tempReadMilis) printTemp();
+  
   // Move stepper in some not so large step chunks
   if(currentFocuserPosition != newFocuserPosition) {
     boolean last_step = false;
@@ -78,7 +82,7 @@ void serialEvent()
       String command = String(buffer).substring(2);
       switch(buffer[0]) {
         case 'T':    // Read temperature
-          printTemp();
+          requestTemp();
           break;
         case 'P':    // Return current position
           printCurrentPosition();
@@ -108,11 +112,16 @@ void serialEvent()
 }
 
 // Serial commands subroutines
-void printTemp() {
+void requestTemp() {
   sensors.requestTemperaturesByAddress(insideThermometer); // Send the command to get temperature. For 10 bit res it takes 188ms
+  tempReadMilis = millis() + 188;
+}
+
+void printTemp() {
   float tempC = sensors.getTempC(insideThermometer);
   Serial.print("T:");
   Serial.print(tempC, 1);  
+  tempReadMilis = 0;
 }
 
 void printCurrentPosition() {
@@ -219,6 +228,8 @@ void initialize()
   sensors.begin(); 
   sensors.getAddress(insideThermometer, 0);
   sensors.setResolution(insideThermometer, 10);
+  sensors.setWaitForConversion(false);
+  tempReadMilis = 0;
   
   // Initialize stepper motor
   stepper.setSpeed(EEPROM.read(STEPPER_SPEED_ADD));
