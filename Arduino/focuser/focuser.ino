@@ -4,18 +4,18 @@
 // Author: jolo drjolo@gmail.com
 //
 // 2013-01-22  0.0.1  first version
-//
+// 2013-01-23  0.0.2  non blocking temp read, non blocking stepper
 
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <EEPROM.h>
-#include <Stepper.h>
+#include <AccelStepper.h>
 
 // EEPROM addresses
 #define MANUAL_STEP_ADD 104        // EEPROM address of encoder tick stepper steps
 #define STEPPER_SPEED_ADD 103      // EEPROM address of stepper speed in RPMs
-#define STEPS 400                  // Stepper steps for one shaft rotation (including internal gear if available)
-#define SINGLE_MOVE_STEPS 20       // Stepper steps during one single motion
+#define STEPS 200                  // Stepper steps for one shaft rotation (including internal gear if available)
+#define STEPPER_ACCELERATION 20
 
 // Temperature sensor config (one wire protocol)
 #define TEMP_SENSOR_PIN 5
@@ -29,14 +29,14 @@ DeviceAddress insideThermometer;
 #define encoderButtonPin 3
 
 // Buzzer pin
-#define BUZZER_PIN 5
+#define BUZZER_PIN 10
 
 // Stepper config
-Stepper stepper(STEPS, 6, 7, 8, 9);
+AccelStepper stepper(AccelStepper::FULL4WIRE, 6, 7, 8, 9);
 
 byte focuserPositionPointer;        
 word currentFocuserPosition;
-word newFocuserPosition;
+unsigned long tempReadMilis;
 
 void setup() 
 {
@@ -46,24 +46,18 @@ void setup()
 
 void loop() 
 {
-  // Move stepper in some not so large step chunks
-  if(currentFocuserPosition != newFocuserPosition) {
-    boolean last_step = false;
-    int steps = newFocuserPosition - currentFocuserPosition;
-    if(steps > SINGLE_MOVE_STEPS) {
-      steps = SINGLE_MOVE_STEPS;
+  // Stepper loop
+  stepper.run();
+
+  if (stepper.distanceToGo() == 0) {
+    if(currentFocuserPosition != stepper.currentPosition()) {
+      currentFocuserPosition = stepper.currentPosition();
+      saveFocuserPos(currentFocuserPosition);
     }
-    else if (steps < -SINGLE_MOVE_STEPS) {
-      steps = -SINGLE_MOVE_STEPS;
-    }
-    else {
-      last_step = true;
-    }    
-    
-    stepper.step(steps);
-    currentFocuserPosition += steps;
-    if(last_step) saveFocuserPos(currentFocuserPosition);
   }
+
+  // Send temperature read if conversion time elapsed
+  if(tempReadMilis != 0 && millis() > tempReadMilis) printTemp();  
 }
 
 
@@ -78,7 +72,7 @@ void serialEvent()
       String command = String(buffer).substring(2);
       switch(buffer[0]) {
         case 'T':    // Read temperature
-          printTemp();
+          requestTemp();
           break;
         case 'P':    // Return current position
           printCurrentPosition();
@@ -108,11 +102,16 @@ void serialEvent()
 }
 
 // Serial commands subroutines
-void printTemp() {
+void requestTemp() {
   sensors.requestTemperaturesByAddress(insideThermometer); // Send the command to get temperature. For 10 bit res it takes 188ms
+  tempReadMilis = millis() + 188;
+}
+
+void printTemp() {
   float tempC = sensors.getTempC(insideThermometer);
   Serial.print("T:");
   Serial.print(tempC, 1);  
+  tempReadMilis = 0;
 }
 
 void printCurrentPosition() {
@@ -122,26 +121,26 @@ void printCurrentPosition() {
 
 void printInMoveStatus() {
   Serial.print("I:");
-  if(newFocuserPosition == currentFocuserPosition) 
+  if(stepper.distanceToGo() == 0) 
     Serial.print("false");
   else
     Serial.print("true");
 }
 
 void moveTo(word focuserPosition) {
-  newFocuserPosition = focuserPosition;
+  stepper.enableOutputs();
+  stepper.moveTo(focuserPosition);
   Serial.print("M");
 }
 
 void halt() {
-  newFocuserPosition = currentFocuserPosition;
-  saveFocuserPos(currentFocuserPosition);
+  stepper.stop();
   Serial.print("H");
 }
 
 void saveStepperSpeed(byte stepperSpeed) {
   EEPROM.write(STEPPER_SPEED_ADD, stepperSpeed);
-  stepper.setSpeed(stepperSpeed);
+  stepper.setMaxSpeed(EEPROM.read(STEPPER_SPEED_ADD) / 60 * STEPS);
   Serial.print("S");
 }
 
@@ -210,7 +209,7 @@ void initialize()
   if(focuserPositionPointer > 98) focuserPositionPointer = 0;
   EEPROM.write(102, focuserPositionPointer);
   saveFocuserPos(tempFocus);
-  currentFocuserPosition = newFocuserPosition = tempFocus;
+  currentFocuserPosition = tempFocus;
   
   // Initialize serial
   Serial.begin(9600);
@@ -219,9 +218,14 @@ void initialize()
   sensors.begin(); 
   sensors.getAddress(insideThermometer, 0);
   sensors.setResolution(insideThermometer, 10);
+  sensors.setWaitForConversion(false);
+  tempReadMilis = 0;
   
   // Initialize stepper motor
-  stepper.setSpeed(EEPROM.read(STEPPER_SPEED_ADD));
+  stepper.setMaxSpeed(EEPROM.read(STEPPER_SPEED_ADD) / 60 * STEPS);
+  stepper.setAcceleration(STEPPER_ACCELERATION);
+  stepper.disableOutputs();
+  stepper.setCurrentPosition(currentFocuserPosition);
   
   // Initialize encoder pins
   pinMode(encoder0PinA, INPUT); 
