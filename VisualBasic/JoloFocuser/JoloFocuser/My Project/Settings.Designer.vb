@@ -128,18 +128,6 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property TempComp() As Boolean
-            Get
-                Return CType(Me("TempComp"),Boolean)
-            End Get
-            Set
-                Me("TempComp") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("5")>  _
         Public Property StepperRPM() As Decimal
             Get

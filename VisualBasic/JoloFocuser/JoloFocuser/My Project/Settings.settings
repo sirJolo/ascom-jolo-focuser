@@ -20,9 +20,6 @@
     <Setting Name="StepsPerC" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="TempComp" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="StepperRPM" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>

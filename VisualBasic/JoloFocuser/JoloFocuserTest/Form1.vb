@@ -67,4 +67,12 @@
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         Me.driver.Move(NumericUpDown1.Value)
     End Sub
+
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        TextBox1.Text = Me.driver.IsMoving.ToString()
+    End Sub
+
+    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
+        TextBox2.Text = Me.driver.Temperature.ToString
+    End Sub
 End Class
