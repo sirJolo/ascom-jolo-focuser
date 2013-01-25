@@ -1,13 +1,16 @@
 // Interrupt serial event
 void serialEvent()
 {
-  if(Serial.available() > 2) {
+  if(Serial.available() > 1) {
     char buffer[10];
     byte len = Serial.readBytesUntil('\n', buffer, 10);
    
-    if(len > 3) {
+    if(len > 0) {
       String command = String(buffer).substring(2);
       switch(buffer[0]) {
+        case '#':
+          Serial.print("*\n");
+          break;
         case 'T':    // Read temperature
           requestTemp();
           break;
@@ -29,28 +32,25 @@ void serialEvent()
         default:
           Serial.print("ERR:");      
           Serial.print(buffer); 
+          Serial.print('\n');
       }
-     if(buffer[0] != 'T') Serial.print('\n');   // Temperature read is async and provides its own line ending
     }
   }  
 }
-
-
-
 
 // Serial commands subroutines
 void requestTemp() {
   if(sensorConnected) {
     sensors.requestTemperaturesByAddress(insideThermometer); // Send the command to get temperature. For 10 bit res it takes 188ms
-    tempReadMilis = millis() + 188;
+    tempReadMilis = millis() + 180;
   } else {
-    Serial.print("T:false" + '\n'); 
-  }
+    Serial.print("T:false\n"); 
+  }  
 }
 
 void printTemp() {
   Serial.print("T:");
-  Serial.print(sensors.getTempC(insideThermometer), 1);  
+  Serial.print(sensors.getTempC(insideThermometer), 3);  
   Serial.print('\n'); 
   tempReadMilis = 0;
 }
@@ -58,6 +58,7 @@ void printTemp() {
 void printCurrentPosition() {
   Serial.print("P:");
   Serial.print(currentFocuserPosition);
+  Serial.print('\n'); 
 }
 
 void printInMoveStatus() {
@@ -66,22 +67,23 @@ void printInMoveStatus() {
     Serial.print("false");
   else
     Serial.print("true");
+  Serial.print('\n'); 
 }
 
 void moveStepper(word focuserPosition) {
   stepper.enableOutputs();
   stepper.moveTo(focuserPosition);
-  Serial.print("M");
+  Serial.print("M\n");
 }
 
 void halt() {
   stepper.stop();
-  Serial.print("H");
+  Serial.print("H\n");
 }
 
 void saveStepperSpeed(byte stepperSpeed) {
   EEPROM.write(STEPPER_SPEED_ADD, stepperSpeed);
   stepper.setMaxSpeed(EEPROM.read(STEPPER_SPEED_ADD) / 60 * STEPS);
-  Serial.print("S");
+  Serial.print("S\n");
 }
 
