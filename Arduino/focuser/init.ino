@@ -5,7 +5,7 @@ void setup()
   {
     // Do it here only once
     EEPROM.write(MANUAL_STEP_ADD, 16);
-    EEPROM.write(STEPPER_SPEED_ADD, 100);
+    EEPROM.write(STEPPER_SPEED_ADD, 20);
     EEPROM.write(DUTY_CYCLE_ADDR, 0);
     for(byte x = 0; x < 30; x++) EEPROM.write(FOCUSER_POS_START + 3*x, 0);
     saveFocuserPos(0);
@@ -23,14 +23,12 @@ void setup()
     sensors.setResolution(insideThermometer, 10);
     sensors.setWaitForConversion(false);
     tempReadMilis = 0;
-    currentTemp = -127;
-    tempRequestMilis = millis() + TEMP_CYCLE;
+    tempRequestMilis = millis();
   }
   
   // Initialize stepper motor
-  stepper.setMaxSpeed(EEPROM.read(STEPPER_SPEED_ADD) / 60 * STEPS);
+  stepper.setMaxSpeed(10 * EEPROM.read(STEPPER_SPEED_ADD));
   stepper.setAcceleration(STEPPER_ACCELERATION);
-  stepper.disableOutputs();
   stationaryFocuserPosition = readFocuserPos();
   stepper.setCurrentPosition(stationaryFocuserPosition);
   

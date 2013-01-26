@@ -33,7 +33,6 @@ DallasTemperature sensors(&oneWire);
 DeviceAddress insideThermometer;
 
 // Stepper config
-#define STEPS 200                  // Stepper steps for one shaft rotation (including internal gear if available)
 #define STEPPER_ACCELERATION 100
 AccelStepper stepper(AccelStepper::FULL4WIRE, 6, 7, 8, 9);
 
@@ -42,6 +41,7 @@ unsigned long tempRequestMilis;
 unsigned long tempReadMilis;
 double currentTemp;
 boolean sensorConnected;
+String inputString;
 
 void loop() 
 {
@@ -52,7 +52,6 @@ void loop()
     if(stationaryFocuserPosition != stepper.currentPosition()) {
       stationaryFocuserPosition = stepper.currentPosition();
       saveFocuserPos(stepper.currentPosition());
-      stepper.disableOutputs();
     }
   }
 
