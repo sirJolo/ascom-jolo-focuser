@@ -12,7 +12,7 @@ void serialEvent()
           Serial.print("*\n");
           break;
         case 'T':    // Read temperature
-          requestTemp();
+          printTemp();
           break;
         case 'P':    // Return current position
           printCurrentPosition();
@@ -29,6 +29,9 @@ void serialEvent()
         case 'S':
           saveStepperSpeed(stringToNumber(command));
           break;
+        case 'D':
+          saveDutyCycle(stringToNumber(command));
+          break;
         default:
           Serial.print("ERR:");      
           Serial.print(buffer); 
@@ -42,22 +45,28 @@ void serialEvent()
 void requestTemp() {
   if(sensorConnected) {
     sensors.requestTemperaturesByAddress(insideThermometer); // Send the command to get temperature. For 10 bit res it takes 188ms
-    tempReadMilis = millis() + 180;
+    tempReadMilis = millis() + 188;
+    tempRequestMilis = 0;
   } else {
     Serial.print("T:false\n"); 
   }  
 }
 
+void readTemp() {
+  currentTemp = sensors.getTempC(insideThermometer);
+  tempRequestMilis = millis() + TEMP_CYCLE;
+  tempReadMilis = 0;
+}
+
 void printTemp() {
   Serial.print("T:");
-  Serial.print(sensors.getTempC(insideThermometer), 3);  
+  Serial.print(currentTemp, 1);  
   Serial.print('\n'); 
-  tempReadMilis = 0;
 }
 
 void printCurrentPosition() {
   Serial.print("P:");
-  Serial.print(currentFocuserPosition);
+  Serial.print(stepper.currentPosition());
   Serial.print('\n'); 
 }
 
@@ -78,12 +87,19 @@ void moveStepper(word focuserPosition) {
 
 void halt() {
   stepper.stop();
+  stepper.disableOutputs();
   Serial.print("H\n");
 }
 
 void saveStepperSpeed(byte stepperSpeed) {
   EEPROM.write(STEPPER_SPEED_ADD, stepperSpeed);
   stepper.setMaxSpeed(EEPROM.read(STEPPER_SPEED_ADD) / 60 * STEPS);
+  Serial.print(EEPROM.read(STEPPER_SPEED_ADD) / 60 * STEPS);
   Serial.print("S\n");
+}
+
+void saveDutyCycle(byte dutyCycle) {
+  EEPROM.write(DUTY_CYCLE_ADDR, dutyCycle);
+  Serial.print("D\n");
 }
 

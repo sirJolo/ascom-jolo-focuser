@@ -1,23 +1,16 @@
 // Initialization routine
 void setup() 
 {
-  if(EEPROM.read(101) != 100)
+  if(EEPROM.read(1) != 100)
   {
     // Do it here only once
     EEPROM.write(MANUAL_STEP_ADD, 16);
     EEPROM.write(STEPPER_SPEED_ADD, 100);
     EEPROM.write(DUTY_CYCLE_ADDR, 0);
-    EEPROM.write(FOCUSER_POINTER_ADD, 0);        //Pointer to current focuser position storage value
+    for(byte x = 0; x < 30; x++) EEPROM.write(FOCUSER_POS_START + 3*x, 0);
     saveFocuserPos(0);
-    EEPROM.write(101, 100);      // Dont do this block any more
+    EEPROM.write(1, 100);      // Dont do this block any more
   } 
-  // We rotate focuser pointer storage place to avoid EEPROM damage after 100 000 cycles (0...100)
-  byte focuserPositionPointer = EEPROM.read(FOCUSER_POINTER_ADD);
-  currentFocuserPosition = readFocuserPos();
-  focuserPositionPointer += 2;
-  if(focuserPositionPointer > 98) focuserPositionPointer = 0;
-  EEPROM.write(FOCUSER_POINTER_ADD, focuserPositionPointer);
-  saveFocuserPos(currentFocuserPosition);
   
   // Initialize serial
   Serial.begin(9600);
@@ -30,13 +23,16 @@ void setup()
     sensors.setResolution(insideThermometer, 10);
     sensors.setWaitForConversion(false);
     tempReadMilis = 0;
+    currentTemp = -127;
+    tempRequestMilis = millis() + TEMP_CYCLE;
   }
   
   // Initialize stepper motor
   stepper.setMaxSpeed(EEPROM.read(STEPPER_SPEED_ADD) / 60 * STEPS);
   stepper.setAcceleration(STEPPER_ACCELERATION);
   stepper.disableOutputs();
-  stepper.setCurrentPosition(currentFocuserPosition);
+  stationaryFocuserPosition = readFocuserPos();
+  stepper.setCurrentPosition(stationaryFocuserPosition);
   
   // Initialize encoder pins
   pinMode(encoder0PinA, INPUT); 
