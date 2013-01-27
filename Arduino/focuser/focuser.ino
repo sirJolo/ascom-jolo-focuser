@@ -42,6 +42,7 @@ unsigned long tempReadMilis;
 double currentTemp;
 boolean sensorConnected;
 String inputString;
+String init12;
 
 void loop() 
 {

@@ -45,4 +45,5 @@ void setup()
   digitalWrite(BUZZER_PIN, LOW);
 
   attachInterrupt(0, doEncoder, CHANGE);  // encoder pin on interrupt 0 - pin 2
+  inputString = "";
 }
