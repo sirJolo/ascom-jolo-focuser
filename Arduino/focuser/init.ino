@@ -27,10 +27,9 @@ void setup()
   }
   
   // Initialize stepper motor
-  stepper.setMaxSpeed(10 * EEPROM.read(STEPPER_SPEED_ADD));
-  stepper.setAcceleration(STEPPER_ACCELERATION);
-  stationaryFocuserPosition = readFocuserPos();
-  stepper.setCurrentPosition(stationaryFocuserPosition);
+  stepper.setSpeed(EEPROM.read(STEPPER_SPEED_ADD));
+  focuserPosition = readFocuserPos();
+
   
   // Initialize encoder pins
   pinMode(encoder0PinA, INPUT); 

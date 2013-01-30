@@ -36,10 +36,6 @@ void serialCommand(String command) {
     case 'D':
       saveDutyCycle(stringToNumber(param));
       break;
-    case 'E':
-      Serial.print(init12);
-      Serial.print('\n');
-      break;
     default:
       Serial.print("ERR:");      
       Serial.print(command); 
@@ -74,33 +70,35 @@ void printTemp() {
 }
 
 void printCurrentPosition() {
+  word pos = focuserPosition + stepper.stepsLeft();
   Serial.print("P:");
-  Serial.print(stepper.currentPosition());
+  Serial.print(pos);
   Serial.print('\n'); 
 }
 
 void printInMoveStatus() {
   Serial.print("I:");
-  if(stepper.distanceToGo() == 0) 
+  if(stepper.stepsLeft() == 0) 
     Serial.print("false");
   else
     Serial.print("true");
   Serial.print('\n'); 
 }
 
-void moveStepper(word focuserPosition) {
-  stepper.moveTo(focuserPosition);
+void moveStepper(word newPos) {
+  newFocuserPosition = newPos;
+  stepper.step(newFocuserPosition - focuserPosition);
   Serial.print("M\n");
 }
 
 void halt() {
-  stepper.stop();
+  stepper.halt();
   Serial.print("H\n");
 }
 
 void saveStepperSpeed(byte stepperSpeed) {
   EEPROM.write(STEPPER_SPEED_ADD, stepperSpeed);
-  stepper.setMaxSpeed(10 * EEPROM.read(STEPPER_SPEED_ADD));
+  stepper.setSpeed(EEPROM.read(STEPPER_SPEED_ADD));
   Serial.print("S\n");
 }
 

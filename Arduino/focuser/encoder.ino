@@ -7,9 +7,9 @@ void doEncoder() {
    * [Reference/PortManipulation], specifically the PIND register.
    */
   if (digitalRead(encoder0PinA) == digitalRead(encoder0PinB)) {
-    moveStepper(stepper.currentPosition() + EEPROM.read(MANUAL_STEP_ADD));
+    moveStepper(EEPROM.read(MANUAL_STEP_ADD));
   } else {
-    moveStepper(stepper.currentPosition() - EEPROM.read(MANUAL_STEP_ADD));
+    moveStepper(EEPROM.read(MANUAL_STEP_ADD));
   }
 }
 
