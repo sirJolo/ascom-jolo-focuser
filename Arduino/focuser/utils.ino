@@ -3,9 +3,6 @@ void saveFocuserPos(word newPos) {
   int focuserPosAddress = getSaveFocuserPosAddress();
   EEPROM.write(focuserPosAddress + 1, lowByte(newPos)); 
   EEPROM.write(focuserPosAddress + 2, highByte(newPos)); 
-  Serial.print("Saved new pos:");
-  Serial.print(newPos, DEC);
-  Serial.print('\n');
 }
 
 word readFocuserPos() {
@@ -50,3 +47,4 @@ void debug(String message) {
   Serial.print(message);
   Serial.print('\n');
 }
+

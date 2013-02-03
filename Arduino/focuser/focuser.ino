@@ -9,7 +9,7 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <EEPROM.h>
-#include <AsyncStepper.h>
+#include <AccelStepper.h>
 
 // EEPROM addresses
 #define FOCUSER_POS_START 900
@@ -33,10 +33,11 @@ DallasTemperature sensors(&oneWire);
 DeviceAddress insideThermometer;
 
 // Stepper config
-AsyncStepper stepper(200, 6, 7, 8, 9);
+#define STEPPER_MAX_SPEED 200
+#define STEPPER_ACC 100
+AccelStepper stepper = AccelStepper(AccelStepper::FULL4WIRE, 6, 7, 8, 9);
 
-word focuserPosition;     
-word newFocuserPosition;
+boolean positionSaved;   
 unsigned long tempRequestMilis;
 unsigned long tempReadMilis;
 double currentTemp;
@@ -49,11 +50,9 @@ void loop()
   // Stepper loop
   stepper.run();
 
-  if (stepper.stepsLeft() == 0) {
-    if(newFocuserPosition != focuserPosition) {
-      focuserPosition = newFocuserPosition;
-      saveFocuserPos(focuserPosition);
-    }
+  if(stepper.distanceToGo() == 0 && !positionSaved) {
+    saveFocuserPos(stepper.currentPosition());
+    positionSaved = true;
   }
 
   // Temperature read loop
