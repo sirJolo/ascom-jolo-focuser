@@ -1,1 +1,2 @@
 C:\Users\lukasz.socha\Documents\Visual Studio 2008\Projects\JoloFocuser\JoloFocuserTest\bin\Release\JoloFocuserTest.exe.config
+D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\bin\Release\JoloFocuserTest.exe.config

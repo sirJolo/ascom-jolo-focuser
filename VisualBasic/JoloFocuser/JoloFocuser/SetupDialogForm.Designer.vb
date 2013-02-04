@@ -48,6 +48,10 @@ Partial Class SetupDialogForm
         Me.NumericUpDown3 = New System.Windows.Forms.NumericUpDown
         Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown
         Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown
+        Me.NumericUpDown8 = New System.Windows.Forms.NumericUpDown
+        Me.Label10 = New System.Windows.Forms.Label
+        Me.Button2 = New System.Windows.Forms.Button
+        Me.TextBox1 = New System.Windows.Forms.TextBox
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,6 +62,7 @@ Partial Class SetupDialogForm
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -68,7 +73,7 @@ Partial Class SetupDialogForm
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(201, 396)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(201, 497)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -165,7 +170,7 @@ Partial Class SetupDialogForm
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(15, 309)
+        Me.Label6.Location = New System.Drawing.Point(15, 290)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(88, 13)
         Me.Label6.TabIndex = 17
@@ -174,7 +179,7 @@ Partial Class SetupDialogForm
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(15, 345)
+        Me.Label7.Location = New System.Drawing.Point(15, 326)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(83, 13)
         Me.Label7.TabIndex = 18
@@ -241,7 +246,7 @@ Partial Class SetupDialogForm
         'NumericUpDown5
         '
         Me.NumericUpDown5.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "StepsPerC", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown5.Location = New System.Drawing.Point(125, 343)
+        Me.NumericUpDown5.Location = New System.Drawing.Point(125, 324)
         Me.NumericUpDown5.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.NumericUpDown5.Name = "NumericUpDown5"
         Me.NumericUpDown5.Size = New System.Drawing.Size(55, 20)
@@ -251,7 +256,7 @@ Partial Class SetupDialogForm
         'NumericUpDown4
         '
         Me.NumericUpDown4.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "TempCycle", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown4.Location = New System.Drawing.Point(125, 307)
+        Me.NumericUpDown4.Location = New System.Drawing.Point(125, 288)
         Me.NumericUpDown4.Maximum = New Decimal(New Integer() {120, 0, 0, 0})
         Me.NumericUpDown4.Minimum = New Decimal(New Integer() {3, 0, 0, 0})
         Me.NumericUpDown4.Name = "NumericUpDown4"
@@ -288,13 +293,56 @@ Partial Class SetupDialogForm
         Me.NumericUpDown1.TabIndex = 8
         Me.NumericUpDown1.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserMax
         '
+        'NumericUpDown8
+        '
+        Me.NumericUpDown8.Location = New System.Drawing.Point(125, 389)
+        Me.NumericUpDown8.Maximum = New Decimal(New Integer() {65000, 0, 0, 0})
+        Me.NumericUpDown8.Name = "NumericUpDown8"
+        Me.NumericUpDown8.Size = New System.Drawing.Size(103, 20)
+        Me.NumericUpDown8.TabIndex = 26
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(18, 392)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(100, 13)
+        Me.Label10.TabIndex = 27
+        Me.Label10.Text = "Set focuser position"
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(253, 388)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 28
+        Me.Button2.Text = "Set"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'TextBox1
+        '
+        Me.TextBox1.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox1.Enabled = False
+        Me.TextBox1.Location = New System.Drawing.Point(21, 424)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(307, 53)
+        Me.TextBox1.TabIndex = 29
+        Me.TextBox1.Text = "Use it if you want to set current focser position, when you loose synchronization" & _
+            " between focuser and driver. For example move focuser to its most inward positio" & _
+            "n and then set position to 0."
+        '
         'SetupDialogForm
         '
         Me.AcceptButton = Me.OK_Button
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
-        Me.ClientSize = New System.Drawing.Size(359, 437)
+        Me.ClientSize = New System.Drawing.Size(359, 538)
+        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.NumericUpDown8)
         Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.NumericUpDown7)
@@ -333,6 +381,7 @@ Partial Class SetupDialogForm
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -361,5 +410,9 @@ Partial Class SetupDialogForm
     Friend WithEvents NumericUpDown7 As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
+    Friend WithEvents NumericUpDown8 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
 
 End Class
