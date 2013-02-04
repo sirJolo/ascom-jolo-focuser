@@ -33,8 +33,7 @@ DallasTemperature sensors(&oneWire);
 DeviceAddress insideThermometer;
 
 // Stepper config
-#define STEPPER_MAX_SPEED 200
-#define STEPPER_ACC 100
+#define STEPPER_ACC 200
 AccelStepper stepper = AccelStepper(AccelStepper::FULL4WIRE, 6, 7, 8, 9);
 
 boolean positionSaved;   

@@ -16,7 +16,7 @@ void setup()
   }
   
   // Initialize stepper motor
-  stepper.setMaxSpeed(EEPROM.read(STEPPER_SPEED_ADD));
+  stepper.setMaxSpeed(readWord(STEPPER_SPEED_ADD));
   stepper.setAcceleration(STEPPER_ACC);
   stepper.setCurrentPosition(readFocuserPos());
   positionSaved = true;

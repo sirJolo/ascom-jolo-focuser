@@ -1,13 +1,20 @@
 // Current focuser position storage
 void saveFocuserPos(word newPos) {
-  int focuserPosAddress = getSaveFocuserPosAddress();
-  EEPROM.write(focuserPosAddress + 1, lowByte(newPos)); 
-  EEPROM.write(focuserPosAddress + 2, highByte(newPos)); 
+  writeWord(getSaveFocuserPosAddress() + 1, newPos);
 }
 
 word readFocuserPos() {
-  int focuserPosAddress = getReadFocuserPosAddress();
-  return word(EEPROM.read(focuserPosAddress + 2), EEPROM.read(focuserPosAddress + 1)); 
+  return readWord(getReadFocuserPosAddress() + 1);
+}
+
+
+void writeWord(word address, word value) {
+  EEPROM.write(address, lowByte(value)); 
+  EEPROM.write(address + 1, highByte(value)); 
+}
+
+word readWord(word address) {
+  return word(EEPROM.read(address + 1), EEPROM.read(address));   
 }
 
 
@@ -47,4 +54,5 @@ void debug(String message) {
   Serial.print(message);
   Serial.print('\n');
 }
+
 

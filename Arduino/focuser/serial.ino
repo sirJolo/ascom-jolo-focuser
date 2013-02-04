@@ -2,18 +2,21 @@
 void serialEvent() {
   while (Serial.available() > 0) {
     char inChar = (char)Serial.read(); 
-    if (inChar == '\n') 
+    if (inChar == '\n') {
       serialCommand(inputString); 
-    else
+      inputString = "";
+    } else {
       inputString += inChar;
+    }
   }  
 }
   
 void serialCommand(String command) {
-  String param = String(command).substring(2);
+  String param = command.substring(2); 
+
   switch(command.charAt(0)) {
     case '#':
-      Serial.print("*\n");
+      Serial.print("*");
       break;
     case 'T':    // Read temperature
       printTemp();
@@ -36,13 +39,14 @@ void serialCommand(String command) {
     case 'D':
       saveDutyCycle(stringToNumber(param));
       break;
+    case 'R':
+      saveCurrentPos(stringToNumber(param));
+      break;
     default:
       Serial.print("ERR:");      
       Serial.print(byte(command.charAt(1)), DEC); 
-      Serial.print('\n');
   }
-  
-  inputString = "";
+  Serial.print('\n');
 }
   
 
@@ -65,16 +69,14 @@ void printTemp() {
   if(sensorConnected) {
     Serial.print("T:");
     Serial.print(currentTemp, 1);  
-    Serial.print('\n');
   } else {
-    Serial.print("T:false\n"); 
+    Serial.print("T:false"); 
   }  
 }
 
 void printCurrentPosition() {
   Serial.print("P:");
   Serial.print(stepper.currentPosition());
-  Serial.print('\n'); 
 }
 
 void printInMoveStatus() {
@@ -83,29 +85,35 @@ void printInMoveStatus() {
     Serial.print("false");
   else
     Serial.print("true");
-  Serial.print('\n'); 
 }
 
 void moveStepper(word newPos) {
   stepper.moveTo(newPos);
   positionSaved = false;
-  Serial.print("M\n");
+  Serial.print("M");
 }
 
 void halt() {
   stepper.stop();
-  Serial.print("H\n");
+  Serial.print("H");
 }
 
-void saveStepperSpeed(byte stepperSpeed) {
-  EEPROM.write(STEPPER_SPEED_ADD, stepperSpeed);
-  stepper.setMaxSpeed(EEPROM.read(STEPPER_SPEED_ADD));
-  Serial.print("S\n");
+void saveCurrentPos(word newPos) {
+  stepper.setCurrentPosition(newPos);
+  positionSaved = true;
+  saveFocuserPos(newPos);
+  Serial.print("R");
+}
+
+void saveStepperSpeed(word stepperSpeed) {
+  writeWord(STEPPER_SPEED_ADD, stepperSpeed);
+  stepper.setMaxSpeed(readWord(STEPPER_SPEED_ADD));
+  Serial.print("S");
 }
 
 void saveDutyCycle(byte dutyCycle) {
   EEPROM.write(DUTY_CYCLE_ADDR, dutyCycle);
-  Serial.print("D\n");
+  Serial.print("D");
 }
 
 
