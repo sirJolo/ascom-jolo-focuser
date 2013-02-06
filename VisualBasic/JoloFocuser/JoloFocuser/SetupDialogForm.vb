@@ -67,6 +67,7 @@ Public Class SetupDialogForm
                 Catch ex As System.TimeoutException
                     MessageBox.Show("Serial port response time out " + SerialPort1.PortName, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try
+                SerialPort1.Close()
             Else
                 MessageBox.Show("Cannot open serial port " + SerialPort1.PortName, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If

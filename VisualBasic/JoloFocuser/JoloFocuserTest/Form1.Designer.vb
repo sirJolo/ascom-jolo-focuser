@@ -24,7 +24,6 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.buttonConnect = New System.Windows.Forms.Button
         Me.buttonChoose = New System.Windows.Forms.Button
-        Me.labelDriverId = New System.Windows.Forms.Label
         Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown
         Me.Button1 = New System.Windows.Forms.Button
         Me.Button2 = New System.Windows.Forms.Button
@@ -32,7 +31,15 @@ Partial Class Form1
         Me.Button3 = New System.Windows.Forms.Button
         Me.TextBox2 = New System.Windows.Forms.TextBox
         Me.Button4 = New System.Windows.Forms.Button
+        Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown
+        Me.Button5 = New System.Windows.Forms.Button
+        Me.NumericUpDown3 = New System.Windows.Forms.NumericUpDown
+        Me.Button6 = New System.Windows.Forms.Button
+        Me.labelDriverId = New System.Windows.Forms.Label
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'buttonConnect
@@ -52,17 +59,6 @@ Partial Class Form1
         Me.buttonChoose.TabIndex = 3
         Me.buttonChoose.Text = "Choose"
         Me.buttonChoose.UseVisualStyleBackColor = True
-        '
-        'labelDriverId
-        '
-        Me.labelDriverId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.labelDriverId.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "DriverId", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.labelDriverId.Location = New System.Drawing.Point(12, 37)
-        Me.labelDriverId.Name = "labelDriverId"
-        Me.labelDriverId.Size = New System.Drawing.Size(291, 21)
-        Me.labelDriverId.TabIndex = 5
-        Me.labelDriverId.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.DriverId
-        Me.labelDriverId.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'NumericUpDown1
         '
@@ -122,11 +118,71 @@ Partial Class Form1
         Me.Button4.Text = "Temp read"
         Me.Button4.UseVisualStyleBackColor = True
         '
+        'NumericUpDown2
+        '
+        Me.NumericUpDown2.Location = New System.Drawing.Point(13, 212)
+        Me.NumericUpDown2.Maximum = New Decimal(New Integer() {65000, 0, 0, 0})
+        Me.NumericUpDown2.Name = "NumericUpDown2"
+        Me.NumericUpDown2.Size = New System.Drawing.Size(120, 20)
+        Me.NumericUpDown2.TabIndex = 13
+        '
+        'Button5
+        '
+        Me.Button5.Location = New System.Drawing.Point(166, 208)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(75, 23)
+        Me.Button5.TabIndex = 14
+        Me.Button5.Text = "Set cur. pos"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
+        'NumericUpDown3
+        '
+        Me.NumericUpDown3.Location = New System.Drawing.Point(13, 252)
+        Me.NumericUpDown3.Maximum = New Decimal(New Integer() {2000, 0, 0, 0})
+        Me.NumericUpDown3.Name = "NumericUpDown3"
+        Me.NumericUpDown3.Size = New System.Drawing.Size(120, 20)
+        Me.NumericUpDown3.TabIndex = 15
+        '
+        'Button6
+        '
+        Me.Button6.Location = New System.Drawing.Point(166, 248)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(91, 23)
+        Me.Button6.TabIndex = 16
+        Me.Button6.Text = "Set speed pps"
+        Me.Button6.UseVisualStyleBackColor = True
+        '
+        'labelDriverId
+        '
+        Me.labelDriverId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.labelDriverId.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "DriverId", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.labelDriverId.Location = New System.Drawing.Point(12, 37)
+        Me.labelDriverId.Name = "labelDriverId"
+        Me.labelDriverId.Size = New System.Drawing.Size(291, 21)
+        Me.labelDriverId.TabIndex = 5
+        Me.labelDriverId.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.DriverId
+        Me.labelDriverId.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(166, 299)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(155, 17)
+        Me.CheckBox1.TabIndex = 17
+        Me.CheckBox1.Text = "Temperature compensation"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(400, 473)
+        Me.Controls.Add(Me.CheckBox1)
+        Me.Controls.Add(Me.Button6)
+        Me.Controls.Add(Me.NumericUpDown3)
+        Me.Controls.Add(Me.Button5)
+        Me.Controls.Add(Me.NumericUpDown2)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.Button3)
@@ -140,6 +196,8 @@ Partial Class Form1
         Me.Name = "Form1"
         Me.Text = "Form1"
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -154,5 +212,10 @@ Partial Class Form1
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents Button4 As System.Windows.Forms.Button
+    Friend WithEvents NumericUpDown2 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Button5 As System.Windows.Forms.Button
+    Friend WithEvents NumericUpDown3 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Button6 As System.Windows.Forms.Button
+    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
 
 End Class

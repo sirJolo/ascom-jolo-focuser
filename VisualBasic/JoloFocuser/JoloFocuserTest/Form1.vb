@@ -75,4 +75,16 @@
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
         TextBox2.Text = Me.driver.Temperature.ToString
     End Sub
+
+    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
+        Me.driver.CommandString("R:" + NumericUpDown2.Value.ToString, False)
+    End Sub
+
+    Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
+        Me.driver.CommandString("S:" + NumericUpDown3.Value.ToString, False)
+    End Sub
+
+    Private Sub CheckBox1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckBox1.CheckedChanged
+        Me.driver.TempComp = CheckBox1.Checked
+    End Sub
 End Class

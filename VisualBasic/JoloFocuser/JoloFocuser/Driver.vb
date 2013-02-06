@@ -18,9 +18,10 @@
 '
 ' Date			Who	Vers	Description
 ' -----------	---	-----	-------------------------------------------------------
-' 21-Jan-2013	Jol	1.0.0	Initial edit, from Focuser template
-' 22-Jan-2013	Jol	1.0.1	Interface implementation, serial communication commands
-' 23-Jan-2013   Jol 1.0.2   Temperature compensation, backslash
+' 21-Jan-2013	Jol	0.0.0	Initial edit, from Focuser template
+' 22-Jan-2013	Jol	0.0.1	Interface implementation, serial communication commands
+' 23-Jan-2013   Jol 0.0.2   Temperature compensation, backslash
+' 06-Feb-2013   Jol 0.0.3   Minor updates, ready to testing
 ' ---------------------------------------------------------------------------------
 '
 '
@@ -51,9 +52,10 @@ Public Class Focuser
     Private Shared driverID As String = "ASCOM.JoloFocuser.Focuser"
     Private Shared driverDescription As String = "Jolo main focuser"
     Private serialPort As Serial
-    Private timer As System.Timers.Timer
-    Private compTemp As Double
-    Private compPos As Integer = -1
+    Private tempCompTimer As System.Timers.Timer
+    Private compStartTemp As Double
+    Private compStartPos As Integer = -1
+    Private compLastTemp As Double
     Private lastDirection As Integer = 0
     Private sensorConnected As Boolean = False
     Private tempCompensation As Boolean = False
@@ -63,8 +65,10 @@ Public Class Focuser
     '
     Public Sub New()
         serialPort = New Serial()
-        timer = New System.Timers.Timer()
-        AddHandler timer.Elapsed, AddressOf OnTempCompensation
+        tempCompTimer = New System.Timers.Timer()
+        tempCompTimer.Interval = My.Settings.TempCycle * 1000
+        tempCompTimer.Enabled = False
+        AddHandler tempCompTimer.Elapsed, AddressOf OnTempCompensation
     End Sub
 
 #Region "ASCOM Registration"
@@ -242,17 +246,12 @@ Public Class Focuser
         Catch ex As ASCOM.NotConnectedException When (ex.Message = "Temperature sensor disconnected")
             sensorConnected = False
         End Try
-
-        If (sensorConnected) Then
-            timer.Interval = My.Settings.TempCycle * 1000
-            timer.Enabled = True
-        End If
     End Sub
 
     Private Sub Disconnect()
         serialPort.ClearBuffers()
         serialPort.Connected = False
-        timer.Enabled = False
+        tempCompTimer.Enabled = False
     End Sub
 
     ''' <summary>
@@ -268,26 +267,42 @@ Public Class Focuser
     ' Temperature compensation routine
     ' Works only when enabled and when focuser is not moving
     Private Sub OnTempCompensation(ByVal source As Object, ByVal e As System.Timers.ElapsedEventArgs)
-        If (TempComp AndAlso Not IsMoving AndAlso My.Settings.StepsPerC > 0) Then
+        TemperatureCompensation()
+    End Sub
+
+    Private Sub TemperatureCompensation()
+        If (Not IsMoving AndAlso My.Settings.StepsPerC <> 0) Then
+            tempCompTimer.Enabled = False
             Try
                 Dim temp As Double = Temperature
-                Dim pos As Integer = Position
-
-                If (compTemp = -1) Then
-                    compTemp = temp
-                    compPos = pos
+                If (compStartPos = -1) Then
+                    compStartTemp = temp
+                    compStartPos = Position
+                    compLastTemp = temp
                 Else
                     CheckConnected("OnTempCompensation")
-                    If (Math.Abs(compTemp - temp) > DELTA_T) Then
-                        compPos += (temp - TempComp) * My.Settings.StepsPerC
-                        Move(compPos)
+                    If (Math.Abs(compLastTemp - temp) > DELTA_T) Then
+                        Dim newPos As Integer = compStartPos + (temp - compStartTemp) * My.Settings.StepsPerC
+                        MoveInternal(newPos)
+                        compLastTemp = temp
                     End If
                 End If
+                tempCompTimer.Enabled = True
             Catch ex As ASCOM.NotConnectedException When (ex.Message = "Temperature sensor disconnected")
-
+                tempCompTimer.Enabled = False
             End Try
         End If
     End Sub
+
+    ' Move without resetting temperature compensation position
+    Private Sub MoveInternal(ByVal Position As Integer)
+        Position += BackslashCompensation(Position)
+        Dim answer As String = CommandString("M:" + Position.ToString)
+        If (answer <> "M") Then
+            Throw New ASCOM.DriverException("Wrong device answer: expected M, got " + answer)
+        End If
+    End Sub
+
 
     ' Backslash compensation
     Function BackslashCompensation(ByVal newPos As Integer) As Integer
@@ -352,12 +367,8 @@ Public Class Focuser
     End Property
 
     Public Sub Move(ByVal Position As Integer) Implements DeviceInterface.IFocuserV2.Move
-        Position += BackslashCompensation(Position)
-        Dim answer As String = CommandString("M:" + Position.ToString)
-        If (answer <> "M") Then
-            Throw New ASCOM.DriverException("Wrong device answer: expected M, got " + answer)
-        End If
-        compPos = -1 ' Reset compensation position
+        MoveInternal(Position)
+        compStartPos = -1 ' Reset compensation position
     End Sub
 
     Public ReadOnly Property Name() As String Implements DeviceInterface.IFocuserV2.Name
@@ -386,10 +397,15 @@ Public Class Focuser
 
     Public Property TempComp() As Boolean Implements DeviceInterface.IFocuserV2.TempComp
         Get
-            Return tempCompensation
+            Return tempCompTimer.Enabled
         End Get
         Set(ByVal value As Boolean)
-            tempCompensation = value
+            If (value) Then
+                TemperatureCompensation()
+            Else
+                compStartPos = -1
+            End If
+            tempCompTimer.Enabled = value
         End Set
     End Property
 
