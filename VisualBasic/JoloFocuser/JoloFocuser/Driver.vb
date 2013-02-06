@@ -51,7 +51,6 @@ Public Class Focuser
 
     Private Shared driverID As String = "ASCOM.JoloFocuser.Focuser"
     Private Shared driverDescription As String = "Jolo main focuser"
-    Private serialPort As Serial
     Private tempCompTimer As System.Timers.Timer
     Private compStartTemp As Double
     Private compStartPos As Integer = -1
@@ -59,15 +58,18 @@ Public Class Focuser
     Private lastDirection As Integer = 0
     Private sensorConnected As Boolean = False
     Private tempCompensation As Boolean = False
+    Private ComPort As System.IO.Ports.SerialPort
 
     '
     ' Constructor - Must be public for COM registration!
     '
     Public Sub New()
-        serialPort = New Serial()
         tempCompTimer = New System.Timers.Timer()
         tempCompTimer.Interval = My.Settings.TempCycle * 1000
         tempCompTimer.Enabled = False
+
+        ComPort = New System.IO.Ports.SerialPort
+
         AddHandler tempCompTimer.Elapsed, AddressOf OnTempCompensation
     End Sub
 
@@ -154,16 +156,15 @@ Public Class Focuser
         ' it's a good idea to put all the low level communication with the device here,
         ' then all communication calls this function
         ' you need something to ensure that only one command is in progress at a time
-        serialPort.ClearBuffers()
         Dim commandToSend As String = Command
         If Not (Raw) Then
             commandToSend = Command + Constants.vbLf
         End If
-        serialPort.Transmit(commandToSend)
+        ComPort.Write(commandToSend)
 
         Dim answer As String
         Try
-            answer = serialPort.ReceiveTerminated(Constants.vbLf)
+            answer = ComPort.ReadTo(Constants.vbLf)
         Catch ex As System.TimeoutException
             Throw New ASCOM.DriverException("Serial port timeout for command " + Command)
         End Try
@@ -223,21 +224,24 @@ Public Class Focuser
     ''' </summary>
     Private ReadOnly Property IsConnected() As Boolean
         Get
-            Return (Not (serialPort Is Nothing) AndAlso (serialPort.Connected))
+            Return (Not (ComPort Is Nothing) AndAlso (ComPort.IsOpen))
         End Get
     End Property
 
     Private Sub Connect()
-        Dim comPort As String = My.Settings.CommPort
-        serialPort.PortName = comPort
-        serialPort.Speed = SerialSpeed.ps9600
-        serialPort.ReceiveTimeoutMs = 20000
-        serialPort.Connected = True
-        serialPort.ClearBuffers()
+        ComPort.PortName = My.Settings.CommPort
+        ComPort.BaudRate = 9600
+        ComPort.ReadTimeout = 2000
+        ComPort.Open()
 
         Dim answer As String = CommandString("#")
         If (answer <> "*") Then
-            Throw New ASCOM.DriverException("Communication handshake failed")
+            Throw New ASCOM.NotConnectedException
+        End If
+
+        answer = CommandString("S:" + My.Settings.StepperRPM.ToString)
+        If (answer <> "S") Then
+            Throw New ASCOM.NotConnectedException
         End If
 
         Try
@@ -249,9 +253,8 @@ Public Class Focuser
     End Sub
 
     Private Sub Disconnect()
-        serialPort.ClearBuffers()
-        serialPort.Connected = False
         tempCompTimer.Enabled = False
+        ComPort.Close()
     End Sub
 
     ''' <summary>
@@ -367,6 +370,12 @@ Public Class Focuser
     End Property
 
     Public Sub Move(ByVal Position As Integer) Implements DeviceInterface.IFocuserV2.Move
+        If (TempComp) Then
+            Throw New ASCOM.InvalidOperationException("Temperature compensation enabled during MOVE command")
+        End If
+        If (Position > My.Settings.FocuserMax) Then
+            Throw New ASCOM.InvalidOperationException("MOVE larger than maximum focuser position")
+        End If
         MoveInternal(Position)
         compStartPos = -1 ' Reset compensation position
     End Sub

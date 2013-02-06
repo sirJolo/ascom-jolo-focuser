@@ -87,4 +87,20 @@
     Private Sub CheckBox1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckBox1.CheckedChanged
         Me.driver.TempComp = CheckBox1.Checked
     End Sub
+
+    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
+        Dim ComPort As New System.IO.Ports.SerialPort
+        ComPort.PortName = "COM3"
+        ComPort.BaudRate = 9600
+        ComPort.ReadTimeout = 2000
+        ComPort.Open()
+
+        ComPort.Write("#" + Constants.vbLf)
+        Dim answer As String = ComPort.ReadTo(Constants.vbLf)
+
+        MessageBox.Show(answer, "aa", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1)
+
+        ComPort.Close()
+
+    End Sub
 End Class
