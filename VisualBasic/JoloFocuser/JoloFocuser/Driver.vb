@@ -232,16 +232,23 @@ Public Class Focuser
         ComPort.PortName = My.Settings.CommPort
         ComPort.BaudRate = 9600
         ComPort.ReadTimeout = 2000
-        ComPort.Open()
+
+        Try
+            ComPort.Open()
+        Catch ex As System.IO.IOException
+            Throw New ASCOM.NotConnectedException("Invalid port state")
+        Catch ex As System.InvalidOperationException
+            Throw New ASCOM.NotConnectedException("Port already opened")
+        End Try
 
         Dim answer As String = CommandString("#")
         If (answer <> "*") Then
-            Throw New ASCOM.NotConnectedException
+            Throw New ASCOM.NotConnectedException("Device not detected")
         End If
 
         answer = CommandString("S:" + My.Settings.StepperRPM.ToString)
         If (answer <> "S") Then
-            Throw New ASCOM.NotConnectedException
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device")
         End If
 
         Try
