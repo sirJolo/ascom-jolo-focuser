@@ -22,6 +22,7 @@
 ' 22-Jan-2013	Jol	0.0.1	Interface implementation, serial communication commands
 ' 23-Jan-2013   Jol 0.0.2   Temperature compensation, backslash
 ' 06-Feb-2013   Jol 0.0.3   Minor updates, ready to testing
+' 07-Feb-2013   Jol 0.1.0   RC1
 ' ---------------------------------------------------------------------------------
 '
 '
@@ -48,9 +49,11 @@ Public Class Focuser
     ' Driver ID and descriptive string that shows in the Chooser
     '
     Private Const DELTA_T As Double = 0.5
+    Private Const DRIVER_VERSION As String = "0.1"
 
     Private Shared driverID As String = "ASCOM.JoloFocuser.Focuser"
     Private Shared driverDescription As String = "Jolo main focuser"
+
     Private tempCompTimer As System.Timers.Timer
     Private compStartTemp As Double
     Private compStartPos As Integer = -1
@@ -153,20 +156,19 @@ Public Class Focuser
 
     Public Function CommandString(ByVal Command As String, Optional ByVal Raw As Boolean = False) As String Implements IFocuserV2.CommandString
         CheckConnected("CommandString")
-        ' it's a good idea to put all the low level communication with the device here,
-        ' then all communication calls this function
-        ' you need something to ensure that only one command is in progress at a time
         Dim commandToSend As String = Command
         If Not (Raw) Then
             commandToSend = Command + Constants.vbLf
         End If
-        ComPort.Write(commandToSend)
 
         Dim answer As String
         Try
+            ComPort.Write(commandToSend)
             answer = ComPort.ReadTo(Constants.vbLf)
         Catch ex As System.TimeoutException
             Throw New ASCOM.DriverException("Serial port timeout for command " + Command)
+        Catch ex As System.InvalidOperationException
+            Throw New ASCOM.DriverException("Serial port is not opened")
         End Try
         Return answer.Trim(Constants.vbLf)
     End Function
@@ -190,8 +192,7 @@ Public Class Focuser
 
     Public ReadOnly Property DriverVersion() As String Implements IFocuserV2.DriverVersion
         Get
-            ' Get our own assembly and report its version number
-            Return Reflection.Assembly.GetExecutingAssembly.GetName.Version.ToString(2)
+            Return DRIVER_VERSION
         End Get
     End Property
 
@@ -239,6 +240,8 @@ Public Class Focuser
             Throw New ASCOM.NotConnectedException("Invalid port state")
         Catch ex As System.InvalidOperationException
             Throw New ASCOM.NotConnectedException("Port already opened")
+        Catch ex As System.UnauthorizedAccessException
+            Throw New ASCOM.NotConnectedException("Access denied to serial port")
         End Try
 
         Dim answer As String = CommandString("#")
@@ -261,7 +264,11 @@ Public Class Focuser
 
     Private Sub Disconnect()
         tempCompTimer.Enabled = False
-        ComPort.Close()
+        Try
+            ComPort.Close()
+        Catch ex As System.InvalidOperationException
+            'Port is already closed :)
+        End Try
     End Sub
 
     ''' <summary>
@@ -282,7 +289,7 @@ Public Class Focuser
 
     Private Sub TemperatureCompensation()
         If (Not IsMoving AndAlso My.Settings.StepsPerC <> 0) Then
-            tempCompTimer.Enabled = False
+            CheckConnected("OnTempCompensation")
             Try
                 Dim temp As Double = Temperature
                 If (compStartPos = -1) Then
@@ -290,14 +297,12 @@ Public Class Focuser
                     compStartPos = Position
                     compLastTemp = temp
                 Else
-                    CheckConnected("OnTempCompensation")
                     If (Math.Abs(compLastTemp - temp) > DELTA_T) Then
                         Dim newPos As Integer = compStartPos + (temp - compStartTemp) * My.Settings.StepsPerC
                         MoveInternal(newPos)
                         compLastTemp = temp
                     End If
                 End If
-                tempCompTimer.Enabled = True
             Catch ex As ASCOM.NotConnectedException When (ex.Message = "Temperature sensor disconnected")
                 tempCompTimer.Enabled = False
             End Try
@@ -315,7 +320,7 @@ Public Class Focuser
 
 
     ' Backslash compensation
-    Function BackslashCompensation(ByVal newPos As Integer) As Integer
+    Private Function BackslashCompensation(ByVal newPos As Integer) As Integer
         Dim backslash As Integer = 0
         If (My.Settings.Backslash > 0) Then
             Dim currentPos As Integer = Position
@@ -365,7 +370,7 @@ Public Class Focuser
     Public ReadOnly Property MaxIncrement() As Integer Implements DeviceInterface.IFocuserV2.MaxIncrement
         Get
             CheckConnected("MaxIncrement")
-            Return My.Settings.MaxIncrement
+            Return My.Settings.FocuserMax
         End Get
     End Property
 
@@ -389,7 +394,9 @@ Public Class Focuser
 
     Public ReadOnly Property Name() As String Implements DeviceInterface.IFocuserV2.Name
         Get
-            Return driverDescription
+            ' this pattern seems to be needed to allow a public property to return a private field
+            Dim d As String = driverDescription
+            Return d
         End Get
     End Property
 
@@ -427,7 +434,8 @@ Public Class Focuser
 
     Public ReadOnly Property TempCompAvailable() As Boolean Implements DeviceInterface.IFocuserV2.TempCompAvailable
         Get
-            Return sensorConnected
+            Dim s As Boolean = sensorConnected
+            Return s
         End Get
     End Property
 

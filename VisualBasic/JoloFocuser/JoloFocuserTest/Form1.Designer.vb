@@ -37,7 +37,6 @@ Partial Class Form1
         Me.Button6 = New System.Windows.Forms.Button
         Me.labelDriverId = New System.Windows.Forms.Label
         Me.CheckBox1 = New System.Windows.Forms.CheckBox
-        Me.Button7 = New System.Windows.Forms.Button
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -174,21 +173,11 @@ Partial Class Form1
         Me.CheckBox1.Text = "Temperature compensation"
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
-        'Button7
-        '
-        Me.Button7.Location = New System.Drawing.Point(166, 348)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(75, 23)
-        Me.Button7.TabIndex = 18
-        Me.Button7.Text = "Button7"
-        Me.Button7.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(400, 473)
-        Me.Controls.Add(Me.Button7)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.NumericUpDown3)
@@ -228,6 +217,5 @@ Partial Class Form1
     Friend WithEvents NumericUpDown3 As System.Windows.Forms.NumericUpDown
     Friend WithEvents Button6 As System.Windows.Forms.Button
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
-    Friend WithEvents Button7 As System.Windows.Forms.Button
 
 End Class

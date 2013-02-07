@@ -88,7 +88,7 @@
         Me.driver.TempComp = CheckBox1.Checked
     End Sub
 
-    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
+    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim ComPort As New System.IO.Ports.SerialPort
         ComPort.PortName = "COM3"
         ComPort.BaudRate = 9600
