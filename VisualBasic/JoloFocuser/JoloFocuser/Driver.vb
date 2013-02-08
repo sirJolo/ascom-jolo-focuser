@@ -50,6 +50,7 @@ Public Class Focuser
     '
     Private Const DELTA_T As Double = 0.5
     Private Const DRIVER_VERSION As String = "0.1"
+    Private Const DEVICE_RESPONSE As String = "Jolo primary focuser"
 
     Private Shared driverID As String = "ASCOM.JoloFocuser.Focuser"
     Private Shared driverDescription As String = "Jolo main focuser"
@@ -245,12 +246,17 @@ Public Class Focuser
         End Try
 
         Dim answer As String = CommandString("#")
-        If (answer <> "*") Then
+        If (answer <> DEVICE_RESPONSE) Then
             Throw New ASCOM.NotConnectedException("Device not detected")
         End If
 
         answer = CommandString("S:" + My.Settings.StepperRPM.ToString)
         If (answer <> "S") Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device")
+        End If
+
+        answer = CommandString("D:" + My.Settings.DutyCycle.ToString)
+        If (answer <> "D") Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device")
         End If
 

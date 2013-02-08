@@ -11,6 +11,8 @@
 #include <EEPROM.h>
 #include <AccelStepper.h>
 
+#define DEVICE_RESPONSE "Jolo primary focuser"
+
 // EEPROM addresses
 #define FOCUSER_POS_START 900
 #define MANUAL_STEP_ADD 4        

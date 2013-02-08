@@ -16,7 +16,7 @@ void serialCommand(String command) {
 
   switch(command.charAt(0)) {
     case '#':
-      Serial.print("*");
+      Serial.print(DEVICE_RESPONSE);
       break;
     case 'T':    // Read temperature
       printTemp();

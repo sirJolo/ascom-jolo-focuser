@@ -80,18 +80,6 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("16")>  _
-        Public Property StepSize() As Decimal
-            Get
-                Return CType(Me("StepSize"),Decimal)
-            End Get
-            Set
-                Me("StepSize") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("1000")>  _
         Public Property MaxIncrement() As Decimal
             Get
@@ -147,6 +135,30 @@ Namespace My
             End Get
             Set
                 Me("Backslash") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property DutyCycle() As Decimal
+            Get
+                Return CType(Me("DutyCycle"),Decimal)
+            End Get
+            Set
+                Me("DutyCycle") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property StepSize() As Double
+            Get
+                Return CType(Me("StepSize"),Double)
+            End Get
+            Set
+                Me("StepSize") = value
             End Set
         End Property
     End Class

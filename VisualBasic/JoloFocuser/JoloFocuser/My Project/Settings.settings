@@ -8,9 +8,6 @@
     <Setting Name="FocuserMax" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">10000</Value>
     </Setting>
-    <Setting Name="StepSize" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">16</Value>
-    </Setting>
     <Setting Name="MaxIncrement" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1000</Value>
     </Setting>
@@ -24,6 +21,12 @@
       <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="Backslash" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DutyCycle" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="StepSize" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
