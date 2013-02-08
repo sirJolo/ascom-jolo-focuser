@@ -10,6 +10,7 @@
 #include <DallasTemperature.h>
 #include <EEPROM.h>
 #include <AccelStepper.h>
+#include <PWM.h>
 
 #define DEVICE_RESPONSE "Jolo primary focuser"
 
@@ -18,6 +19,8 @@
 #define MANUAL_STEP_ADD 4        
 #define STEPPER_SPEED_ADD 3      
 #define DUTY_CYCLE_ADDR 2  
+#define STEPPER_PWM_MAX 70
+#define STEPPER_PWM_PIN 10
 
 // Encoder config
 #define encoder0PinA 2
@@ -26,6 +29,8 @@
 
 // Buzzer pin
 #define BUZZER_PIN 10
+#define BUZZ_LONG 500
+#define BUZZ_SHORT 50
 
 // Temperature sensor config (one wire protocol)
 #define TEMP_CYCLE 3000
@@ -44,6 +49,10 @@ unsigned long tempReadMilis;
 double currentTemp;
 boolean sensorConnected;
 String inputString;
+byte buzzes = 0;
+int buzz_time = 0;
+unsigned long buzz_stop = 0;
+unsigned long buzz_start = 0;
 
 
 void loop() 
@@ -54,7 +63,12 @@ void loop()
   if(stepper.distanceToGo() == 0 && !positionSaved) {
     saveFocuserPos(stepper.currentPosition());
     positionSaved = true;
+    buzz(BUZZ_SHORT, 1);
+    pwmWrite(STEPPER_PWM_PIN, EEPROM.read(DUTY_CYCLE_ADDR) * (STEPPER_PWM_MAX/100));
   }
+  
+  // Buzzer call
+  doBuzz();
 
   // Temperature read loop
   if(sensorConnected && tempRequestMilis != 0 && tempRequestMilis < millis()) requestTemp();  

@@ -17,6 +17,7 @@ void serialCommand(String command) {
   switch(command.charAt(0)) {
     case '#':
       Serial.print(DEVICE_RESPONSE);
+      buzz(BUZZ_LONG, 1);
       break;
     case 'T':    // Read temperature
       printTemp();
@@ -45,6 +46,7 @@ void serialCommand(String command) {
     default:
       Serial.print("ERR:");      
       Serial.print(byte(command.charAt(1)), DEC); 
+      buzz(BUZZ_SHORT, 5);
   }
   Serial.print('\n');
 }
@@ -88,6 +90,7 @@ void printInMoveStatus() {
 }
 
 void moveStepper(word newPos) {
+  pwmWrite(STEPPER_PWM_PIN, (STEPPER_PWM_MAX/100));
   stepper.moveTo(newPos);
   positionSaved = false;
   Serial.print("M");
@@ -112,6 +115,7 @@ void saveStepperSpeed(word stepperSpeed) {
 }
 
 void saveDutyCycle(byte dutyCycle) {
+  if(dutyCycle > 100) dutyCycle = 100;
   EEPROM.write(DUTY_CYCLE_ADDR, dutyCycle);
   Serial.print("D");
 }

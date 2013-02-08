@@ -1,6 +1,8 @@
 // Initialization routine
 void setup() 
 {
+  InitTimersSafe();
+
   // Initialize serial
   Serial.begin(9600);
   Serial.setTimeout(2000);
@@ -20,6 +22,8 @@ void setup()
   stepper.setAcceleration(STEPPER_ACC);
   stepper.setCurrentPosition(readFocuserPos());
   positionSaved = true;
+  bool success = SetPinFrequencySafe(STEPPER_PWM_PIN, 2000);
+  pwmWrite(STEPPER_PWM_PIN, EEPROM.read(DUTY_CYCLE_ADDR) * (STEPPER_PWM_MAX/100));
 
   
   // Initialize encoder pins
