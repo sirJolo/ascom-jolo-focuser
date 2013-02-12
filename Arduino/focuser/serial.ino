@@ -90,6 +90,7 @@ void printInMoveStatus() {
 }
 
 void moveStepper(word newPos) {
+  stepper.enableOutputs();
   pwmWrite(STEPPER_PWM_PIN, (STEPPER_PWM_MAX/100));
   stepper.moveTo(newPos);
   positionSaved = false;

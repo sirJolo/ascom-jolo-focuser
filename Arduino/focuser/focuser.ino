@@ -3,9 +3,6 @@
 // 
 // Author: jolo drjolo@gmail.com
 //
-// 2013-01-22  0.0.1  first version
-// 2013-01-23  0.0.2  non blocking temp read, non blocking stepper
-// 2013-01-26  0.0.3  cached temp read, EEPROM wear leveling
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <EEPROM.h>
@@ -19,13 +16,13 @@
 #define MANUAL_STEP_ADD 4        
 #define STEPPER_SPEED_ADD 3      
 #define DUTY_CYCLE_ADDR 2  
-#define STEPPER_PWM_MAX 70
+#define STEPPER_PWM_MAX 100
 #define STEPPER_PWM_PIN 10
 
 // Encoder config
-#define encoder0PinA 2
-#define encoder0PinB 4
-#define encoderButtonPin 3
+#define encoderPinA 3
+#define encoderPinB 4
+#define encoderButtonPin 5
 
 // Buzzer pin
 #define BUZZER_PIN 10
@@ -49,6 +46,7 @@ unsigned long tempReadMilis;
 double currentTemp;
 boolean sensorConnected;
 String inputString;
+
 byte buzzes = 0;
 int buzz_time = 0;
 unsigned long buzz_stop = 0;
@@ -65,6 +63,7 @@ void loop()
     positionSaved = true;
     buzz(BUZZ_SHORT, 1);
     pwmWrite(STEPPER_PWM_PIN, EEPROM.read(DUTY_CYCLE_ADDR) * (STEPPER_PWM_MAX/100));
+    if(EEPROM.read(DUTY_CYCLE_ADDR) == 0) stepper.disableOutputs();
   }
   
   // Buzzer call

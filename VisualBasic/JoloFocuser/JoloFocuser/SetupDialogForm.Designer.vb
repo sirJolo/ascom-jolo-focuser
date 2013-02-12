@@ -163,16 +163,16 @@ Partial Class SetupDialogForm
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(102, 13)
         Me.Label8.TabIndex = 21
-        Me.Label8.Text = "Stepper spped [pps]"
+        Me.Label8.Text = "Stepper spped (pps)"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
         Me.Label9.Location = New System.Drawing.Point(14, 210)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(56, 13)
+        Me.Label9.Size = New System.Drawing.Size(90, 13)
         Me.Label9.TabIndex = 24
-        Me.Label9.Text = "Backslash"
+        Me.Label9.Text = "Backslash (steps)"
         '
         'PictureBox2
         '
@@ -219,9 +219,9 @@ Partial Class SetupDialogForm
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(14, 134)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(95, 13)
+        Me.Label4.Size = New System.Drawing.Size(106, 13)
         Me.Label4.TabIndex = 31
-        Me.Label4.Text = "Stepper duty cycle"
+        Me.Label4.Text = "Stepper duty cycle %"
         '
         'NumericUpDown2
         '

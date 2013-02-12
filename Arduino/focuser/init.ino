@@ -22,23 +22,23 @@ void setup()
   stepper.setAcceleration(STEPPER_ACC);
   stepper.setCurrentPosition(readFocuserPos());
   positionSaved = true;
-  bool success = SetPinFrequencySafe(STEPPER_PWM_PIN, 2000);
+  SetPinFrequencySafe(STEPPER_PWM_PIN, 2000);
   pwmWrite(STEPPER_PWM_PIN, EEPROM.read(DUTY_CYCLE_ADDR) * (STEPPER_PWM_MAX/100));
 
   
   // Initialize encoder pins
-  pinMode(encoder0PinA, INPUT); 
-  digitalWrite(encoder0PinA, HIGH);       // turn on pullup resistor
-  pinMode(encoder0PinB, INPUT); 
-  digitalWrite(encoder0PinB, HIGH);       // turn on pullup resistor
-  pinMode(encoderButtonPin, INPUT);
+  digitalWrite(encoderPinA, HIGH);       // turn on pullup resistor
+  pinMode(encoderPinA, INPUT); 
+  digitalWrite(encoderPinB, HIGH);       // turn on pullup resistor
+  pinMode(encoderPinB, INPUT); 
   digitalWrite(encoderButtonPin, HIGH);   // turn on pullup resistor
+  pinMode(encoderButtonPin, INPUT);
+  
+  attachInterrupt(encoderPinA, doEncoder, CHANGE);
   
   // Buzzer init
   pinMode(BUZZER_PIN, OUTPUT);
   digitalWrite(BUZZER_PIN, LOW);
 
-  attachInterrupt(0, doEncoder, CHANGE);  // encoder pin on interrupt 0 - pin 2
-  
   inputString = "";
 }
