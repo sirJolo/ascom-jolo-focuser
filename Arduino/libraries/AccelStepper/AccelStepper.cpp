@@ -104,10 +104,11 @@ void AccelStepper::computeNewSpeed()
 
     if (distanceTo == 0 && stepsToStop <= 1)
     {
-	// We are at the target and its time to stop
-	_stepInterval = 0;
-	_speed = 0.0;
-	return;
+		// We are at the target and its time to stop
+		_stepInterval = 0;
+		_speed = 0.0;
+		_n = 0;
+		return;
     }
 
     if (distanceTo > 0)

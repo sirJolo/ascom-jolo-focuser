@@ -50,9 +50,4 @@ int getReadFocuserPosAddress() {
   }
 }
 
-void debug(String message) {
-  Serial.print(message);
-  Serial.print('\n');
-}
-
 

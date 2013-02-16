@@ -16,8 +16,7 @@
 #define MANUAL_STEP_ADD 4        
 #define STEPPER_SPEED_ADD 3      
 #define DUTY_CYCLE_ADDR 2  
-#define STEPPER_PWM_MAX 100
-#define STEPPER_PWM_PIN 10
+
 
 // Encoder config
 #define encoderPinA 3
@@ -25,20 +24,22 @@
 #define encoderButtonPin 5
 
 // Buzzer pin
-#define BUZZER_PIN 10
-#define BUZZ_LONG 500
-#define BUZZ_SHORT 50
+#define BUZZER_PIN 11
+#define BUZZ_LONG 400
+#define BUZZ_SHORT 20
 
 // Temperature sensor config (one wire protocol)
 #define TEMP_CYCLE 3000
-#define TEMP_SENSOR_PIN 5
+#define TEMP_SENSOR_PIN 7
 OneWire oneWire(TEMP_SENSOR_PIN);
 DallasTemperature sensors(&oneWire);
 DeviceAddress insideThermometer;
 
 // Stepper config
-#define STEPPER_ACC 300
-AccelStepper stepper = AccelStepper(AccelStepper::FULL4WIRE, 6, 7, 8, 9);
+#define STEPPER_ACC 800
+#define STEPPER_PWM_FREQ 2000
+#define STEPPER_PWM_PIN 9
+AccelStepper stepper = AccelStepper(AccelStepper::FULL4WIRE, A5, A3, 6, 2);
 
 boolean positionSaved;   
 unsigned long tempRequestMilis;
@@ -59,11 +60,11 @@ void loop()
   stepper.run();
 
   if(stepper.distanceToGo() == 0 && !positionSaved) {
+    delay(10);
     saveFocuserPos(stepper.currentPosition());
     positionSaved = true;
     buzz(BUZZ_SHORT, 1);
-    pwmWrite(STEPPER_PWM_PIN, EEPROM.read(DUTY_CYCLE_ADDR) * (STEPPER_PWM_MAX/100));
-    if(EEPROM.read(DUTY_CYCLE_ADDR) == 0) stepper.disableOutputs();
+    pwmWrite(STEPPER_PWM_PIN, (255 * EEPROM.read(DUTY_CYCLE_ADDR)/100));
   }
   
   // Buzzer call

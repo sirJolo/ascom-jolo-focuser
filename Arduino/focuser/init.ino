@@ -22,9 +22,9 @@ void setup()
   stepper.setAcceleration(STEPPER_ACC);
   stepper.setCurrentPosition(readFocuserPos());
   positionSaved = true;
-  SetPinFrequencySafe(STEPPER_PWM_PIN, 2000);
-  pwmWrite(STEPPER_PWM_PIN, EEPROM.read(DUTY_CYCLE_ADDR) * (STEPPER_PWM_MAX/100));
-
+  pinMode(STEPPER_PWM_PIN, OUTPUT);
+  SetPinFrequencySafe(STEPPER_PWM_PIN, STEPPER_PWM_FREQ);
+  pwmWrite(STEPPER_PWM_PIN, (255 * EEPROM.read(DUTY_CYCLE_ADDR)/100));
   
   // Initialize encoder pins
   digitalWrite(encoderPinA, HIGH);       // turn on pullup resistor
