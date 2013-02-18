@@ -104,11 +104,11 @@ void AccelStepper::computeNewSpeed()
 
     if (distanceTo == 0 && stepsToStop <= 1)
     {
-		// We are at the target and its time to stop
-		_stepInterval = 0;
-		_speed = 0.0;
-		_n = 0;
-		return;
+	// We are at the target and its time to stop
+	_stepInterval = 0;
+	_speed = 0.0;
+	_n = 0;
+	return;
     }
 
     if (distanceTo > 0)
@@ -366,11 +366,11 @@ void AccelStepper::step0(uint8_t step)
 void AccelStepper::step1(uint8_t step)
 {
     // _pin[0] is step, _pin[1] is direction
-    setOutputPins((_speed > 0) ? 0b11 : 0b01); // step HIGH
+    setOutputPins(_direction ? 0b11 : 0b01); // step HIGH
     // Caution 200ns setup time 
     // Delay the minimum allowed pulse width
     delayMicroseconds(_minPulseWidth);
-    setOutputPins((_speed > 0) ? 0b10 : 0b00); // step LOW
+    setOutputPins(_direction ? 0b10 : 0b00); // step LOW
 
 }
 

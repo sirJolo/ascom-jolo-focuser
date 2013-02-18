@@ -8,25 +8,25 @@
 #include <EEPROM.h>
 #include <AccelStepper.h>
 #include <PWM.h>
+#include <Bounce.h>
 
 #define DEVICE_RESPONSE "Jolo primary focuser"
 
 // EEPROM addresses
 #define FOCUSER_POS_START 900
-#define MANUAL_STEP_ADD 4        
 #define STEPPER_SPEED_ADD 3      
 #define DUTY_CYCLE_ADDR 2  
 
-
 // Encoder config
-#define encoderPinA 3
-#define encoderPinB 4
-#define encoderButtonPin 5
+#define ENCODER_A_PIN 3
+#define ENCODER_B_PIN 5
+#define ENCODER_BUTTON_PIN 4
+Bounce pushButton = Bounce( ENCODER_BUTTON_PIN, 20 ); 
 
-// Buzzer pin
+// Buzzer config
 #define BUZZER_PIN 11
 #define BUZZ_LONG 400
-#define BUZZ_SHORT 20
+#define BUZZ_SHORT 30
 
 // Temperature sensor config (one wire protocol)
 #define TEMP_CYCLE 3000
@@ -41,17 +41,22 @@ DeviceAddress insideThermometer;
 #define STEPPER_PWM_PIN 9
 AccelStepper stepper = AccelStepper(AccelStepper::FULL4WIRE, A5, A3, 6, 2);
 
-boolean positionSaved;   
-unsigned long tempRequestMilis;
-unsigned long tempReadMilis;
-double currentTemp;
-boolean sensorConnected;
-String inputString;
+// Global vars
+boolean positionSaved;               // Flag indicates if stepper position was saved as new focuser position
+unsigned long tempRequestMilis;      // Next temperature request time
+unsigned long tempReadMilis;         // Next temperature read time (188ms after temperature read request) 
+boolean sensorConnected;             // Flag indicates if temperature sensor is connected
+float currentTemp;                   // Current cached temperature  
+String inputString;                  // Serial input command string (terminated with \n)
 
-byte buzzes = 0;
-int buzz_time = 0;
-unsigned long buzz_stop = 0;
-unsigned long buzz_start = 0;
+byte buzzes = 0;                     // Number of buzzes to do 
+int buzz_time = 0;                   // Next buzz period 
+unsigned long buzz_stop = 0;         // Time for buzzer to next stop 
+unsigned long buzz_start = 0;        // Time for buzzer to next start
+
+int manualStep = 16;                 // Manual focuser position change in steps 
+
+int encoderMode = 0;                 // Focus mode
 
 
 void loop() 
@@ -60,18 +65,29 @@ void loop()
   stepper.run();
 
   if(stepper.distanceToGo() == 0 && !positionSaved) {
-    delay(10);
     saveFocuserPos(stepper.currentPosition());
     positionSaved = true;
     buzz(BUZZ_SHORT, 1);
     pwmWrite(STEPPER_PWM_PIN, (255 * EEPROM.read(DUTY_CYCLE_ADDR)/100));
+    tempRequestMilis = millis() + 500;
   }
-  
-  // Buzzer call
-  doBuzz();
 
   // Temperature read loop
   if(sensorConnected && tempRequestMilis != 0 && tempRequestMilis < millis()) requestTemp();  
   if(sensorConnected && tempReadMilis != 0 && tempReadMilis < millis()) readTemp();  
+
+  // Buzzer call
+  doBuzz();
+
+  // Encoder check
+  doEncoder();
+
+  // Push  button check
+  doPushButtonCheck();
+
 }
+
+
+
+
 

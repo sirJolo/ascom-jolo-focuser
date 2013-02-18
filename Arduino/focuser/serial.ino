@@ -5,68 +5,54 @@ void serialEvent() {
     if (inChar == '\n') {
       serialCommand(inputString); 
       inputString = "";
-    } else {
+    } 
+    else {
       inputString += inChar;
     }
   }  
 }
-  
+
 void serialCommand(String command) {
   String param = command.substring(2); 
 
   switch(command.charAt(0)) {
-    case '#':
-      Serial.print(DEVICE_RESPONSE);
-      buzz(BUZZ_LONG, 1);
-      break;
-    case 'T':    // Read temperature
-      printTemp();
-      break;
-    case 'P':    // Return current position
-      printCurrentPosition();
-      break;
-    case 'H':    // Halt focuser
-      halt();   
-      break;
-    case 'I':
-      printInMoveStatus();
-      break;
-    case 'M':    // Move focuser to new position
-      moveStepper(stringToNumber(param)); 
-      break;
-    case 'S':
-      saveStepperSpeed(stringToNumber(param));
-      break;
-    case 'D':
-      saveDutyCycle(stringToNumber(param));
-      break;
-    case 'R':
-      saveCurrentPos(stringToNumber(param));
-      break;
-    default:
-      Serial.print("ERR:");      
-      Serial.print(byte(command.charAt(1)), DEC); 
-      buzz(BUZZ_SHORT, 5);
+  case '#':
+    Serial.print(DEVICE_RESPONSE);
+    buzz(BUZZ_LONG, 1);
+    break;
+  case 'T':    // Read temperature
+    printTemp();
+    break;
+  case 'P':    // Return current position
+    printCurrentPosition();
+    break;
+  case 'H':    // Halt focuser
+    halt();   
+    break;
+  case 'I':
+    printInMoveStatus();
+    break;
+  case 'M':    // Move focuser to new position
+    moveStepper(stringToNumber(param), false); 
+    break;
+  case 'S':
+    saveStepperSpeed(stringToNumber(param));
+    break;
+  case 'D':
+    saveDutyCycle(stringToNumber(param));
+    break;
+  case 'R':
+    saveCurrentPos(stringToNumber(param));
+    break;
+  default:
+    Serial.print("ERR:");      
+    Serial.print(byte(command.charAt(1)), DEC); 
+    buzz(BUZZ_SHORT, 5);
   }
   Serial.print('\n');
 }
-  
 
 // Serial commands subroutines
-void requestTemp() {
-  if(sensorConnected) {
-    sensors.requestTemperaturesByAddress(insideThermometer); // Send the command to get temperature. For 10 bit res it takes 188ms
-    tempReadMilis = millis() + 188;
-    tempRequestMilis = 0;
-  }
-}
-
-void readTemp() {
-  currentTemp = sensors.getTempC(insideThermometer);
-  tempRequestMilis = millis() + TEMP_CYCLE;
-  tempReadMilis = 0;
-}
-
 void printTemp() {
   if(sensorConnected) {
     Serial.print("T:");
@@ -89,13 +75,14 @@ void printInMoveStatus() {
     Serial.print("true");
 }
 
-void moveStepper(word newPos) {
+void moveStepper(word newPos, boolean manualMove) {
   if(newPos != stepper.currentPosition()) {
+    tempRequestMilis = tempReadMilis = 0;
     pwmWrite(STEPPER_PWM_PIN, 255);
     stepper.moveTo(newPos);
     positionSaved = false;
   }
-  Serial.print("M");
+  if(!manualMove) Serial.print("M");
 }
 
 void halt() {
@@ -121,5 +108,6 @@ void saveDutyCycle(byte dutyCycle) {
   EEPROM.write(DUTY_CYCLE_ADDR, dutyCycle);
   Serial.print("D");
 }
+
 
 

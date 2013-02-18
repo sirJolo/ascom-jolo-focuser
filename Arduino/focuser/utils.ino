@@ -7,7 +7,6 @@ word readFocuserPos() {
   return readWord(getReadFocuserPosAddress() + 1);
 }
 
-
 void writeWord(word address, word value) {
   EEPROM.write(address, lowByte(value)); 
   EEPROM.write(address + 1, highByte(value)); 
@@ -16,7 +15,6 @@ void writeWord(word address, word value) {
 word readWord(word address) {
   return word(EEPROM.read(address + 1), EEPROM.read(address));   
 }
-
 
 int stringToNumber(String thisString) {
   int i, value = 0, length;
@@ -50,4 +48,16 @@ int getReadFocuserPosAddress() {
   }
 }
 
+void requestTemp() {
+  if(sensorConnected) {
+    sensors.requestTemperaturesByAddress(insideThermometer); // Send the command to get temperature. For 10 bit res it takes 188ms
+    tempReadMilis = millis() + 188;
+    tempRequestMilis = 0;
+  }
+}
 
+void readTemp() {
+  currentTemp = sensors.getTempC(insideThermometer);
+  tempRequestMilis = millis() + TEMP_CYCLE;
+  tempReadMilis = 0;
+}

@@ -5,6 +5,7 @@ Imports System.Runtime.InteropServices
 Public Class SetupDialogForm
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
         My.Settings.StepSize = StepSizeUpDown.Value
+        My.Settings.StepsPerC = CompensationUpDown.Value
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.Close()
         My.Settings.Save()
@@ -53,6 +54,7 @@ Public Class SetupDialogForm
 
     Private Sub SetupDialogForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         StepSizeUpDown.Value = My.Settings.StepSize
+        CompensationUpDown.Value = My.Settings.StepsPerC
         COM1.Items.Clear()
         For Each sp As String In My.Computer.Ports.SerialPortNames
             COM1.Items.Add(sp)

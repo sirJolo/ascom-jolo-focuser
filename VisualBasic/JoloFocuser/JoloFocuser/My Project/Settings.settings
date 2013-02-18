@@ -14,7 +14,7 @@
     <Setting Name="TempCycle" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
-    <Setting Name="StepsPerC" Type="System.Decimal" Scope="User">
+    <Setting Name="StepsPerC" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="StepperRPM" Type="System.Decimal" Scope="User">

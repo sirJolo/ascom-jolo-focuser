@@ -26,7 +26,7 @@
 /// Example Arduino programs are included to show the main modes of use.
 ///
 /// The version of the package that this documentation refers to can be downloaded 
-/// from http://www.open.com.au/mikem/arduino/AccelStepper/AccelStepper-1.28.zip
+/// from http://www.open.com.au/mikem/arduino/AccelStepper/AccelStepper-1.30.zip
 /// You can find the latest version at http://www.open.com.au/mikem/arduino/AccelStepper
 ///
 /// You can also find online help and discussion at http://groups.google.com/group/accelstepper
@@ -132,6 +132,10 @@
 ///                oscillation about the target position.
 ///                Added support for 3 wire full and half steppers such as Hard Disk Drive spindle.
 ///                Contributed by Yuri Ivatchkovitch.
+/// \version 1.29  Fixed a problem that could cause a DRIVER stepper to continually step
+///                with some sketches. Reported by Vadim.
+/// \version 1.30  Fixed a problem that could cause stepper to back up a few steps at the end of
+///                accelerated travel with certain speeds. Reported and patched by jolo.
 ///
 /// \author  Mike McCauley (mikem@open.com.au) DO NOT CONTACT THE AUTHOR DIRECTLY: USE THE LISTS
 // Copyright (C) 2009-2012 Mike McCauley
@@ -224,7 +228,7 @@ public:
     /// AccelStepper::FULL2WIRE (2) means a 2 wire stepper (2 pins required). 
     /// AccelStepper::FULL3WIRE (3) means a 3 wire stepper, such as HDD spindle (3 pins required). 
     /// AccelStepper::FULL4WIRE (4) means a 4 wire stepper (4 pins required). 
-    /// AccelStepper::HALF3WIRE (6) means a 3 wire half stepper, such as HDD spindle (4 pins required)
+    /// AccelStepper::HALF3WIRE (6) means a 3 wire half stepper, such as HDD spindle (3 pins required)
     /// AccelStepper::HALF4WIRE (8) means a 4 wire half stepper (4 pins required)
     /// Defaults to AccelStepper::FULL4WIRE (4) pins.
     /// \param[in] pin1 Arduino digital pin number for motor pin 1. Defaults

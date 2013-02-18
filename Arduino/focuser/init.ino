@@ -16,7 +16,7 @@ void setup()
     tempReadMilis = 0;
     tempRequestMilis = millis();
   }
-  
+
   // Initialize stepper motor
   stepper.setMaxSpeed(readWord(STEPPER_SPEED_ADD));
   stepper.setAcceleration(STEPPER_ACC);
@@ -25,20 +25,20 @@ void setup()
   pinMode(STEPPER_PWM_PIN, OUTPUT);
   SetPinFrequencySafe(STEPPER_PWM_PIN, STEPPER_PWM_FREQ);
   pwmWrite(STEPPER_PWM_PIN, (255 * EEPROM.read(DUTY_CYCLE_ADDR)/100));
-  
-  // Initialize encoder pins
-  digitalWrite(encoderPinA, HIGH);       // turn on pullup resistor
-  pinMode(encoderPinA, INPUT); 
-  digitalWrite(encoderPinB, HIGH);       // turn on pullup resistor
-  pinMode(encoderPinB, INPUT); 
-  digitalWrite(encoderButtonPin, HIGH);   // turn on pullup resistor
-  pinMode(encoderButtonPin, INPUT);
-  
-  attachInterrupt(encoderPinA, doEncoder, CHANGE);
-  
+
+  // Initialize encoder 
+  pinMode(ENCODER_A_PIN, INPUT); 
+  pinMode(ENCODER_B_PIN, INPUT); 
+  pinMode(ENCODER_BUTTON_PIN, INPUT);
+ // turn on pullup resistors
+  digitalWrite(ENCODER_A_PIN, HIGH);
+  digitalWrite(ENCODER_B_PIN, HIGH);
+  digitalWrite(ENCODER_BUTTON_PIN, HIGH);
+
   // Buzzer init
   pinMode(BUZZER_PIN, OUTPUT);
   digitalWrite(BUZZER_PIN, LOW);
 
   inputString = "";
 }
+

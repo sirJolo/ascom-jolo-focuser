@@ -41,28 +41,28 @@ Partial Class SetupDialogForm
         Me.Button2 = New System.Windows.Forms.Button
         Me.TextBox1 = New System.Windows.Forms.TextBox
         Me.Label4 = New System.Windows.Forms.Label
-        Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown7 = New System.Windows.Forms.NumericUpDown
-        Me.COM1 = New System.Windows.Forms.ComboBox
-        Me.NumericUpDown6 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown5 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown4 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown
         Me.StepSizeUpDown = New System.Windows.Forms.NumericUpDown
         Me.Label5 = New System.Windows.Forms.Label
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel
         Me.Label10 = New System.Windows.Forms.Label
+        Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown
+        Me.NumericUpDown7 = New System.Windows.Forms.NumericUpDown
+        Me.COM1 = New System.Windows.Forms.ComboBox
+        Me.NumericUpDown6 = New System.Windows.Forms.NumericUpDown
+        Me.CompensationUpDown = New System.Windows.Forms.NumericUpDown
+        Me.NumericUpDown4 = New System.Windows.Forms.NumericUpDown
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.StepSizeUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CompensationUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.StepSizeUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -223,6 +223,43 @@ Partial Class SetupDialogForm
         Me.Label4.TabIndex = 31
         Me.Label4.Text = "Stepper duty cycle %"
         '
+        'StepSizeUpDown
+        '
+        Me.StepSizeUpDown.DecimalPlaces = 1
+        Me.StepSizeUpDown.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.StepSizeUpDown.Location = New System.Drawing.Point(125, 170)
+        Me.StepSizeUpDown.Name = "StepSizeUpDown"
+        Me.StepSizeUpDown.Size = New System.Drawing.Size(55, 20)
+        Me.StepSizeUpDown.TabIndex = 32
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(14, 172)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(95, 13)
+        Me.Label5.TabIndex = 33
+        Me.Label5.Text = "Step size (microns)"
+        '
+        'LinkLabel1
+        '
+        Me.LinkLabel1.AutoSize = True
+        Me.LinkLabel1.Location = New System.Drawing.Point(18, 476)
+        Me.LinkLabel1.Name = "LinkLabel1"
+        Me.LinkLabel1.Size = New System.Drawing.Size(148, 13)
+        Me.LinkLabel1.TabIndex = 34
+        Me.LinkLabel1.TabStop = True
+        Me.LinkLabel1.Text = "http://astrojolo.blogspot.com/"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(14, 362)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(100, 13)
+        Me.Label10.TabIndex = 27
+        Me.Label10.Text = "Set focuser position"
+        '
         'NumericUpDown2
         '
         Me.NumericUpDown2.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "DutyCycle", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
@@ -263,16 +300,16 @@ Partial Class SetupDialogForm
         Me.NumericUpDown6.TabIndex = 20
         Me.NumericUpDown6.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.StepperRPM
         '
-        'NumericUpDown5
+        'CompensationUpDown
         '
-        Me.NumericUpDown5.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "StepsPerC", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown5.Location = New System.Drawing.Point(125, 302)
-        Me.NumericUpDown5.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
-        Me.NumericUpDown5.Minimum = New Decimal(New Integer() {1000, 0, 0, -2147483648})
-        Me.NumericUpDown5.Name = "NumericUpDown5"
-        Me.NumericUpDown5.Size = New System.Drawing.Size(55, 20)
-        Me.NumericUpDown5.TabIndex = 16
-        Me.NumericUpDown5.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.StepsPerC
+        Me.CompensationUpDown.DecimalPlaces = 1
+        Me.CompensationUpDown.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.CompensationUpDown.Location = New System.Drawing.Point(125, 302)
+        Me.CompensationUpDown.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.CompensationUpDown.Minimum = New Decimal(New Integer() {1000, 0, 0, -2147483648})
+        Me.CompensationUpDown.Name = "CompensationUpDown"
+        Me.CompensationUpDown.Size = New System.Drawing.Size(55, 20)
+        Me.CompensationUpDown.TabIndex = 16
         '
         'NumericUpDown4
         '
@@ -294,43 +331,6 @@ Partial Class SetupDialogForm
         Me.NumericUpDown1.Size = New System.Drawing.Size(103, 20)
         Me.NumericUpDown1.TabIndex = 8
         Me.NumericUpDown1.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserMax
-        '
-        'StepSizeUpDown
-        '
-        Me.StepSizeUpDown.DecimalPlaces = 1
-        Me.StepSizeUpDown.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
-        Me.StepSizeUpDown.Location = New System.Drawing.Point(125, 170)
-        Me.StepSizeUpDown.Name = "StepSizeUpDown"
-        Me.StepSizeUpDown.Size = New System.Drawing.Size(55, 20)
-        Me.StepSizeUpDown.TabIndex = 32
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(14, 172)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(95, 13)
-        Me.Label5.TabIndex = 33
-        Me.Label5.Text = "Step size (microns)"
-        '
-        'LinkLabel1
-        '
-        Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(18, 476)
-        Me.LinkLabel1.Name = "LinkLabel1"
-        Me.LinkLabel1.Size = New System.Drawing.Size(148, 13)
-        Me.LinkLabel1.TabIndex = 34
-        Me.LinkLabel1.TabStop = True
-        Me.LinkLabel1.Text = "http://astrojolo.blogspot.com/"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(14, 362)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(100, 13)
-        Me.Label10.TabIndex = 27
-        Me.Label10.Text = "Set focuser position"
         '
         'SetupDialogForm
         '
@@ -356,7 +356,7 @@ Partial Class SetupDialogForm
         Me.Controls.Add(Me.NumericUpDown6)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.NumericUpDown5)
+        Me.Controls.Add(Me.CompensationUpDown)
         Me.Controls.Add(Me.NumericUpDown4)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label3)
@@ -375,13 +375,13 @@ Partial Class SetupDialogForm
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.StepSizeUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CompensationUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.StepSizeUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -396,7 +396,7 @@ Partial Class SetupDialogForm
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents SerialPort1 As System.IO.Ports.SerialPort
     Friend WithEvents NumericUpDown4 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents NumericUpDown5 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents CompensationUpDown As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents NumericUpDown6 As System.Windows.Forms.NumericUpDown
