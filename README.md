@@ -1,0 +1,4 @@
+ascom-jolo-focuser
+==================
+ASCOM absolute focuser developed using Arduino Nano board and Visual Studio 2008 for ASCOM driver. Uses DS1820 temperature sensor for temperature focus compensation and rotary encoder for manual focus change. Buzzer can be connected to indicate some user interactions, so there is no need to pay attention on any blinking LEDs. Communication with PC is performed over USB cable using Arduino Nano built in UART converter. RS commands set was chosen to implement ASCOM IFocus2 interface with minimum effort, so it is not compatibile with other focuser standards (like Robofocus) that have too much RS communication overhead.
+Compiled microcontroller code is 18KB large, so it will not fit into boards with 16KB chip (like Arduino Nano version lower than 3.0). Code size can be shrinked by eliminating 3rd party libraries and making custom implementations.
