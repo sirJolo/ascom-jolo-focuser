@@ -60,47 +60,4 @@
 
     ' TODO: Add additional UI and controls to test more of the driver being tested.
 
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
-        NumericUpDown1.Value = Me.driver.Position
-    End Sub
-
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        Me.driver.Move(NumericUpDown1.Value)
-    End Sub
-
-    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
-        TextBox1.Text = Me.driver.IsMoving.ToString()
-    End Sub
-
-    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
-        TextBox2.Text = Me.driver.Temperature.ToString
-    End Sub
-
-    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
-        Me.driver.CommandString("R:" + NumericUpDown2.Value.ToString, False)
-    End Sub
-
-    Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
-        Me.driver.CommandString("S:" + NumericUpDown3.Value.ToString, False)
-    End Sub
-
-    Private Sub CheckBox1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckBox1.CheckedChanged
-        Me.driver.TempComp = CheckBox1.Checked
-    End Sub
-
-    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim ComPort As New System.IO.Ports.SerialPort
-        ComPort.PortName = "COM3"
-        ComPort.BaudRate = 9600
-        ComPort.ReadTimeout = 2000
-        ComPort.Open()
-
-        ComPort.Write("#" + Constants.vbLf)
-        Dim answer As String = ComPort.ReadTo(Constants.vbLf)
-
-        MessageBox.Show(answer, "aa", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1)
-
-        ComPort.Close()
-
-    End Sub
 End Class

@@ -260,6 +260,11 @@ Public Class Focuser
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device")
         End If
 
+        answer = CommandString("X:" + My.Settings.FocuserMax.ToString)
+        If (answer <> "X") Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device")
+        End If
+
         Try
             sensorConnected = True
             Dim temp As Double = Temperature

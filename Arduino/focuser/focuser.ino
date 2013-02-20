@@ -55,6 +55,7 @@ unsigned long buzz_stop = 0;         // Time for buzzer to next stop
 unsigned long buzz_start = 0;        // Time for buzzer to next start
 
 int manualStep = 16;                 // Manual focuser position change in steps 
+word maxFocuserPos = 65000;          // Maximum focuser position
 
 int encoderMode = 0;                 // Focus mode
 

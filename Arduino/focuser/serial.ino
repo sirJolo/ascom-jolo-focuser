@@ -44,6 +44,9 @@ void serialCommand(String command) {
   case 'R':
     saveCurrentPos(stringToNumber(param));
     break;
+  case 'X':
+    maxFocuserPos = stringToNumber(param);
+    break;
   default:
     Serial.print("ERR:");      
     Serial.print(byte(command.charAt(1)), DEC); 
@@ -57,7 +60,8 @@ void printTemp() {
   if(sensorConnected) {
     Serial.print("T:");
     Serial.print(currentTemp, 1);  
-  } else {
+  } 
+  else {
     Serial.print("T:false"); 
   }  
 }
@@ -77,10 +81,16 @@ void printInMoveStatus() {
 
 void moveStepper(word newPos, boolean manualMove) {
   if(newPos != stepper.currentPosition()) {
-    tempRequestMilis = tempReadMilis = 0;
-    pwmWrite(STEPPER_PWM_PIN, 255);
-    stepper.moveTo(newPos);
-    positionSaved = false;
+    if(newPos < 0 || newPos > maxFocuserPos || (manualMove && abs(newPos - stepper.currentPosition()) > manualStep)) {
+      buzz(BUZZ_SHORT, 3);
+    }
+    else
+    {
+      tempRequestMilis = tempReadMilis = 0;
+      pwmWrite(STEPPER_PWM_PIN, 255);
+      stepper.moveTo(newPos);
+      positionSaved = false;
+    }
   }
   if(!manualMove) Serial.print("M");
 }
@@ -108,6 +118,7 @@ void saveDutyCycle(byte dutyCycle) {
   EEPROM.write(DUTY_CYCLE_ADDR, dutyCycle);
   Serial.print("D");
 }
+
 
 
 

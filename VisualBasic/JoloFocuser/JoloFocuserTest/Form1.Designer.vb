@@ -24,27 +24,26 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.buttonConnect = New System.Windows.Forms.Button
         Me.buttonChoose = New System.Windows.Forms.Button
+        Me.labelDriverId = New System.Windows.Forms.Label
+        Me.TrackBar1 = New System.Windows.Forms.TrackBar
+        Me.CurPosLabel = New System.Windows.Forms.Label
         Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox
+        Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown
         Me.Button1 = New System.Windows.Forms.Button
         Me.Button2 = New System.Windows.Forms.Button
-        Me.TextBox1 = New System.Windows.Forms.TextBox
         Me.Button3 = New System.Windows.Forms.Button
-        Me.TextBox2 = New System.Windows.Forms.TextBox
-        Me.Button4 = New System.Windows.Forms.Button
-        Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown
-        Me.Button5 = New System.Windows.Forms.Button
-        Me.NumericUpDown3 = New System.Windows.Forms.NumericUpDown
-        Me.Button6 = New System.Windows.Forms.Button
-        Me.labelDriverId = New System.Windows.Forms.Label
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'buttonConnect
         '
-        Me.buttonConnect.Location = New System.Drawing.Point(316, 36)
+        Me.buttonConnect.Location = New System.Drawing.Point(392, 43)
         Me.buttonConnect.Name = "buttonConnect"
         Me.buttonConnect.Size = New System.Drawing.Size(72, 23)
         Me.buttonConnect.TabIndex = 4
@@ -53,151 +52,130 @@ Partial Class Form1
         '
         'buttonChoose
         '
-        Me.buttonChoose.Location = New System.Drawing.Point(316, 7)
+        Me.buttonChoose.Location = New System.Drawing.Point(392, 14)
         Me.buttonChoose.Name = "buttonChoose"
         Me.buttonChoose.Size = New System.Drawing.Size(72, 23)
         Me.buttonChoose.TabIndex = 3
         Me.buttonChoose.Text = "Choose"
         Me.buttonChoose.UseVisualStyleBackColor = True
         '
-        'NumericUpDown1
-        '
-        Me.NumericUpDown1.Location = New System.Drawing.Point(12, 94)
-        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {65000, 0, 0, 0})
-        Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Size = New System.Drawing.Size(120, 20)
-        Me.NumericUpDown1.TabIndex = 6
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(166, 94)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 7
-        Me.Button1.Text = "Set pos"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(270, 94)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 8
-        Me.Button2.Text = "Read pos"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(12, 131)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox1.TabIndex = 9
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(166, 127)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 23)
-        Me.Button3.TabIndex = 10
-        Me.Button3.Text = "In move?"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Location = New System.Drawing.Point(13, 168)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox2.TabIndex = 11
-        '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(166, 164)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 23)
-        Me.Button4.TabIndex = 12
-        Me.Button4.Text = "Temp read"
-        Me.Button4.UseVisualStyleBackColor = True
-        '
-        'NumericUpDown2
-        '
-        Me.NumericUpDown2.Location = New System.Drawing.Point(13, 212)
-        Me.NumericUpDown2.Maximum = New Decimal(New Integer() {65000, 0, 0, 0})
-        Me.NumericUpDown2.Name = "NumericUpDown2"
-        Me.NumericUpDown2.Size = New System.Drawing.Size(120, 20)
-        Me.NumericUpDown2.TabIndex = 13
-        '
-        'Button5
-        '
-        Me.Button5.Location = New System.Drawing.Point(166, 208)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(75, 23)
-        Me.Button5.TabIndex = 14
-        Me.Button5.Text = "Set cur. pos"
-        Me.Button5.UseVisualStyleBackColor = True
-        '
-        'NumericUpDown3
-        '
-        Me.NumericUpDown3.Location = New System.Drawing.Point(13, 252)
-        Me.NumericUpDown3.Maximum = New Decimal(New Integer() {2000, 0, 0, 0})
-        Me.NumericUpDown3.Name = "NumericUpDown3"
-        Me.NumericUpDown3.Size = New System.Drawing.Size(120, 20)
-        Me.NumericUpDown3.TabIndex = 15
-        '
-        'Button6
-        '
-        Me.Button6.Location = New System.Drawing.Point(166, 248)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(91, 23)
-        Me.Button6.TabIndex = 16
-        Me.Button6.Text = "Set speed pps"
-        Me.Button6.UseVisualStyleBackColor = True
-        '
         'labelDriverId
         '
         Me.labelDriverId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.labelDriverId.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "DriverId", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.labelDriverId.Location = New System.Drawing.Point(12, 37)
+        Me.labelDriverId.Location = New System.Drawing.Point(88, 44)
         Me.labelDriverId.Name = "labelDriverId"
         Me.labelDriverId.Size = New System.Drawing.Size(291, 21)
         Me.labelDriverId.TabIndex = 5
         Me.labelDriverId.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.DriverId
         Me.labelDriverId.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'CheckBox1
+        'TrackBar1
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(166, 299)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(155, 17)
-        Me.CheckBox1.TabIndex = 17
-        Me.CheckBox1.Text = "Temperature compensation"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.TrackBar1.Location = New System.Drawing.Point(24, 43)
+        Me.TrackBar1.Maximum = 100
+        Me.TrackBar1.Name = "TrackBar1"
+        Me.TrackBar1.Orientation = System.Windows.Forms.Orientation.Vertical
+        Me.TrackBar1.Size = New System.Drawing.Size(45, 376)
+        Me.TrackBar1.TabIndex = 6
+        Me.TrackBar1.TickFrequency = 5
+        '
+        'CurPosLabel
+        '
+        Me.CurPosLabel.AutoSize = True
+        Me.CurPosLabel.BackColor = System.Drawing.Color.White
+        Me.CurPosLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.CurPosLabel.Location = New System.Drawing.Point(21, 437)
+        Me.CurPosLabel.Name = "CurPosLabel"
+        Me.CurPosLabel.Padding = New System.Windows.Forms.Padding(1)
+        Me.CurPosLabel.Size = New System.Drawing.Size(84, 17)
+        Me.CurPosLabel.TabIndex = 7
+        Me.CurPosLabel.Text = "1233 = 7.44mm"
+        '
+        'NumericUpDown1
+        '
+        Me.NumericUpDown1.Location = New System.Drawing.Point(15, 19)
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        Me.NumericUpDown1.Size = New System.Drawing.Size(92, 20)
+        Me.NumericUpDown1.TabIndex = 8
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Button1)
+        Me.GroupBox1.Controls.Add(Me.NumericUpDown1)
+        Me.GroupBox1.Location = New System.Drawing.Point(88, 93)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(125, 130)
+        Me.GroupBox1.TabIndex = 9
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Absolute"
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.Button3)
+        Me.GroupBox2.Controls.Add(Me.Button2)
+        Me.GroupBox2.Controls.Add(Me.NumericUpDown2)
+        Me.GroupBox2.Location = New System.Drawing.Point(236, 93)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(143, 156)
+        Me.GroupBox2.TabIndex = 10
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Incremental"
+        '
+        'NumericUpDown2
+        '
+        Me.NumericUpDown2.Location = New System.Drawing.Point(16, 19)
+        Me.NumericUpDown2.Name = "NumericUpDown2"
+        Me.NumericUpDown2.Size = New System.Drawing.Size(107, 20)
+        Me.NumericUpDown2.TabIndex = 0
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(15, 63)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 9
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(16, 63)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 1
+        Me.Button2.Text = "Button2"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(16, 104)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 23)
+        Me.Button3.TabIndex = 2
+        Me.Button3.Text = "Button3"
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(400, 473)
-        Me.Controls.Add(Me.CheckBox1)
-        Me.Controls.Add(Me.Button6)
-        Me.Controls.Add(Me.NumericUpDown3)
-        Me.Controls.Add(Me.Button5)
-        Me.Controls.Add(Me.NumericUpDown2)
-        Me.Controls.Add(Me.Button4)
-        Me.Controls.Add(Me.TextBox2)
-        Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.NumericUpDown1)
+        Me.ClientSize = New System.Drawing.Size(480, 473)
+        Me.Controls.Add(Me.GroupBox2)
+        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.CurPosLabel)
+        Me.Controls.Add(Me.TrackBar1)
         Me.Controls.Add(Me.labelDriverId)
         Me.Controls.Add(Me.buttonConnect)
         Me.Controls.Add(Me.buttonChoose)
+        Me.MaximizeBox = False
         Me.Name = "Form1"
-        Me.Text = "Form1"
+        Me.Text = "Jolo ASCOM focuser control"
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox2.ResumeLayout(False)
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -205,17 +183,14 @@ Partial Class Form1
     Private WithEvents labelDriverId As System.Windows.Forms.Label
     Private WithEvents buttonConnect As System.Windows.Forms.Button
     Private WithEvents buttonChoose As System.Windows.Forms.Button
+    Friend WithEvents TrackBar1 As System.Windows.Forms.TrackBar
+    Friend WithEvents CurPosLabel As System.Windows.Forms.Label
     Friend WithEvents NumericUpDown1 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
-    Friend WithEvents Button4 As System.Windows.Forms.Button
+    Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents NumericUpDown2 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents Button5 As System.Windows.Forms.Button
-    Friend WithEvents NumericUpDown3 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents Button6 As System.Windows.Forms.Button
-    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
 
 End Class

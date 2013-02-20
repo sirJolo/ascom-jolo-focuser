@@ -1,4 +1,4 @@
 ﻿ASCOM Jolo focuser driver
-For arduino nano based focuser device
+For Arduino based focuser device
 
-7 Feb 2013 ver. 0.1 RC1
+20 Feb 2013 ver. 1.0 RC1
