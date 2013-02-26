@@ -15,7 +15,6 @@ void doEncoder() {
   int encoderPos = read_encoder();
   if(encoderPos == 0) return;
   if(encoderMode == 0) {
-    
     moveStepper(stepper.currentPosition() + encoderPos * manualStep, true);
   }
   else

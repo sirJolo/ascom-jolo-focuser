@@ -26,7 +26,7 @@ Bounce pushButton = Bounce( ENCODER_BUTTON_PIN, 20 );
 // Buzzer config
 #define BUZZER_PIN 11
 #define BUZZ_LONG 400
-#define BUZZ_SHORT 30
+#define BUZZ_SHORT 40
 
 // Temperature sensor config (one wire protocol)
 #define TEMP_CYCLE 3000

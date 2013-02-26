@@ -46,6 +46,7 @@ void serialCommand(String command) {
     break;
   case 'X':
     maxFocuserPos = stringToNumber(param);
+    Serial.print("X");
     break;
   default:
     Serial.print("ERR:");      

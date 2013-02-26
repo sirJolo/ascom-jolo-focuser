@@ -11,9 +11,6 @@ D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj
 D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj\x86\Release\JoloFocuserTest.xml
 D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj\x86\Release\JoloFocuserTest.pdb
 D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\bin\Release\JoloFocuserTest.exe.config
-D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj\x86\Release\JoloFocuserTest.exe
-D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj\x86\Release\JoloFocuserTest.xml
-D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj\x86\Release\JoloFocuserTest.pdb
 D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\bin\Release\JoloFocuserTest.exe
 D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\bin\Release\JoloFocuserTest.pdb
 D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\bin\Release\JoloFocuserTest.xml
@@ -21,3 +18,6 @@ D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj\x86\R
 D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj\x86\Release\ASCOM.JoloFocuser.Form1.resources
 D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj\x86\Release\ASCOM.JoloFocuser.Resources.resources
 D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj\x86\Release\JoloFocuserTest.vbproj.GenerateResource.Cache
+D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj\x86\Release\JoloFocuserTest.exe
+D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj\x86\Release\JoloFocuserTest.xml
+D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuserTest\obj\x86\Release\JoloFocuserTest.pdb

@@ -8,16 +8,6 @@ C:\Users\lukasz.socha\Documents\Visual Studio 2008\Projects\JoloFocuser\JoloFocu
 C:\Users\lukasz.socha\Documents\Visual Studio 2008\Projects\JoloFocuser\JoloFocuser\obj\Debug\JoloFocuser.vbproj.GenerateResource.Cache
 C:\Users\lukasz.socha\Documents\Visual Studio 2008\Projects\JoloFocuser\JoloFocuser\obj\Debug\JoloFocuser.dll
 C:\Users\lukasz.socha\Documents\Visual Studio 2008\Projects\JoloFocuser\JoloFocuser\obj\Debug\JoloFocuser.pdb
-D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\bin\Debug\JoloFocuser.dll.config
-D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\bin\Debug\JoloFocuser.dll
-D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\bin\Debug\JoloFocuser.pdb
-D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\bin\Debug\JoloFocuser.tlb
-D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Debug\ResolveAssemblyReference.cache
-D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Debug\ASCOM.JoloFocuser.Resources.resources
-D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Debug\ASCOM.JoloFocuser.SetupDialogForm.resources
-D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Debug\JoloFocuser.vbproj.GenerateResource.Cache
-D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Debug\JoloFocuser.dll
-D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Debug\JoloFocuser.pdb
 D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\bin\Debug\JoloFocuser.dll.config
 D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\bin\Debug\JoloFocuser.dll
 D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\bin\Debug\JoloFocuser.pdb
@@ -28,3 +18,13 @@ D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Deb
 D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Debug\JoloFocuser.vbproj.GenerateResource.Cache
 D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Debug\JoloFocuser.dll
 D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Debug\JoloFocuser.pdb
+D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\bin\Debug\JoloFocuser.dll.config
+D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\bin\Debug\JoloFocuser.dll
+D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\bin\Debug\JoloFocuser.pdb
+D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\bin\Debug\JoloFocuser.tlb
+D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Debug\ASCOM.JoloFocuser.Resources.resources
+D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Debug\ASCOM.JoloFocuser.SetupDialogForm.resources
+D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Debug\JoloFocuser.vbproj.GenerateResource.Cache
+D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Debug\JoloFocuser.dll
+D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Debug\JoloFocuser.pdb
