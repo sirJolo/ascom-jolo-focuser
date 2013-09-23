@@ -4,8 +4,8 @@
 ;
 [Setup]
 AppName=ASCOM Jolo focuser Focuser Driver
-AppVerName=ASCOM Jolo focuser Focuser Driver 1.1
-AppVersion=1.1
+AppVerName=ASCOM Jolo focuser Focuser Driver 1.2
+AppVersion=1.2
 AppPublisher=Jolo <drjolo@gmail.com>
 AppPublisherURL=mailto:drjolo@gmail.com
 AppSupportURL=http://tech.groups.yahoo.com/group/ASCOM-Talk/
@@ -20,8 +20,8 @@ OutputBaseFilename="Jolo focuser Setup"
 Compression=lzma
 SolidCompression=yes
 ; Put there by Platform if Driver Installer Support selected
-WizardImageFile="C:\Program Files\ASCOM\Platform 6 Developer Components\Installer Generator\Resources\WizardImage.bmp"
-LicenseFile="C:\Program Files\ASCOM\Platform 6 Developer Components\Installer Generator\Resources\CreativeCommons.txt"
+WizardImageFile="C:\Program Files (x86)\ASCOM\Platform 6 Developer Components\Installer Generator\Resources\WizardImage.bmp"
+LicenseFile="C:\Program Files (x86)\ASCOM\Platform 6 Developer Components\Installer Generator\Resources\CreativeCommons.txt"
 ; {cf}\ASCOM\Uninstall\Focuser folder created by Platform, always
 UninstallFilesDir="{cf}\ASCOM\Uninstall\Focuser\Jolo focuser"
 
@@ -33,9 +33,9 @@ Name: "{cf}\ASCOM\Uninstall\Focuser\Jolo focuser"
 ; TODO: Add subfolders below {app} as needed (e.g. Name: "{app}\MyFolder")
 
 [Files]
-Source: "D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\bin\Release\JoloFocuser.dll"; DestDir: "{app}"
+Source: "D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\bin\Release\JoloFocuser.dll"; DestDir: "{app}"
 ; Require a read-me HTML to appear after installation, maybe driver's Help doc
-Source: "D:\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\readme.txt"; DestDir: "{app}"; Flags: isreadme
+Source: "D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\readme.txt"; DestDir: "{app}"; Flags: isreadme
 ; TODO: Add other files needed by your driver here (add subfolders above)
 
 

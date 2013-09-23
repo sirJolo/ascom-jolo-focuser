@@ -49,7 +49,7 @@ Public Class Focuser
     ' Driver ID and descriptive string that shows in the Chooser
     '
     Private Const DELTA_T As Double = 0.5
-    Private Const DRIVER_VERSION As String = "0.1"
+    Private Const DRIVER_VERSION As String = "1.2"
     Private Const DEVICE_RESPONSE As String = "Jolo primary focuser"
 
     Private Shared driverID As String = "ASCOM.JoloFocuser.Focuser"
@@ -213,7 +213,8 @@ Public Class Focuser
 
     Public ReadOnly Property DriverInfo() As String Implements IFocuserV2.DriverInfo
         Get
-            Throw New PropertyNotImplementedException("DriverInfo", False)
+            Dim d As String = driverDescription + DRIVER_VERSION
+            Return d
         End Get
     End Property
 

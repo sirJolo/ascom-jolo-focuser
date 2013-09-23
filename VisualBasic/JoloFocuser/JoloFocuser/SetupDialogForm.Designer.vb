@@ -52,6 +52,7 @@ Partial Class SetupDialogForm
         Me.CompensationUpDown = New System.Windows.Forms.NumericUpDown
         Me.NumericUpDown4 = New System.Windows.Forms.NumericUpDown
         Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown
+        Me.Label1 = New System.Windows.Forms.Label
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -332,6 +333,15 @@ Partial Class SetupDialogForm
         Me.NumericUpDown1.TabIndex = 8
         Me.NumericUpDown1.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserMax
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(19, 456)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(43, 13)
+        Me.Label1.TabIndex = 35
+        Me.Label1.Text = "ver. 1.2"
+        '
         'SetupDialogForm
         '
         Me.AcceptButton = Me.OK_Button
@@ -339,6 +349,7 @@ Partial Class SetupDialogForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
         Me.ClientSize = New System.Drawing.Size(359, 504)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.StepSizeUpDown)
@@ -414,5 +425,6 @@ Partial Class SetupDialogForm
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents LinkLabel1 As System.Windows.Forms.LinkLabel
     Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 
 End Class
