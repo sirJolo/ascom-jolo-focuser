@@ -2,7 +2,8 @@
 // ascom-jolo-focuser Google code project
 // 
 // Author: jolo drjolo@gmail.com
-//
+// ver. 1.3 08-11-2013
+// 
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <EEPROM.h>
@@ -58,7 +59,7 @@ unsigned long buzz_stop = 0;         // Time for buzzer to next stop
 unsigned long buzz_start = 0;        // Time for buzzer to next start
 
 int manualStep = 16;                 // Manual focuser position change in steps 
-word maxFocuserPos = 65000;          // Maximum focuser position
+long maxFocuserPos = 1000000;        // Maximum focuser position
 
 int encoderMode = 0;                 // Focus mode
 
