@@ -10,7 +10,7 @@
 '				dolores et ea rebum. Stet clita kasd gubergren, no sea takimata 
 '				sanctus est Lorem ipsum dolor sit amet.
 '
-' Implements:	ASCOM Focuser interface version: 1.0
+' Implements:	ASCOM Focuser interface version: 1.3
 ' Author:		(Jol) Jolo (drjolo@gmail.com)
 ' URL:          http://code.google.com/p/ascom-jolo-focuser/
 '
@@ -23,6 +23,7 @@
 ' 23-Jan-2013   Jol 0.0.2   Temperature compensation, backslash
 ' 06-Feb-2013   Jol 0.0.3   Minor updates, ready to testing
 ' 07-Feb-2013   Jol 0.1.0   RC1
+' 08-Nov-2013   Jol 0.1.3   Max focuser position limit to over 65000
 ' ---------------------------------------------------------------------------------
 '
 '
@@ -49,7 +50,7 @@ Public Class Focuser
     ' Driver ID and descriptive string that shows in the Chooser
     '
     Private Const DELTA_T As Double = 0.5
-    Private Const DRIVER_VERSION As String = "1.2"
+    Private Const DRIVER_VERSION As String = "1.3"
     Private Const DEVICE_RESPONSE As String = "Jolo primary focuser"
 
     Private Shared driverID As String = "ASCOM.JoloFocuser.Focuser"
