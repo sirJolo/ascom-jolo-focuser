@@ -18,10 +18,13 @@
 #define DUTY_CYCLE_ADDR 2  
 
 // Encoder config
+#define MANUAL_FOCUS_MODE 1 //1 - button control, 0 - encoder control
 #define ENCODER_A_PIN 3
 #define ENCODER_B_PIN 5
 #define ENCODER_BUTTON_PIN 4
-Bounce pushButton = Bounce( ENCODER_BUTTON_PIN, 20 ); 
+Bounce pushButton = Bounce( ENCODER_BUTTON_PIN, 30 ); 
+Bounce aButton = Bounce( ENCODER_A_PIN, 30 ); 
+Bounce bButton = Bounce( ENCODER_B_PIN, 30 ); 
 
 // Buzzer config
 #define BUZZER_PIN 11
@@ -81,12 +84,19 @@ void loop()
   doBuzz();
 
   // Encoder check
-  doEncoder();
+  if(MANUAL_FOCUS_MODE == 0) {  
+    doEncoder();
+  }
+  else
+  {
+    doButtonsCheck();
+  }	
 
   // Push  button check
   doPushButtonCheck();
 
 }
+
 
 
 

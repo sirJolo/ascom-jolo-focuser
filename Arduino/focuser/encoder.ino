@@ -2,7 +2,7 @@
 int read_encoder()
 {
   static int enc_states[] = {
-    0,0,0,0,0,0,0,-1,0,0,0,1,0,0,0,0    };
+    0,0,0,0,0,0,0,-1,0,0,0,1,0,0,0,0        };
   static byte old_AB = digitalRead(ENCODER_A_PIN) + 2*digitalRead(ENCODER_B_PIN);
   /**/
   old_AB <<= 2;                   //remember previous state
@@ -26,12 +26,16 @@ void doEncoder() {
     {
       manualStep *= 2;
     }
-    manualStep = min(manualStep, 256);
-    manualStep = max(manualStep, 1);
-    buzz(BUZZ_SHORT, calculateBeeps(manualStep)); 
+    limitStepSize();
   }
 }
 
+
+void limitStepSize() {
+  manualStep = min(manualStep, 255);
+  manualStep = max(manualStep, 1);
+  buzz(BUZZ_SHORT, calculateBeeps(manualStep)); 
+}
 
 byte calculateBeeps(int steps) {
   byte beeps = 0;
@@ -40,6 +44,35 @@ byte calculateBeeps(int steps) {
     steps >>= 1;  
   }
   return beeps;
+}
+
+
+void doButtonsCheck() {
+  if ( aButton.update() ) {
+    if ( aButton.read() == HIGH) {
+      if (encoderMode == 0) {
+        moveStepper(stepper.currentPosition() - manualStep, true);
+      }
+      else
+      {
+        manualStep /= 2;
+        limitStepSize();
+      }
+    }
+  }
+
+  if ( bButton.update() ) {
+    if ( bButton.read() == HIGH) {
+      if (encoderMode == 0) {
+        moveStepper(stepper.currentPosition() + manualStep, true);
+      }
+      else
+      {
+        manualStep *= 2;
+        limitStepSize();
+      }
+    }
+  }
 }
 
 
@@ -58,6 +91,8 @@ void doPushButtonCheck() {
     }
   }
 }
+
+
 
 
 
