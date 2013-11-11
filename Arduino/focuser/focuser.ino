@@ -3,6 +3,7 @@
 // 
 // Author: jolo drjolo@gmail.com
 // ver. 1.3 08-11-2013
+// ver. 1.4 11-11-2013
 // 
 #include <OneWire.h>
 #include <DallasTemperature.h>
@@ -31,6 +32,7 @@ Bounce bButton = Bounce( ENCODER_B_PIN, 30 );
 #define BUZZER_PIN 11
 #define BUZZ_LONG 400
 #define BUZZ_SHORT 40
+#define BUZZER_ON false
 
 // Temperature sensor config (one wire protocol)
 #define TEMP_CYCLE 3000
@@ -40,10 +42,11 @@ DallasTemperature sensors(&oneWire);
 DeviceAddress insideThermometer;
 
 // Stepper config
-#define STEPPER_ACC 800
-#define STEPPER_PWM_FREQ 2000
+#define STEPPER_ACC 2500
+#define MANUAL_STEPPER_ACC 600
+#define STEPPER_PWM_FREQ 1000
 #define STEPPER_PWM_PIN 9
-AccelStepper stepper = AccelStepper(AccelStepper::FULL4WIRE, A5, A3, 6, 2);
+AccelStepper stepper = AccelStepper(AccelStepper::HALF4WIRE, A3, A5, 6, 2);
 
 // Global vars
 boolean positionSaved;               // Flag indicates if stepper position was saved as new focuser position
@@ -87,15 +90,12 @@ void loop()
   // Encoder check
   if(MANUAL_FOCUS_MODE == 0) {  
     doEncoder();
+    doPushButtonCheck();    
   }
   else
   {
     doButtonsCheck();
   }	
-
-  // Push  button check
-  doPushButtonCheck();
-
 }
 
 

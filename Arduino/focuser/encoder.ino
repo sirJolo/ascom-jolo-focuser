@@ -49,28 +49,26 @@ byte calculateBeeps(int steps) {
 
 void doButtonsCheck() {
   if ( aButton.update() ) {
-    if ( aButton.read() == HIGH) {
-      if (encoderMode == 0) {
-        moveStepper(stepper.currentPosition() - manualStep, true);
-      }
-      else
-      {
-        manualStep /= 2;
-        limitStepSize();
-      }
+    if ( aButton.read() == LOW) {
+      stepper.setAcceleration(MANUAL_STEPPER_ACC);
+      moveStepper(maxFocuserPos, true);
+    }
+    else
+    {
+      stepper.setAcceleration(STEPPER_ACC);
+      stepper.stop();
     }
   }
 
   if ( bButton.update() ) {
-    if ( bButton.read() == HIGH) {
-      if (encoderMode == 0) {
-        moveStepper(stepper.currentPosition() + manualStep, true);
-      }
-      else
-      {
-        manualStep *= 2;
-        limitStepSize();
-      }
+    if ( bButton.read() == LOW) {
+       stepper.setAcceleration(MANUAL_STEPPER_ACC);
+       moveStepper(0, true);
+    }
+    else
+    {
+      stepper.setAcceleration(STEPPER_ACC);
+      stepper.stop();
     }
   }
 }

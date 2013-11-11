@@ -23,7 +23,8 @@
 ' 23-Jan-2013   Jol 0.0.2   Temperature compensation, backslash
 ' 06-Feb-2013   Jol 0.0.3   Minor updates, ready to testing
 ' 07-Feb-2013   Jol 0.1.0   RC1
-' 08-Nov-2013   Jol 0.1.3   Max focuser position limit to over 65000
+' 08-Nov-2013   Jol 0.1.3   Max focuser position limit to 1,000,000
+' 11-Nov-2013   Jol 0.1.4   Driver backslash compensation removed
 ' ---------------------------------------------------------------------------------
 '
 '
@@ -324,27 +325,12 @@ Public Class Focuser
 
     ' Move without resetting temperature compensation position
     Private Sub MoveInternal(ByVal Position As Integer)
-        Position += BackslashCompensation(Position)
         Dim answer As String = CommandString("M:" + Position.ToString)
         If (answer <> "M") Then
             Throw New ASCOM.DriverException("Wrong device answer: expected M, got " + answer)
         End If
     End Sub
 
-
-    ' Backslash compensation
-    Private Function BackslashCompensation(ByVal newPos As Integer) As Integer
-        Dim backslash As Integer = 0
-        If (My.Settings.Backslash > 0) Then
-            Dim currentPos As Integer = Position
-            Dim moveDirection As Integer = Math.Sign(newPos - currentPos)
-            If (moveDirection <> lastDirection) Then
-                backslash = My.Settings.Backslash
-                lastDirection = moveDirection
-            End If
-        End If
-        Return backslash
-    End Function
 
 #End Region
 

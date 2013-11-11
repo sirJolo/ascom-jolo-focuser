@@ -35,7 +35,6 @@ Partial Class SetupDialogForm
         Me.Label6 = New System.Windows.Forms.Label
         Me.Label7 = New System.Windows.Forms.Label
         Me.Label8 = New System.Windows.Forms.Label
-        Me.Label9 = New System.Windows.Forms.Label
         Me.PictureBox2 = New System.Windows.Forms.PictureBox
         Me.NumericUpDown8 = New System.Windows.Forms.NumericUpDown
         Me.Button2 = New System.Windows.Forms.Button
@@ -48,7 +47,6 @@ Partial Class SetupDialogForm
         Me.CompensationUpDown = New System.Windows.Forms.NumericUpDown
         Me.Label1 = New System.Windows.Forms.Label
         Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown7 = New System.Windows.Forms.NumericUpDown
         Me.COM1 = New System.Windows.Forms.ComboBox
         Me.NumericUpDown6 = New System.Windows.Forms.NumericUpDown
         Me.NumericUpDown4 = New System.Windows.Forms.NumericUpDown
@@ -60,7 +58,6 @@ Partial Class SetupDialogForm
         CType(Me.StepSizeUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CompensationUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -166,15 +163,6 @@ Partial Class SetupDialogForm
         Me.Label8.TabIndex = 21
         Me.Label8.Text = "Stepper spped (pps)"
         '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(14, 210)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(90, 13)
-        Me.Label9.TabIndex = 24
-        Me.Label9.Text = "Backslash (steps)"
-        '
         'PictureBox2
         '
         Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
@@ -188,7 +176,7 @@ Partial Class SetupDialogForm
         'NumericUpDown8
         '
         Me.NumericUpDown8.Location = New System.Drawing.Point(125, 360)
-        Me.NumericUpDown8.Maximum = New Decimal(New Integer() {65000, 0, 0, 0})
+        Me.NumericUpDown8.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
         Me.NumericUpDown8.Name = "NumericUpDown8"
         Me.NumericUpDown8.Size = New System.Drawing.Size(103, 20)
         Me.NumericUpDown8.TabIndex = 26
@@ -279,7 +267,7 @@ Partial Class SetupDialogForm
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(43, 13)
         Me.Label1.TabIndex = 35
-        Me.Label1.Text = "ver. 1.3"
+        Me.Label1.Text = "ver. 1.4"
         '
         'NumericUpDown2
         '
@@ -289,16 +277,6 @@ Partial Class SetupDialogForm
         Me.NumericUpDown2.Size = New System.Drawing.Size(55, 20)
         Me.NumericUpDown2.TabIndex = 30
         Me.NumericUpDown2.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.DutyCycle
-        '
-        'NumericUpDown7
-        '
-        Me.NumericUpDown7.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "Backslash", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown7.Location = New System.Drawing.Point(125, 208)
-        Me.NumericUpDown7.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
-        Me.NumericUpDown7.Name = "NumericUpDown7"
-        Me.NumericUpDown7.Size = New System.Drawing.Size(55, 20)
-        Me.NumericUpDown7.TabIndex = 23
-        Me.NumericUpDown7.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.Backslash
         '
         'COM1
         '
@@ -360,8 +338,6 @@ Partial Class SetupDialogForm
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.NumericUpDown8)
         Me.Controls.Add(Me.PictureBox2)
-        Me.Controls.Add(Me.Label9)
-        Me.Controls.Add(Me.NumericUpDown7)
         Me.Controls.Add(Me.COM1)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.NumericUpDown6)
@@ -389,7 +365,6 @@ Partial Class SetupDialogForm
         CType(Me.StepSizeUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CompensationUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -413,8 +388,6 @@ Partial Class SetupDialogForm
     Friend WithEvents NumericUpDown6 As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents COM1 As System.Windows.Forms.ComboBox
-    Friend WithEvents NumericUpDown7 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
     Friend WithEvents NumericUpDown8 As System.Windows.Forms.NumericUpDown
     Friend WithEvents Button2 As System.Windows.Forms.Button

@@ -16,6 +16,7 @@ void doBuzz() {
 }
 
 void buzz(byte buzzTime, byte buzzCount) {
+  if(!BUZZER_ON) return;
   buzzes = buzzCount;
   buzz_time = buzzTime;
   buzz_start = millis();

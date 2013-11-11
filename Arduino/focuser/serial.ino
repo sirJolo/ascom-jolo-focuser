@@ -33,7 +33,7 @@ void serialCommand(String command) {
     printInMoveStatus();
     break;
   case 'M':    // Move focuser to new position
-    moveStepper(stringToNumber(param), false); 
+    moveStepper(stringToLong(param), false); 
     break;
   case 'S':
     saveStepperSpeed(stringToNumber(param));
@@ -42,10 +42,10 @@ void serialCommand(String command) {
     saveDutyCycle(stringToNumber(param));
     break;
   case 'R':
-    saveCurrentPos(stringToNumber(param));
+    saveCurrentPos(stringToLong(param));
     break;
   case 'X':
-    maxFocuserPos = stringToNumber(param);
+    maxFocuserPos = stringToLong(param);
     Serial.print("X");
     break;
   default:
@@ -80,9 +80,9 @@ void printInMoveStatus() {
     Serial.print("true");
 }
 
-void moveStepper(word newPos, boolean manualMove) {
+void moveStepper(long newPos, boolean manualMove) {
   if(newPos != stepper.currentPosition()) {
-    if(newPos < 0 || newPos > maxFocuserPos || (manualMove && abs(newPos - stepper.currentPosition()) > manualStep)) {
+    if(newPos < 0 || newPos > maxFocuserPos) {
       buzz(BUZZ_SHORT, 3);
     }
     else
@@ -101,7 +101,7 @@ void halt() {
   Serial.print("H");
 }
 
-void saveCurrentPos(word newPos) {
+void saveCurrentPos(long newPos) {
   stepper.setCurrentPosition(newPos);
   positionSaved = true;
   saveFocuserPos(newPos);
