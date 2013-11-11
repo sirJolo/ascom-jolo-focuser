@@ -4,6 +4,7 @@ Changelog:
  - max focuser position now is 1,000,000
  - driver backslash control removed - noone uses it
  - buzzer turned off by default, can be turned on with BUZZER_ON flag
+ - stepper now controlled with half step by default. Please change stepper speed (200%) and step size (50%) in driver settings
  - manual control now with two buttons that perform accelerated motion. Buttons connected to ENCODER_A_PIN and ENCODER_B_PIN
  - MANUAL_FOCUS_MODE added, default to 1 - control with button, NOT encoder
  - STEPPER_ACC increased to 2500
