@@ -1,3 +1,15 @@
+ver 1.4
+==================
+Changelog:
+ - max focuser position now is 1,000,000
+ - driver backslash control removed - noone uses it
+ - buzzer turned off by default, can be turned on with BUZZER_ON flag
+ - manual control now with two buttons that perform accelerated motion. Buttons connected to ENCODER_A_PIN and ENCODER_B_PIN
+ - MANUAL_FOCUS_MODE added, default to 1 - control with button, NOT encoder
+ - STEPPER_ACC increased to 2500
+ - MANUAL_STEPPER_ACC for manual button control. Default is 600
+ - STEPPER_PWM_FREQ changed to 1000Hz
+
 ascom-jolo-focuser
 ==================
 ASCOM absolute focuser developed using Arduino Nano board and Visual Studio 2008 for ASCOM driver. Uses DS1820 temperature sensor for temperature focus compensation and rotary encoder for manual focus change. Buzzer can be connected to indicate some user interactions, so there is no need to pay attention on any blinking LEDs. Communication with PC is performed over USB cable using Arduino Nano built in UART converter. RS commands set was chosen to implement ASCOM IFocus2 interface with minimum effort, so it is not compatibile with other focuser standards (like Robofocus) that have too much RS communication overhead.
