@@ -28,3 +28,4 @@ D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Rel
 D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Release\JoloFocuser.vbproj.GenerateResource.Cache
 D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Release\JoloFocuser.dll
 D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Release\JoloFocuser.pdb
+D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Release\ASCOM.JoloFocuser.RunDialogForm.resources

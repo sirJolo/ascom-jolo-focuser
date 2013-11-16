@@ -121,18 +121,22 @@ Public Class Focuser
     Public Sub SetupDialog() Implements IFocuserV2.SetupDialog
         ' consider only showing the setup dialog if not connected
         ' or call a different dialog if connected
-        If IsConnected Then
-            System.Windows.Forms.MessageBox.Show("Already connected, just press OK")
-        End If
-
-        Using F As SetupDialogForm = New SetupDialogForm()
-            Dim result As System.Windows.Forms.DialogResult = F.ShowDialog()
-            If result = DialogResult.OK Then
-                My.MySettings.Default.Save()
-                Exit Sub
-            End If
-            My.MySettings.Default.Reload()
+        'If IsConnected Then
+        Using R As RunDialogForm = New RunDialogForm
+            R.focuser = Me
+            R.ShowDialog()
         End Using
+        ' Else
+        'Using F As SetupDialogForm = New SetupDialogForm()
+        'Dim result As System.Windows.Forms.DialogResult = F.ShowDialog()
+        'If result = DialogResult.OK Then
+        'My.MySettings.Default.Save()
+        'Exit Sub
+        ' End If
+        ' My.MySettings.Default.Reload()
+        'End Using
+        'End If
+
     End Sub
 
     Public ReadOnly Property SupportedActions() As ArrayList Implements IFocuserV2.SupportedActions
