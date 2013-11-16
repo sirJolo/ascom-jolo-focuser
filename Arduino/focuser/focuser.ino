@@ -4,6 +4,10 @@
 // Author: jolo drjolo@gmail.com
 // ver. 1.3 08-11-2013
 // ver. 1.4 11-11-2013
+// ver. 1.5 - production
+// removed encoder
+// add signal led
+// 
 // 
 #include <OneWire.h>
 #include <DallasTemperature.h>
@@ -20,23 +24,21 @@
 #define DUTY_CYCLE_ADDR 2  
 
 // Encoder config
-#define MANUAL_FOCUS_MODE 1 //1 - button control, 0 - encoder control
 #define ENCODER_A_PIN 3
-#define ENCODER_B_PIN 5
-#define ENCODER_BUTTON_PIN 4
-Bounce pushButton = Bounce( ENCODER_BUTTON_PIN, 30 ); 
+#define ENCODER_B_PIN 4
 Bounce aButton = Bounce( ENCODER_A_PIN, 30 ); 
 Bounce bButton = Bounce( ENCODER_B_PIN, 30 ); 
 
 // Buzzer config
-#define BUZZER_PIN 11
+#define BUZZER_PIN 5
 #define BUZZ_LONG 400
 #define BUZZ_SHORT 40
 #define BUZZER_ON false
+#define BUZ_LED_PIN 13
 
 // Temperature sensor config (one wire protocol)
 #define TEMP_CYCLE 3000
-#define TEMP_SENSOR_PIN 7
+#define TEMP_SENSOR_PIN 2
 OneWire oneWire(TEMP_SENSOR_PIN);
 DallasTemperature sensors(&oneWire);
 DeviceAddress insideThermometer;
@@ -45,8 +47,8 @@ DeviceAddress insideThermometer;
 #define STEPPER_ACC 2500
 #define MANUAL_STEPPER_ACC 600
 #define STEPPER_PWM_FREQ 1000
-#define STEPPER_PWM_PIN 9
-AccelStepper stepper = AccelStepper(AccelStepper::HALF4WIRE, A3, A5, 6, 2);
+#define STEPPER_PWM_PIN A0
+AccelStepper stepper = AccelStepper(AccelStepper::HALF4WIRE, A4, A3, A1, A2);
 
 // Global vars
 boolean positionSaved;               // Flag indicates if stepper position was saved as new focuser position
@@ -87,15 +89,9 @@ void loop()
   // Buzzer call
   doBuzz();
 
-  // Encoder check
-  if(MANUAL_FOCUS_MODE == 0) {  
-    doEncoder();
-    doPushButtonCheck();    
-  }
-  else
-  {
-    doButtonsCheck();
-  }	
+  // Manual control
+  doButtonsCheck();
+
 }
 
 

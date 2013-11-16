@@ -29,11 +29,9 @@ void setup()
   // Initialize encoder 
   pinMode(ENCODER_A_PIN, INPUT); 
   pinMode(ENCODER_B_PIN, INPUT); 
-  pinMode(ENCODER_BUTTON_PIN, INPUT);
  // turn on pullup resistors
   digitalWrite(ENCODER_A_PIN, HIGH);
   digitalWrite(ENCODER_B_PIN, HIGH);
-  digitalWrite(ENCODER_BUTTON_PIN, HIGH);
 
   // Buzzer init
   pinMode(BUZZER_PIN, OUTPUT);
