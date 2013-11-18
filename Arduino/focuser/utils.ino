@@ -1,4 +1,3 @@
-// Current focuser position storage
 void saveFocuserPos(long newPos) {
   writeLong(getSaveFocuserPosAddress() + 1, newPos);
 }

@@ -31,8 +31,8 @@ Bounce bButton = Bounce( ENCODER_B_PIN, 30 );
 
 // Buzzer config
 #define BUZZER_PIN 5
-#define BUZZ_LONG 400
-#define BUZZ_SHORT 40
+#define BUZZ_LONG 800
+#define BUZZ_SHORT 200
 #define BUZZER_ON false
 #define BUZ_LED_PIN 13
 

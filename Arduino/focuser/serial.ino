@@ -51,7 +51,7 @@ void serialCommand(String command) {
   default:
     Serial.print("ERR:");      
     Serial.print(byte(command.charAt(1)), DEC); 
-    buzz(BUZZ_SHORT, 5);
+    buzz(BUZZ_SHORT, 3);
   }
   Serial.print('\n');
 }
@@ -83,7 +83,7 @@ void printInMoveStatus() {
 void moveStepper(long newPos, boolean manualMove) {
   if(newPos != stepper.currentPosition()) {
     if(newPos < 0 || newPos > maxFocuserPos) {
-      buzz(BUZZ_SHORT, 3);
+      buzz(BUZZ_SHORT, 2);
     }
     else
     {
