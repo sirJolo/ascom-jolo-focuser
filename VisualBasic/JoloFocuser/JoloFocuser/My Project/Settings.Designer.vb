@@ -353,6 +353,222 @@ Namespace My
                 Me("GroupBySlot") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("digital input")>  _
+        Public Property D7type() As String
+            Get
+                Return CType(Me("D7type"),String)
+            End Get
+            Set
+                Me("D7type") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("digital input")>  _
+        Public Property D8type() As String
+            Get
+                Return CType(Me("D8type"),String)
+            End Get
+            Set
+                Me("D8type") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("digital input")>  _
+        Public Property D9type() As String
+            Get
+                Return CType(Me("D9type"),String)
+            End Get
+            Set
+                Me("D9type") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("digital input")>  _
+        Public Property D10type() As String
+            Get
+                Return CType(Me("D10type"),String)
+            End Get
+            Set
+                Me("D10type") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("digital input")>  _
+        Public Property A5type() As String
+            Get
+                Return CType(Me("A5type"),String)
+            End Get
+            Set
+                Me("A5type") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("digital input")>  _
+        Public Property A6type() As String
+            Get
+                Return CType(Me("A6type"),String)
+            End Get
+            Set
+                Me("A6type") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property D7value() As String
+            Get
+                Return CType(Me("D7value"),String)
+            End Get
+            Set
+                Me("D7value") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property D8value() As String
+            Get
+                Return CType(Me("D8value"),String)
+            End Get
+            Set
+                Me("D8value") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property D9value() As String
+            Get
+                Return CType(Me("D9value"),String)
+            End Get
+            Set
+                Me("D9value") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property D10value() As String
+            Get
+                Return CType(Me("D10value"),String)
+            End Get
+            Set
+                Me("D10value") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property A5value() As String
+            Get
+                Return CType(Me("A5value"),String)
+            End Get
+            Set
+                Me("A5value") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property A6value() As String
+            Get
+                Return CType(Me("A6value"),String)
+            End Get
+            Set
+                Me("A6value") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("auto refresh")>  _
+        Public Property D7refresh() As String
+            Get
+                Return CType(Me("D7refresh"),String)
+            End Get
+            Set
+                Me("D7refresh") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("auto refresh")>  _
+        Public Property D8refresh() As String
+            Get
+                Return CType(Me("D8refresh"),String)
+            End Get
+            Set
+                Me("D8refresh") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("auto refresh")>  _
+        Public Property D9refresh() As String
+            Get
+                Return CType(Me("D9refresh"),String)
+            End Get
+            Set
+                Me("D9refresh") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("auto refresh")>  _
+        Public Property D10refresh() As String
+            Get
+                Return CType(Me("D10refresh"),String)
+            End Get
+            Set
+                Me("D10refresh") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("auto refresh")>  _
+        Public Property A5refresh() As String
+            Get
+                Return CType(Me("A5refresh"),String)
+            End Get
+            Set
+                Me("A5refresh") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("auto refresh")>  _
+        Public Property A6refresh() As String
+            Get
+                Return CType(Me("A6refresh"),String)
+            End Get
+            Set
+                Me("A6refresh") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

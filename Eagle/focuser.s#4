@@ -2780,7 +2780,6 @@ Siemens, Hewlett-Packard, Texas Instuments, Sharp, Motorola&lt;p&gt;
 <part name="..." library="SparkFun" deviceset="JUMPER-2" device="PTH"/>
 <part name="J9" library="jumper" deviceset="J" device="5MM" value="J5MM"/>
 <part name="J10" library="jumper" deviceset="J" device="5MM" value="J5MM"/>
-<part name="VS" library="SparkFun" deviceset="JUMPER-3" device="PTH" value=""/>
 </parts>
 <sheets>
 <sheet>
@@ -2850,7 +2849,6 @@ Siemens, Hewlett-Packard, Texas Instuments, Sharp, Motorola&lt;p&gt;
 <instance part="..." gate="A" x="15.24" y="38.1" rot="R90"/>
 <instance part="J9" gate="1" x="71.12" y="38.1"/>
 <instance part="J10" gate="1" x="68.58" y="33.02"/>
-<instance part="VS" gate="G$1" x="106.68" y="76.2" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -2910,7 +2908,6 @@ Siemens, Hewlett-Packard, Texas Instuments, Sharp, Motorola&lt;p&gt;
 <pinref part="OK1" gate="G$1" pin="C"/>
 <wire x1="104.14" y1="12.7" x2="96.52" y2="12.7" width="0.1524" layer="91"/>
 <junction x="96.52" y="12.7"/>
-<junction x="96.52" y="7.62"/>
 </segment>
 <segment>
 <pinref part="GND3" gate="1" pin="GND"/>
