@@ -22,7 +22,6 @@ Partial Class RunDialogForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(RunDialogForm))
         Me.TabControl1 = New System.Windows.Forms.TabControl
         Me.TabPage3 = New System.Windows.Forms.TabPage
         Me.MoveOutButton = New System.Windows.Forms.Button
@@ -71,41 +70,16 @@ Partial Class RunDialogForm
         Me.SignleFrameTimeNumeric = New System.Windows.Forms.NumericUpDown
         Me.ComboBox1 = New System.Windows.Forms.ComboBox
         Me.TabPage2 = New System.Windows.Forms.TabPage
-        Me.A6ReadModeComboBox = New System.Windows.Forms.ComboBox
-        Me.A5ReadModeComboBox = New System.Windows.Forms.ComboBox
-        Me.A6RWButton = New System.Windows.Forms.Button
-        Me.D10ReadModeComboBox = New System.Windows.Forms.ComboBox
-        Me.A5RWButton = New System.Windows.Forms.Button
-        Me.D9ReadModeComboBox = New System.Windows.Forms.ComboBox
-        Me.D10RWButton = New System.Windows.Forms.Button
-        Me.D8ReadModeComboBox = New System.Windows.Forms.ComboBox
-        Me.D9RWButton = New System.Windows.Forms.Button
-        Me.D7ReadModeComboBox = New System.Windows.Forms.ComboBox
-        Me.D8RWButton = New System.Windows.Forms.Button
-        Me.GroupBox5 = New System.Windows.Forms.GroupBox
-        Me.Label28 = New System.Windows.Forms.Label
-        Me.D7RWButton = New System.Windows.Forms.Button
-        Me.A6ValueTextBox = New System.Windows.Forms.TextBox
-        Me.A5ValueTextBox = New System.Windows.Forms.TextBox
-        Me.D10ValueTextBox = New System.Windows.Forms.TextBox
-        Me.D9ValueTextBox = New System.Windows.Forms.TextBox
-        Me.D8ValueTextBox = New System.Windows.Forms.TextBox
-        Me.D7ValueTextBox = New System.Windows.Forms.TextBox
-        Me.Label27 = New System.Windows.Forms.Label
-        Me.Label26 = New System.Windows.Forms.Label
-        Me.Node = New System.Windows.Forms.Label
-        Me.A6ConfigComboBox = New System.Windows.Forms.ComboBox
-        Me.Label25 = New System.Windows.Forms.Label
-        Me.A5ConfigComboBox = New System.Windows.Forms.ComboBox
-        Me.Label24 = New System.Windows.Forms.Label
-        Me.D10ConfigComboBox = New System.Windows.Forms.ComboBox
-        Me.Label23 = New System.Windows.Forms.Label
-        Me.D9ConfigComboBox = New System.Windows.Forms.ComboBox
         Me.Label22 = New System.Windows.Forms.Label
-        Me.D8ConfigComboBox = New System.Windows.Forms.ComboBox
+        Me.D7GroupBox = New System.Windows.Forms.GroupBox
+        Me.D7SaveButton = New System.Windows.Forms.Button
         Me.Label21 = New System.Windows.Forms.Label
-        Me.D7ConfigComboBox = New System.Windows.Forms.ComboBox
-        Me.D7 = New System.Windows.Forms.Label
+        Me.D7ModeComboBox = New System.Windows.Forms.ComboBox
+        Me.TabPage4 = New System.Windows.Forms.TabPage
+        Me.TabPage5 = New System.Windows.Forms.TabPage
+        Me.TabPage6 = New System.Windows.Forms.TabPage
+        Me.TabPage7 = New System.Windows.Forms.TabPage
+        Me.TabPage8 = New System.Windows.Forms.TabPage
         Me.GroupBox2 = New System.Windows.Forms.GroupBox
         Me.Label2 = New System.Windows.Forms.Label
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar
@@ -117,6 +91,7 @@ Partial Class RunDialogForm
         Me.D10StatusLabel = New System.Windows.Forms.Label
         Me.D8StatusLabel = New System.Windows.Forms.Label
         Me.D7StatusLabel = New System.Windows.Forms.Label
+        Me.TextBox1 = New System.Windows.Forms.TextBox
         Me.TabControl1.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         CType(Me.MoveFocuserNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -136,7 +111,6 @@ Partial Class RunDialogForm
         Me.GroupBox1.SuspendLayout()
         CType(Me.SignleFrameTimeNumeric, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
-        Me.GroupBox5.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.SuspendLayout()
@@ -146,6 +120,11 @@ Partial Class RunDialogForm
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPage4)
+        Me.TabControl1.Controls.Add(Me.TabPage5)
+        Me.TabControl1.Controls.Add(Me.TabPage6)
+        Me.TabControl1.Controls.Add(Me.TabPage7)
+        Me.TabControl1.Controls.Add(Me.TabPage8)
         Me.TabControl1.Location = New System.Drawing.Point(12, 181)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -154,6 +133,7 @@ Partial Class RunDialogForm
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.TextBox1)
         Me.TabPage3.Controls.Add(Me.MoveOutButton)
         Me.TabPage3.Controls.Add(Me.MoveInButton)
         Me.TabPage3.Controls.Add(Me.MoveFocuserButton)
@@ -638,408 +618,112 @@ Partial Class RunDialogForm
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.A6ReadModeComboBox)
-        Me.TabPage2.Controls.Add(Me.A5ReadModeComboBox)
-        Me.TabPage2.Controls.Add(Me.A6RWButton)
-        Me.TabPage2.Controls.Add(Me.D10ReadModeComboBox)
-        Me.TabPage2.Controls.Add(Me.A5RWButton)
-        Me.TabPage2.Controls.Add(Me.D9ReadModeComboBox)
-        Me.TabPage2.Controls.Add(Me.D10RWButton)
-        Me.TabPage2.Controls.Add(Me.D8ReadModeComboBox)
-        Me.TabPage2.Controls.Add(Me.D9RWButton)
-        Me.TabPage2.Controls.Add(Me.D7ReadModeComboBox)
-        Me.TabPage2.Controls.Add(Me.D8RWButton)
-        Me.TabPage2.Controls.Add(Me.GroupBox5)
-        Me.TabPage2.Controls.Add(Me.D7RWButton)
-        Me.TabPage2.Controls.Add(Me.A6ValueTextBox)
-        Me.TabPage2.Controls.Add(Me.A5ValueTextBox)
-        Me.TabPage2.Controls.Add(Me.D10ValueTextBox)
-        Me.TabPage2.Controls.Add(Me.D9ValueTextBox)
-        Me.TabPage2.Controls.Add(Me.D8ValueTextBox)
-        Me.TabPage2.Controls.Add(Me.D7ValueTextBox)
-        Me.TabPage2.Controls.Add(Me.Label27)
-        Me.TabPage2.Controls.Add(Me.Label26)
-        Me.TabPage2.Controls.Add(Me.Node)
-        Me.TabPage2.Controls.Add(Me.A6ConfigComboBox)
-        Me.TabPage2.Controls.Add(Me.Label25)
-        Me.TabPage2.Controls.Add(Me.A5ConfigComboBox)
-        Me.TabPage2.Controls.Add(Me.Label24)
-        Me.TabPage2.Controls.Add(Me.D10ConfigComboBox)
-        Me.TabPage2.Controls.Add(Me.Label23)
-        Me.TabPage2.Controls.Add(Me.D9ConfigComboBox)
         Me.TabPage2.Controls.Add(Me.Label22)
-        Me.TabPage2.Controls.Add(Me.D8ConfigComboBox)
+        Me.TabPage2.Controls.Add(Me.D7GroupBox)
+        Me.TabPage2.Controls.Add(Me.D7SaveButton)
         Me.TabPage2.Controls.Add(Me.Label21)
-        Me.TabPage2.Controls.Add(Me.D7ConfigComboBox)
-        Me.TabPage2.Controls.Add(Me.D7)
+        Me.TabPage2.Controls.Add(Me.D7ModeComboBox)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage2.Size = New System.Drawing.Size(437, 328)
         Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "EXT config"
+        Me.TabPage2.Text = "D7"
         Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'A6ReadModeComboBox
-        '
-        Me.A6ReadModeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "A6refresh", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.A6ReadModeComboBox.FormattingEnabled = True
-        Me.A6ReadModeComboBox.Items.AddRange(New Object() {"auto refresh", "off", "3 sec", "5 sec", "10 sec", "30 sec", "1 min", "3 min", "5 min", "10 min"})
-        Me.A6ReadModeComboBox.Location = New System.Drawing.Point(336, 197)
-        Me.A6ReadModeComboBox.Name = "A6ReadModeComboBox"
-        Me.A6ReadModeComboBox.Size = New System.Drawing.Size(95, 21)
-        Me.A6ReadModeComboBox.TabIndex = 6
-        Me.A6ReadModeComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.A6refresh
-        '
-        'A5ReadModeComboBox
-        '
-        Me.A5ReadModeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "A5refresh", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.A5ReadModeComboBox.FormattingEnabled = True
-        Me.A5ReadModeComboBox.Items.AddRange(New Object() {"auto refresh", "off", "3 sec", "5 sec", "10 sec", "30 sec", "1 min", "3 min", "5 min", "10 min"})
-        Me.A5ReadModeComboBox.Location = New System.Drawing.Point(336, 169)
-        Me.A5ReadModeComboBox.Name = "A5ReadModeComboBox"
-        Me.A5ReadModeComboBox.Size = New System.Drawing.Size(95, 21)
-        Me.A5ReadModeComboBox.TabIndex = 6
-        Me.A5ReadModeComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.A5refresh
-        '
-        'A6RWButton
-        '
-        Me.A6RWButton.Location = New System.Drawing.Point(284, 196)
-        Me.A6RWButton.Name = "A6RWButton"
-        Me.A6RWButton.Size = New System.Drawing.Size(45, 23)
-        Me.A6RWButton.TabIndex = 5
-        Me.A6RWButton.Text = "Read"
-        Me.A6RWButton.UseVisualStyleBackColor = True
-        '
-        'D10ReadModeComboBox
-        '
-        Me.D10ReadModeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "D10refresh", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.D10ReadModeComboBox.FormattingEnabled = True
-        Me.D10ReadModeComboBox.Items.AddRange(New Object() {"auto refresh", "off", "3 sec", "5 sec", "10 sec", "30 sec", "1 min", "3 min", "5 min", "10 min"})
-        Me.D10ReadModeComboBox.Location = New System.Drawing.Point(336, 122)
-        Me.D10ReadModeComboBox.Name = "D10ReadModeComboBox"
-        Me.D10ReadModeComboBox.Size = New System.Drawing.Size(95, 21)
-        Me.D10ReadModeComboBox.TabIndex = 6
-        Me.D10ReadModeComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.D10refresh
-        '
-        'A5RWButton
-        '
-        Me.A5RWButton.Location = New System.Drawing.Point(284, 167)
-        Me.A5RWButton.Name = "A5RWButton"
-        Me.A5RWButton.Size = New System.Drawing.Size(45, 23)
-        Me.A5RWButton.TabIndex = 5
-        Me.A5RWButton.Text = "Read"
-        Me.A5RWButton.UseVisualStyleBackColor = True
-        '
-        'D9ReadModeComboBox
-        '
-        Me.D9ReadModeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "D9refresh", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.D9ReadModeComboBox.FormattingEnabled = True
-        Me.D9ReadModeComboBox.Items.AddRange(New Object() {"auto refresh", "off", "3 sec", "5 sec", "10 sec", "30 sec", "1 min", "3 min", "5 min", "10 min"})
-        Me.D9ReadModeComboBox.Location = New System.Drawing.Point(336, 96)
-        Me.D9ReadModeComboBox.Name = "D9ReadModeComboBox"
-        Me.D9ReadModeComboBox.Size = New System.Drawing.Size(95, 21)
-        Me.D9ReadModeComboBox.TabIndex = 6
-        Me.D9ReadModeComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.D9refresh
-        '
-        'D10RWButton
-        '
-        Me.D10RWButton.Location = New System.Drawing.Point(284, 120)
-        Me.D10RWButton.Name = "D10RWButton"
-        Me.D10RWButton.Size = New System.Drawing.Size(45, 23)
-        Me.D10RWButton.TabIndex = 5
-        Me.D10RWButton.Text = "Read"
-        Me.D10RWButton.UseVisualStyleBackColor = True
-        '
-        'D8ReadModeComboBox
-        '
-        Me.D8ReadModeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "D8refresh", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.D8ReadModeComboBox.FormattingEnabled = True
-        Me.D8ReadModeComboBox.Items.AddRange(New Object() {"auto refresh", "off", "3 sec", "5 sec", "10 sec", "30 sec", "1 min", "3 min", "5 min", "10 min"})
-        Me.D8ReadModeComboBox.Location = New System.Drawing.Point(336, 69)
-        Me.D8ReadModeComboBox.Name = "D8ReadModeComboBox"
-        Me.D8ReadModeComboBox.Size = New System.Drawing.Size(95, 21)
-        Me.D8ReadModeComboBox.TabIndex = 6
-        Me.D8ReadModeComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.D8refresh
-        '
-        'D9RWButton
-        '
-        Me.D9RWButton.Location = New System.Drawing.Point(284, 94)
-        Me.D9RWButton.Name = "D9RWButton"
-        Me.D9RWButton.Size = New System.Drawing.Size(45, 23)
-        Me.D9RWButton.TabIndex = 5
-        Me.D9RWButton.Text = "Read"
-        Me.D9RWButton.UseVisualStyleBackColor = True
-        '
-        'D7ReadModeComboBox
-        '
-        Me.D7ReadModeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "D7refresh", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.D7ReadModeComboBox.FormattingEnabled = True
-        Me.D7ReadModeComboBox.Items.AddRange(New Object() {"auto refresh", "off", "3 sec", "5 sec", "10 sec", "30 sec", "1 min", "3 min", "5 min", "10 min"})
-        Me.D7ReadModeComboBox.Location = New System.Drawing.Point(336, 41)
-        Me.D7ReadModeComboBox.Name = "D7ReadModeComboBox"
-        Me.D7ReadModeComboBox.Size = New System.Drawing.Size(95, 21)
-        Me.D7ReadModeComboBox.TabIndex = 6
-        Me.D7ReadModeComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.D7refresh
-        '
-        'D8RWButton
-        '
-        Me.D8RWButton.Location = New System.Drawing.Point(284, 67)
-        Me.D8RWButton.Name = "D8RWButton"
-        Me.D8RWButton.Size = New System.Drawing.Size(45, 23)
-        Me.D8RWButton.TabIndex = 5
-        Me.D8RWButton.Text = "Read"
-        Me.D8RWButton.UseVisualStyleBackColor = True
-        '
-        'GroupBox5
-        '
-        Me.GroupBox5.Controls.Add(Me.Label28)
-        Me.GroupBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox5.ForeColor = System.Drawing.Color.OrangeRed
-        Me.GroupBox5.Location = New System.Drawing.Point(18, 224)
-        Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(397, 98)
-        Me.GroupBox5.TabIndex = 1
-        Me.GroupBox5.TabStop = False
-        Me.GroupBox5.Text = "Warning"
-        '
-        'Label28
-        '
-        Me.Label28.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label28.ForeColor = System.Drawing.Color.Black
-        Me.Label28.Location = New System.Drawing.Point(33, 18)
-        Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(334, 66)
-        Me.Label28.TabIndex = 0
-        Me.Label28.Text = resources.GetString("Label28.Text")
-        '
-        'D7RWButton
-        '
-        Me.D7RWButton.Location = New System.Drawing.Point(284, 39)
-        Me.D7RWButton.Name = "D7RWButton"
-        Me.D7RWButton.Size = New System.Drawing.Size(45, 23)
-        Me.D7RWButton.TabIndex = 5
-        Me.D7RWButton.Text = "Read"
-        Me.D7RWButton.UseVisualStyleBackColor = True
-        '
-        'A6ValueTextBox
-        '
-        Me.A6ValueTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "A6value", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.A6ValueTextBox.Location = New System.Drawing.Point(214, 198)
-        Me.A6ValueTextBox.Name = "A6ValueTextBox"
-        Me.A6ValueTextBox.ReadOnly = True
-        Me.A6ValueTextBox.Size = New System.Drawing.Size(53, 20)
-        Me.A6ValueTextBox.TabIndex = 4
-        Me.A6ValueTextBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.A6value
-        Me.A6ValueTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'A5ValueTextBox
-        '
-        Me.A5ValueTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "A5value", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.A5ValueTextBox.Location = New System.Drawing.Point(214, 169)
-        Me.A5ValueTextBox.Name = "A5ValueTextBox"
-        Me.A5ValueTextBox.ReadOnly = True
-        Me.A5ValueTextBox.Size = New System.Drawing.Size(53, 20)
-        Me.A5ValueTextBox.TabIndex = 4
-        Me.A5ValueTextBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.A5value
-        Me.A5ValueTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'D10ValueTextBox
-        '
-        Me.D10ValueTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "D10value", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.D10ValueTextBox.Location = New System.Drawing.Point(214, 123)
-        Me.D10ValueTextBox.Name = "D10ValueTextBox"
-        Me.D10ValueTextBox.ReadOnly = True
-        Me.D10ValueTextBox.Size = New System.Drawing.Size(53, 20)
-        Me.D10ValueTextBox.TabIndex = 4
-        Me.D10ValueTextBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.D10value
-        Me.D10ValueTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'D9ValueTextBox
-        '
-        Me.D9ValueTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "D9value", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.D9ValueTextBox.Location = New System.Drawing.Point(214, 96)
-        Me.D9ValueTextBox.Name = "D9ValueTextBox"
-        Me.D9ValueTextBox.ReadOnly = True
-        Me.D9ValueTextBox.Size = New System.Drawing.Size(53, 20)
-        Me.D9ValueTextBox.TabIndex = 4
-        Me.D9ValueTextBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.D9value
-        Me.D9ValueTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'D8ValueTextBox
-        '
-        Me.D8ValueTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "D8value", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.D8ValueTextBox.Location = New System.Drawing.Point(214, 69)
-        Me.D8ValueTextBox.Name = "D8ValueTextBox"
-        Me.D8ValueTextBox.ReadOnly = True
-        Me.D8ValueTextBox.Size = New System.Drawing.Size(53, 20)
-        Me.D8ValueTextBox.TabIndex = 4
-        Me.D8ValueTextBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.D8value
-        Me.D8ValueTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'D7ValueTextBox
-        '
-        Me.D7ValueTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "D7value", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.D7ValueTextBox.Location = New System.Drawing.Point(214, 41)
-        Me.D7ValueTextBox.Name = "D7ValueTextBox"
-        Me.D7ValueTextBox.ReadOnly = True
-        Me.D7ValueTextBox.Size = New System.Drawing.Size(53, 20)
-        Me.D7ValueTextBox.TabIndex = 4
-        Me.D7ValueTextBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.D7value
-        Me.D7ValueTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label27
-        '
-        Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(211, 17)
-        Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(34, 13)
-        Me.Label27.TabIndex = 3
-        Me.Label27.Text = "Value"
-        '
-        'Label26
-        '
-        Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(64, 17)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(31, 13)
-        Me.Label26.TabIndex = 3
-        Me.Label26.Text = "Type"
-        '
-        'Node
-        '
-        Me.Node.AutoSize = True
-        Me.Node.Location = New System.Drawing.Point(9, 17)
-        Me.Node.Name = "Node"
-        Me.Node.Size = New System.Drawing.Size(33, 13)
-        Me.Node.TabIndex = 3
-        Me.Node.Text = "Node"
-        '
-        'A6ConfigComboBox
-        '
-        Me.A6ConfigComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "A6type", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.A6ConfigComboBox.FormattingEnabled = True
-        Me.A6ConfigComboBox.Items.AddRange(New Object() {"digital input", "analog input", "digital output", "PWM output"})
-        Me.A6ConfigComboBox.Location = New System.Drawing.Point(67, 196)
-        Me.A6ConfigComboBox.Name = "A6ConfigComboBox"
-        Me.A6ConfigComboBox.Size = New System.Drawing.Size(121, 21)
-        Me.A6ConfigComboBox.TabIndex = 1
-        Me.A6ConfigComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.A6type
-        '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label25.Location = New System.Drawing.Point(14, 199)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(22, 13)
-        Me.Label25.TabIndex = 0
-        Me.Label25.Text = "A6"
-        '
-        'A5ConfigComboBox
-        '
-        Me.A5ConfigComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "A5type", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.A5ConfigComboBox.FormattingEnabled = True
-        Me.A5ConfigComboBox.Items.AddRange(New Object() {"digital input", "analog input", "digital output", "PWM output"})
-        Me.A5ConfigComboBox.Location = New System.Drawing.Point(67, 169)
-        Me.A5ConfigComboBox.Name = "A5ConfigComboBox"
-        Me.A5ConfigComboBox.Size = New System.Drawing.Size(121, 21)
-        Me.A5ConfigComboBox.TabIndex = 1
-        Me.A5ConfigComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.A5type
-        '
-        'Label24
-        '
-        Me.Label24.AutoSize = True
-        Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label24.Location = New System.Drawing.Point(14, 172)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(22, 13)
-        Me.Label24.TabIndex = 0
-        Me.Label24.Text = "A5"
-        '
-        'D10ConfigComboBox
-        '
-        Me.D10ConfigComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "D10type", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.D10ConfigComboBox.FormattingEnabled = True
-        Me.D10ConfigComboBox.Items.AddRange(New Object() {"digital input", "digital output", "PWM output"})
-        Me.D10ConfigComboBox.Location = New System.Drawing.Point(67, 122)
-        Me.D10ConfigComboBox.Name = "D10ConfigComboBox"
-        Me.D10ConfigComboBox.Size = New System.Drawing.Size(121, 21)
-        Me.D10ConfigComboBox.TabIndex = 1
-        Me.D10ConfigComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.D10type
-        '
-        'Label23
-        '
-        Me.Label23.AutoSize = True
-        Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label23.Location = New System.Drawing.Point(14, 125)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(30, 13)
-        Me.Label23.TabIndex = 0
-        Me.Label23.Text = "D10"
-        '
-        'D9ConfigComboBox
-        '
-        Me.D9ConfigComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "D9type", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.D9ConfigComboBox.FormattingEnabled = True
-        Me.D9ConfigComboBox.Items.AddRange(New Object() {"digital input", "digital output", "PWM output"})
-        Me.D9ConfigComboBox.Location = New System.Drawing.Point(67, 95)
-        Me.D9ConfigComboBox.Name = "D9ConfigComboBox"
-        Me.D9ConfigComboBox.Size = New System.Drawing.Size(121, 21)
-        Me.D9ConfigComboBox.TabIndex = 1
-        Me.D9ConfigComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.D9type
         '
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label22.Location = New System.Drawing.Point(14, 98)
+        Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.Label22.ForeColor = System.Drawing.SystemColors.HotTrack
+        Me.Label22.Location = New System.Drawing.Point(221, 21)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(23, 13)
-        Me.Label22.TabIndex = 0
-        Me.Label22.Text = "D9"
+        Me.Label22.Size = New System.Drawing.Size(71, 17)
+        Me.Label22.TabIndex = 4
+        Me.Label22.Text = "Node D7"
         '
-        'D8ConfigComboBox
+        'D7GroupBox
         '
-        Me.D8ConfigComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "D8type", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.D8ConfigComboBox.FormattingEnabled = True
-        Me.D8ConfigComboBox.Items.AddRange(New Object() {"digital input", "digital output", "PWM output"})
-        Me.D8ConfigComboBox.Location = New System.Drawing.Point(67, 68)
-        Me.D8ConfigComboBox.Name = "D8ConfigComboBox"
-        Me.D8ConfigComboBox.Size = New System.Drawing.Size(121, 21)
-        Me.D8ConfigComboBox.TabIndex = 1
-        Me.D8ConfigComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.D8type
+        Me.D7GroupBox.Location = New System.Drawing.Point(6, 61)
+        Me.D7GroupBox.Name = "D7GroupBox"
+        Me.D7GroupBox.Size = New System.Drawing.Size(425, 261)
+        Me.D7GroupBox.TabIndex = 3
+        Me.D7GroupBox.TabStop = False
+        Me.D7GroupBox.Text = "Node data"
+        '
+        'D7SaveButton
+        '
+        Me.D7SaveButton.Enabled = False
+        Me.D7SaveButton.Location = New System.Drawing.Point(339, 17)
+        Me.D7SaveButton.Name = "D7SaveButton"
+        Me.D7SaveButton.Size = New System.Drawing.Size(75, 23)
+        Me.D7SaveButton.TabIndex = 2
+        Me.D7SaveButton.Text = "Save"
+        Me.D7SaveButton.UseVisualStyleBackColor = True
         '
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label21.Location = New System.Drawing.Point(14, 71)
+        Me.Label21.Location = New System.Drawing.Point(13, 23)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(23, 13)
-        Me.Label21.TabIndex = 0
-        Me.Label21.Text = "D8"
+        Me.Label21.Size = New System.Drawing.Size(34, 13)
+        Me.Label21.TabIndex = 1
+        Me.Label21.Text = "Mode"
         '
-        'D7ConfigComboBox
+        'D7ModeComboBox
         '
-        Me.D7ConfigComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "D7type", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.D7ConfigComboBox.FormattingEnabled = True
-        Me.D7ConfigComboBox.Items.AddRange(New Object() {"digital input", "digital output", "PWM output"})
-        Me.D7ConfigComboBox.Location = New System.Drawing.Point(67, 41)
-        Me.D7ConfigComboBox.Name = "D7ConfigComboBox"
-        Me.D7ConfigComboBox.Size = New System.Drawing.Size(121, 21)
-        Me.D7ConfigComboBox.TabIndex = 1
-        Me.D7ConfigComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.D7type
+        Me.D7ModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.D7ModeComboBox.FormattingEnabled = True
+        Me.D7ModeComboBox.Items.AddRange(New Object() {"digital input", "digital output", "analog input"})
+        Me.D7ModeComboBox.Location = New System.Drawing.Point(57, 19)
+        Me.D7ModeComboBox.Name = "D7ModeComboBox"
+        Me.D7ModeComboBox.Size = New System.Drawing.Size(121, 21)
+        Me.D7ModeComboBox.TabIndex = 0
         '
-        'D7
+        'TabPage4
         '
-        Me.D7.AutoSize = True
-        Me.D7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.D7.Location = New System.Drawing.Point(14, 44)
-        Me.D7.Name = "D7"
-        Me.D7.Size = New System.Drawing.Size(23, 13)
-        Me.D7.TabIndex = 0
-        Me.D7.Text = "D7"
+        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage4.Name = "TabPage4"
+        Me.TabPage4.Size = New System.Drawing.Size(437, 328)
+        Me.TabPage4.TabIndex = 3
+        Me.TabPage4.Text = "D8"
+        Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'TabPage5
+        '
+        Me.TabPage5.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage5.Name = "TabPage5"
+        Me.TabPage5.Size = New System.Drawing.Size(437, 328)
+        Me.TabPage5.TabIndex = 4
+        Me.TabPage5.Text = "D9"
+        Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'TabPage6
+        '
+        Me.TabPage6.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage6.Name = "TabPage6"
+        Me.TabPage6.Size = New System.Drawing.Size(437, 328)
+        Me.TabPage6.TabIndex = 5
+        Me.TabPage6.Text = "D10"
+        Me.TabPage6.UseVisualStyleBackColor = True
+        '
+        'TabPage7
+        '
+        Me.TabPage7.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage7.Name = "TabPage7"
+        Me.TabPage7.Size = New System.Drawing.Size(437, 328)
+        Me.TabPage7.TabIndex = 6
+        Me.TabPage7.Text = "A5"
+        Me.TabPage7.UseVisualStyleBackColor = True
+        '
+        'TabPage8
+        '
+        Me.TabPage8.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage8.Name = "TabPage8"
+        Me.TabPage8.Size = New System.Drawing.Size(437, 328)
+        Me.TabPage8.TabIndex = 7
+        Me.TabPage8.Text = "A6"
+        Me.TabPage8.UseVisualStyleBackColor = True
         '
         'GroupBox2
         '
@@ -1100,7 +784,7 @@ Partial Class RunDialogForm
         'A6StatusLabel
         '
         Me.A6StatusLabel.AutoSize = True
-        Me.A6StatusLabel.Location = New System.Drawing.Point(82, 62)
+        Me.A6StatusLabel.Location = New System.Drawing.Point(208, 61)
         Me.A6StatusLabel.Name = "A6StatusLabel"
         Me.A6StatusLabel.Size = New System.Drawing.Size(59, 13)
         Me.A6StatusLabel.TabIndex = 0
@@ -1109,7 +793,7 @@ Partial Class RunDialogForm
         'A5StatusLabel
         '
         Me.A5StatusLabel.AutoSize = True
-        Me.A5StatusLabel.Location = New System.Drawing.Point(82, 42)
+        Me.A5StatusLabel.Location = New System.Drawing.Point(208, 41)
         Me.A5StatusLabel.Name = "A5StatusLabel"
         Me.A5StatusLabel.Size = New System.Drawing.Size(59, 13)
         Me.A5StatusLabel.TabIndex = 0
@@ -1127,7 +811,7 @@ Partial Class RunDialogForm
         'D10StatusLabel
         '
         Me.D10StatusLabel.AutoSize = True
-        Me.D10StatusLabel.Location = New System.Drawing.Point(82, 22)
+        Me.D10StatusLabel.Location = New System.Drawing.Point(208, 21)
         Me.D10StatusLabel.Name = "D10StatusLabel"
         Me.D10StatusLabel.Size = New System.Drawing.Size(63, 13)
         Me.D10StatusLabel.TabIndex = 0
@@ -1150,6 +834,13 @@ Partial Class RunDialogForm
         Me.D7StatusLabel.Size = New System.Drawing.Size(48, 13)
         Me.D7StatusLabel.TabIndex = 0
         Me.D7StatusLabel.Text = "D7  <-  0"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(20, 189)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox1.TabIndex = 5
         '
         'RunDialogForm
         '
@@ -1189,7 +880,6 @@ Partial Class RunDialogForm
         CType(Me.SignleFrameTimeNumeric, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
-        Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
@@ -1249,27 +939,6 @@ Partial Class RunDialogForm
     Friend WithEvents MoveOutButton As System.Windows.Forms.Button
     Friend WithEvents MoveInButton As System.Windows.Forms.Button
     Friend WithEvents MoveFocuserButton As System.Windows.Forms.Button
-    Friend WithEvents A5ConfigComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents Label24 As System.Windows.Forms.Label
-    Friend WithEvents D10ConfigComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents Label23 As System.Windows.Forms.Label
-    Friend WithEvents D9ConfigComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents Label22 As System.Windows.Forms.Label
-    Friend WithEvents D8ConfigComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents Label21 As System.Windows.Forms.Label
-    Friend WithEvents D7ConfigComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents D7 As System.Windows.Forms.Label
-    Friend WithEvents A6ConfigComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents Label25 As System.Windows.Forms.Label
-    Friend WithEvents Label27 As System.Windows.Forms.Label
-    Friend WithEvents Label26 As System.Windows.Forms.Label
-    Friend WithEvents Node As System.Windows.Forms.Label
-    Friend WithEvents A6ValueTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents A5ValueTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents D10ValueTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents D9ValueTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents D8ValueTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents D7ValueTextBox As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
     Friend WithEvents A6StatusLabel As System.Windows.Forms.Label
     Friend WithEvents A5StatusLabel As System.Windows.Forms.Label
@@ -1277,18 +946,15 @@ Partial Class RunDialogForm
     Friend WithEvents D10StatusLabel As System.Windows.Forms.Label
     Friend WithEvents D8StatusLabel As System.Windows.Forms.Label
     Friend WithEvents D7StatusLabel As System.Windows.Forms.Label
-    Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
-    Friend WithEvents Label28 As System.Windows.Forms.Label
-    Friend WithEvents D7RWButton As System.Windows.Forms.Button
-    Friend WithEvents D7ReadModeComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents A6ReadModeComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents A5ReadModeComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents A6RWButton As System.Windows.Forms.Button
-    Friend WithEvents D10ReadModeComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents A5RWButton As System.Windows.Forms.Button
-    Friend WithEvents D9ReadModeComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents D10RWButton As System.Windows.Forms.Button
-    Friend WithEvents D8ReadModeComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents D9RWButton As System.Windows.Forms.Button
-    Friend WithEvents D8RWButton As System.Windows.Forms.Button
+    Friend WithEvents Label21 As System.Windows.Forms.Label
+    Friend WithEvents D7ModeComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents TabPage4 As System.Windows.Forms.TabPage
+    Friend WithEvents TabPage5 As System.Windows.Forms.TabPage
+    Friend WithEvents TabPage6 As System.Windows.Forms.TabPage
+    Friend WithEvents TabPage7 As System.Windows.Forms.TabPage
+    Friend WithEvents TabPage8 As System.Windows.Forms.TabPage
+    Friend WithEvents D7SaveButton As System.Windows.Forms.Button
+    Friend WithEvents D7GroupBox As System.Windows.Forms.GroupBox
+    Friend WithEvents Label22 As System.Windows.Forms.Label
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
 End Class

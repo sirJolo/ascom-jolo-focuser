@@ -93,6 +93,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Driver.vb" />
+    <Compile Include="Extras\Extrasable.vb" />
+    <Compile Include="Extras\Impl\SimpleAnalogInput.vb" />
+    <Compile Include="Extras\Impl\SimpleDigital.vb" />
+    <Compile Include="Extras\Impl\SimpleDigitalInput.vb" />
+    <Compile Include="Extras\Impl\SimpleInputAbstract.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

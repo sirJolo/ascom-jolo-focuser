@@ -78,58 +78,22 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="D7type" Type="System.String" Scope="User">
-      <Value Profile="(Default)">digital input</Value>
+      <Value Profile="(Default)">digital input:3</Value>
     </Setting>
     <Setting Name="D8type" Type="System.String" Scope="User">
-      <Value Profile="(Default)">digital input</Value>
+      <Value Profile="(Default)">digital input:0</Value>
     </Setting>
     <Setting Name="D9type" Type="System.String" Scope="User">
-      <Value Profile="(Default)">digital input</Value>
+      <Value Profile="(Default)">digital input:0</Value>
     </Setting>
     <Setting Name="D10type" Type="System.String" Scope="User">
-      <Value Profile="(Default)">digital input</Value>
+      <Value Profile="(Default)">digital input:0</Value>
     </Setting>
     <Setting Name="A5type" Type="System.String" Scope="User">
-      <Value Profile="(Default)">digital input</Value>
+      <Value Profile="(Default)">digital input:0</Value>
     </Setting>
     <Setting Name="A6type" Type="System.String" Scope="User">
-      <Value Profile="(Default)">digital input</Value>
-    </Setting>
-    <Setting Name="D7value" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="D8value" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="D9value" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="D10value" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="A5value" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="A6value" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="D7refresh" Type="System.String" Scope="User">
-      <Value Profile="(Default)">auto refresh</Value>
-    </Setting>
-    <Setting Name="D8refresh" Type="System.String" Scope="User">
-      <Value Profile="(Default)">auto refresh</Value>
-    </Setting>
-    <Setting Name="D9refresh" Type="System.String" Scope="User">
-      <Value Profile="(Default)">auto refresh</Value>
-    </Setting>
-    <Setting Name="D10refresh" Type="System.String" Scope="User">
-      <Value Profile="(Default)">auto refresh</Value>
-    </Setting>
-    <Setting Name="A5refresh" Type="System.String" Scope="User">
-      <Value Profile="(Default)">auto refresh</Value>
-    </Setting>
-    <Setting Name="A6refresh" Type="System.String" Scope="User">
-      <Value Profile="(Default)">auto refresh</Value>
+      <Value Profile="(Default)">digital input:0</Value>
     </Setting>
   </Settings>
 </SettingsFile>
