@@ -113,6 +113,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="OptoControl.vb" />
     <Compile Include="RunDialogForm.Designer.vb">
       <DependentUpon>RunDialogForm.vb</DependentUpon>
     </Compile>

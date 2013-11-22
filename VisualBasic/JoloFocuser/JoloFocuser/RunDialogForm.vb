@@ -1,7 +1,6 @@
 ﻿Imports ASCOM.JoloFocuser.Focuser
 
 Public Class RunDialogForm
-
     Private Const FOCUSER_POS_TIME As Single = 3127
     Private Const TEMP_READ_TIME As Single = 9154
 
@@ -9,6 +8,8 @@ Public Class RunDialogForm
     Private tempReadTimer As System.Timers.Timer
 
     Private d7Select As Extrasable
+
+    Private optoControl As OptoControl
 
     Private dialogFocuser As JoloFocuser.Focuser
 
@@ -19,15 +20,20 @@ Public Class RunDialogForm
         ' Add any initialization after the InitializeComponent() call.
         initializeFocuserTimers()
 
+        optoControl = New OptoControl(dialogFocuser, OptoTabPage, StarStopButton, RunButton, StartScheduleButton, OptoProgressBar, OptoLabel)
+
         AddHandler posReadTimer.Elapsed, AddressOf OnPosRead
+        AddHandler tempReadTimer.Elapsed, AddressOf OnTempRead
     End Sub
 
     Private Sub initializeFocuserTimers()
         posReadTimer = New System.Timers.Timer()
         posReadTimer.Interval = FOCUSER_POS_TIME
+        posReadTimer.SynchronizingObject = StatusGroupBox
         posReadTimer.Enabled = True
         tempReadTimer = New System.Timers.Timer()
         tempReadTimer.Interval = TEMP_READ_TIME
+        tempReadTimer.SynchronizingObject = StatusGroupBox
         tempReadTimer.Enabled = True
     End Sub
 
@@ -59,21 +65,34 @@ Public Class RunDialogForm
         focuser.Move(focuser.Position + MoveFocuserNumericUpDown.Value)
     End Sub
 
-
     Private Sub OnPosRead(ByVal source As Object, ByVal e As System.Timers.ElapsedEventArgs)
+        posRead()
+    End Sub
+
+    Private Sub posRead()
         If Not focuser.Connected Then
+            PositionLabel.Text = "N/A"
+            FocuserStatusLabel.Text = "Focuser: N/A"
             Return
         End If
         Dim position As Integer = focuser.Position
         PositionLabel.Text = position
+        FocuserStatusLabel.Text = "Focuser: " + position
     End Sub
 
     Private Sub OnTempRead(ByVal source As Object, ByVal e As System.Timers.ElapsedEventArgs)
+        tempRead()
+    End Sub
+
+    Private Sub tempRead()
         If Not focuser.Connected Then
+            TemperatureLabel.Text = "N/A"
+            TempStatusLabel.Text = "Temp: N/A"
             Return
         End If
         Dim temp As Double = focuser.Temperature
         TemperatureLabel.Text = temp.ToString("F2") + " C"
+        TempStatusLabel.Text = "Temp: " + temp.ToString("F2") + " C"
     End Sub
 
 

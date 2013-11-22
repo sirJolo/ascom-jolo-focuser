@@ -33,7 +33,7 @@ Partial Class RunDialogForm
         Me.PositionNumericUpDown = New System.Windows.Forms.NumericUpDown
         Me.Label20 = New System.Windows.Forms.Label
         Me.Label16 = New System.Windows.Forms.Label
-        Me.TabPage1 = New System.Windows.Forms.TabPage
+        Me.OptoTabPage = New System.Windows.Forms.TabPage
         Me.Label3 = New System.Windows.Forms.Label
         Me.GroupBox3 = New System.Windows.Forms.GroupBox
         Me.GroupBySlotCheckBox = New System.Windows.Forms.CheckBox
@@ -68,7 +68,7 @@ Partial Class RunDialogForm
         Me.StarStopButton = New System.Windows.Forms.Button
         Me.RunButton = New System.Windows.Forms.Button
         Me.SignleFrameTimeNumeric = New System.Windows.Forms.NumericUpDown
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox
+        Me.MirrorLockComboBox = New System.Windows.Forms.ComboBox
         Me.TabPage2 = New System.Windows.Forms.TabPage
         Me.Label22 = New System.Windows.Forms.Label
         Me.D7GroupBox = New System.Windows.Forms.GroupBox
@@ -81,22 +81,23 @@ Partial Class RunDialogForm
         Me.TabPage7 = New System.Windows.Forms.TabPage
         Me.TabPage8 = New System.Windows.Forms.TabPage
         Me.GroupBox2 = New System.Windows.Forms.GroupBox
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar
+        Me.OptoLabel = New System.Windows.Forms.Label
+        Me.OptoProgressBar = New System.Windows.Forms.ProgressBar
         Me.CloseButton = New System.Windows.Forms.Button
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox
+        Me.StatusGroupBox = New System.Windows.Forms.GroupBox
+        Me.TempStatusLabel = New System.Windows.Forms.Label
+        Me.FocuserStatusLabel = New System.Windows.Forms.Label
         Me.A6StatusLabel = New System.Windows.Forms.Label
         Me.A5StatusLabel = New System.Windows.Forms.Label
         Me.D9StatusLabel = New System.Windows.Forms.Label
         Me.D10StatusLabel = New System.Windows.Forms.Label
         Me.D8StatusLabel = New System.Windows.Forms.Label
         Me.D7StatusLabel = New System.Windows.Forms.Label
-        Me.TextBox1 = New System.Windows.Forms.TextBox
         Me.TabControl1.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         CType(Me.MoveFocuserNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PositionNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage1.SuspendLayout()
+        Me.OptoTabPage.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.NumericUpDownExp3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDownDelay3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,13 +113,13 @@ Partial Class RunDialogForm
         CType(Me.SignleFrameTimeNumeric, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        Me.GroupBox4.SuspendLayout()
+        Me.StatusGroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.OptoTabPage)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Controls.Add(Me.TabPage5)
@@ -133,7 +134,6 @@ Partial Class RunDialogForm
         '
         'TabPage3
         '
-        Me.TabPage3.Controls.Add(Me.TextBox1)
         Me.TabPage3.Controls.Add(Me.MoveOutButton)
         Me.TabPage3.Controls.Add(Me.MoveInButton)
         Me.TabPage3.Controls.Add(Me.MoveFocuserButton)
@@ -186,7 +186,7 @@ Partial Class RunDialogForm
         Me.TemperatureLabel.Name = "TemperatureLabel"
         Me.TemperatureLabel.Size = New System.Drawing.Size(76, 19)
         Me.TemperatureLabel.TabIndex = 3
-        Me.TemperatureLabel.Text = "0"
+        Me.TemperatureLabel.Text = "N/A"
         Me.TemperatureLabel.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'PositionLabel
@@ -198,7 +198,7 @@ Partial Class RunDialogForm
         Me.PositionLabel.Name = "PositionLabel"
         Me.PositionLabel.Size = New System.Drawing.Size(110, 19)
         Me.PositionLabel.TabIndex = 3
-        Me.PositionLabel.Text = "0"
+        Me.PositionLabel.Text = "N/A"
         Me.PositionLabel.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'MoveFocuserNumericUpDown
@@ -241,19 +241,19 @@ Partial Class RunDialogForm
         Me.Label16.TabIndex = 0
         Me.Label16.Text = "Focuser position"
         '
-        'TabPage1
+        'OptoTabPage
         '
-        Me.TabPage1.Controls.Add(Me.Label3)
-        Me.TabPage1.Controls.Add(Me.GroupBox3)
-        Me.TabPage1.Controls.Add(Me.GroupBox1)
-        Me.TabPage1.Controls.Add(Me.ComboBox1)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(437, 328)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Opto control"
-        Me.TabPage1.UseVisualStyleBackColor = True
+        Me.OptoTabPage.Controls.Add(Me.Label3)
+        Me.OptoTabPage.Controls.Add(Me.GroupBox3)
+        Me.OptoTabPage.Controls.Add(Me.GroupBox1)
+        Me.OptoTabPage.Controls.Add(Me.MirrorLockComboBox)
+        Me.OptoTabPage.Location = New System.Drawing.Point(4, 22)
+        Me.OptoTabPage.Name = "OptoTabPage"
+        Me.OptoTabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.OptoTabPage.Size = New System.Drawing.Size(437, 328)
+        Me.OptoTabPage.TabIndex = 0
+        Me.OptoTabPage.Text = "Opto control"
+        Me.OptoTabPage.UseVisualStyleBackColor = True
         '
         'Label3
         '
@@ -605,16 +605,17 @@ Partial Class RunDialogForm
         Me.SignleFrameTimeNumeric.TabIndex = 0
         Me.SignleFrameTimeNumeric.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.QuickRunTime
         '
-        'ComboBox1
+        'MirrorLockComboBox
         '
-        Me.ComboBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MirrorLock", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"off", "0.5 sec", "2 sec", "5 sec"})
-        Me.ComboBox1.Location = New System.Drawing.Point(309, 11)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
-        Me.ComboBox1.TabIndex = 2
-        Me.ComboBox1.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.MirrorLock
+        Me.MirrorLockComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MirrorLock", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.MirrorLockComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.MirrorLockComboBox.FormattingEnabled = True
+        Me.MirrorLockComboBox.Items.AddRange(New Object() {"off", "1 sec", "2 sec", "5 sec"})
+        Me.MirrorLockComboBox.Location = New System.Drawing.Point(309, 11)
+        Me.MirrorLockComboBox.Name = "MirrorLockComboBox"
+        Me.MirrorLockComboBox.Size = New System.Drawing.Size(121, 21)
+        Me.MirrorLockComboBox.TabIndex = 2
+        Me.MirrorLockComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.MirrorLock
         '
         'TabPage2
         '
@@ -727,34 +728,33 @@ Partial Class RunDialogForm
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.Label2)
-        Me.GroupBox2.Controls.Add(Me.ProgressBar1)
+        Me.GroupBox2.Controls.Add(Me.OptoLabel)
+        Me.GroupBox2.Controls.Add(Me.OptoProgressBar)
         Me.GroupBox2.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(435, 60)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Status"
+        Me.GroupBox2.Text = "OPTO control"
         '
-        'Label2
+        'OptoLabel
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.Color.Gainsboro
-        Me.Label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label2.Location = New System.Drawing.Point(309, 20)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(109, 19)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "13 of 300 sec"
+        Me.OptoLabel.BackColor = System.Drawing.Color.Gainsboro
+        Me.OptoLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.OptoLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.OptoLabel.Location = New System.Drawing.Point(201, 21)
+        Me.OptoLabel.Name = "OptoLabel"
+        Me.OptoLabel.Size = New System.Drawing.Size(221, 19)
+        Me.OptoLabel.TabIndex = 1
+        Me.OptoLabel.Text = "Stop"
+        Me.OptoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'ProgressBar1
+        'OptoProgressBar
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(7, 18)
-        Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(242, 23)
-        Me.ProgressBar1.TabIndex = 0
-        Me.ProgressBar1.Value = 6
+        Me.OptoProgressBar.Location = New System.Drawing.Point(7, 18)
+        Me.OptoProgressBar.Name = "OptoProgressBar"
+        Me.OptoProgressBar.Size = New System.Drawing.Size(176, 23)
+        Me.OptoProgressBar.TabIndex = 0
         '
         'CloseButton
         '
@@ -766,25 +766,45 @@ Partial Class RunDialogForm
         Me.CloseButton.Text = "Close"
         Me.CloseButton.UseVisualStyleBackColor = True
         '
-        'GroupBox4
+        'StatusGroupBox
         '
-        Me.GroupBox4.Controls.Add(Me.A6StatusLabel)
-        Me.GroupBox4.Controls.Add(Me.A5StatusLabel)
-        Me.GroupBox4.Controls.Add(Me.D9StatusLabel)
-        Me.GroupBox4.Controls.Add(Me.D10StatusLabel)
-        Me.GroupBox4.Controls.Add(Me.D8StatusLabel)
-        Me.GroupBox4.Controls.Add(Me.D7StatusLabel)
-        Me.GroupBox4.Location = New System.Drawing.Point(12, 78)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(435, 83)
-        Me.GroupBox4.TabIndex = 1
-        Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "EXT"
+        Me.StatusGroupBox.Controls.Add(Me.TempStatusLabel)
+        Me.StatusGroupBox.Controls.Add(Me.FocuserStatusLabel)
+        Me.StatusGroupBox.Controls.Add(Me.A6StatusLabel)
+        Me.StatusGroupBox.Controls.Add(Me.A5StatusLabel)
+        Me.StatusGroupBox.Controls.Add(Me.D9StatusLabel)
+        Me.StatusGroupBox.Controls.Add(Me.D10StatusLabel)
+        Me.StatusGroupBox.Controls.Add(Me.D8StatusLabel)
+        Me.StatusGroupBox.Controls.Add(Me.D7StatusLabel)
+        Me.StatusGroupBox.Location = New System.Drawing.Point(12, 78)
+        Me.StatusGroupBox.Name = "StatusGroupBox"
+        Me.StatusGroupBox.Size = New System.Drawing.Size(435, 83)
+        Me.StatusGroupBox.TabIndex = 1
+        Me.StatusGroupBox.TabStop = False
+        Me.StatusGroupBox.Text = "Status"
+        '
+        'TempStatusLabel
+        '
+        Me.TempStatusLabel.AutoSize = True
+        Me.TempStatusLabel.Location = New System.Drawing.Point(290, 42)
+        Me.TempStatusLabel.Name = "TempStatusLabel"
+        Me.TempStatusLabel.Size = New System.Drawing.Size(60, 13)
+        Me.TempStatusLabel.TabIndex = 2
+        Me.TempStatusLabel.Text = "Temp: N/A"
+        '
+        'FocuserStatusLabel
+        '
+        Me.FocuserStatusLabel.AutoSize = True
+        Me.FocuserStatusLabel.Location = New System.Drawing.Point(290, 22)
+        Me.FocuserStatusLabel.Name = "FocuserStatusLabel"
+        Me.FocuserStatusLabel.Size = New System.Drawing.Size(71, 13)
+        Me.FocuserStatusLabel.TabIndex = 1
+        Me.FocuserStatusLabel.Text = "Focuser: N/A"
         '
         'A6StatusLabel
         '
         Me.A6StatusLabel.AutoSize = True
-        Me.A6StatusLabel.Location = New System.Drawing.Point(208, 61)
+        Me.A6StatusLabel.Location = New System.Drawing.Point(152, 61)
         Me.A6StatusLabel.Name = "A6StatusLabel"
         Me.A6StatusLabel.Size = New System.Drawing.Size(59, 13)
         Me.A6StatusLabel.TabIndex = 0
@@ -793,7 +813,7 @@ Partial Class RunDialogForm
         'A5StatusLabel
         '
         Me.A5StatusLabel.AutoSize = True
-        Me.A5StatusLabel.Location = New System.Drawing.Point(208, 41)
+        Me.A5StatusLabel.Location = New System.Drawing.Point(152, 41)
         Me.A5StatusLabel.Name = "A5StatusLabel"
         Me.A5StatusLabel.Size = New System.Drawing.Size(59, 13)
         Me.A5StatusLabel.TabIndex = 0
@@ -811,7 +831,7 @@ Partial Class RunDialogForm
         'D10StatusLabel
         '
         Me.D10StatusLabel.AutoSize = True
-        Me.D10StatusLabel.Location = New System.Drawing.Point(208, 21)
+        Me.D10StatusLabel.Location = New System.Drawing.Point(152, 21)
         Me.D10StatusLabel.Name = "D10StatusLabel"
         Me.D10StatusLabel.Size = New System.Drawing.Size(63, 13)
         Me.D10StatusLabel.TabIndex = 0
@@ -835,20 +855,13 @@ Partial Class RunDialogForm
         Me.D7StatusLabel.TabIndex = 0
         Me.D7StatusLabel.Text = "D7  <-  0"
         '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(20, 189)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox1.TabIndex = 5
-        '
         'RunDialogForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.CloseButton
         Me.ClientSize = New System.Drawing.Size(469, 563)
-        Me.Controls.Add(Me.GroupBox4)
+        Me.Controls.Add(Me.StatusGroupBox)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.CloseButton)
         Me.Controls.Add(Me.TabControl1)
@@ -861,8 +874,8 @@ Partial Class RunDialogForm
         Me.TabPage3.PerformLayout()
         CType(Me.MoveFocuserNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PositionNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabPage1.ResumeLayout(False)
-        Me.TabPage1.PerformLayout()
+        Me.OptoTabPage.ResumeLayout(False)
+        Me.OptoTabPage.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         CType(Me.NumericUpDownExp3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -881,26 +894,25 @@ Partial Class RunDialogForm
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
-        Me.GroupBox4.ResumeLayout(False)
-        Me.GroupBox4.PerformLayout()
+        Me.StatusGroupBox.ResumeLayout(False)
+        Me.StatusGroupBox.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
-    Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
+    Friend WithEvents OptoTabPage As System.Windows.Forms.TabPage
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents CloseButton As System.Windows.Forms.Button
     Friend WithEvents SignleFrameTimeNumeric As System.Windows.Forms.NumericUpDown
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
+    Friend WithEvents OptoLabel As System.Windows.Forms.Label
+    Friend WithEvents OptoProgressBar As System.Windows.Forms.ProgressBar
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents StarStopButton As System.Windows.Forms.Button
     Friend WithEvents RunButton As System.Windows.Forms.Button
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
+    Friend WithEvents MirrorLockComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
     Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents Label18 As System.Windows.Forms.Label
@@ -939,7 +951,7 @@ Partial Class RunDialogForm
     Friend WithEvents MoveOutButton As System.Windows.Forms.Button
     Friend WithEvents MoveInButton As System.Windows.Forms.Button
     Friend WithEvents MoveFocuserButton As System.Windows.Forms.Button
-    Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
+    Friend WithEvents StatusGroupBox As System.Windows.Forms.GroupBox
     Friend WithEvents A6StatusLabel As System.Windows.Forms.Label
     Friend WithEvents A5StatusLabel As System.Windows.Forms.Label
     Friend WithEvents D9StatusLabel As System.Windows.Forms.Label
@@ -956,5 +968,6 @@ Partial Class RunDialogForm
     Friend WithEvents D7SaveButton As System.Windows.Forms.Button
     Friend WithEvents D7GroupBox As System.Windows.Forms.GroupBox
     Friend WithEvents Label22 As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents TempStatusLabel As System.Windows.Forms.Label
+    Friend WithEvents FocuserStatusLabel As System.Windows.Forms.Label
 End Class
