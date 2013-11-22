@@ -267,7 +267,7 @@ Partial Class SetupDialogForm
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(43, 13)
         Me.Label1.TabIndex = 35
-        Me.Label1.Text = "ver. 1.4"
+        Me.Label1.Text = "ver. 1.5"
         '
         'NumericUpDown2
         '

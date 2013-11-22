@@ -51,7 +51,7 @@ Public Class Focuser
     ' Driver ID and descriptive string that shows in the Chooser
     '
     Private Const DELTA_T As Double = 0.5
-    Private Const DRIVER_VERSION As String = "1.3"
+    Private Const DRIVER_VERSION As String = "1.4"
     Private Const DEVICE_RESPONSE As String = "Jolo primary focuser"
 
     Private Shared driverID As String = "ASCOM.JoloFocuser.Focuser"
@@ -121,21 +121,18 @@ Public Class Focuser
     Public Sub SetupDialog() Implements IFocuserV2.SetupDialog
         ' consider only showing the setup dialog if not connected
         ' or call a different dialog if connected
-        'If IsConnected Then
-        Using R As RunDialogForm = New RunDialogForm
-            R.focuser = Me
-            R.ShowDialog()
-        End Using
-        ' Else
-        'Using F As SetupDialogForm = New SetupDialogForm()
-        'Dim result As System.Windows.Forms.DialogResult = F.ShowDialog()
-        'If result = DialogResult.OK Then
-        'My.MySettings.Default.Save()
-        'Exit Sub
-        ' End If
-        ' My.MySettings.Default.Reload()
-        'End Using
-        'End If
+        If IsConnected Then
+            MsgBox("Already connected, just press OK", MsgBoxStyle.OkOnly)
+        Else
+            Using F As SetupDialogForm = New SetupDialogForm()
+                Dim result As System.Windows.Forms.DialogResult = F.ShowDialog()
+                If result = DialogResult.OK Then
+                    My.MySettings.Default.Save()
+                    Exit Sub
+                End If
+                My.MySettings.Default.Reload()
+            End Using
+        End If
 
     End Sub
 
