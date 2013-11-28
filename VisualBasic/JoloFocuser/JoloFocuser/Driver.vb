@@ -25,6 +25,7 @@
 ' 07-Feb-2013   Jol 0.1.0   RC1
 ' 08-Nov-2013   Jol 0.1.3   Max focuser position limit to 1,000,000
 ' 11-Nov-2013   Jol 0.1.4   Driver backslash compensation removed
+' 28-Nov-2013   Jol 0.1.5   Production candidate
 ' ---------------------------------------------------------------------------------
 '
 '
@@ -51,7 +52,7 @@ Public Class Focuser
     ' Driver ID and descriptive string that shows in the Chooser
     '
     Private Const DELTA_T As Double = 0.5
-    Private Const DRIVER_VERSION As String = "1.4"
+    Private Const DRIVER_VERSION As String = "1.5"
     Private Const DEVICE_RESPONSE As String = "Jolo primary focuser"
 
     Private Shared driverID As String = "ASCOM.JoloFocuser.Focuser"
@@ -239,21 +240,49 @@ Public Class Focuser
         ComPort.BaudRate = 9600
         ComPort.ReadTimeout = 2000
 
-        Try
-            ComPort.Open()
-        Catch ex As System.IO.IOException
-            Throw New ASCOM.NotConnectedException("Invalid port state")
-        Catch ex As System.InvalidOperationException
-            Throw New ASCOM.NotConnectedException("Port already opened")
-        Catch ex As System.UnauthorizedAccessException
-            Throw New ASCOM.NotConnectedException("Access denied to serial port")
-        End Try
+        Dim retry As Integer = 1
+
+        While retry < 3
+            Try
+                ComPort.Open()
+            Catch ex As System.IO.IOException
+                If retry = 1 Then
+                    retry += 1
+                Else
+                    Throw New ASCOM.NotConnectedException("Invalid port state")
+                End If
+            Catch ex As System.InvalidOperationException
+                If retry = 1 Then
+                    retry += 1
+                Else
+                    Throw New ASCOM.NotConnectedException("Port already opened")
+                End If
+            Catch ex As System.UnauthorizedAccessException
+                If retry = 1 Then
+                    retry += 1
+                Else
+                    Throw New ASCOM.NotConnectedException("Access denied to serial port")
+                End If
+            End Try
+        End While
 
         Dim answer As String = CommandString("#")
         If (answer <> DEVICE_RESPONSE) Then
             Throw New ASCOM.NotConnectedException("Device not detected")
         End If
+        writeInitParameters()
 
+        Try
+            sensorConnected = True
+            Dim temp As Double = Temperature
+        Catch ex As ASCOM.NotConnectedException When (ex.Message = "Temperature sensor disconnected")
+            sensorConnected = False
+        End Try
+    End Sub
+
+
+    Private Sub writeInitParameters()
+        Dim answer As String
         answer = CommandString("S:" + My.Settings.StepperRPM.ToString)
         If (answer <> "S") Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device")
@@ -268,14 +297,8 @@ Public Class Focuser
         If (answer <> "X") Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device")
         End If
-
-        Try
-            sensorConnected = True
-            Dim temp As Double = Temperature
-        Catch ex As ASCOM.NotConnectedException When (ex.Message = "Temperature sensor disconnected")
-            sensorConnected = False
-        End Try
     End Sub
+
 
     Private Sub Disconnect()
         tempCompTimer.Enabled = False

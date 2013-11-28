@@ -21,8 +21,13 @@
         If (IsConnected) Then
             driver.Connected = False
         Else
-            driver = New ASCOM.DriverAccess.Focuser(My.Settings.DriverId)
-            driver.Connected = True
+            Try
+                driver = New ASCOM.DriverAccess.Focuser(My.Settings.DriverId)
+                driver.Connected = True
+            Catch ex As Exception
+                MsgBox("Error: " + ex.Message, MsgBoxStyle.OkOnly, "Error")
+            End Try
+
         End If
         SetUIState()
     End Sub
