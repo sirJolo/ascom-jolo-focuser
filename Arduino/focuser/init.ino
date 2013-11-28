@@ -24,6 +24,9 @@ void setup()
   pinMode(9, INPUT);
   pinMode(10, INPUT);
   
+  pinMode(A5, INPUT);
+  pinMode(A6, INPUT);
+  
   // Initialize serial
   Serial.begin(9600);
   Serial.setTimeout(2000);

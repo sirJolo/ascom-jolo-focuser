@@ -1,12 +1,4 @@
 ﻿Public Class OptoControl
-    Enum OptoActions
-        MirrorUp
-        MirrorDown
-        OptoOn
-        OptoOff
-        Standby
-    End Enum
-
     Enum OptoModes
         Standby
         Simple
@@ -14,14 +6,16 @@
         Schedule
     End Enum
     Private Const PIN As String = "5"
+    Private Const MIRROR_UP_TIME As Integer = 500
+    Private Const SHUTTER_DOWN_DELAY = 200
 
     Private optoTimer As System.Timers.Timer
+    Private updateTimer As System.Timers.Timer
     Private optostate As Boolean
 
-    Private optoAction As OptoActions
     Private optoMode As OptoModes
-    Private optoNextActionTime As Date
     Private expStartTime As Date
+    Private schedule As Queue(Of ScheduleElement)
 
     Private focuser As JoloFocuser.Focuser
     Private WithEvents startButton As Button
@@ -44,112 +38,165 @@
         optoTimer.Enabled = False
         AddHandler optoTimer.Elapsed, AddressOf OnOptoTimer
 
+        updateTimer = New System.Timers.Timer()
+        updateTimer.Interval = 100
+        updateTimer.SynchronizingObject = syncObject
+        updateTimer.Enabled = False
+        AddHandler updateTimer.Elapsed, AddressOf OnUpdateTimer
+
         optoMode = OptoModes.Standby
-        optoAction = OptoActions.Standby
+        schedule = New Queue(Of ScheduleElement)
     End Sub
 
+    Private Sub runSchedule()
+        updateTimer.Enabled = True
+        expStartTime = Date.Now
+        progressSchedule()
+    End Sub
 
-    Private Sub OnOptoTimer(ByVal source As Object, ByVal e As System.Timers.ElapsedEventArgs)
-        If optoAction = OptoActions.OptoOn Then
-            Dim elapsed As Integer = Date.Now.Subtract(expStartTime).Ticks / TimeSpan.TicksPerSecond
-            Dim period As Integer = optoNextActionTime.Subtract(expStartTime).Ticks / TimeSpan.TicksPerSecond
-            If optoMode = OptoModes.Simple Then
-                statusLabel.Text = elapsed.ToString + " sec"
-            End If
-            If optoMode = OptoModes.Time Then
-                statusLabel.Text = elapsed.ToString + " of " + period.ToString + " sec"
-                statusProgress.Value = 100 * (elapsed / period)
-            End If
-            If Date.Now.CompareTo(optoNextActionTime) > 0 Then
-                optoTimer.Enabled = False
-                optoPin = False
-                optoAction = OptoActions.Standby
-                If optoMode = OptoModes.Schedule Then
-                    'progressSchedule()
-                Else
-                    optoMode = OptoModes.Standby
-                    adjustButtonState()
-                    statusLabel.Text = "Stop"
-                    runButton.Text = "Run"
-                    statusProgress.Value = 0
-                End If
-            End If
+    Private Sub progressSchedule()
+        If (schedule.Count > 0) Then
+            Dim element As ScheduleElement = schedule.Dequeue
+            optoTimer.Interval = element.time
+            optoTimer.Enabled = True
+            optoPin = element.state
+        Else
+            stopSchedule()
         End If
     End Sub
 
+    Private Sub stopSchedule()
+        optoPin = False
+        optoTimer.Enabled = False
+        updateTimer.Enabled = False
+        schedule.Clear()
+        optoMode = OptoModes.Standby
+        adjustButtonState()
+    End Sub
+
+    Private Function calculateScheduleTime() As Integer
+        Dim total As Integer = 0
+        For Each element As ScheduleElement In schedule
+            total += element.time
+        Next
+        Return total
+    End Function
+
+    Private Sub OnOptoTimer(ByVal source As Object, ByVal e As System.Timers.ElapsedEventArgs)
+        progressSchedule()
+    End Sub
+
+    Private Sub OnUpdateTimer(ByVal source As Object, ByVal e As System.Timers.ElapsedEventArgs)
+        'progressSchedule()
+    End Sub
 
     Private Sub StartButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles startButton.Click
-        optoMode = OptoModes.Simple
-        adjustButtonState()
         If startButton.Text = "Start" Then
-            If optoPin = True Then
-                MsgBox("OPTO is already ON!", MsgBoxStyle.OkOnly, "Error")
-            Else
-                startButton.Text = "Stop"
-                exposure(3600)
-            End If
+            startButton.Text = "Stop"
+            optoMode = OptoModes.Simple
+            buildScheduleForSimple()
+            adjustButtonState()
+            runSchedule()
         Else
-            If optoPin = False Then
-                MsgBox("OPTO is already OFF!", MsgBoxStyle.OkOnly, "Error")
-            Else
-                startButton.Text = "Start"
-                exposure(0) 'abort
-                optoMode = OptoModes.Standby
-                adjustButtonState()
-            End If
+            stopSchedule()
+            startButton.Text = "Start"
         End If
     End Sub
 
     Private Sub RunButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles runButton.Click
-        optoMode = OptoModes.Time
-        adjustButtonState()
-        If runButton.Text = "Run" Then
-            If optoPin = True Then
-                MsgBox("OPTO is already ON!", MsgBoxStyle.OkOnly, "Error")
-            Else
-                runButton.Text = "Abort"
-                exposure(My.Settings.QuickRunTime)
-            End If
+        If runButton.Text = "Start" Then
+            runButton.Text = "Abort"
+            optoMode = OptoModes.Time
+            buildScheduleForTime()
+            adjustButtonState()
+            runSchedule()
         Else
-            If optoPin = False Then
-                MsgBox("OPTO is already OFF!", MsgBoxStyle.OkOnly, "Error")
-            Else
-                runButton.Text = "Run"
-                exposure(0) 'abort
-                optoMode = OptoModes.Standby
-                adjustButtonState()
-            End If
+            stopSchedule()
+            runButton.Text = "Start"
         End If
     End Sub
 
     Private Sub ScheduleButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles scheduleButton.Click
-
-    End Sub
-
-    Private Sub exposure(ByVal time As Integer)
-        If time = 0 Then
-            optoNextActionTime = Date.Now.AddSeconds(-1)
+        If scheduleButton.Text = "Start" Then
+            scheduleButton.Text = "Abort"
+            optoMode = OptoModes.Schedule
+            buildSchedule()
+            adjustButtonState()
+            runSchedule()
         Else
-            If optoAction = OptoActions.Standby Then
-                If My.Settings.MirrorLock = "off" Then
-                    exp(time)
-                End If
-            End If
+            stopSchedule()
+            scheduleButton.Text = "Start"
         End If
     End Sub
 
-    Private Sub mirrorLock()
-
+    Private Sub buildScheduleForSimple()
+        schedule.Enqueue(New ScheduleElement(3600000, True))
     End Sub
 
-    Private Sub exp(ByVal time As Integer)
-        optoAction = OptoActions.OptoOn
-        optoNextActionTime = Date.Now.AddSeconds(time)
-        expStartTime = Date.Now
-        optoTimer.Interval = 200
-        optoTimer.Enabled = True
-        optoPin = True
+    Private Sub buildScheduleForTime()
+        scheduleEnqueueExposure(1000 * My.Settings.QuickRunTime, 0)
     End Sub
+
+    Private Sub buildSchedule()
+        Dim mirrorUp As Integer = 0
+        If My.Settings.MirrorLock <> "off" Then
+            mirrorUp = Integer.Parse(My.Settings.MirrorLock.Substring(0, 1))
+        End If
+        If My.Settings.SchedDelayFirst > 0 Then
+            schedule.Enqueue(New ScheduleElement(1000 * My.Settings.SchedDelayFirst, False))
+        End If
+        If My.Settings.GroupBySlot Then
+            If My.Settings.SchedNum1 > 0 And My.Settings.SchedExp1 > 0 Then
+                scheduleSlotGroup(My.Settings.SchedExp1, My.Settings.SchedDel1, My.Settings.SchedNum1)
+            End If
+            If My.Settings.SchedNum2 > 0 And My.Settings.SchedExp2 > 0 Then
+                scheduleSlotGroup(My.Settings.SchedExp2, My.Settings.SchedDel2, My.Settings.SchedNum2)
+            End If
+            If My.Settings.SchedNum3 > 0 And My.Settings.SchedExp3 > 0 Then
+                scheduleSlotGroup(My.Settings.SchedExp3, My.Settings.SchedDel3, My.Settings.SchedNum3)
+            End If
+        Else
+            Dim slot1count As Integer = My.Settings.SchedNum1
+            Dim slot2count As Integer = My.Settings.SchedNum2
+            Dim slot3count As Integer = My.Settings.SchedNum3
+            Dim maxCount As Integer = Math.Max(Math.Max(slot1count, slot2count), slot3count)
+            For index As Integer = 1 To maxCount
+                If slot1count > 0 Then
+                    scheduleEnqueueExposure(My.Settings.SchedExp1, My.Settings.SchedDel1)
+                    slot1count -= 1
+                End If
+                If slot2count > 0 Then
+                    scheduleEnqueueExposure(My.Settings.SchedExp2, My.Settings.SchedDel2)
+                    slot2count -= 1
+                End If
+                If slot3count > 0 Then
+                    scheduleEnqueueExposure(My.Settings.SchedExp3, My.Settings.SchedDel3)
+                    slot1count -= 1
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub scheduleSlotGroup(ByVal time As Integer, ByVal delayAfter As Integer, ByVal number As Integer)
+        For index As Integer = 1 To number
+            scheduleEnqueueExposure(time, delayAfter)
+        Next
+    End Sub
+
+    Private Sub scheduleEnqueueExposure(ByVal time As Integer, ByVal delayAfter As Integer)
+        If My.Settings.MirrorLock <> "off" Then
+            Dim mirrorUp As Integer = Integer.Parse(My.Settings.MirrorLock.Substring(0, 1))
+            schedule.Enqueue(New ScheduleElement(MIRROR_UP_TIME, True))
+            schedule.Enqueue(New ScheduleElement(1000 * mirrorUp - MIRROR_UP_TIME, False))
+        End If
+        schedule.Enqueue(New ScheduleElement(1000 * time, True))
+        If delayAfter > 0 Then
+            schedule.Enqueue(New ScheduleElement(1000 * delayAfter, False))
+        Else
+            schedule.Enqueue(New ScheduleElement(SHUTTER_DOWN_DELAY, False))
+        End If
+    End Sub
+
 
     Private Sub adjustButtonState()
         startButton.Enabled = False
@@ -184,6 +231,11 @@
                 'focuser.CommandString("VSE:" + PIN + ",0")
             End If
             optostate = value
+            If value Then
+                statusLabel.BackColor = Drawing.Color.Pink
+            Else
+                statusLabel.BackColor = Drawing.Color.LimeGreen
+            End If
         End Set
     End Property
 

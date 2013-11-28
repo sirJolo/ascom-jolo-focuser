@@ -48,6 +48,9 @@ void serialCommand(String command) {
     maxFocuserPos = stringToLong(param);
     Serial.print("X");
     break;
+  case 'V':
+    extendedCommand(command);
+    break;
   default:
     Serial.print("ERR:");      
     Serial.print(byte(command.charAt(1)), DEC); 
@@ -121,5 +124,40 @@ void saveDutyCycle(byte dutyCycle) {
 }
 
 
+void extendedCommand(String serial) {
+  String command = serial.substring(0,3);
+  String param = serial.substring(4); 
+  
+  if(command == "VSE") {
+    int pinNr = getPinFromParam(param);
+    int value = (getValueFromParam(param) == 1) ? HIGH : LOW;
+    pinMode(pinNr, OUTPUT);
+    digitalWrite(pinNr, value);   
+    Serial.print("VSE"); 
+  }
+  
+  if(command == "VRE") {
+    int pinNr = getPinFromParam(param);
+    pinMode(pinNr, INPUT);
+    int value = digitalRead(pinNr);
+    char result = (value == HIGH) ? '1' : '0';
+    Serial.print("VRE:" + result);
+  }
+  
+  if(command == "VRA") {  //analog read
+    int pinNr = getPinFromParam(param);
+    if((pinNr == A5) || (pinNr == A6)) {
+      pinMode(pinNr, INPUT);
+      int value = analogRead(pinNr);
+      Serial.print("VRA:" + value);
+    }
+  }
+}
 
+int getPinFromParam(String param) {
+  return stringToNumber(param.substring(0,2));
+}
 
+int getValueFromParam(String param) {
+  return stringToNumber(param.substring(3));
+}
