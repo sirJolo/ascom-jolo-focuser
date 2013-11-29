@@ -245,6 +245,9 @@ Public Class Focuser
         While retry < 3
             Try
                 ComPort.Open()
+                If ComPort.IsOpen Then
+                    Exit While
+                End If
             Catch ex As System.IO.IOException
                 If retry = 1 Then
                     retry += 1
