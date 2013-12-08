@@ -13,7 +13,6 @@
 #include <DallasTemperature.h>
 #include <EEPROM.h>
 #include <AccelStepper.h>
-#include <PWM.h>
 #include <Bounce.h>
 
 #define DEVICE_RESPONSE "Jolo primary focuser"
@@ -24,16 +23,17 @@
 #define DUTY_CYCLE_ADDR 2  
 
 // Encoder config
-#define ENCODER_A_PIN 3
-#define ENCODER_B_PIN 4
-Bounce aButton = Bounce( ENCODER_A_PIN, 30 ); 
-Bounce bButton = Bounce( ENCODER_B_PIN, 30 ); 
+#define ENCODER_OUT_PIN 4
+#define ENCODER_IN_PIN 3
+Bounce outButton = Bounce( ENCODER_OUT_PIN, 30 ); 
+Bounce inButton = Bounce( ENCODER_IN_PIN, 30 ); 
 
 // Buzzer config
 #define BUZZER_PIN 5
-#define BUZZ_LONG 800
-#define BUZZ_SHORT 200
-#define BUZZER_ON false
+#define BUZZ_LONG 300
+#define BUZZ_SHORT 50
+#define BUZZ_PAUSE 50
+#define BUZZER_ON true
 #define BUZ_LED_PIN 13
 
 // Temperature sensor config (one wire protocol)
@@ -47,8 +47,8 @@ DeviceAddress insideThermometer;
 #define STEPPER_ACC 2500
 #define MANUAL_STEPPER_ACC 600
 #define STEPPER_PWM_FREQ 1000
-#define STEPPER_PWM_PIN A0
-AccelStepper stepper = AccelStepper(AccelStepper::HALF4WIRE, A4, A3, A1, A2);
+#define STEPPER_PWM_PIN 6
+AccelStepper stepper = AccelStepper(AccelStepper::HALF4WIRE, A3, A4, A1, A5);
 
 // Global vars
 boolean positionSaved;               // Flag indicates if stepper position was saved as new focuser position
@@ -60,8 +60,7 @@ String inputString;                  // Serial input command string (terminated 
 
 byte buzzes = 0;                     // Number of buzzes to do 
 int buzz_time = 0;                   // Next buzz period 
-unsigned long buzz_stop = 0;         // Time for buzzer to next stop 
-unsigned long buzz_start = 0;        // Time for buzzer to next start
+unsigned long buzz_next_action = 0;  // Time to next buzz change
 
 int manualStep = 16;                 // Manual focuser position change in steps 
 long maxFocuserPos = 1000000;        // Maximum focuser position
@@ -78,7 +77,7 @@ void loop()
     saveFocuserPos(stepper.currentPosition());
     positionSaved = true;
     buzz(BUZZ_SHORT, 1);
-    pwmWrite(STEPPER_PWM_PIN, (255 * EEPROM.read(DUTY_CYCLE_ADDR)/100));
+    analogWrite(STEPPER_PWM_PIN, (255 * EEPROM.read(DUTY_CYCLE_ADDR)/100));
     tempRequestMilis = millis() + 500;
   }
 

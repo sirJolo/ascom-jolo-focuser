@@ -1,6 +1,6 @@
 void doButtonsCheck() {
-  if ( aButton.update() ) {
-    if ( aButton.read() == LOW) {
+  if ( outButton.update() ) {
+    if ( outButton.read() == LOW) {
       stepper.setAcceleration(MANUAL_STEPPER_ACC);
       moveStepper(maxFocuserPos, true);
     }
@@ -11,8 +11,8 @@ void doButtonsCheck() {
     }
   }
 
-  if ( bButton.update() ) {
-    if ( bButton.read() == LOW) {
+  if ( inButton.update() ) {
+    if ( inButton.read() == LOW) {
        stepper.setAcceleration(MANUAL_STEPPER_ACC);
        moveStepper(0, true);
     }

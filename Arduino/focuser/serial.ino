@@ -18,7 +18,7 @@ void serialCommand(String command) {
   switch(command.charAt(0)) {
   case '#':
     Serial.print(DEVICE_RESPONSE);
-    buzz(BUZZ_LONG, 1);
+    buzz(BUZZ_SHORT, 2);
     break;
   case 'T':    // Read temperature
     printTemp();
@@ -88,7 +88,7 @@ void moveStepper(long newPos, boolean manualMove) {
     else
     {
       tempRequestMilis = tempReadMilis = 0;
-      pwmWrite(STEPPER_PWM_PIN, 255);
+      analogWrite(STEPPER_PWM_PIN, 255);
       stepper.moveTo(newPos);
       positionSaved = false;
     }
@@ -117,6 +117,7 @@ void saveStepperSpeed(word stepperSpeed) {
 void saveDutyCycle(byte dutyCycle) {
   if(dutyCycle > 100) dutyCycle = 100;
   EEPROM.write(DUTY_CYCLE_ADDR, dutyCycle);
+  analogWrite(STEPPER_PWM_PIN, (255 * EEPROM.read(DUTY_CYCLE_ADDR)/100));
   Serial.print("D");
 }
 
