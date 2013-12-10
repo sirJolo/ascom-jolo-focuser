@@ -6,6 +6,7 @@ long readFocuserPos() {
   return readLong(getReadFocuserPosAddress() + 1);
 }
 
+
 void writeWord(word address, word value) {
   EEPROM.write(address, lowByte(value)); 
   EEPROM.write(address + 1, highByte(value)); 
@@ -28,6 +29,7 @@ void writeLong(word address, long value) {
   writeWord(address + 2, highWord);
 }
 
+
 int stringToNumber(String thisString) {
   int i, value = 0, length;
   length = thisString.length();
@@ -46,6 +48,7 @@ long stringToLong(String thisString) {
   }
   return value;
 }
+
 
 // Simple EEPROM wear leveling
 int getSaveFocuserPosAddress() {
@@ -69,6 +72,7 @@ int getReadFocuserPosAddress() {
   }
 }
 
+// Temperature read
 void requestTemp() {
   if(sensorConnected) {
     sensors.requestTemperaturesByAddress(insideThermometer); // Send the command to get temperature. For 10 bit res it takes 188ms

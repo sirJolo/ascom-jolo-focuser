@@ -29,7 +29,7 @@ void serialCommand(String command) {
   case 'H':    // Halt focuser
     halt();   
     break;
-  case 'I':
+  case 'I':    // Focuser status
     printInMoveStatus();
     break;
   case 'M':    // Move focuser to new position

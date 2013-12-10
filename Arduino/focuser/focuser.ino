@@ -46,7 +46,6 @@ DeviceAddress insideThermometer;
 // Stepper config
 #define STEPPER_ACC 2500
 #define MANUAL_STEPPER_ACC 600
-#define STEPPER_PWM_FREQ 1000
 #define STEPPER_PWM_PIN 6
 AccelStepper stepper = AccelStepper(AccelStepper::HALF4WIRE, A3, A4, A1, A5);
 
@@ -60,12 +59,10 @@ String inputString;                  // Serial input command string (terminated 
 
 byte buzzes = 0;                     // Number of buzzes to do 
 int buzz_time = 0;                   // Next buzz period 
-unsigned long buzz_next_action = 0;  // Time to next buzz change
+unsigned long buzz_next_action = 0;  // Time to next buzz action change
 
 int manualStep = 16;                 // Manual focuser position change in steps 
 long maxFocuserPos = 1000000;        // Maximum focuser position
-
-int encoderMode = 0;                 // Focus mode
 
 
 void loop() 

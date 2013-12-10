@@ -1,10 +1,10 @@
 // Initialization routine
 void setup() 
 {
-  // Initialize encoder 
+  // Initialize push buttons 
   pinMode(ENCODER_OUT_PIN, INPUT); 
   pinMode(ENCODER_IN_PIN, INPUT); 
- // turn on pullup resistors
+  // Turn on pullup resistors
   digitalWrite(ENCODER_OUT_PIN, HIGH);
   digitalWrite(ENCODER_IN_PIN, HIGH);
 
@@ -35,7 +35,7 @@ void setup()
     sensors.setResolution(insideThermometer, 10);
     sensors.setWaitForConversion(false);
     tempReadMilis = 0;
-    tempRequestMilis = millis();
+    tempRequestMilis = millis() + 2000;
   }
 
   // Initialize stepper motor
