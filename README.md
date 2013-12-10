@@ -1,3 +1,11 @@
+ver 1.5 production
+==================
+Changelog:
+ - encoder support removed
+ - PWM stepper duty cycle control switched to Arduino native
+ - Eagle project for PCB and reference schematic added (for fixed version wait for 1.6)
+ - Reference solution uses L298 stepper driver and some of Arduino pins are now externally available for additional options. Driver implementation will be in 2.0
+
 ver 1.4
 ==================
 Changelog:
