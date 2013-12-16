@@ -56,7 +56,7 @@ Public Class Focuser
     Private Const DEVICE_RESPONSE As String = "Jolo primary focuser"
 
     Private Shared driverID As String = "ASCOM.JoloFocuser.Focuser"
-    Private Shared driverDescription As String = "Jolo ASCOM focuser"
+    Private Shared driverDescription As String = "WTW ASCOM focuser"
 
     Private tempCompTimer As System.Timers.Timer
     Private compStartTemp As Double
