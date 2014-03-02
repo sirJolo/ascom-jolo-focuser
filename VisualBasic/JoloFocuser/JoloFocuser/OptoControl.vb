@@ -72,6 +72,7 @@
         schedule.Clear()
         optoMode = OptoModes.Standby
         adjustButtonState()
+        statusLabel.Text = "Stop"
     End Sub
 
     Private Function calculateScheduleTime() As Integer
@@ -87,7 +88,11 @@
     End Sub
 
     Private Sub OnUpdateTimer(ByVal source As Object, ByVal e As System.Timers.ElapsedEventArgs)
-        'progressSchedule()
+        Dim now As Date = Date.Now
+        If optoMode = OptoModes.Simple Then
+            Dim elapsed As TimeSpan = now.Subtract(expStartTime)
+            statusLabel.Text = elapsed.Hours.ToString + ":" + Format(elapsed.Minutes, "00") + ":" + Format(elapsed.Seconds, "00") + " sec"
+        End If
     End Sub
 
     Private Sub StartButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles startButton.Click
