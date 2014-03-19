@@ -14,8 +14,17 @@
 #include <EEPROM.h>
 #include <AccelStepper.h>
 #include <Bounce.h>
+#include <LiquidCrystal.h>
+#include <Timer.h>
 
 #define DEVICE_RESPONSE "Jolo primary focuser"
+
+// LCD initialization
+#define LCD_LINE_1 "Temperature <ttt>"
+#define LCD_LINE_2 "Position <pppp>"
+#define LCD_REFRESH_TIME 500
+LiquidCrystal lcd(11, 12, 7, 8, 9, 10);
+Timer timer;
 
 // EEPROM addresses
 #define FOCUSER_POS_START 900
@@ -87,6 +96,9 @@ void loop()
 
   // Manual control
   doButtonsCheck();
+  
+  // Timer to update LCD
+  timer.update();
 
 }
 

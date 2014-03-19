@@ -46,6 +46,12 @@ void setup()
   pinMode(STEPPER_PWM_PIN, OUTPUT);
   analogWrite(STEPPER_PWM_PIN, (255 * EEPROM.read(DUTY_CYCLE_ADDR)/100));
   
+  // Init LCD
+  lcd.begin(16,2);
+  lcd.noCursor();
+  lcd.clear();
+  timer.every(LCD_REFRESH_TIME, updateLcd);
+  
   inputString = "";
   buzz(BUZZ_LONG, 1);
 }
