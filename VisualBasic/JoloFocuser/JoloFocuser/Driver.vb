@@ -10,7 +10,7 @@
 '				dolores et ea rebum. Stet clita kasd gubergren, no sea takimata 
 '				sanctus est Lorem ipsum dolor sit amet.
 '
-' Implements:	ASCOM Focuser interface version: 1.3
+' Implements:	ASCOM Focuser interface version: 2.0
 ' Author:		(Jol) Jolo (drjolo@gmail.com)
 ' URL:          http://code.google.com/p/ascom-jolo-focuser/
 '
@@ -51,7 +51,7 @@ Public Class Focuser
     ' Driver ID and descriptive string that shows in the Chooser
     '
     Private Const DELTA_T As Double = 0.5
-    Private Const DRIVER_VERSION As String = "1.3"
+    Private Const DRIVER_VERSION As String = "2.0"
     Private Const DEVICE_RESPONSE As String = "Jolo primary focuser"
 
     Private Shared driverID As String = "ASCOM.JoloFocuser.Focuser"

@@ -29,11 +29,14 @@ Partial Class RunDialogForm
         Me.MoveFocuserButton = New System.Windows.Forms.Button
         Me.TemperatureLabel = New System.Windows.Forms.Label
         Me.PositionLabel = New System.Windows.Forms.Label
+        Me.MoveFocuserNumericUpDown = New System.Windows.Forms.NumericUpDown
+        Me.PositionNumericUpDown = New System.Windows.Forms.NumericUpDown
         Me.Label20 = New System.Windows.Forms.Label
         Me.Label16 = New System.Windows.Forms.Label
         Me.OptoTabPage = New System.Windows.Forms.TabPage
         Me.Label3 = New System.Windows.Forms.Label
         Me.GroupBox3 = New System.Windows.Forms.GroupBox
+        Me.GroupBySlotCheckBox = New System.Windows.Forms.CheckBox
         Me.Label10 = New System.Windows.Forms.Label
         Me.StartScheduleButton = New System.Windows.Forms.Button
         Me.Label19 = New System.Windows.Forms.Label
@@ -49,11 +52,23 @@ Partial Class RunDialogForm
         Me.Label9 = New System.Windows.Forms.Label
         Me.Label6 = New System.Windows.Forms.Label
         Me.Label5 = New System.Windows.Forms.Label
+        Me.NumericUpDownExp3 = New System.Windows.Forms.NumericUpDown
+        Me.NumericUpDownDelay3 = New System.Windows.Forms.NumericUpDown
+        Me.NumericUpDownFrames3 = New System.Windows.Forms.NumericUpDown
+        Me.NumericUpDownExp2 = New System.Windows.Forms.NumericUpDown
+        Me.NumericUpDownDelay2 = New System.Windows.Forms.NumericUpDown
+        Me.NumericUpDownFrames2 = New System.Windows.Forms.NumericUpDown
+        Me.NumericUpDownExp1 = New System.Windows.Forms.NumericUpDown
+        Me.DelayFirstNumeric = New System.Windows.Forms.NumericUpDown
+        Me.NumericUpDownDelay1 = New System.Windows.Forms.NumericUpDown
+        Me.NumericUpDownFrames1 = New System.Windows.Forms.NumericUpDown
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
         Me.Label4 = New System.Windows.Forms.Label
         Me.Label1 = New System.Windows.Forms.Label
         Me.StarStopButton = New System.Windows.Forms.Button
         Me.RunButton = New System.Windows.Forms.Button
+        Me.SignleFrameTimeNumeric = New System.Windows.Forms.NumericUpDown
+        Me.MirrorLockComboBox = New System.Windows.Forms.ComboBox
         Me.TabPage2 = New System.Windows.Forms.TabPage
         Me.Label22 = New System.Windows.Forms.Label
         Me.D7GroupBox = New System.Windows.Forms.GroupBox
@@ -78,31 +93,12 @@ Partial Class RunDialogForm
         Me.D10StatusLabel = New System.Windows.Forms.Label
         Me.D8StatusLabel = New System.Windows.Forms.Label
         Me.D7StatusLabel = New System.Windows.Forms.Label
-        Me.MoveFocuserNumericUpDown = New System.Windows.Forms.NumericUpDown
-        Me.PositionNumericUpDown = New System.Windows.Forms.NumericUpDown
-        Me.GroupBySlotCheckBox = New System.Windows.Forms.CheckBox
-        Me.NumericUpDownExp3 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDownDelay3 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDownFrames3 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDownExp2 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDownDelay2 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDownFrames2 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDownExp1 = New System.Windows.Forms.NumericUpDown
-        Me.DelayFirstNumeric = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDownDelay1 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDownFrames1 = New System.Windows.Forms.NumericUpDown
-        Me.SignleFrameTimeNumeric = New System.Windows.Forms.NumericUpDown
-        Me.MirrorLockComboBox = New System.Windows.Forms.ComboBox
         Me.TabControl1.SuspendLayout()
         Me.TabPage3.SuspendLayout()
-        Me.OptoTabPage.SuspendLayout()
-        Me.GroupBox3.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
-        Me.TabPage2.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        Me.StatusGroupBox.SuspendLayout()
         CType(Me.MoveFocuserNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PositionNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.OptoTabPage.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         CType(Me.NumericUpDownExp3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDownDelay3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDownFrames3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,7 +109,11 @@ Partial Class RunDialogForm
         CType(Me.DelayFirstNumeric, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDownDelay1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDownFrames1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         CType(Me.SignleFrameTimeNumeric, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage2.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
+        Me.StatusGroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -201,6 +201,26 @@ Partial Class RunDialogForm
         Me.PositionLabel.Text = "N/A"
         Me.PositionLabel.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
+        'MoveFocuserNumericUpDown
+        '
+        Me.MoveFocuserNumericUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "FocuserIn", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.MoveFocuserNumericUpDown.Location = New System.Drawing.Point(272, 117)
+        Me.MoveFocuserNumericUpDown.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
+        Me.MoveFocuserNumericUpDown.Name = "MoveFocuserNumericUpDown"
+        Me.MoveFocuserNumericUpDown.Size = New System.Drawing.Size(98, 20)
+        Me.MoveFocuserNumericUpDown.TabIndex = 2
+        Me.MoveFocuserNumericUpDown.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserIn
+        '
+        'PositionNumericUpDown
+        '
+        Me.PositionNumericUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "FocuserMove", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.PositionNumericUpDown.Location = New System.Drawing.Point(21, 117)
+        Me.PositionNumericUpDown.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
+        Me.PositionNumericUpDown.Name = "PositionNumericUpDown"
+        Me.PositionNumericUpDown.Size = New System.Drawing.Size(126, 20)
+        Me.PositionNumericUpDown.TabIndex = 2
+        Me.PositionNumericUpDown.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserMove
+        '
         'Label20
         '
         Me.Label20.AutoSize = True
@@ -278,6 +298,18 @@ Partial Class RunDialogForm
         Me.GroupBox3.TabIndex = 1
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Scheduler"
+        '
+        'GroupBySlotCheckBox
+        '
+        Me.GroupBySlotCheckBox.AutoSize = True
+        Me.GroupBySlotCheckBox.Checked = Global.ASCOM.JoloFocuser.My.MySettings.Default.GroupBySlot
+        Me.GroupBySlotCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.ASCOM.JoloFocuser.My.MySettings.Default, "GroupBySlot", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.GroupBySlotCheckBox.Location = New System.Drawing.Point(216, 34)
+        Me.GroupBySlotCheckBox.Name = "GroupBySlotCheckBox"
+        Me.GroupBySlotCheckBox.Size = New System.Drawing.Size(88, 17)
+        Me.GroupBySlotCheckBox.TabIndex = 5
+        Me.GroupBySlotCheckBox.Text = "Group by slot"
+        Me.GroupBySlotCheckBox.UseVisualStyleBackColor = True
         '
         'Label10
         '
@@ -417,6 +449,101 @@ Partial Class RunDialogForm
         Me.Label5.TabIndex = 1
         Me.Label5.Text = "x"
         '
+        'NumericUpDownExp3
+        '
+        Me.NumericUpDownExp3.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedExp3", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.NumericUpDownExp3.Location = New System.Drawing.Point(99, 163)
+        Me.NumericUpDownExp3.Maximum = New Decimal(New Integer() {3600, 0, 0, 0})
+        Me.NumericUpDownExp3.Name = "NumericUpDownExp3"
+        Me.NumericUpDownExp3.Size = New System.Drawing.Size(72, 20)
+        Me.NumericUpDownExp3.TabIndex = 0
+        Me.NumericUpDownExp3.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedExp3
+        '
+        'NumericUpDownDelay3
+        '
+        Me.NumericUpDownDelay3.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedDel3", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.NumericUpDownDelay3.Location = New System.Drawing.Point(210, 163)
+        Me.NumericUpDownDelay3.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
+        Me.NumericUpDownDelay3.Name = "NumericUpDownDelay3"
+        Me.NumericUpDownDelay3.Size = New System.Drawing.Size(59, 20)
+        Me.NumericUpDownDelay3.TabIndex = 0
+        Me.NumericUpDownDelay3.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedDel3
+        '
+        'NumericUpDownFrames3
+        '
+        Me.NumericUpDownFrames3.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedNum3", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.NumericUpDownFrames3.Location = New System.Drawing.Point(17, 163)
+        Me.NumericUpDownFrames3.Name = "NumericUpDownFrames3"
+        Me.NumericUpDownFrames3.Size = New System.Drawing.Size(59, 20)
+        Me.NumericUpDownFrames3.TabIndex = 0
+        Me.NumericUpDownFrames3.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedNum3
+        '
+        'NumericUpDownExp2
+        '
+        Me.NumericUpDownExp2.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedExp2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.NumericUpDownExp2.Location = New System.Drawing.Point(99, 124)
+        Me.NumericUpDownExp2.Maximum = New Decimal(New Integer() {3600, 0, 0, 0})
+        Me.NumericUpDownExp2.Name = "NumericUpDownExp2"
+        Me.NumericUpDownExp2.Size = New System.Drawing.Size(72, 20)
+        Me.NumericUpDownExp2.TabIndex = 0
+        Me.NumericUpDownExp2.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedExp2
+        '
+        'NumericUpDownDelay2
+        '
+        Me.NumericUpDownDelay2.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedDel2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.NumericUpDownDelay2.Location = New System.Drawing.Point(210, 124)
+        Me.NumericUpDownDelay2.Name = "NumericUpDownDelay2"
+        Me.NumericUpDownDelay2.Size = New System.Drawing.Size(59, 20)
+        Me.NumericUpDownDelay2.TabIndex = 0
+        Me.NumericUpDownDelay2.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedDel2
+        '
+        'NumericUpDownFrames2
+        '
+        Me.NumericUpDownFrames2.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedNum2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.NumericUpDownFrames2.Location = New System.Drawing.Point(17, 124)
+        Me.NumericUpDownFrames2.Name = "NumericUpDownFrames2"
+        Me.NumericUpDownFrames2.Size = New System.Drawing.Size(59, 20)
+        Me.NumericUpDownFrames2.TabIndex = 0
+        Me.NumericUpDownFrames2.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedNum2
+        '
+        'NumericUpDownExp1
+        '
+        Me.NumericUpDownExp1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedExp1", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.NumericUpDownExp1.Location = New System.Drawing.Point(99, 86)
+        Me.NumericUpDownExp1.Maximum = New Decimal(New Integer() {3600, 0, 0, 0})
+        Me.NumericUpDownExp1.Name = "NumericUpDownExp1"
+        Me.NumericUpDownExp1.Size = New System.Drawing.Size(72, 20)
+        Me.NumericUpDownExp1.TabIndex = 0
+        Me.NumericUpDownExp1.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedExp1
+        '
+        'DelayFirstNumeric
+        '
+        Me.DelayFirstNumeric.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedDelayFirst", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.DelayFirstNumeric.Location = New System.Drawing.Point(74, 31)
+        Me.DelayFirstNumeric.Name = "DelayFirstNumeric"
+        Me.DelayFirstNumeric.Size = New System.Drawing.Size(59, 20)
+        Me.DelayFirstNumeric.TabIndex = 0
+        Me.DelayFirstNumeric.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedDelayFirst
+        '
+        'NumericUpDownDelay1
+        '
+        Me.NumericUpDownDelay1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedDel1", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.NumericUpDownDelay1.Location = New System.Drawing.Point(210, 86)
+        Me.NumericUpDownDelay1.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
+        Me.NumericUpDownDelay1.Name = "NumericUpDownDelay1"
+        Me.NumericUpDownDelay1.Size = New System.Drawing.Size(59, 20)
+        Me.NumericUpDownDelay1.TabIndex = 0
+        Me.NumericUpDownDelay1.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedDel1
+        '
+        'NumericUpDownFrames1
+        '
+        Me.NumericUpDownFrames1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedNum1", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.NumericUpDownFrames1.Location = New System.Drawing.Point(17, 86)
+        Me.NumericUpDownFrames1.Name = "NumericUpDownFrames1"
+        Me.NumericUpDownFrames1.Size = New System.Drawing.Size(59, 20)
+        Me.NumericUpDownFrames1.TabIndex = 0
+        Me.NumericUpDownFrames1.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedNum1
+        '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.Label4)
@@ -464,8 +591,31 @@ Partial Class RunDialogForm
         Me.RunButton.Name = "RunButton"
         Me.RunButton.Size = New System.Drawing.Size(48, 23)
         Me.RunButton.TabIndex = 1
-        Me.RunButton.Text = "Run"
+        Me.RunButton.Text = "Start"
         Me.RunButton.UseVisualStyleBackColor = True
+        '
+        'SignleFrameTimeNumeric
+        '
+        Me.SignleFrameTimeNumeric.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "QuickRunTime", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.SignleFrameTimeNumeric.Location = New System.Drawing.Point(299, 19)
+        Me.SignleFrameTimeNumeric.Maximum = New Decimal(New Integer() {3600, 0, 0, 0})
+        Me.SignleFrameTimeNumeric.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.SignleFrameTimeNumeric.Name = "SignleFrameTimeNumeric"
+        Me.SignleFrameTimeNumeric.Size = New System.Drawing.Size(59, 20)
+        Me.SignleFrameTimeNumeric.TabIndex = 0
+        Me.SignleFrameTimeNumeric.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.QuickRunTime
+        '
+        'MirrorLockComboBox
+        '
+        Me.MirrorLockComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MirrorLock", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.MirrorLockComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.MirrorLockComboBox.FormattingEnabled = True
+        Me.MirrorLockComboBox.Items.AddRange(New Object() {"off", "1 sec", "2 sec", "5 sec"})
+        Me.MirrorLockComboBox.Location = New System.Drawing.Point(309, 11)
+        Me.MirrorLockComboBox.Name = "MirrorLockComboBox"
+        Me.MirrorLockComboBox.Size = New System.Drawing.Size(121, 21)
+        Me.MirrorLockComboBox.TabIndex = 2
+        Me.MirrorLockComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.MirrorLock
         '
         'TabPage2
         '
@@ -705,156 +855,6 @@ Partial Class RunDialogForm
         Me.D7StatusLabel.TabIndex = 0
         Me.D7StatusLabel.Text = "D7  <-  0"
         '
-        'MoveFocuserNumericUpDown
-        '
-        Me.MoveFocuserNumericUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "FocuserIn", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.MoveFocuserNumericUpDown.Location = New System.Drawing.Point(272, 117)
-        Me.MoveFocuserNumericUpDown.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
-        Me.MoveFocuserNumericUpDown.Name = "MoveFocuserNumericUpDown"
-        Me.MoveFocuserNumericUpDown.Size = New System.Drawing.Size(98, 20)
-        Me.MoveFocuserNumericUpDown.TabIndex = 2
-        Me.MoveFocuserNumericUpDown.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserIn
-        '
-        'PositionNumericUpDown
-        '
-        Me.PositionNumericUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "FocuserMove", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.PositionNumericUpDown.Location = New System.Drawing.Point(21, 117)
-        Me.PositionNumericUpDown.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
-        Me.PositionNumericUpDown.Name = "PositionNumericUpDown"
-        Me.PositionNumericUpDown.Size = New System.Drawing.Size(126, 20)
-        Me.PositionNumericUpDown.TabIndex = 2
-        Me.PositionNumericUpDown.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserMove
-        '
-        'GroupBySlotCheckBox
-        '
-        Me.GroupBySlotCheckBox.AutoSize = True
-        Me.GroupBySlotCheckBox.Checked = Global.ASCOM.JoloFocuser.My.MySettings.Default.GroupBySlot
-        Me.GroupBySlotCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.ASCOM.JoloFocuser.My.MySettings.Default, "GroupBySlot", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.GroupBySlotCheckBox.Location = New System.Drawing.Point(216, 34)
-        Me.GroupBySlotCheckBox.Name = "GroupBySlotCheckBox"
-        Me.GroupBySlotCheckBox.Size = New System.Drawing.Size(88, 17)
-        Me.GroupBySlotCheckBox.TabIndex = 5
-        Me.GroupBySlotCheckBox.Text = "Group by slot"
-        Me.GroupBySlotCheckBox.UseVisualStyleBackColor = True
-        '
-        'NumericUpDownExp3
-        '
-        Me.NumericUpDownExp3.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedExp3", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDownExp3.Location = New System.Drawing.Point(99, 163)
-        Me.NumericUpDownExp3.Maximum = New Decimal(New Integer() {3600, 0, 0, 0})
-        Me.NumericUpDownExp3.Name = "NumericUpDownExp3"
-        Me.NumericUpDownExp3.Size = New System.Drawing.Size(72, 20)
-        Me.NumericUpDownExp3.TabIndex = 0
-        Me.NumericUpDownExp3.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedExp3
-        '
-        'NumericUpDownDelay3
-        '
-        Me.NumericUpDownDelay3.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedDel3", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDownDelay3.Location = New System.Drawing.Point(210, 163)
-        Me.NumericUpDownDelay3.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
-        Me.NumericUpDownDelay3.Name = "NumericUpDownDelay3"
-        Me.NumericUpDownDelay3.Size = New System.Drawing.Size(59, 20)
-        Me.NumericUpDownDelay3.TabIndex = 0
-        Me.NumericUpDownDelay3.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedDel3
-        '
-        'NumericUpDownFrames3
-        '
-        Me.NumericUpDownFrames3.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedNum3", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDownFrames3.Location = New System.Drawing.Point(17, 163)
-        Me.NumericUpDownFrames3.Name = "NumericUpDownFrames3"
-        Me.NumericUpDownFrames3.Size = New System.Drawing.Size(59, 20)
-        Me.NumericUpDownFrames3.TabIndex = 0
-        Me.NumericUpDownFrames3.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedNum3
-        '
-        'NumericUpDownExp2
-        '
-        Me.NumericUpDownExp2.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedExp2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDownExp2.Location = New System.Drawing.Point(99, 124)
-        Me.NumericUpDownExp2.Maximum = New Decimal(New Integer() {3600, 0, 0, 0})
-        Me.NumericUpDownExp2.Name = "NumericUpDownExp2"
-        Me.NumericUpDownExp2.Size = New System.Drawing.Size(72, 20)
-        Me.NumericUpDownExp2.TabIndex = 0
-        Me.NumericUpDownExp2.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedExp2
-        '
-        'NumericUpDownDelay2
-        '
-        Me.NumericUpDownDelay2.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedDel2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDownDelay2.Location = New System.Drawing.Point(210, 124)
-        Me.NumericUpDownDelay2.Name = "NumericUpDownDelay2"
-        Me.NumericUpDownDelay2.Size = New System.Drawing.Size(59, 20)
-        Me.NumericUpDownDelay2.TabIndex = 0
-        Me.NumericUpDownDelay2.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedDel2
-        '
-        'NumericUpDownFrames2
-        '
-        Me.NumericUpDownFrames2.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedNum2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDownFrames2.Location = New System.Drawing.Point(17, 124)
-        Me.NumericUpDownFrames2.Name = "NumericUpDownFrames2"
-        Me.NumericUpDownFrames2.Size = New System.Drawing.Size(59, 20)
-        Me.NumericUpDownFrames2.TabIndex = 0
-        Me.NumericUpDownFrames2.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedNum2
-        '
-        'NumericUpDownExp1
-        '
-        Me.NumericUpDownExp1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedExp1", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDownExp1.Location = New System.Drawing.Point(99, 86)
-        Me.NumericUpDownExp1.Maximum = New Decimal(New Integer() {3600, 0, 0, 0})
-        Me.NumericUpDownExp1.Name = "NumericUpDownExp1"
-        Me.NumericUpDownExp1.Size = New System.Drawing.Size(72, 20)
-        Me.NumericUpDownExp1.TabIndex = 0
-        Me.NumericUpDownExp1.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedExp1
-        '
-        'DelayFirstNumeric
-        '
-        Me.DelayFirstNumeric.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedDelayFirst", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.DelayFirstNumeric.Location = New System.Drawing.Point(74, 31)
-        Me.DelayFirstNumeric.Name = "DelayFirstNumeric"
-        Me.DelayFirstNumeric.Size = New System.Drawing.Size(59, 20)
-        Me.DelayFirstNumeric.TabIndex = 0
-        Me.DelayFirstNumeric.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedDelayFirst
-        '
-        'NumericUpDownDelay1
-        '
-        Me.NumericUpDownDelay1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedDel1", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDownDelay1.Location = New System.Drawing.Point(210, 86)
-        Me.NumericUpDownDelay1.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
-        Me.NumericUpDownDelay1.Name = "NumericUpDownDelay1"
-        Me.NumericUpDownDelay1.Size = New System.Drawing.Size(59, 20)
-        Me.NumericUpDownDelay1.TabIndex = 0
-        Me.NumericUpDownDelay1.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedDel1
-        '
-        'NumericUpDownFrames1
-        '
-        Me.NumericUpDownFrames1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SchedNum1", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDownFrames1.Location = New System.Drawing.Point(17, 86)
-        Me.NumericUpDownFrames1.Name = "NumericUpDownFrames1"
-        Me.NumericUpDownFrames1.Size = New System.Drawing.Size(59, 20)
-        Me.NumericUpDownFrames1.TabIndex = 0
-        Me.NumericUpDownFrames1.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.SchedNum1
-        '
-        'SignleFrameTimeNumeric
-        '
-        Me.SignleFrameTimeNumeric.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "QuickRunTime", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.SignleFrameTimeNumeric.Location = New System.Drawing.Point(299, 19)
-        Me.SignleFrameTimeNumeric.Maximum = New Decimal(New Integer() {3600, 0, 0, 0})
-        Me.SignleFrameTimeNumeric.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.SignleFrameTimeNumeric.Name = "SignleFrameTimeNumeric"
-        Me.SignleFrameTimeNumeric.Size = New System.Drawing.Size(59, 20)
-        Me.SignleFrameTimeNumeric.TabIndex = 0
-        Me.SignleFrameTimeNumeric.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.QuickRunTime
-        '
-        'MirrorLockComboBox
-        '
-        Me.MirrorLockComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MirrorLock", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.MirrorLockComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.MirrorLockComboBox.FormattingEnabled = True
-        Me.MirrorLockComboBox.Items.AddRange(New Object() {"off", "1 sec", "2 sec", "5 sec"})
-        Me.MirrorLockComboBox.Location = New System.Drawing.Point(309, 11)
-        Me.MirrorLockComboBox.Name = "MirrorLockComboBox"
-        Me.MirrorLockComboBox.Size = New System.Drawing.Size(121, 21)
-        Me.MirrorLockComboBox.TabIndex = 2
-        Me.MirrorLockComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.MirrorLock
-        '
         'RunDialogForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -872,19 +872,12 @@ Partial Class RunDialogForm
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
+        CType(Me.MoveFocuserNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PositionNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.OptoTabPage.ResumeLayout(False)
         Me.OptoTabPage.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        Me.TabPage2.ResumeLayout(False)
-        Me.TabPage2.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.StatusGroupBox.ResumeLayout(False)
-        Me.StatusGroupBox.PerformLayout()
-        CType(Me.MoveFocuserNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PositionNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDownExp3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDownDelay3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDownFrames3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -895,7 +888,14 @@ Partial Class RunDialogForm
         CType(Me.DelayFirstNumeric, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDownDelay1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDownFrames1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         CType(Me.SignleFrameTimeNumeric, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage2.ResumeLayout(False)
+        Me.TabPage2.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.StatusGroupBox.ResumeLayout(False)
+        Me.StatusGroupBox.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

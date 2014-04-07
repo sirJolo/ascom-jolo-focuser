@@ -135,7 +135,11 @@
     End Sub
 
     Private Sub buildScheduleForSimple()
-        schedule.Enqueue(New ScheduleElement(3600000, True))
+        If My.Settings.MirrorLock <> "off" Then
+            schedule.Enqueue(New ScheduleElement(1000 * MIRROR_UP_TIME, True, "mirrorUp"))
+            schedule.Enqueue(New ScheduleElement(1000 * Integer.Parse(My.Settings.MirrorLock.Substring(0, 1)) - MIRROR_UP_TIME, False, "mirror"))
+        End If
+        schedule.Enqueue(New ScheduleElement(3600000, True, "exp"))
     End Sub
 
     Private Sub buildScheduleForTime()
@@ -148,7 +152,7 @@
             mirrorUp = Integer.Parse(My.Settings.MirrorLock.Substring(0, 1))
         End If
         If My.Settings.SchedDelayFirst > 0 Then
-            schedule.Enqueue(New ScheduleElement(1000 * My.Settings.SchedDelayFirst, False))
+            schedule.Enqueue(New ScheduleElement(1000 * My.Settings.SchedDelayFirst, False, "delay"))
         End If
         If My.Settings.GroupBySlot Then
             If My.Settings.SchedNum1 > 0 And My.Settings.SchedExp1 > 0 Then
