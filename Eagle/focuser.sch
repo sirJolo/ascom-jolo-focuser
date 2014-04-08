@@ -2779,9 +2779,9 @@ Siemens, Hewlett-Packard, Texas Instuments, Sharp, Motorola&lt;p&gt;
 <part name="J7" library="jumper" deviceset="J" device="7MM" value="J7MM"/>
 <part name="J9" library="jumper" deviceset="J" device="5MM" value="J5MM"/>
 <part name="J10" library="jumper" deviceset="J" device="5MM" value="J5MM"/>
-<part name="...1" library="SparkFun" deviceset="JUMPER-2" device="PTH"/>
 <part name="..1" library="SparkFun" deviceset="JUMPER-3" device="PTH" value=""/>
 <part name="J11" library="jumper" deviceset="J" device="5MM" value="J5MM"/>
+<part name="..2" library="SparkFun" deviceset="JUMPER-3" device="PTH" value=""/>
 </parts>
 <sheets>
 <sheet>
@@ -2850,9 +2850,9 @@ Siemens, Hewlett-Packard, Texas Instuments, Sharp, Motorola&lt;p&gt;
 <instance part="J7" gate="1" x="43.18" y="5.08"/>
 <instance part="J9" gate="1" x="71.12" y="38.1"/>
 <instance part="J10" gate="1" x="68.58" y="33.02"/>
-<instance part="...1" gate="A" x="15.24" y="35.56" rot="R90"/>
 <instance part="..1" gate="G$1" x="15.24" y="22.86" rot="R90"/>
 <instance part="J11" gate="1" x="71.12" y="93.98" rot="R270"/>
+<instance part="..2" gate="G$1" x="15.24" y="33.02" rot="R90"/>
 </instances>
 <busses>
 </busses>
@@ -2873,12 +2873,6 @@ Siemens, Hewlett-Packard, Texas Instuments, Sharp, Motorola&lt;p&gt;
 <segment>
 <pinref part="C1" gate="G$1" pin="2"/>
 <pinref part="GND9" gate="1" pin="GND"/>
-</segment>
-<segment>
-<pinref part="12V" gate="G$1" pin="PWR"/>
-<wire x1="-2.54" y1="109.22" x2="12.7" y2="109.22" width="0.1524" layer="91"/>
-<pinref part="GND10" gate="1" pin="GND"/>
-<wire x1="12.7" y1="109.22" x2="12.7" y2="96.52" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="MANUAL" gate="G$1" pin="1"/>
@@ -2975,6 +2969,12 @@ Siemens, Hewlett-Packard, Texas Instuments, Sharp, Motorola&lt;p&gt;
 <pinref part="GND15" gate="1" pin="GND"/>
 <wire x1="17.78" y1="1.016" x2="12.446" y2="1.016" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="GND10" gate="1" pin="GND"/>
+<wire x1="12.7" y1="96.52" x2="12.7" y2="104.14" width="0.1524" layer="91"/>
+<pinref part="12V" gate="G$1" pin="GND"/>
+<wire x1="12.7" y1="104.14" x2="-2.54" y2="104.14" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="VCC2" class="1">
 <segment>
@@ -3059,14 +3059,6 @@ Siemens, Hewlett-Packard, Texas Instuments, Sharp, Motorola&lt;p&gt;
 <pinref part="D7" gate="G$1" pin="C"/>
 <wire x1="154.94" y1="17.78" x2="154.94" y2="33.02" width="0.1524" layer="91"/>
 <junction x="154.94" y="33.02"/>
-</segment>
-</net>
-<net name="VCC" class="1">
-<segment>
-<pinref part="12V" gate="G$1" pin="GND"/>
-<wire x1="-2.54" y1="104.14" x2="17.78" y2="104.14" width="0.1524" layer="91"/>
-<pinref part="PWR" gate="A" pin="1"/>
-<wire x1="17.78" y1="104.14" x2="17.78" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$7" class="1">
@@ -3384,16 +3376,6 @@ Siemens, Hewlett-Packard, Texas Instuments, Sharp, Motorola&lt;p&gt;
 <wire x1="22.86" y1="15.24" x2="17.78" y2="15.24" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$40" class="0">
-<segment>
-<pinref part="J9" gate="1" pin="2"/>
-<wire x1="76.2" y1="38.1" x2="76.2" y2="0" width="0.1524" layer="91"/>
-<wire x1="76.2" y1="0" x2="20.32" y2="0" width="0.1524" layer="91"/>
-<wire x1="20.32" y1="0" x2="20.32" y2="12.7" width="0.1524" layer="91"/>
-<pinref part="." gate="G$1" pin="3"/>
-<wire x1="20.32" y1="12.7" x2="17.78" y2="12.7" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="N$8" class="0">
 <segment>
 <pinref part="R2" gate="G$1" pin="1"/>
@@ -3404,37 +3386,20 @@ Siemens, Hewlett-Packard, Texas Instuments, Sharp, Motorola&lt;p&gt;
 </net>
 <net name="N$32" class="0">
 <segment>
-<pinref part="...1" gate="A" pin="2"/>
 <wire x1="17.78" y1="38.1" x2="18.796" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="18.796" y1="38.1" x2="18.796" y2="53.34" width="0.1524" layer="91"/>
 <pinref part="NANO" gate="G$1" pin="D4"/>
 <wire x1="18.796" y1="53.34" x2="27.94" y2="53.34" width="0.1524" layer="91"/>
+<pinref part="..2" gate="G$1" pin="3"/>
 </segment>
 </net>
 <net name="N$33" class="0">
 <segment>
-<pinref part="...1" gate="A" pin="1"/>
 <wire x1="17.78" y1="35.56" x2="20.32" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="20.32" y1="35.56" x2="20.32" y2="48.26" width="0.1524" layer="91"/>
 <pinref part="NANO" gate="G$1" pin="D5"/>
 <wire x1="20.32" y1="48.26" x2="27.94" y2="48.26" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$34" class="0">
-<segment>
-<pinref part="..1" gate="G$1" pin="3"/>
-<wire x1="17.78" y1="27.94" x2="17.78" y2="33.02" width="0.1524" layer="91"/>
-<pinref part="NANO" gate="G$1" pin="D8"/>
-<wire x1="17.78" y1="33.02" x2="27.94" y2="33.02" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$35" class="0">
-<segment>
-<pinref part="..1" gate="G$1" pin="2"/>
-<wire x1="17.78" y1="25.4" x2="20.32" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="20.32" y1="25.4" x2="20.32" y2="27.94" width="0.1524" layer="91"/>
-<pinref part="NANO" gate="G$1" pin="D9"/>
-<wire x1="20.32" y1="27.94" x2="27.94" y2="27.94" width="0.1524" layer="91"/>
+<pinref part="..2" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$41" class="0">
@@ -3482,9 +3447,55 @@ Siemens, Hewlett-Packard, Texas Instuments, Sharp, Motorola&lt;p&gt;
 <junction x="66.04" y="68.58"/>
 </segment>
 </net>
+<net name="N$30" class="0">
+<segment>
+<pinref part="12V" gate="G$1" pin="PWR"/>
+<wire x1="-2.54" y1="109.22" x2="17.78" y2="109.22" width="0.1524" layer="91"/>
+<pinref part="PWR" gate="A" pin="1"/>
+<wire x1="17.78" y1="109.22" x2="17.78" y2="111.76" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$34" class="0">
+<segment>
+<pinref part="..1" gate="G$1" pin="2"/>
+<wire x1="17.78" y1="25.4" x2="25.4" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="25.4" y1="25.4" x2="25.4" y2="27.94" width="0.1524" layer="91"/>
+<pinref part="NANO" gate="G$1" pin="D9"/>
+<wire x1="25.4" y1="27.94" x2="27.94" y2="27.94" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$35" class="0">
+<segment>
+<pinref part="..1" gate="G$1" pin="3"/>
+<wire x1="17.78" y1="27.94" x2="22.86" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="22.86" y1="27.94" x2="22.86" y2="33.02" width="0.1524" layer="91"/>
+<pinref part="NANO" gate="G$1" pin="D8"/>
+<wire x1="22.86" y1="33.02" x2="27.94" y2="33.02" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$46" class="0">
+<segment>
+<pinref part="..2" gate="G$1" pin="1"/>
+<wire x1="17.78" y1="33.02" x2="20.32" y2="33.02" width="0.1524" layer="91"/>
+<pinref part="J9" gate="1" pin="2"/>
+<wire x1="76.2" y1="38.1" x2="76.2" y2="0" width="0.1524" layer="91"/>
+<wire x1="76.2" y1="0" x2="20.32" y2="0" width="0.1524" layer="91"/>
+<wire x1="20.32" y1="0" x2="20.32" y2="12.7" width="0.1524" layer="91"/>
+<pinref part="." gate="G$1" pin="3"/>
+<wire x1="20.32" y1="12.7" x2="17.78" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="20.32" y1="33.02" x2="20.32" y2="12.7" width="0.1524" layer="91"/>
+<junction x="20.32" y="12.7"/>
+</segment>
+</net>
 </nets>
 </sheet>
 </sheets>
+<errors>
+<approved hash="110,1,73.66,12.7,N$31,N$29,,,,"/>
+<approved hash="110,1,73.66,22.86,N$31,N$37,,,,"/>
+<approved hash="111,1,73.66,12.7,N$31,,,,,"/>
+<approved hash="111,1,73.66,22.86,N$31,,,,,"/>
+</errors>
 </schematic>
 </drawing>
 </eagle>
