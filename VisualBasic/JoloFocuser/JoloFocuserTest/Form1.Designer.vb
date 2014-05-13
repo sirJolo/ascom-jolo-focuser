@@ -24,7 +24,6 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.buttonConnect = New System.Windows.Forms.Button
         Me.buttonChoose = New System.Windows.Forms.Button
-        Me.labelDriverId = New System.Windows.Forms.Label
         Me.SuspendLayout()
         '
         'buttonConnect
@@ -45,23 +44,11 @@ Partial Class Form1
         Me.buttonChoose.Text = "Choose"
         Me.buttonChoose.UseVisualStyleBackColor = True
         '
-        'labelDriverId
-        '
-        Me.labelDriverId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.labelDriverId.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "DriverId", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.labelDriverId.Location = New System.Drawing.Point(88, 44)
-        Me.labelDriverId.Name = "labelDriverId"
-        Me.labelDriverId.Size = New System.Drawing.Size(291, 21)
-        Me.labelDriverId.TabIndex = 5
-        Me.labelDriverId.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.DriverId
-        Me.labelDriverId.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(480, 94)
-        Me.Controls.Add(Me.labelDriverId)
+        Me.ClientSize = New System.Drawing.Size(491, 156)
         Me.Controls.Add(Me.buttonConnect)
         Me.Controls.Add(Me.buttonChoose)
         Me.MaximizeBox = False
@@ -70,7 +57,6 @@ Partial Class Form1
         Me.ResumeLayout(False)
 
     End Sub
-    Private WithEvents labelDriverId As System.Windows.Forms.Label
     Private WithEvents buttonConnect As System.Windows.Forms.Button
     Private WithEvents buttonChoose As System.Windows.Forms.Button
 

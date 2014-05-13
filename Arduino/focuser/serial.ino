@@ -48,9 +48,6 @@ void serialCommand(String command) {
     maxFocuserPos = stringToLong(param);
     Serial.print("X");
     break;
-  case 'V':
-    extendedCommand(command);
-    break;
   default:
     Serial.print("ERR:");      
     Serial.print(byte(command.charAt(1)), DEC); 
@@ -91,7 +88,7 @@ void moveStepper(long newPos, boolean manualMove) {
     else
     {
       tempRequestMilis = tempReadMilis = 0;
-      pwmWrite(STEPPER_PWM_PIN, 255);
+      SoftPWMSet(STEPPER_PWM_PIN, 255);
       stepper.moveTo(newPos);
       positionSaved = false;
     }
@@ -114,6 +111,7 @@ void saveCurrentPos(long newPos) {
 void saveStepperSpeed(word stepperSpeed) {
   writeWord(STEPPER_SPEED_ADD, stepperSpeed);
   stepper.setMaxSpeed(readWord(STEPPER_SPEED_ADD));
+  stepper.setMaxSpeed(1);
   Serial.print("S");
 }
 
@@ -123,41 +121,3 @@ void saveDutyCycle(byte dutyCycle) {
   Serial.print("D");
 }
 
-
-void extendedCommand(String serial) {
-  String command = serial.substring(0,3);
-  String param = serial.substring(4); 
-  
-  if(command == "VSE") {
-    int pinNr = getPinFromParam(param);
-    int value = (getValueFromParam(param) == 1) ? HIGH : LOW;
-    pinMode(pinNr, OUTPUT);
-    digitalWrite(pinNr, value);   
-    Serial.print("VSE"); 
-  }
-  
-  if(command == "VRE") {
-    int pinNr = getPinFromParam(param);
-    pinMode(pinNr, INPUT);
-    int value = digitalRead(pinNr);
-    char result = (value == HIGH) ? '1' : '0';
-    Serial.print("VRE:" + result);
-  }
-  
-  if(command == "VRA") {  //analog read
-    int pinNr = getPinFromParam(param);
-    if((pinNr == A5) || (pinNr == A6)) {
-      pinMode(pinNr, INPUT);
-      int value = analogRead(pinNr);
-      Serial.print("VRA:" + value);
-    }
-  }
-}
-
-int getPinFromParam(String param) {
-  return stringToNumber(param.substring(0,2));
-}
-
-int getValueFromParam(String param) {
-  return stringToNumber(param.substring(3));
-}

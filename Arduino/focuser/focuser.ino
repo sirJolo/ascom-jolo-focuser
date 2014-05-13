@@ -1,19 +1,18 @@
 // ASCOM focuser arduino sketch
-// ascom-jolo-focuser Google code project
+// ascom-jolo-focuser github project
 // 
 // Author: jolo drjolo@gmail.com
 // ver. 1.3 08-11-2013
 // ver. 1.4 11-11-2013
 // ver. 1.5 - production
-// removed encoder
-// add signal led
+// ver. 2.0 - production 2014.05
 // 
 // 
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <EEPROM.h>
 #include <AccelStepper.h>
-#include <PWM.h>
+#include <SoftPWM.h>
 #include <Bounce.h>
 
 #define DEVICE_RESPONSE "Jolo primary focuser"
@@ -24,13 +23,13 @@
 #define DUTY_CYCLE_ADDR 2  
 
 // Encoder config
-#define ENCODER_A_PIN 3
-#define ENCODER_B_PIN 4
+#define ENCODER_A_PIN 7
+#define ENCODER_B_PIN 8
 Bounce aButton = Bounce( ENCODER_A_PIN, 30 ); 
 Bounce bButton = Bounce( ENCODER_B_PIN, 30 ); 
 
 // Buzzer config
-#define BUZZER_PIN 5
+#define BUZZER_PIN 4
 #define BUZZ_LONG 800
 #define BUZZ_SHORT 200
 #define BUZZER_ON false
@@ -47,8 +46,8 @@ DeviceAddress insideThermometer;
 #define STEPPER_ACC 2500
 #define MANUAL_STEPPER_ACC 600
 #define STEPPER_PWM_FREQ 1000
-#define STEPPER_PWM_PIN A0
-AccelStepper stepper = AccelStepper(AccelStepper::HALF4WIRE, A4, A3, A1, A2);
+#define STEPPER_PWM_PIN 11
+AccelStepper stepper = AccelStepper(AccelStepper::HALF4WIRE, A5, A4, A3, A2);
 
 // Global vars
 boolean positionSaved;               // Flag indicates if stepper position was saved as new focuser position
@@ -63,10 +62,7 @@ int buzz_time = 0;                   // Next buzz period
 unsigned long buzz_stop = 0;         // Time for buzzer to next stop 
 unsigned long buzz_start = 0;        // Time for buzzer to next start
 
-int manualStep = 16;                 // Manual focuser position change in steps 
 long maxFocuserPos = 1000000;        // Maximum focuser position
-
-int encoderMode = 0;                 // Focus mode
 
 
 void loop() 
@@ -78,7 +74,7 @@ void loop()
     saveFocuserPos(stepper.currentPosition());
     positionSaved = true;
     buzz(BUZZ_SHORT, 1);
-    pwmWrite(STEPPER_PWM_PIN, (255 * EEPROM.read(DUTY_CYCLE_ADDR)/100));
+    SoftPWMSet(STEPPER_PWM_PIN, (255 * EEPROM.read(DUTY_CYCLE_ADDR)/100));
     tempRequestMilis = millis() + 500;
   }
 
@@ -91,7 +87,6 @@ void loop()
 
   // Manual control
   doButtonsCheck();
-
 }
 
 
