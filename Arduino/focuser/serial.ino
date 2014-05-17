@@ -88,7 +88,7 @@ void moveStepper(long newPos, boolean manualMove) {
     else
     {
       tempRequestMilis = tempReadMilis = 0;
-      SoftPWMSet(STEPPER_PWM_PIN, 255);
+      pwmWrite(STEPPER_PWM_PIN, 255);
       stepper.moveTo(newPos);
       positionSaved = false;
     }

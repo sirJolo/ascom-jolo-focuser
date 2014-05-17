@@ -69,16 +69,4 @@ int getReadFocuserPosAddress() {
   }
 }
 
-void requestTemp() {
-  if(sensorConnected) {
-    sensors.requestTemperaturesByAddress(insideThermometer); // Send the command to get temperature. For 10 bit res it takes 188ms
-    tempReadMilis = millis() + 188;
-    tempRequestMilis = 0;
-  }
-}
 
-void readTemp() {
-  currentTemp = sensors.getTempC(insideThermometer);
-  tempRequestMilis = millis() + TEMP_CYCLE;
-  tempReadMilis = 0;
-}

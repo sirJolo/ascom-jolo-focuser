@@ -1,3 +1,9 @@
+ver 2.0 production
+==================
+ - EXT connector extended 
+ - PCB redesigned a little and fixed
+ - encoder support removed from Arduino sketch
+
 ver 1.4
 ==================
 Changelog:

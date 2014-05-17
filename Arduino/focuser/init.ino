@@ -1,8 +1,11 @@
 // Initialization routine
 void setup() 
 {
-  SoftPWMBegin();
-  SoftPWMSet(STEPPER_PWM_PIN, 0);
+  InitTimersSafe();
+
+  // LCD init
+  // lcd.begin(16,2); 
+  // lcdWelcome();
 
   // Initialize encoder 
   pinMode(ENCODER_A_PIN, INPUT); 
@@ -20,12 +23,6 @@ void setup()
   digitalWrite(A0, LOW);
   
   // EXT init
-  pinMode(3, INPUT);
-  pinMode(5, INPUT);
-  pinMode(6, INPUT);
-  pinMode(9, INPUT);
-  pinMode(10, INPUT);
-  pinMode(12, INPUT);
   pinMode(A1, INPUT);
   
   // Initialize serial
@@ -47,7 +44,9 @@ void setup()
   stepper.setAcceleration(STEPPER_ACC);
   stepper.setCurrentPosition(readFocuserPos());
   positionSaved = true;
-  SoftPWMSet(STEPPER_PWM_PIN, (255 * EEPROM.read(DUTY_CYCLE_ADDR)/100));
+  
+  SetPinFrequencySafe(STEPPER_PWM_PIN, STEPPER_PWM_FREQ);
+  pwmWrite(STEPPER_PWM_PIN, (255 * EEPROM.read(DUTY_CYCLE_ADDR)/100));
 
   inputString = "";
 }
