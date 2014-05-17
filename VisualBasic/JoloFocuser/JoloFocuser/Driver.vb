@@ -26,6 +26,7 @@
 ' 08-Nov-2013   Jol 0.1.3   Max focuser position limit to 1,000,000
 ' 11-Nov-2013   Jol 0.1.4   Driver backslash compensation removed
 ' 28-Nov-2013   Jol 0.1.5   Production candidate
+' 15-May-2014   Jol 0.2.0   Production candidate
 ' ---------------------------------------------------------------------------------
 '
 '
@@ -52,7 +53,7 @@ Public Class Focuser
     ' Driver ID and descriptive string that shows in the Chooser
     '
     Private Const DELTA_T As Double = 0.5
-    Private Const DRIVER_VERSION As String = "1.5"
+    Private Const DRIVER_VERSION As String = "2.0"
     Private Const DEVICE_RESPONSE As String = "Jolo primary focuser"
 
     Private Shared driverID As String = "ASCOM.JoloFocuser.Focuser"
@@ -171,7 +172,12 @@ Public Class Focuser
             ComPort.Write(commandToSend)
             answer = ComPort.ReadTo(Constants.vbLf)
         Catch ex As System.TimeoutException
-            Throw New ASCOM.DriverException("Serial port timeout for command " + Command)
+            Try
+                ComPort.Write(commandToSend)
+                answer = ComPort.ReadTo(Constants.vbLf)
+            Catch internalEx As System.TimeoutException
+                Throw New ASCOM.DriverException("Serial port timeout for command " + Command)
+            End Try
         Catch ex As System.InvalidOperationException
             Throw New ASCOM.DriverException("Serial port is not opened")
         End Try
@@ -186,7 +192,6 @@ Public Class Focuser
             If (value = IsConnected) Then
                 Return
             End If
-
             If (value) Then
                 Connect()
             Else
@@ -240,34 +245,15 @@ Public Class Focuser
         ComPort.BaudRate = 9600
         ComPort.ReadTimeout = 2000
 
-        Dim retry As Integer = 1
-
-        While retry < 3
-            Try
-                ComPort.Open()
-                If ComPort.IsOpen Then
-                    Exit While
-                End If
-            Catch ex As System.IO.IOException
-                If retry = 1 Then
-                    retry += 1
-                Else
-                    Throw New ASCOM.NotConnectedException("Invalid port state")
-                End If
-            Catch ex As System.InvalidOperationException
-                If retry = 1 Then
-                    retry += 1
-                Else
-                    Throw New ASCOM.NotConnectedException("Port already opened")
-                End If
-            Catch ex As System.UnauthorizedAccessException
-                If retry = 1 Then
-                    retry += 1
-                Else
-                    Throw New ASCOM.NotConnectedException("Access denied to serial port")
-                End If
-            End Try
-        End While
+        Try
+            ComPort.Open()
+        Catch ex As System.IO.IOException
+            Throw New ASCOM.NotConnectedException("Invalid port state")
+        Catch ex As System.InvalidOperationException
+            Throw New ASCOM.NotConnectedException("Port already opened")
+        Catch ex As System.UnauthorizedAccessException
+            Throw New ASCOM.NotConnectedException("Access denied to serial port")
+        End Try
 
         Dim answer As String = CommandString("#")
         If (answer <> DEVICE_RESPONSE) Then
