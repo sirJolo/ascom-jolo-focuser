@@ -4,8 +4,10 @@ void setup()
   InitTimersSafe();
 
   // LCD init
-  // lcd.begin(16,2); 
-  // lcdWelcome();
+  lcd.begin(16,2); 
+  lcdWelcome();
+  timer.after(2000,lcdStart);
+  
 
   // Initialize encoder 
   pinMode(ENCODER_A_PIN, INPUT); 
@@ -31,15 +33,26 @@ void setup()
 
   // Initialize temperature sensor
   sensors.begin(); 
-  sensorConnected = sensors.getAddress(insideThermometer, 0);
+  boolean sensorConnected = sensors.getAddress(insideThermometer, 0);
   if(sensorConnected) {
     sensors.setResolution(insideThermometer, 10);
     sensors.setWaitForConversion(false);
-    tempReadMilis = 0;
-    tempRequestMilis = millis();
+    sensorType=1;
+  } else {
+    int chk = DHT.read11(TEMP_SENSOR_PIN);
+    if(chk == DHTLIB_OK) {
+      sensorType = 2;
+    } else {
+      chk = DHT.read22(TEMP_SENSOR_PIN);
+      if(chk == DHTLIB_OK) {
+        sensorType = 3;
+      }
+    }
   }
+  if(sensorType > 0) tempCycleEvent = timer.after(2000, requestTemp);
 
   // Initialize stepper motor
+  stepper = AccelStepper(AccelStepper::HALF4WIRE, A5, A4, A3, A2);  
   stepper.setMaxSpeed(readWord(STEPPER_SPEED_ADD));
   stepper.setAcceleration(STEPPER_ACC);
   stepper.setCurrentPosition(readFocuserPos());

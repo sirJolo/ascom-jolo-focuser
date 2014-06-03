@@ -6,13 +6,36 @@ long readFocuserPos() {
   return readLong(getReadFocuserPosAddress() + 1);
 }
 
+void writeByte(word address, byte value) {
+  if(readByte(address) != value) EEPROM.write(address, value);
+}
+
+word readByte(word address) {
+  return EEPROM.read(address);   
+}
+
 void writeWord(word address, word value) {
-  EEPROM.write(address, lowByte(value)); 
-  EEPROM.write(address + 1, highByte(value)); 
+  if(readWord(address) != value) {
+    EEPROM.write(address, lowByte(value)); 
+    EEPROM.write(address + 1, highByte(value)); 
+  }
 }
 
 word readWord(word address) {
   return word(EEPROM.read(address + 1), EEPROM.read(address));   
+}
+
+void loadTemplates() {
+  EepromUtil::eeprom_read_string(LCD_1_ADDR, lcd_1, 16);  
+  EepromUtil::eeprom_read_string(LCD_2_ADDR, lcd_2, 16);  
+}
+
+void saveTemplates() {
+  char tmp[16];
+  EepromUtil::eeprom_read_string(LCD_1_ADDR, tmp, 16); 
+  if(String(tmp) != String(lcd_1)) EepromUtil::eeprom_write_string(LCD_1_ADDR, tmp); 
+  EepromUtil::eeprom_read_string(LCD_2_ADDR, tmp, 16); 
+  if(String(tmp) != String(lcd_2)) EepromUtil::eeprom_write_string(LCD_2_ADDR, tmp); 
 }
 
 long readLong(word address) {
@@ -46,6 +69,19 @@ long stringToLong(String thisString) {
   }
   return value;
 }
+
+String formatFloat(float value, byte length, byte precision) {
+  char tmp [length+1];
+  dtostrf(value, length, precision, tmp);  
+  return String(tmp);
+}
+
+String formatLong(long value, byte length) {
+  char tmp [length+1];
+  dtostrf(value, length, 0, tmp);  
+  return String(tmp);
+}
+
 
 // Simple EEPROM wear leveling
 int getSaveFocuserPosAddress() {

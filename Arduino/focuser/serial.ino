@@ -23,6 +23,12 @@ void serialCommand(String command) {
   case 'T':    // Read temperature
     printTemp();
     break;
+  case 'U':    // Read dewpoint
+    printDewpoint();
+    break;
+  case 'V':    // Read humidity
+    printHum();
+    break;
   case 'P':    // Return current position
     printCurrentPosition();
     break;
@@ -48,6 +54,16 @@ void serialCommand(String command) {
     maxFocuserPos = stringToLong(param);
     Serial.print("X");
     break;
+  case 'A':
+    param.toCharArray(lcd_1, 16);
+    saveTemplates();
+    Serial.print("A");
+    break;
+  case 'B':
+    param.toCharArray(lcd_2, 16);
+    saveTemplates();
+    Serial.print("B");
+    break;
   default:
     Serial.print("ERR:");      
     Serial.print(byte(command.charAt(1)), DEC); 
@@ -58,12 +74,32 @@ void serialCommand(String command) {
 
 // Serial commands subroutines
 void printTemp() {
-  if(sensorConnected) {
+  if(sensorType > 0) {
     Serial.print("T:");
     Serial.print(currentTemp, 1);  
   } 
   else {
     Serial.print("T:false"); 
+  }  
+}
+
+void printDewpoint() {
+  if(sensorType > 0) {
+    Serial.print("U:");
+    Serial.print(currentDewpoint, 1);  
+  } 
+  else {
+    Serial.print("U:false"); 
+  }  
+}
+
+void printHum() {
+  if(sensorType > 0) {
+    Serial.print("V:");
+    Serial.print(currentHum, 0);  
+  } 
+  else {
+    Serial.print("V:false"); 
   }  
 }
 
@@ -87,7 +123,7 @@ void moveStepper(long newPos, boolean manualMove) {
     }
     else
     {
-      tempRequestMilis = tempReadMilis = 0;
+      timer.stop(tempCycleEvent);
       pwmWrite(STEPPER_PWM_PIN, 255);
       stepper.moveTo(newPos);
       positionSaved = false;
@@ -111,7 +147,6 @@ void saveCurrentPos(long newPos) {
 void saveStepperSpeed(word stepperSpeed) {
   writeWord(STEPPER_SPEED_ADD, stepperSpeed);
   stepper.setMaxSpeed(readWord(STEPPER_SPEED_ADD));
-  stepper.setMaxSpeed(1);
   Serial.print("S");
 }
 

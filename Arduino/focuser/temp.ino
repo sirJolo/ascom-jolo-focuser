@@ -1,29 +1,30 @@
 void requestTemp() {
-  if(sensorConnected) {
+  if(sensorType == 1) {
     sensors.requestTemperaturesByAddress(insideThermometer); // Send the command to get temperature. For 10 bit res it takes 188ms
-    tempReadMilis = millis() + 188;
-    tempRequestMilis = 0;
   }
+  tempCycleEvent = timer.after(188, readTemp);
 }
 
 void readTemp() {
-  currentTemp = sensors.getTempC(insideThermometer);
-  tempRequestMilis = millis() + TEMP_CYCLE;
-  tempReadMilis = 0;
-}
-
-/*void readTempDHT() {
-  int chk = DHT.read22(TEMP_SENSOR_PIN);
-  switch(chk)
-  {
-     case DHTLIB_OK:
+  if(sensorType == 1) {
+    currentTemp = sensors.getTempC(insideThermometer);
+    currentHum = 0;
+  } else  {
+    int chk = -100;
+    if(sensorType == 2) {
+      chk = DHT.read11(TEMP_SENSOR_PIN);
+    } else if(sensorType == 3) {
+      chk = DHT.read22(TEMP_SENSOR_PIN);
+    }
+    if(chk == DHTLIB_OK) {
        currentTemp = DHT.temperature;
-       break;
-     default:
-       break;          
-  }
-}*/
-
+       currentHum = DHT.humidity;           
+       currentDewpoint = dewPoint(currentTemp, currentHum);
+    }
+  }  
+   
+  tempCycleEvent = timer.after(TEMP_CYCLE, requestTemp);
+}
 
 // dewPoint function NOAA
 // reference (1) : http://wahiduddin.net/calc/density_algorithms.htm
