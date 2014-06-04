@@ -4,9 +4,9 @@ void setup()
   InitTimersSafe();
 
   // LCD init
-  lcd.begin(16,2); 
-  lcdWelcome();
-  timer.after(2000,lcdStart);
+  //lcd.begin(16,2); 
+  //lcdWelcome();
+  //timer.after(2000,lcdStart);
   
 
   // Initialize encoder 
@@ -25,7 +25,14 @@ void setup()
   digitalWrite(A0, LOW);
   
   // EXT init
+  pinMode(3, INPUT);
+  pinMode(5, INPUT);
+  pinMode(6, INPUT);
+  pinMode(9, INPUT);
+  pinMode(10, INPUT);
+  pinMode(12, INPUT);
   pinMode(A1, INPUT);
+
   
   // Initialize serial
   Serial.begin(9600);
@@ -62,5 +69,6 @@ void setup()
   pwmWrite(STEPPER_PWM_PIN, (255 * EEPROM.read(DUTY_CYCLE_ADDR)/100));
 
   inputString = "";
+  buzz(50, 2);
 }
 

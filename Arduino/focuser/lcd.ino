@@ -1,4 +1,4 @@
-void lcdWelcome() {
+/*void lcdWelcome() {
   lcd.setCursor(0,0);
   lcd.print("# Jolo Focuser #");
   lcd.setCursor(0,1);
@@ -30,4 +30,4 @@ String lcdReplace(String original) {
     original.replace("ddddd", formatFloat(dewPoint(currentTemp, currentHum), 5, 1)); 
   }
   return original;
-}
+}*/

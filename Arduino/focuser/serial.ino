@@ -18,7 +18,7 @@ void serialCommand(String command) {
   switch(command.charAt(0)) {
   case '#':
     Serial.print(DEVICE_RESPONSE);
-    buzz(BUZZ_LONG, 1);
+    buzz(500, 1);
     break;
   case 'T':    // Read temperature
     printTemp();
@@ -54,7 +54,7 @@ void serialCommand(String command) {
     maxFocuserPos = stringToLong(param);
     Serial.print("X");
     break;
-  case 'A':
+  /*case 'A':
     param.toCharArray(lcd_1, 16);
     saveTemplates();
     Serial.print("A");
@@ -63,11 +63,11 @@ void serialCommand(String command) {
     param.toCharArray(lcd_2, 16);
     saveTemplates();
     Serial.print("B");
-    break;
+    break;*/
   default:
     Serial.print("ERR:");      
     Serial.print(byte(command.charAt(1)), DEC); 
-    buzz(BUZZ_SHORT, 3);
+    buzz(100, 3);
   }
   Serial.print('\n');
 }
@@ -119,7 +119,7 @@ void printInMoveStatus() {
 void moveStepper(long newPos, boolean manualMove) {
   if(newPos != stepper.currentPosition()) {
     if(newPos < 0 || newPos > maxFocuserPos) {
-      buzz(BUZZ_SHORT, 2);
+      buzz(100, 2);
     }
     else
     {

@@ -27,8 +27,8 @@
 #define FOCUSER_POS_START 900
 #define STEPPER_SPEED_ADD 3      
 #define DUTY_CYCLE_ADDR 2  
-#define LCD_1_ADDR 100
-#define LCD_2_ADDR 120
+//#define LCD_1_ADDR 100
+//#define LCD_2_ADDR 120
 
 // Encoder config
 #define ENCODER_A_PIN 7
@@ -38,8 +38,6 @@ Bounce bButton = Bounce( ENCODER_B_PIN, 30 );
 
 // Buzzer config
 #define BUZZER_PIN 4
-#define BUZZ_LONG 800
-#define BUZZ_SHORT 200
 #define BUZZER_ON true      // config
 #define BUZ_LED_PIN 13
 
@@ -58,14 +56,14 @@ dht DHT;
 #define STEPPER_PWM_PIN 11
 
 // LCD config (to EXT slot)
-LiquidCrystal lcd(3, 5, 6, 9, 10, 12);
+//LiquidCrystal lcd(3, 5, 6, 9, 10, 12);
 Timer timer;
 
 
 // Global vars
 AccelStepper stepper;
-char lcd_1 [16];                     // LCD lines template
-char lcd_2 [16];
+//char lcd_1 [16];                     // LCD lines template
+//char lcd_2 [16];
 boolean positionSaved;               // Flag indicates if stepper position was saved as new focuser position
 byte sensorType = 0;                 // 0-none, 1-DS8120, 2-DHT11, 3-DHT22
 float currentTemp;                   // Current cached temperature  
@@ -87,7 +85,7 @@ void loop()
   if(stepper.distanceToGo() == 0 && !positionSaved) {
     saveFocuserPos(stepper.currentPosition());
     positionSaved = true;
-    buzz(BUZZ_SHORT, 1);
+    buzz(100, 1);
     pwmWrite(STEPPER_PWM_PIN, (255 * EEPROM.read(DUTY_CYCLE_ADDR)/100));
     tempCycleEvent = timer.after(TEMP_CYCLE, requestTemp);
   }
