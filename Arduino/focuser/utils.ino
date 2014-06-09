@@ -25,18 +25,6 @@ word readWord(word address) {
   return word(EEPROM.read(address + 1), EEPROM.read(address));   
 }
 
-/*void loadTemplates() {
-  EepromUtil::eeprom_read_string(LCD_1_ADDR, lcd_1, 16);  
-  EepromUtil::eeprom_read_string(LCD_2_ADDR, lcd_2, 16);  
-}
-
-void saveTemplates() {
-  char tmp[16];
-  EepromUtil::eeprom_read_string(LCD_1_ADDR, tmp, 16); 
-  if(String(tmp) != String(lcd_1)) EepromUtil::eeprom_write_string(LCD_1_ADDR, tmp); 
-  EepromUtil::eeprom_read_string(LCD_2_ADDR, tmp, 16); 
-  if(String(tmp) != String(lcd_2)) EepromUtil::eeprom_write_string(LCD_2_ADDR, tmp); 
-}*/
 
 long readLong(word address) {
   word lowWord = readWord(address);

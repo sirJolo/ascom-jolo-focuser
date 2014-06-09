@@ -1,3 +1,15 @@
+void initializeSensors() {
+  sensors.begin(); 
+  boolean sensorConnected = sensors.getAddress(insideThermometer, 0);
+  if(sensorConnected) {
+    sensors.setResolution(insideThermometer, 10);
+    sensors.setWaitForConversion(false);
+    sensorType=1;
+  }
+  if(sensorType > 0) tempCycleEvent = timer.after(2000, requestTemp);
+}
+
+
 void requestTemp() {
   if(sensorType == 1) {
     sensors.requestTemperaturesByAddress(insideThermometer); // Send the command to get temperature. For 10 bit res it takes 188ms
@@ -9,20 +21,7 @@ void readTemp() {
   if(sensorType == 1) {
     currentTemp = sensors.getTempC(insideThermometer);
     currentHum = 0;
-  } else  {
-    int chk = -100;
-    if(sensorType == 2) {
-      chk = DHT.read11(TEMP_SENSOR_PIN);
-    } else if(sensorType == 3) {
-      chk = DHT.read22(TEMP_SENSOR_PIN);
-    }
-    if(chk == DHTLIB_OK) {
-       currentTemp = DHT.temperature;
-       currentHum = DHT.humidity;           
-       currentDewpoint = dewPoint(currentTemp, currentHum);
-    }
-  }  
-   
+  }   
   tempCycleEvent = timer.after(TEMP_CYCLE, requestTemp);
 }
 

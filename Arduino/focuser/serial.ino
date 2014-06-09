@@ -1,3 +1,11 @@
+void initializeSerial() {
+  // Initialize serial
+  Serial.begin(9600);
+  Serial.setTimeout(2000);
+
+  inputString = "";
+}  
+
 // Interrupt serial event
 void serialEvent() {
   while (Serial.available() > 0) {
@@ -39,7 +47,8 @@ void serialCommand(String command) {
     printInMoveStatus();
     break;
   case 'M':    // Move focuser to new position
-    moveStepper(stringToLong(param), false); 
+    moveStepper(stringToLong(param)); 
+    Serial.print("M");
     break;
   case 'S':
     saveStepperSpeed(stringToNumber(param));
@@ -54,16 +63,6 @@ void serialCommand(String command) {
     maxFocuserPos = stringToLong(param);
     Serial.print("X");
     break;
-  /*case 'A':
-    param.toCharArray(lcd_1, 16);
-    saveTemplates();
-    Serial.print("A");
-    break;
-  case 'B':
-    param.toCharArray(lcd_2, 16);
-    saveTemplates();
-    Serial.print("B");
-    break;*/
   default:
     Serial.print("ERR:");      
     Serial.print(byte(command.charAt(1)), DEC); 
@@ -116,21 +115,6 @@ void printInMoveStatus() {
     Serial.print("true");
 }
 
-void moveStepper(long newPos, boolean manualMove) {
-  if(newPos != stepper.currentPosition()) {
-    if(newPos < 0 || newPos > maxFocuserPos) {
-      buzz(100, 2);
-    }
-    else
-    {
-      timer.stop(tempCycleEvent);
-      pwmWrite(STEPPER_PWM_PIN, 255);
-      stepper.moveTo(newPos);
-      positionSaved = false;
-    }
-  }
-  if(!manualMove) Serial.print("M");
-}
 
 void halt() {
   stepper.stop();
