@@ -47,6 +47,8 @@ DeviceAddress insideThermometer;
 #define STEPPER_ACC 2500          // config up/down
 #define MANUAL_STEPPER_ACC 600    // config up/down
 #define STEPPER_PWM_PIN 11
+#define MSI2_PIN A5
+#define MSI1_PIN A4
 
 Timer timer;
 
