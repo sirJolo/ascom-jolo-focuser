@@ -26,6 +26,10 @@
 ' 08-Nov-2013   Jol 0.1.3   Max focuser position limit to 1,000,000
 ' 11-Nov-2013   Jol 0.1.4   Driver backslash compensation removed
 ' 28-Nov-2013   Jol 0.1.5   Production candidate
+<<<<<<< HEAD
+=======
+' 15-May-2014   Jol 0.2.0   Production candidate
+>>>>>>> Production_20_RC1
 ' ---------------------------------------------------------------------------------
 '
 '
@@ -52,7 +56,11 @@ Public Class Focuser
     ' Driver ID and descriptive string that shows in the Chooser
     '
     Private Const DELTA_T As Double = 0.5
+<<<<<<< HEAD
     Private Const DRIVER_VERSION As String = "1.5"
+=======
+    Private Const DRIVER_VERSION As String = "2.0"
+>>>>>>> Production_20_RC1
     Private Const DEVICE_RESPONSE As String = "Jolo primary focuser"
 
     Private Shared driverID As String = "ASCOM.JoloFocuser.Focuser"
@@ -171,7 +179,12 @@ Public Class Focuser
             ComPort.Write(commandToSend)
             answer = ComPort.ReadTo(Constants.vbLf)
         Catch ex As System.TimeoutException
-            Throw New ASCOM.DriverException("Serial port timeout for command " + Command)
+            Try
+                ComPort.Write(commandToSend)
+                answer = ComPort.ReadTo(Constants.vbLf)
+            Catch internalEx As System.TimeoutException
+                Throw New ASCOM.DriverException("Serial port timeout for command " + Command)
+            End Try
         Catch ex As System.InvalidOperationException
             Throw New ASCOM.DriverException("Serial port is not opened")
         End Try
@@ -186,7 +199,6 @@ Public Class Focuser
             If (value = IsConnected) Then
                 Return
             End If
-
             If (value) Then
                 Connect()
             Else
@@ -282,8 +294,13 @@ Public Class Focuser
             sensorConnected = False
         End Try
     End Sub
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> Production_20_RC1
     Private Sub writeInitParameters()
         Dim answer As String
         answer = CommandString("S:" + My.Settings.StepperRPM.ToString)

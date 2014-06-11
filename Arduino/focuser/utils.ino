@@ -6,15 +6,28 @@ long readFocuserPos() {
   return readLong(getReadFocuserPosAddress() + 1);
 }
 
+<<<<<<< HEAD
+=======
+void writeByte(word address, byte value) {
+  if(readByte(address) != value) EEPROM.write(address, value);
+}
+
+word readByte(word address) {
+  return EEPROM.read(address);   
+}
+>>>>>>> Production_20_RC1
 
 void writeWord(word address, word value) {
-  EEPROM.write(address, lowByte(value)); 
-  EEPROM.write(address + 1, highByte(value)); 
+  if(readWord(address) != value) {
+    EEPROM.write(address, lowByte(value)); 
+    EEPROM.write(address + 1, highByte(value)); 
+  }
 }
 
 word readWord(word address) {
   return word(EEPROM.read(address + 1), EEPROM.read(address));   
 }
+
 
 long readLong(word address) {
   word lowWord = readWord(address);
@@ -49,6 +62,21 @@ long stringToLong(String thisString) {
   return value;
 }
 
+<<<<<<< HEAD
+=======
+String formatFloat(float value, byte length, byte precision) {
+  char tmp [length+1];
+  dtostrf(value, length, precision, tmp);  
+  return String(tmp);
+}
+
+String formatLong(long value, byte length) {
+  char tmp [length+1];
+  dtostrf(value, length, 0, tmp);  
+  return String(tmp);
+}
+
+>>>>>>> Production_20_RC1
 
 // Simple EEPROM wear leveling
 int getSaveFocuserPosAddress() {
@@ -72,6 +100,7 @@ int getReadFocuserPosAddress() {
   }
 }
 
+<<<<<<< HEAD
 // Temperature read
 void requestTemp() {
   if(sensorConnected) {
@@ -80,9 +109,6 @@ void requestTemp() {
     tempRequestMilis = 0;
   }
 }
+=======
+>>>>>>> Production_20_RC1
 
-void readTemp() {
-  currentTemp = sensors.getTempC(insideThermometer);
-  tempRequestMilis = millis() + TEMP_CYCLE;
-  tempReadMilis = 0;
-}

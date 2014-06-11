@@ -1,3 +1,11 @@
+void initializeSerial() {
+  // Initialize serial
+  Serial.begin(9600);
+  Serial.setTimeout(2000);
+
+  inputString = "";
+}  
+
 // Interrupt serial event
 void serialEvent() {
   while (Serial.available() > 0) {
@@ -18,10 +26,20 @@ void serialCommand(String command) {
   switch(command.charAt(0)) {
   case '#':
     Serial.print(DEVICE_RESPONSE);
+<<<<<<< HEAD
     buzz(BUZZ_SHORT, 2);
+=======
+    buzz(500, 1);
+>>>>>>> Production_20_RC1
     break;
   case 'T':    // Read temperature
     printTemp();
+    break;
+  case 'U':    // Read dewpoint
+    printDewpoint();
+    break;
+  case 'V':    // Read humidity
+    printHum();
     break;
   case 'P':    // Return current position
     printCurrentPosition();
@@ -33,7 +51,8 @@ void serialCommand(String command) {
     printInMoveStatus();
     break;
   case 'M':    // Move focuser to new position
-    moveStepper(stringToLong(param), false); 
+    moveStepper(stringToLong(param)); 
+    Serial.print("M");
     break;
   case 'S':
     saveStepperSpeed(stringToNumber(param));
@@ -51,19 +70,39 @@ void serialCommand(String command) {
   default:
     Serial.print("ERR:");      
     Serial.print(byte(command.charAt(1)), DEC); 
-    buzz(BUZZ_SHORT, 3);
+    buzz(100, 3);
   }
   Serial.print('\n');
 }
 
 // Serial commands subroutines
 void printTemp() {
-  if(sensorConnected) {
+  if(sensorType > 0) {
     Serial.print("T:");
     Serial.print(currentTemp, 1);  
   } 
   else {
     Serial.print("T:false"); 
+  }  
+}
+
+void printDewpoint() {
+  if(sensorType > 0) {
+    Serial.print("U:");
+    Serial.print(currentDewpoint, 1);  
+  } 
+  else {
+    Serial.print("U:false"); 
+  }  
+}
+
+void printHum() {
+  if(sensorType > 0) {
+    Serial.print("V:");
+    Serial.print(currentHum, 0);  
+  } 
+  else {
+    Serial.print("V:false"); 
   }  
 }
 
@@ -80,6 +119,7 @@ void printInMoveStatus() {
     Serial.print("true");
 }
 
+<<<<<<< HEAD
 void moveStepper(long newPos, boolean manualMove) {
   if(newPos != stepper.currentPosition()) {
     if(newPos < 0 || newPos > maxFocuserPos) {
@@ -95,6 +135,8 @@ void moveStepper(long newPos, boolean manualMove) {
   }
   if(!manualMove) Serial.print("M");
 }
+=======
+>>>>>>> Production_20_RC1
 
 void halt() {
   stepper.stop();
@@ -120,7 +162,4 @@ void saveDutyCycle(byte dutyCycle) {
   analogWrite(STEPPER_PWM_PIN, (255 * EEPROM.read(DUTY_CYCLE_ADDR)/100));
   Serial.print("D");
 }
-
-
-
 
