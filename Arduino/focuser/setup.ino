@@ -1,8 +1,9 @@
 // Initialization routine
 void setup() 
 {
-  initializeButtons();
   initializeBuzzer();
+  initializeProperties();
+  initializeButtons();
   initializeSensors();
   initializeStepper();
   initializeExt();

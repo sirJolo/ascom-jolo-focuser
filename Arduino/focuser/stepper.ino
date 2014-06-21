@@ -5,10 +5,11 @@ void initializeStepper() {
   stepper.setAcceleration(STEPPER_ACC);
   stepper.setCurrentPosition(readFocuserPos());
   positionSaved = true;
-  pinMode(MSI1_PIN, OUTPUT);
-  digitalWrite(MSI1_PIN, LOW);
-  pinMode(MSI2_PIN, OUTPUT);
-  digitalWrite(MSI2_PIN, HIGH);
+  analogWrite(STEPPER_PWM_PIN, (255 * EEPROM.read(PROP_DUTY_CYCLE_STOP)/100));
+  //pinMode(MSI1_PIN, OUTPUT);
+  //digitalWrite(MSI1_PIN, LOW);
+  //pinMode(MSI2_PIN, OUTPUT);
+  //digitalWrite(MSI2_PIN, HIGH);
 }
 
 
@@ -17,8 +18,7 @@ void checkStepper() {
     saveFocuserPos(stepper.currentPosition());
     positionSaved = true;
     buzz(20, 1);
-    analogWrite(STEPPER_PWM_PIN, (255 * EEPROM.read(DUTY_CYCLE_ADDR)/100));
-    //analogWrite(STEPPER_PWM_PIN, (255 - 255 * EEPROM.read(DUTY_CYCLE_ADDR)/100));
+    analogWrite(STEPPER_PWM_PIN, (255 * EEPROM.read(PROP_DUTY_CYCLE_STOP)/100));
     tempCycleEvent = timer.after(TEMP_CYCLE, requestTemp);
   }
 }
@@ -31,8 +31,7 @@ void moveStepper(long newPos) {
     else
     {
       timer.stop(tempCycleEvent);
-      analogWrite(STEPPER_PWM_PIN, 255);
-      //analogWrite(STEPPER_PWM_PIN, 0);
+      analogWrite(STEPPER_PWM_PIN, (255 * EEPROM.read(PROP_DUTY_CYCLE_RUN)/100));
       stepper.moveTo(newPos);
       positionSaved = false;
     }

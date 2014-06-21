@@ -14,7 +14,7 @@
     <Setting Name="TempCycle" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
-    <Setting Name="StepsPerC" Type="System.Double" Scope="User">
+    <Setting Name="StepsPerC" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="StepperRPM" Type="System.Decimal" Scope="User">
@@ -37,6 +37,25 @@
     </Setting>
     <Setting Name="FocuserOut" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ShowMonitor" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DutyCycleRun" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="AccManual" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="AccASCOM" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="LCDtemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Jolo Focuser 2.1
+pppppp  T:tttttC</Value>
+    </Setting>
+    <Setting Name="BuzzerON" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -53,13 +53,14 @@ Public Class Focuser
     ' Driver ID and descriptive string that shows in the Chooser
     '
     Private Const DELTA_T As Double = 0.5
-    Private Const DRIVER_VERSION As String = "2.0"
+    Private Const DRIVER_VERSION As String = "2.1"
     Private Const DEVICE_RESPONSE As String = "Jolo primary focuser"
 
     Private Shared driverID As String = "ASCOM.JoloFocuser.Focuser"
     Private Shared driverDescription As String = "Jolo ASCOM focuser"
 
     Private tempCompTimer As System.Timers.Timer
+
     Private compStartTemp As Double
     Private compStartPos As Integer = -1
     Private compLastTemp As Double
@@ -67,6 +68,8 @@ Public Class Focuser
     Private sensorConnected As Boolean = False
     Private tempCompensation As Boolean = False
     Private ComPort As System.IO.Ports.SerialPort
+
+    Private monitor As MonitorForm
 
     '
     ' Constructor - Must be public for COM registration!
@@ -79,6 +82,7 @@ Public Class Focuser
         ComPort = New System.IO.Ports.SerialPort
 
         AddHandler tempCompTimer.Elapsed, AddressOf OnTempCompensation
+        monitor = New MonitorForm
     End Sub
 
 #Region "ASCOM Registration"
@@ -161,27 +165,29 @@ Public Class Focuser
     End Function
 
     Public Function CommandString(ByVal Command As String, Optional ByVal Raw As Boolean = False) As String Implements IFocuserV2.CommandString
-        CheckConnected("CommandString")
-        Dim commandToSend As String = Command
-        If Not (Raw) Then
-            commandToSend = Command + Constants.vbLf
-        End If
+        SyncLock ComPort
+            CheckConnected("CommandString")
+            Dim commandToSend As String = Command
+            If Not (Raw) Then
+                commandToSend = Command + Constants.vbLf
+            End If
 
-        Dim answer As String
-        Try
-            ComPort.Write(commandToSend)
-            answer = ComPort.ReadTo(Constants.vbLf)
-        Catch ex As System.TimeoutException
+            Dim answer As String
             Try
                 ComPort.Write(commandToSend)
                 answer = ComPort.ReadTo(Constants.vbLf)
-            Catch internalEx As System.TimeoutException
-                Throw New ASCOM.DriverException("Serial port timeout for command " + Command)
+            Catch ex As System.TimeoutException
+                Try
+                    ComPort.Write(commandToSend)
+                    answer = ComPort.ReadTo(Constants.vbLf)
+                Catch internalEx As System.TimeoutException
+                    Throw New ASCOM.DriverException("Serial port timeout for command " + Command)
+                End Try
+            Catch ex As System.InvalidOperationException
+                Throw New ASCOM.DriverException("Serial port is not opened")
             End Try
-        Catch ex As System.InvalidOperationException
-            Throw New ASCOM.DriverException("Serial port is not opened")
-        End Try
-        Return answer.Trim(Constants.vbLf)
+            Return answer.Trim(Constants.vbLf)
+        End SyncLock
     End Function
 
     Public Property Connected() As Boolean Implements IFocuserV2.Connected
@@ -267,6 +273,12 @@ Public Class Focuser
         Catch ex As ASCOM.NotConnectedException When (ex.Message = "Temperature sensor disconnected")
             sensorConnected = False
         End Try
+
+        If My.Settings.ShowMonitor Then
+            monitor.focuser = Me
+            monitor.Show()
+            monitor.running = True
+        End If
     End Sub
 
 
@@ -290,6 +302,8 @@ Public Class Focuser
 
 
     Private Sub Disconnect()
+        monitor.Hide()
+        monitor.running = False
         tempCompTimer.Enabled = False
         Try
             ComPort.Close()
@@ -313,6 +327,8 @@ Public Class Focuser
     Private Sub OnTempCompensation(ByVal source As Object, ByVal e As System.Timers.ElapsedEventArgs)
         TemperatureCompensation()
     End Sub
+
+
 
     Private Sub TemperatureCompensation()
         If (Not IsMoving AndAlso My.Settings.StepsPerC <> 0) Then

@@ -25,7 +25,6 @@ word readWord(word address) {
   return word(EEPROM.read(address + 1), EEPROM.read(address));   
 }
 
-
 long readLong(word address) {
   word lowWord = readWord(address);
   word highWord = readWord(address + 2);

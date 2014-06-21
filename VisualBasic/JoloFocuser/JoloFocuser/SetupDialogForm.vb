@@ -59,9 +59,10 @@ Public Class SetupDialogForm
         For Each sp As String In My.Computer.Ports.SerialPortNames
             COM1.Items.Add(sp)
         Next
+        calculateCFZ()
     End Sub
 
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         If (MessageBox.Show("Are you sure to set current focuser position to " + NumericUpDown8.Value.ToString + "?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes) Then
             SerialPort1.BaudRate = 9600
             SerialPort1.ReadTimeout = 2000
@@ -94,4 +95,24 @@ Public Class SetupDialogForm
             End If
         End If
     End Sub
+
+    Private Sub NumericUpDown5_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NumericUpDown5.ValueChanged
+        calculateCFZ()
+    End Sub
+
+
+    Private Sub NumericUpDown5_KeyDown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NumericUpDown5.KeyUp
+        calculateCFZ()
+    End Sub
+
+    Private Sub calculateCFZ()
+        Dim cfz As Double
+        cfz = 4.88 * NumericUpDown5.Value * NumericUpDown5.Value * 0.475
+        BlueCFZ.Text = Math.Round(cfz).ToString + " microns"
+        cfz = 4.88 * NumericUpDown5.Value * NumericUpDown5.Value * 0.51
+        GreenCFZ.Text = Math.Round(cfz).ToString + " microns"
+        cfz = 4.88 * NumericUpDown5.Value * NumericUpDown5.Value * 0.65
+        RedCFZ.Text = Math.Round(cfz).ToString + " microns"
+    End Sub
+
 End Class

@@ -136,7 +136,7 @@ void saveStepperSpeed(word stepperSpeed) {
 
 void saveDutyCycle(byte dutyCycle) {
   if(dutyCycle > 100) dutyCycle = 100;
-  EEPROM.write(DUTY_CYCLE_ADDR, dutyCycle);
+  EEPROM.write(PROP_DUTY_CYCLE_STOP, dutyCycle);
   Serial.print("D");
 }
 
