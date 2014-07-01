@@ -5,7 +5,7 @@ Imports System.Runtime.InteropServices
 Public Class SetupDialogForm
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
         My.Settings.StepSize = StepSizeUpDown.Value
-        My.Settings.StepsPerC = CompensationUpDown.Value
+        My.Settings.StepsPerC = TempCompensation.Value
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.Close()
         My.Settings.Save()
@@ -54,7 +54,7 @@ Public Class SetupDialogForm
 
     Private Sub SetupDialogForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         StepSizeUpDown.Value = My.Settings.StepSize
-        CompensationUpDown.Value = My.Settings.StepsPerC
+        TempCompensation.Value = My.Settings.StepsPerC
         COM1.Items.Clear()
         For Each sp As String In My.Computer.Ports.SerialPortNames
             COM1.Items.Add(sp)
@@ -115,4 +115,20 @@ Public Class SetupDialogForm
         RedCFZ.Text = Math.Round(cfz).ToString + " microns"
     End Sub
 
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        If (MessageBox.Show("Restore default values at Advanced Settings tab?", "Restore values?", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes) Then
+            DutyCycleRun.Value = 100
+            DutyCycleStop.Value = 0
+            AccASCOM.Value = 100
+            AccManual.Value = 100
+            TempCompensation.Value = 0.0
+            TempCycleTime.Value = 20
+            BuzzerCheckBox.Checked = True
+            LCDTextBox.Text = "Jolo Focuser 2.1" & vbCrLf & "pppppp(T) : tttttC()"
+        End If
+    End Sub
+
+    Private Sub LCDTextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LCDTextBox.TextChanged
+        LCDLabel.Text = "LCD " + LCDTextBox.Text.Length
+    End Sub
 End Class

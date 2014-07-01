@@ -286,17 +286,45 @@ Public Class Focuser
         Dim answer As String
         answer = CommandString("S:" + My.Settings.StepperRPM.ToString)
         If (answer <> "S") Then
-            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device")
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - stepper PPS")
         End If
 
         answer = CommandString("D:" + My.Settings.DutyCycle.ToString)
         If (answer <> "D") Then
-            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device")
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - duty cycle stop")
+        End If
+
+        answer = CommandString("E:" + My.Settings.DutyCycleRun.ToString)
+        If (answer <> "E") Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - duty cycle run")
+        End If
+
+        answer = CommandString("F:" + My.Settings.AccASCOM.ToString)
+        If (answer <> "F") Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - acceleration ASCOM")
+        End If
+
+        answer = CommandString("G:" + My.Settings.AccManual.ToString)
+        If (answer <> "G") Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - acceleration manual")
+        End If
+
+        Dim stepsize As Integer = Math.Round(My.Settings.StepSize * 10)
+        answer = CommandString("Q:" + StepSize.ToString)
+        If (answer <> "Q") Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - step size")
+        End If
+
+        Dim buzzer As String = "0"
+        If My.Settings.BuzzerON Then buzzer = "1"
+        answer = CommandString("J:" + buzzer)
+        If (answer <> "J") Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - buzzer control")
         End If
 
         answer = CommandString("X:" + My.Settings.FocuserMax.ToString)
         If (answer <> "X") Then
-            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device")
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - focuser max pos")
         End If
     End Sub
 

@@ -93,6 +93,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Driver.vb" />
+    <Compile Include="ADCSetupForm.Designer.vb">
+      <DependentUpon>ADCSetupForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ADCSetupForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Monitor.Designer.vb">
       <DependentUpon>Monitor.vb</DependentUpon>
     </Compile>
@@ -123,6 +129,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ADCSetupForm.resx">
+      <DependentUpon>ADCSetupForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Monitor.resx">
       <DependentUpon>Monitor.vb</DependentUpon>
       <SubType>Designer</SubType>

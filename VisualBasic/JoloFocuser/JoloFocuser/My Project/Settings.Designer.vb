@@ -269,6 +269,126 @@ Namespace My
                 Me("BuzzerON") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property PWM_6() As String
+            Get
+                Return CType(Me("PWM_6"),String)
+            End Get
+            Set
+                Me("PWM_6") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property PWM_9() As String
+            Get
+                Return CType(Me("PWM_9"),String)
+            End Get
+            Set
+                Me("PWM_9") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property PWM_10() As String
+            Get
+                Return CType(Me("PWM_10"),String)
+            End Get
+            Set
+                Me("PWM_10") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property OPTO_On() As Boolean
+            Get
+                Return CType(Me("OPTO_On"),Boolean)
+            End Get
+            Set
+                Me("OPTO_On") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property ADC_Read() As Boolean
+            Get
+                Return CType(Me("ADC_Read"),Boolean)
+            End Get
+            Set
+                Me("ADC_Read") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1")>  _
+        Public Property ADC_A() As String
+            Get
+                Return CType(Me("ADC_A"),String)
+            End Get
+            Set
+                Me("ADC_A") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property ADC_B() As String
+            Get
+                Return CType(Me("ADC_B"),String)
+            End Get
+            Set
+                Me("ADC_B") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property ADC_suffix() As String
+            Get
+                Return CType(Me("ADC_suffix"),String)
+            End Get
+            Set
+                Me("ADC_suffix") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("100")>  _
+        Public Property AccManualDec() As Decimal
+            Get
+                Return CType(Me("AccManualDec"),Decimal)
+            End Get
+            Set
+                Me("AccManualDec") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("100")>  _
+        Public Property AccASCOMDec() As Decimal
+            Get
+                Return CType(Me("AccASCOMDec"),Decimal)
+            End Get
+            Set
+                Me("AccASCOMDec") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
