@@ -13,13 +13,6 @@ void initializeSensors() {
     }
   }
   if(sensorType > 0) tempCycleEvent = timer.after(2000, requestTemp);
-  if(DEBUG) {
-    Serial.print(millis());
-    Serial.print(" - status: ");
-    Serial.print(chk);
-    Serial.print(" - sensor type = ");
-    Serial.println(sensorType);
-  }
 }
 
 void requestTemp() {
@@ -47,17 +40,10 @@ void readTemp() {
   updatePWM();
   currentDewpoint = dewPoint(currentTemp, currentHum);
   tempCycleEvent = timer.after(TEMP_CYCLE, requestTemp);
-    if(DEBUG) {
-      Serial.print(millis());
-      Serial.print(" - sensor read. T: ");
-      Serial.print(currentTemp);
-      Serial.print(", H: ");
-      Serial.println(currentHum);
-    }  
 }
 
 void calculateHeaterPWM() {
-  heaterPWM = map(constrain(currentHum, 50, 100), 50, 100, 0, 255);
+  heaterPWM = map(constrain(currentHum, 50, 100), 50, 100, 0, 100);
 }
 
 // dewPoint function NOAA

@@ -45,14 +45,10 @@
       <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="AccManual" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">100</Value>
+      <Value Profile="(Default)">200</Value>
     </Setting>
     <Setting Name="AccASCOM" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">100</Value>
-    </Setting>
-    <Setting Name="LCDtemplate" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Jolo Focuser 2.1
-pppppp  T:tttttC</Value>
+      <Value Profile="(Default)">1500</Value>
     </Setting>
     <Setting Name="BuzzerON" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -81,11 +77,17 @@ pppppp  T:tttttC</Value>
     <Setting Name="ADC_suffix" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="AccManualDec" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">100</Value>
+    <Setting Name="LCD1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">5</Value>
     </Setting>
-    <Setting Name="AccASCOMDec" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">100</Value>
+    <Setting Name="LCD2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="LCD3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="LCD4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">3</Value>
     </Setting>
   </Settings>
 </SettingsFile>

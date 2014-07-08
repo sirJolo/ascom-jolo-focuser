@@ -124,11 +124,11 @@ Public Class SetupDialogForm
             TempCompensation.Value = 0.0
             TempCycleTime.Value = 20
             BuzzerCheckBox.Checked = True
-            LCDTextBox.Text = "Jolo Focuser 2.1" & vbCrLf & "pppppp(T) : tttttC()"
+            LCD1ComboBox.Text = "5"
+            LCD2ComboBox.Text = "5"
+            LCD3ComboBox.Text = "3"
+            LCD4ComboBox.Text = "3"
         End If
     End Sub
 
-    Private Sub LCDTextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LCDTextBox.TextChanged
-        LCDLabel.Text = "LCD " + LCDTextBox.Text.Length
-    End Sub
 End Class

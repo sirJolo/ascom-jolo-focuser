@@ -29,8 +29,8 @@ Partial Class MonitorForm
         Me.Button3 = New System.Windows.Forms.Button
         Me.Button2 = New System.Windows.Forms.Button
         Me.Button1 = New System.Windows.Forms.Button
-        Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown
+        Me.AbsPosNumericUpDown = New System.Windows.Forms.NumericUpDown
+        Me.RelPosUpDown = New System.Windows.Forms.NumericUpDown
         Me.Label8 = New System.Windows.Forms.Label
         Me.Label7 = New System.Windows.Forms.Label
         Me.Label6 = New System.Windows.Forms.Label
@@ -70,8 +70,8 @@ Partial Class MonitorForm
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.AbsPosNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RelPosUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -92,8 +92,8 @@ Partial Class MonitorForm
         Me.TabPage1.Controls.Add(Me.Button3)
         Me.TabPage1.Controls.Add(Me.Button2)
         Me.TabPage1.Controls.Add(Me.Button1)
-        Me.TabPage1.Controls.Add(Me.NumericUpDown2)
-        Me.TabPage1.Controls.Add(Me.NumericUpDown1)
+        Me.TabPage1.Controls.Add(Me.AbsPosNumericUpDown)
+        Me.TabPage1.Controls.Add(Me.RelPosUpDown)
         Me.TabPage1.Controls.Add(Me.Label8)
         Me.TabPage1.Controls.Add(Me.Label7)
         Me.TabPage1.Controls.Add(Me.Label6)
@@ -157,24 +157,24 @@ Partial Class MonitorForm
         Me.Button1.Text = "-"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'NumericUpDown2
+        'AbsPosNumericUpDown
         '
-        Me.NumericUpDown2.DataBindings.Add(New System.Windows.Forms.Binding("Maximum", Global.ASCOM.JoloFocuser.My.MySettings.Default, "FocuserMax", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown2.Location = New System.Drawing.Point(166, 46)
-        Me.NumericUpDown2.Maximum = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserMax
-        Me.NumericUpDown2.Name = "NumericUpDown2"
-        Me.NumericUpDown2.Size = New System.Drawing.Size(73, 20)
-        Me.NumericUpDown2.TabIndex = 19
+        Me.AbsPosNumericUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Maximum", Global.ASCOM.JoloFocuser.My.MySettings.Default, "FocuserMax", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.AbsPosNumericUpDown.Location = New System.Drawing.Point(166, 46)
+        Me.AbsPosNumericUpDown.Maximum = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserMax
+        Me.AbsPosNumericUpDown.Name = "AbsPosNumericUpDown"
+        Me.AbsPosNumericUpDown.Size = New System.Drawing.Size(73, 20)
+        Me.AbsPosNumericUpDown.TabIndex = 19
         '
-        'NumericUpDown1
+        'RelPosUpDown
         '
-        Me.NumericUpDown1.Location = New System.Drawing.Point(192, 9)
-        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
-        Me.NumericUpDown1.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Size = New System.Drawing.Size(58, 20)
-        Me.NumericUpDown1.TabIndex = 19
-        Me.NumericUpDown1.Value = New Decimal(New Integer() {10, 0, 0, 0})
+        Me.RelPosUpDown.Location = New System.Drawing.Point(192, 9)
+        Me.RelPosUpDown.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.RelPosUpDown.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.RelPosUpDown.Name = "RelPosUpDown"
+        Me.RelPosUpDown.Size = New System.Drawing.Size(58, 20)
+        Me.RelPosUpDown.TabIndex = 19
+        Me.RelPosUpDown.Value = New Decimal(New Integer() {10, 0, 0, 0})
         '
         'Label8
         '
@@ -543,6 +543,7 @@ Partial Class MonitorForm
         'PWM_D10_ComboBox
         '
         Me.PWM_D10_ComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "PWM_10", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.PWM_D10_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.PWM_D10_ComboBox.FormattingEnabled = True
         Me.PWM_D10_ComboBox.Items.AddRange(New Object() {"0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "AUTO"})
         Me.PWM_D10_ComboBox.Location = New System.Drawing.Point(133, 129)
@@ -554,6 +555,7 @@ Partial Class MonitorForm
         'PWM_D9_ComboBox
         '
         Me.PWM_D9_ComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "PWM_9", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.PWM_D9_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.PWM_D9_ComboBox.FormattingEnabled = True
         Me.PWM_D9_ComboBox.Items.AddRange(New Object() {"0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "AUTO"})
         Me.PWM_D9_ComboBox.Location = New System.Drawing.Point(133, 104)
@@ -565,6 +567,7 @@ Partial Class MonitorForm
         'PWM_D6_ComboBox
         '
         Me.PWM_D6_ComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "PWM_6", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.PWM_D6_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.PWM_D6_ComboBox.FormattingEnabled = True
         Me.PWM_D6_ComboBox.Items.AddRange(New Object() {"0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "AUTO"})
         Me.PWM_D6_ComboBox.Location = New System.Drawing.Point(133, 79)
@@ -589,8 +592,8 @@ Partial Class MonitorForm
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.AbsPosNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RelPosUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -634,10 +637,10 @@ Partial Class MonitorForm
     Friend WithEvents OPTO_CheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents ADC_CheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents NumericUpDown1 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents RelPosUpDown As System.Windows.Forms.NumericUpDown
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents NumericUpDown2 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents AbsPosNumericUpDown As System.Windows.Forms.NumericUpDown
     Friend WithEvents Button4 As System.Windows.Forms.Button
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox

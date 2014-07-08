@@ -87,7 +87,7 @@ Partial Class ADCSetupForm
         Me.TextBox1.ReadOnly = True
         Me.TextBox1.Size = New System.Drawing.Size(245, 44)
         Me.TextBox1.TabIndex = 4
-        Me.TextBox1.Text = "Displayed:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "A*<ADC raw value> + B ""suffix"""
+        Me.TextBox1.Text = "Template to display ADC value:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "A*<ADC raw value> + B ""suffix"""
         '
         'SuffixTextBox
         '

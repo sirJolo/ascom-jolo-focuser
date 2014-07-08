@@ -82,7 +82,7 @@ Public Class Focuser
         ComPort = New System.IO.Ports.SerialPort
 
         AddHandler tempCompTimer.Elapsed, AddressOf OnTempCompensation
-        monitor = New MonitorForm
+        monitor = New MonitorForm()
     End Sub
 
 #Region "ASCOM Registration"
@@ -315,11 +315,42 @@ Public Class Focuser
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - step size")
         End If
 
+        Dim pwm As String = My.Settings.PWM_6
+        If pwm = "AUTO" Then pwm = "255"
+        answer = CommandString("N:6:" + pwm)
+        If (answer <> "N") Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - PWM pin 6")
+        End If
+        pwm = My.Settings.PWM_9
+        If pwm = "AUTO" Then pwm = "255"
+        answer = CommandString("N:9:" + pwm)
+        If (answer <> "N") Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - PWM pin 9")
+        End If
+        pwm = My.Settings.PWM_10
+        If pwm = "AUTO" Then pwm = "255"
+        answer = CommandString("N:0:" + pwm)
+        If (answer <> "N") Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - PWM pin 10")
+        End If
+
+        answer = CommandString("B:" + My.Settings.LCD1 + ":" + My.Settings.LCD2 + ":" + My.Settings.LCD3 + ":" + My.Settings.LCD4)
+        If (answer <> "B") Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - LCD screens")
+        End If
+
         Dim buzzer As String = "0"
         If My.Settings.BuzzerON Then buzzer = "1"
         answer = CommandString("J:" + buzzer)
         If (answer <> "J") Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - buzzer control")
+        End If
+
+        Dim opto As String = "0"
+        If My.Settings.OPTO_On Then opto = "1"
+        answer = CommandString("O:" + opto)
+        If (answer <> "O") Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - OPTO out")
         End If
 
         answer = CommandString("X:" + My.Settings.FocuserMax.ToString)

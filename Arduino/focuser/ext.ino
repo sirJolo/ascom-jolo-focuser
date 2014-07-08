@@ -15,15 +15,14 @@ void initializeExt() {
   pinMode(ADC_PIN, INPUT);
   
   // EXT init
-  //pinMode(3, INPUT);  //soft I2C
-  //pinMode(5, INPUT);  //soft I2C
   pinMode(12, INPUT);
 }  
 
 void updatePWM() {
-  updatePWMPin(PWM_PIN6, readByte(PROP_PWM6));
-  updatePWMPin(PWM_PIN9, readByte(PROP_PWM9));
-  updatePWMPin(PWM_PIN10, readByte(PROP_PWM10));
+  calculateHeaterPWM();
+  updatePWMPin(PWM_PIN6, map(readByte(PROP_PWM6), 0, 100, 0, 255));
+  updatePWMPin(PWM_PIN9, map(readByte(PROP_PWM9), 0, 100, 0, 255));
+  updatePWMPin(PWM_PIN10, map(readByte(PROP_PWM10), 0, 100, 0, 255));
 }
 
 void updatePWMPin(byte pin, byte value) {

@@ -10,22 +10,16 @@
             MessageBox.Show("Please enter coefficient B", "Data error")
             errors = True
         End If
-        Dim a As Double
-        If (Not Double.TryParse(A_TextBox.Text, a)) Then
-            MessageBox.Show(A_TextBox.Text + " is not a valid number", "Data error")
-            errors = True
-        End If
-        If (Not Double.TryParse(B_TextBox.Text, a)) Then
-            MessageBox.Show(B_TextBox.Text + " is not a valid number", "Data error")
-            errors = True
-        End If
         If (Not errors) Then
             Me.Close()
             My.Settings.Save()
+        Else
+            My.Settings.Reload()
         End If
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         Me.Close()
+        My.Settings.Reload()
     End Sub
 End Class

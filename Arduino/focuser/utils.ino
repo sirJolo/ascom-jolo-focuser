@@ -69,6 +69,12 @@ String formatLong(long value, byte length) {
   return String(tmp);
 }
 
+int readAnalogAvg(byte pin, byte count) {
+  long sum = 0;
+  for(byte i = 0; i < count; i++) sum += analogRead(pin);
+  return (sum / count); 
+}
+
 
 // Simple EEPROM wear leveling
 int getSaveFocuserPosAddress() {

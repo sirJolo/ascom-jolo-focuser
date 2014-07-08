@@ -33,8 +33,10 @@
 #define PROP_ACC_AUTO PROPERTY_ADDR+5
 #define PROP_ACC_MAN PROPERTY_ADDR+7
 #define PROP_BUZZER_ON PROPERTY_ADDR+9
-#define PROP_LCD_LINE1 PROPERTY_ADDR+10
-#define PROP_LCD_LINE2 PROPERTY_ADDR+30
+#define PROP_LCD_SCREEN_0 PROPERTY_ADDR+11
+#define PROP_LCD_SCREEN_1 PROPERTY_ADDR+12
+#define PROP_LCD_SCREEN_2 PROPERTY_ADDR+13
+#define PROP_LCD_SCREEN_3 PROPERTY_ADDR+14
 #define PROP_PWM6 PROPERTY_ADDR+50
 #define PROP_PWM9 PROPERTY_ADDR+51
 #define PROP_PWM10 PROPERTY_ADDR+52
@@ -59,11 +61,10 @@ Bounce bButton = Bounce( ENCODER_B_PIN, 30 );
 
 // Buzzer config
 #define BUZZER_PIN 4
-#define BUZZER_ON true      // config
 #define BUZ_LED_PIN 13
 
 // Temperature sensor config
-#define TEMP_CYCLE 5000      // config
+#define TEMP_CYCLE 3000      // config
 #define TEMP_SENSOR_PIN 2
 OneWire oneWire(TEMP_SENSOR_PIN);
 DallasTemperature sensors(&oneWire);
@@ -71,8 +72,6 @@ DeviceAddress insideThermometer;
 dht DHT;
 
 // Stepper config
-#define STEPPER_ACC 2500          // config up/down
-#define MANUAL_STEPPER_ACC 600    // config up/down
 #define STEPPER_PWM_PIN 11
 AccelStepper stepper = AccelStepper(AccelStepper::HALF4WIRE, A5, A4, A3, A2);  
 //AccelStepper stepper = AccelStepper(AccelStepper::DRIVER, A3, A2);  
@@ -86,6 +85,8 @@ float currentTemp;                   // Current cached temperature
 float currentHum;                    // Current cached humidity
 float currentDewpoint;               // Current cached dew point temperature
 byte heaterPWM = 0;                  // Calculated PWM on hum
+byte LCDscreen = 0;                  // Current LCD screen
+byte lcdCycle = 0;
 String inputString;                  // Serial input command string (terminated with \n)
 
 int tempCycleEvent;

@@ -4,10 +4,6 @@ void initializeSerial() {
   Serial.setTimeout(2000);
 
   inputString = "";
-  if(DEBUG) {
-    Serial.print(millis());
-    Serial.println(" - serial initialized....");
-  }
 }  
 
 // Interrupt serial event
@@ -48,6 +44,7 @@ void serialCommand(String command) {
     printInMoveStatus();
     break;
   case 'M':    // Move focuser to new position
+    stepper.setAcceleration(readWord(PROP_ACC_AUTO));
     moveStepper(stringToLong(param)); 
     Serial.print("M");
     break;
@@ -62,6 +59,9 @@ void serialCommand(String command) {
     break;
   case 'O':
     setOpto(stringToNumber(param));
+    break;
+  case 'C':
+    printOptoStatus();
     break;
   case 'S':
     saveStepperSpeed(stringToNumber(param));
@@ -84,11 +84,8 @@ void serialCommand(String command) {
   case 'R':
     saveCurrentPos(stringToLong(param));
     break;
-  case 'C':
-    saveLCD1(param);
-    break;
   case 'B':
-    saveLCD2(param);
+    saveLCDScreens(param);
     break;
   case 'Q':
     saveStepSize(stringToNumber(param));
@@ -121,10 +118,8 @@ void printMonitor() {      // Position, temp, hum, dewpoint
     Serial.print("V:");
     Serial.print(currentTemp, 1); 
     Serial.print(":");
-    currentHum = 76;
     Serial.print(currentHum, 0);  
     Serial.print(":");
-    currentDewpoint = 16.7;
     Serial.print(currentDewpoint, 1);
   } 
   else {
@@ -134,7 +129,7 @@ void printMonitor() {      // Position, temp, hum, dewpoint
 
 void printADC() {
   Serial.print("A:");
-  Serial.print(analogRead(ADC_PIN));
+  Serial.print(readAnalogAvg(ADC_PIN, 3));
 }
 
 void setPWM(String param) {
@@ -154,6 +149,13 @@ void readPWM(String param) {
     case '6': Serial.print(readByte(PROP_PWM6)); break;
     case '9': Serial.print(readByte(PROP_PWM9)); break;
     case '0': Serial.print(readByte(PROP_PWM10)); break;
+    case 'P': 
+      Serial.print(readPWM(PROP_PWM6));
+      Serial.print(":");
+      Serial.print(readPWM(PROP_PWM9));
+      Serial.print(":");
+      Serial.print(readPWM(PROP_PWM10));
+      break;      
   }
 }
 
@@ -161,6 +163,12 @@ void setOpto(byte value) {
   digitalWrite(OPTO_PIN, value);
   Serial.print("O");
 }
+
+void printOptoStatus() {
+  Serial.print("C:");
+  Serial.print(String(digitalRead(OPTO_PIN)));
+}
+  
   
 void printCurrentPosition() {
   Serial.print("P:");
@@ -220,23 +228,12 @@ void saveBuzzerOn(byte param) {
   Serial.print("J");
 }
 
-void saveLCD1(String param) {
-  char oldValue[17], newValue[17];
-  EepromUtil::eeprom_read_string(PROP_LCD_LINE1, oldValue, 17);
-  if(strcmp(oldValue, newValue) != 0) {
-    param.toCharArray(newValue, 17);
-    EepromUtil::eeprom_write_string(PROP_LCD_LINE1, newValue);   
-  }
-  Serial.print("C");
-}
-
-void saveLCD2(String param) {
-  char oldValue[17], newValue[17];
-  EepromUtil::eeprom_read_string(PROP_LCD_LINE2, oldValue, 17);
-  if(strcmp(oldValue, newValue) != 0) {
-    param.toCharArray(newValue, 17);
-    EepromUtil::eeprom_write_string(PROP_LCD_LINE2, newValue);   
-  }
+void saveLCDScreens(String param) {
+  // "3:4:0:1"
+  writeByte(PROP_LCD_SCREEN_0, stringToNumber(param.substring(0,1)));
+  writeByte(PROP_LCD_SCREEN_1, stringToNumber(param.substring(2,3)));
+  writeByte(PROP_LCD_SCREEN_2, stringToNumber(param.substring(4,5)));
+  writeByte(PROP_LCD_SCREEN_3, stringToNumber(param.substring(6)));
   Serial.print("B");
 }
 
@@ -244,3 +241,4 @@ void saveStepSize(int step) {
   writeWord(PROP_STEP_SIZE, step);
   Serial.print("Q");
 }
+

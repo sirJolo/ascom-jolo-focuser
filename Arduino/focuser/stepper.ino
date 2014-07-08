@@ -1,18 +1,9 @@
 void initializeStepper() {
   stepper.setMaxSpeed(readWord(PROP_STEPPER_SPEED));
-  stepper.setAcceleration(STEPPER_ACC);
+  stepper.setAcceleration(readWord(PROP_ACC_AUTO));
   stepper.setCurrentPosition(readFocuserPos());
   positionSaved = true;
   analogWrite(STEPPER_PWM_PIN, (255 * readByte(PROP_DUTY_CYCLE_STOP)/100));
-  //pinMode(MSI1_PIN, OUTPUT);
-  //digitalWrite(MSI1_PIN, LOW);
-  //pinMode(MSI2_PIN, OUTPUT);
-  //digitalWrite(MSI2_PIN, HIGH);
-  if(DEBUG) {
-    Serial.print(millis());
-    Serial.print(" - stepper initialized, position: ");
-    Serial.println(stepper.currentPosition());
-  }
 }
 
 

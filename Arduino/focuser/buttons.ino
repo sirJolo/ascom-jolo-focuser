@@ -9,13 +9,13 @@ void initializeButtons() {
 void doButtonsCheck() {
   if ( aButton.update() ) {
     if ( aButton.read() == LOW) {
-      stepper.setAcceleration(MANUAL_STEPPER_ACC);
+      stepper.setAcceleration(readWord(PROP_ACC_MAN));
       analogWrite(STEPPER_PWM_PIN, (255 * readByte(PROP_DUTY_CYCLE_RUN)/100));
       moveStepper(maxFocuserPos);
     }
     else
     {
-      stepper.setAcceleration(STEPPER_ACC);
+      stepper.setAcceleration(readWord(PROP_ACC_MAN) * 6);
       stepper.stop();
       analogWrite(STEPPER_PWM_PIN, (255 * readByte(PROP_DUTY_CYCLE_STOP)/100));
       tempCycleEvent = timer.after(TEMP_CYCLE, requestTemp);
@@ -24,13 +24,13 @@ void doButtonsCheck() {
 
   if ( bButton.update() ) {
     if ( bButton.read() == LOW) {
-       stepper.setAcceleration(MANUAL_STEPPER_ACC);
+       stepper.setAcceleration(readWord(PROP_ACC_MAN));
        analogWrite(STEPPER_PWM_PIN, (255 * readByte(PROP_DUTY_CYCLE_RUN)/100));
        moveStepper(0);
     }
     else
     {
-      stepper.setAcceleration(STEPPER_ACC);
+      stepper.setAcceleration(readWord(PROP_ACC_MAN) * 6);
       stepper.stop();
       analogWrite(STEPPER_PWM_PIN, (255 * readByte(PROP_DUTY_CYCLE_STOP)/100));
       tempCycleEvent = timer.after(TEMP_CYCLE, requestTemp);

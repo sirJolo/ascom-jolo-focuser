@@ -224,7 +224,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("100")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
         Public Property AccManual() As Decimal
             Get
                 Return CType(Me("AccManual"),Decimal)
@@ -236,25 +236,13 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("100")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1500")>  _
         Public Property AccASCOM() As Decimal
             Get
                 Return CType(Me("AccASCOM"),Decimal)
             End Get
             Set
                 Me("AccASCOM") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Jolo Focuser 2.1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"pppppp  T:tttttC")>  _
-        Public Property LCDtemplate() As String
-            Get
-                Return CType(Me("LCDtemplate"),String)
-            End Get
-            Set
-                Me("LCDtemplate") = value
             End Set
         End Property
         
@@ -368,25 +356,49 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("100")>  _
-        Public Property AccManualDec() As Decimal
+         Global.System.Configuration.DefaultSettingValueAttribute("5")>  _
+        Public Property LCD1() As String
             Get
-                Return CType(Me("AccManualDec"),Decimal)
+                Return CType(Me("LCD1"),String)
             End Get
             Set
-                Me("AccManualDec") = value
+                Me("LCD1") = value
             End Set
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("100")>  _
-        Public Property AccASCOMDec() As Decimal
+         Global.System.Configuration.DefaultSettingValueAttribute("5")>  _
+        Public Property LCD2() As String
             Get
-                Return CType(Me("AccASCOMDec"),Decimal)
+                Return CType(Me("LCD2"),String)
             End Get
             Set
-                Me("AccASCOMDec") = value
+                Me("LCD2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("3")>  _
+        Public Property LCD3() As String
+            Get
+                Return CType(Me("LCD3"),String)
+            End Get
+            Set
+                Me("LCD3") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("3")>  _
+        Public Property LCD4() As String
+            Get
+                Return CType(Me("LCD4"),String)
+            End Get
+            Set
+                Me("LCD4") = value
             End Set
         End Property
     End Class
