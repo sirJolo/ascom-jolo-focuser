@@ -6,7 +6,7 @@
 // ver. 1.4 11-11-2013
 // ver. 1.5 - production
 // ver. 2.0 - production 2014.05
-// ver. 2.1 - production LCD 2014.06
+// ver. 2.1 - production LCD 2014.07
 // 
 #include <OneWire.h>
 #include <DallasTemperature.h>
@@ -37,6 +37,7 @@
 #define PROP_LCD_SCREEN_1 PROPERTY_ADDR+12
 #define PROP_LCD_SCREEN_2 PROPERTY_ADDR+13
 #define PROP_LCD_SCREEN_3 PROPERTY_ADDR+14
+#define PROP_MAX_FOC_POS PROPERTY_ADDR+20
 #define PROP_PWM6 PROPERTY_ADDR+50
 #define PROP_PWM9 PROPERTY_ADDR+51
 #define PROP_PWM10 PROPERTY_ADDR+52

@@ -54,7 +54,7 @@ Public Class Focuser
     '
     Private Const DELTA_T As Double = 0.5
     Private Const DRIVER_VERSION As String = "2.1"
-    Private Const DEVICE_RESPONSE As String = "Jolo primary focuser"
+    Private Const DEVICE_RESPONSE As String = "#:Jolo primary focuser"
 
     Private Shared driverID As String = "ASCOM.JoloFocuser.Focuser"
     Private Shared driverDescription As String = "Jolo ASCOM focuser"
@@ -285,76 +285,76 @@ Public Class Focuser
     Private Sub writeInitParameters()
         Dim answer As String
         answer = CommandString("S:" + My.Settings.StepperRPM.ToString)
-        If (answer <> "S") Then
+        If (Not answer.StartsWith("S")) Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - stepper PPS")
         End If
 
-        answer = CommandString("D:" + My.Settings.DutyCycle.ToString)
-        If (answer <> "D") Then
+        answer = CommandString("Z:" + My.Settings.DutyCycle.ToString)
+        If (Not answer.StartsWith("Z")) Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - duty cycle stop")
         End If
 
-        answer = CommandString("E:" + My.Settings.DutyCycleRun.ToString)
-        If (answer <> "E") Then
+        answer = CommandString("W:" + My.Settings.DutyCycleRun.ToString)
+        If (Not answer.StartsWith("W")) Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - duty cycle run")
         End If
 
-        answer = CommandString("F:" + My.Settings.AccASCOM.ToString)
-        If (answer <> "F") Then
+        answer = CommandString("V:" + My.Settings.AccASCOM.ToString)
+        If (Not answer.StartsWith("V")) Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - acceleration ASCOM")
         End If
 
-        answer = CommandString("G:" + My.Settings.AccManual.ToString)
-        If (answer <> "G") Then
+        answer = CommandString("U:" + My.Settings.AccManual.ToString)
+        If (Not answer.StartsWith("U")) Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - acceleration manual")
         End If
 
         Dim stepsize As Integer = Math.Round(My.Settings.StepSize * 10)
-        answer = CommandString("Q:" + StepSize.ToString)
-        If (answer <> "Q") Then
+        answer = CommandString("M:" + stepsize.ToString)
+        If (Not answer.StartsWith("M")) Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - step size")
         End If
 
         Dim pwm As String = My.Settings.PWM_6
         If pwm = "AUTO" Then pwm = "255"
-        answer = CommandString("N:6:" + pwm)
-        If (answer <> "N") Then
+        answer = CommandString("B:6:" + pwm)
+        If (Not answer.StartsWith("B")) Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - PWM pin 6")
         End If
         pwm = My.Settings.PWM_9
         If pwm = "AUTO" Then pwm = "255"
-        answer = CommandString("N:9:" + pwm)
-        If (answer <> "N") Then
+        answer = CommandString("B:9:" + pwm)
+        If (Not answer.StartsWith("B")) Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - PWM pin 9")
         End If
         pwm = My.Settings.PWM_10
         If pwm = "AUTO" Then pwm = "255"
-        answer = CommandString("N:0:" + pwm)
-        If (answer <> "N") Then
+        answer = CommandString("B:0:" + pwm)
+        If (Not answer.StartsWith("B")) Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - PWM pin 10")
         End If
 
-        answer = CommandString("B:" + My.Settings.LCD1 + ":" + My.Settings.LCD2 + ":" + My.Settings.LCD3 + ":" + My.Settings.LCD4)
-        If (answer <> "B") Then
+        answer = CommandString("L:" + My.Settings.LCD1 + ":" + My.Settings.LCD2 + ":" + My.Settings.LCD3 + ":" + My.Settings.LCD4)
+        If (Not answer.StartsWith("L")) Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - LCD screens")
         End If
 
         Dim buzzer As String = "0"
         If My.Settings.BuzzerON Then buzzer = "1"
         answer = CommandString("J:" + buzzer)
-        If (answer <> "J") Then
+        If (Not answer.StartsWith("J")) Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - buzzer control")
         End If
 
         Dim opto As String = "0"
         If My.Settings.OPTO_On Then opto = "1"
         answer = CommandString("O:" + opto)
-        If (answer <> "O") Then
+        If (Not answer.StartsWith("O")) Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - OPTO out")
         End If
 
         answer = CommandString("X:" + My.Settings.FocuserMax.ToString)
-        If (answer <> "X") Then
+        If (Not answer.StartsWith("X")) Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - focuser max pos")
         End If
     End Sub
@@ -413,9 +413,9 @@ Public Class Focuser
 
     ' Move without resetting temperature compensation position
     Private Sub MoveInternal(ByVal Position As Integer)
-        Dim answer As String = CommandString("M:" + Position.ToString)
-        If (answer <> "M") Then
-            Throw New ASCOM.DriverException("Wrong device answer: expected M, got " + answer)
+        Dim answer As String = CommandString("R:" + Position.ToString)
+        If (Not answer.StartsWith("R")) Then
+            Throw New ASCOM.DriverException("Wrong device answer: expected R, got " + answer)
         End If
     End Sub
 
@@ -434,14 +434,19 @@ Public Class Focuser
 
     Public Sub Halt() Implements DeviceInterface.IFocuserV2.Halt
         Dim answer As String = CommandString("H")
-        If (answer <> "H") Then
+        If (Not answer.StartsWith("H")) Then
             Throw New ASCOM.DriverException("Wrong device answer: expected H, got " + answer)
         End If
     End Sub
 
     Public ReadOnly Property IsMoving() As Boolean Implements DeviceInterface.IFocuserV2.IsMoving
         Get
-            Return CommandBool("I")
+            Dim answer As String = CommandString("i")
+            If (Not answer.StartsWith("i")) Then
+                Throw New ASCOM.DriverException("Wrong device answer: expected i, got " + answer)
+            End If
+            Dim values() As String = Split(answer, ":")
+            Return (Integer.Parse(values(1)) <> 0)
         End Get
     End Property
 
@@ -489,10 +494,10 @@ Public Class Focuser
 
     Public ReadOnly Property Position() As Integer Implements DeviceInterface.IFocuserV2.Position
         Get
-            Dim answer As String = CommandString("P")
+            Dim answer As String = CommandString("p")
             Dim values() As String = Split(answer, ":")
-            If (values(0) <> "P") Then
-                Throw New ASCOM.DriverException("Wrong device answer: expected P, got " + answer)
+            If (Not answer.StartsWith("p")) Then
+                Throw New ASCOM.DriverException("Wrong device answer: expected p, got " + answer)
             End If
             Return Integer.Parse(values(1))
         End Get
@@ -528,10 +533,10 @@ Public Class Focuser
 
     Public ReadOnly Property Temperature() As Double Implements DeviceInterface.IFocuserV2.Temperature
         Get
-            Dim answer As String = CommandString("T")
+            Dim answer As String = CommandString("t")
             Dim values() As String = Split(answer, ":")
-            If (values(0) <> "T") Then
-                Throw New ASCOM.DriverException("Wrong device answer: expected T, got " + answer)
+            If (Not answer.StartsWith("t")) Then
+                Throw New ASCOM.DriverException("Wrong device answer: expected t, got " + answer)
             End If
             If (values(1) = "false") Then
                 Throw New ASCOM.NotConnectedException("Temperature sensor disconnected")

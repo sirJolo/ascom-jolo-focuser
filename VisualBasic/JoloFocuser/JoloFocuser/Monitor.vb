@@ -1,9 +1,8 @@
 ﻿Public Class MonitorForm
     Private JOLOfocuser As Focuser
     Private monitorTimer As System.Timers.Timer
-    Private monitorTimerSkipper As Long
-
-    Private Const MONITOR_TIMER_SKIP As Integer = 6
+    Private isMoving As Boolean = False
+    Private logCounter As Short = 0
 
     Delegate Sub SetPositionStepsCallback(ByVal positionSteps As String)
     Delegate Sub SetPositionMMCallback(ByVal positionSteps As String)
@@ -26,56 +25,68 @@
         monitorTimer.Interval = 500
         monitorTimer.Enabled = False
         AddHandler monitorTimer.Elapsed, AddressOf OnMonitorTimer
-        monitorTimerSkipper = 0
     End Sub
 
 
     Private Sub OnMonitorTimer(ByVal source As Object, ByVal e As System.Timers.ElapsedEventArgs)
         If JOLOfocuser Is Nothing Then Return
-        Dim answer As String = JOLOfocuser.CommandString("P")
+        Dim answer As String = JOLOfocuser.CommandString("q")
         Dim values() As String = Split(answer, ":")
-        Dim position As Integer = Integer.Parse(values(1))
 
+        Dim position As Integer = Integer.Parse(values(1))
         SetPositionSteps(position.ToString)
         Dim positionMM As Double = position / 1000 * My.Settings.StepSize
         SetPositionMM(FormatNumber(positionMM, 3))
 
-        If ((monitorTimerSkipper Mod 6) = 0) Then
-            answer = JOLOfocuser.CommandString("V") 'temp:hum:dewpoint
-            values = Split(answer, ":")
+        isMoving = (Integer.Parse(values(2)) <> 0)
 
-            SetHumidity(values(2))
+        Dim temp As Double = Double.Parse(values(3), System.Globalization.CultureInfo.InvariantCulture.NumberFormat)
+        SetTemperature(FormatNumber(temp, 1))
 
-            Dim temp As Double = Double.Parse(values(1), System.Globalization.CultureInfo.InvariantCulture.NumberFormat)
-            SetTemperature(FormatNumber(temp, 1))
+        SetHumidity(values(4))
 
-            Dim dewpoint As Double = Double.Parse(values(3), System.Globalization.CultureInfo.InvariantCulture.NumberFormat)
-            SetDewpoint(FormatNumber(dewpoint, 1))
+        Dim dewpoint As Double = Double.Parse(values(5), System.Globalization.CultureInfo.InvariantCulture.NumberFormat)
+        SetDewpoint(FormatNumber(dewpoint, 1))
 
-            answer = JOLOfocuser.CommandString("K:P")   'pwm6:9:10
-            values = Split(answer, ":")
-            SetPWM6(values(1))
-            SetPWM9(values(2))
-            SetPWM10(values(3))
+        SetPWM6(values(6))
+        SetPWM9(values(7))
+        SetPWM10(values(8))
 
-            If My.Settings.ADC_Read Then
-                answer = JOLOfocuser.CommandString("A")
-                values = Split(answer, ":")
-                SetADC(values(1))
-            Else
-                SetADC("0")
-            End If
-
-            answer = JOLOfocuser.CommandString("C")
-            values = Split(answer, ":")
-            Dim opto As String = "OFF"
-            If values(1) <> "0" Then opto = "ON"
-            SetOPTO(opto)
+        If My.Settings.ADC_Read Then
+            SetADC(values(9))
+        Else
+            SetADC("0")
         End If
 
-        monitorTimerSkipper = monitorTimerSkipper + 1
+        Dim opto As String = "OFF"
+        If values(10) <> "0" Then opto = "ON"
+        SetOPTO(opto)
+
+        logCounter += 1
+        If (logCounter > 20) Then
+            If SaveLogCheckBox.Checked Then logInfo(answer)
+            logCounter = 1
+        End If
     End Sub
 
+
+    Private Sub logInfo(ByVal logs As String)
+        Dim fileName As String = Date.Now.ToShortDateString & ".txt"
+        Dim path As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\JOLOFocuser"
+        Dim folderExists As Boolean = My.Computer.FileSystem.DirectoryExists(path)
+        If folderExists = False Then
+            My.Computer.FileSystem.CreateDirectory(path)
+        End If
+
+        Dim file As String = System.IO.Path.Combine(path, fileName)
+        Dim fileExists As Boolean = My.Computer.FileSystem.FileExists(file)
+        If fileExists = False Then
+            My.Computer.FileSystem.WriteAllText(file, "Time;position;temperature;humidity;dewpoint;pwm6;pwm9;pwm10;adc;opto" & vbCrLf, False)
+        End If
+        Dim values() As String = Split(logs, ":")
+        Dim vt As String = Date.Now & ";" & values(1) & ";" & values(3) & ";" & values(4) & ";" & values(5) & ";" & values(6) & ";" & values(7) & ";" & values(8) & ";" & values(9) & ";" & values(10) & vbCrLf
+        My.Computer.FileSystem.WriteAllText(file, vt, True)
+    End Sub
 
     Private Sub SetPositionSteps(ByVal position As String)
         If Me.PositionSteps.InvokeRequired Then
@@ -192,18 +203,23 @@
     End Function
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        If JOLOfocuser Is Nothing Then Return
+        If isMoving Then Return
         Dim position As Integer = JOLOfocuser.Position
         position = position - RelPosUpDown.Value
         JOLOfocuser.Move(position)
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        If JOLOfocuser Is Nothing Then Return
+        If isMoving Then Return
         Dim position As Integer = JOLOfocuser.Position
         position = position + RelPosUpDown.Value
         JOLOfocuser.Move(position)
     End Sub
 
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        If isMoving Then Return
         JOLOfocuser.Move(AbsPosNumericUpDown.Value)
     End Sub
 
@@ -234,20 +250,24 @@
         My.Settings.Save()
         Dim pwm As String = "255"
         If My.Settings.PWM_6 <> "AUTO" Then pwm = My.Settings.PWM_6
-        If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("N:6:" + pwm)
+        If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:6:" + pwm)
     End Sub
 
     Private Sub PWM_D9_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PWM_D9_ComboBox.SelectedValueChanged
         My.Settings.Save()
         Dim pwm As String = "255"
         If My.Settings.PWM_9 <> "AUTO" Then pwm = My.Settings.PWM_9
-        If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("N:9:" + pwm)
+        If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:9:" + pwm)
     End Sub
 
     Private Sub PWM_D10_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PWM_D10_ComboBox.SelectedValueChanged
         My.Settings.Save()
         Dim pwm As String = "255"
         If My.Settings.PWM_10 <> "AUTO" Then pwm = My.Settings.PWM_10
-        If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("N:0:" + pwm)
+        If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:0:" + pwm)
+    End Sub
+
+    Private Sub StopButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StopButton.Click
+        If Not JOLOfocuser Is Nothing Then JOLOfocuser.Halt()
     End Sub
 End Class

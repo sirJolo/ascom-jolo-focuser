@@ -3,7 +3,7 @@ void initializeLCD() {
   lcd.home();  
   lcd.print("Jolo Focuser 2.1");
   lcd.setCursor(0,1);
-  lcd.print("   2014-07-10   ");
+  lcd.print("   2014-07-12   ");
   
   lcdCycleEvent = timer.every(LCD_REFRESH, lcdUpdateQuick);
 }

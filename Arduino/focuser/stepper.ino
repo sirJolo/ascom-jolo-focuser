@@ -4,6 +4,7 @@ void initializeStepper() {
   stepper.setCurrentPosition(readFocuserPos());
   positionSaved = true;
   analogWrite(STEPPER_PWM_PIN, (255 * readByte(PROP_DUTY_CYCLE_STOP)/100));
+  maxFocuserPos = readLong(PROP_MAX_FOC_POS);
 }
 
 

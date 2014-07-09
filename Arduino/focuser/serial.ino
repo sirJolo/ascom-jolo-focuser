@@ -20,116 +20,105 @@ void serialEvent() {
   }  
 }
 
+// COMMAND SET
+// R - move to new position
+// P,p - set, get position
+// i - get in move
+// S,s - set, get stepper speed
+// U,u - set, get manual acceleration
+// V,v - set, get ASCOM acceleration
+// W,w - set, get PWM motor run
+// Z,z - set, get PWM motor stop
+// H - halt motor
+// J,j - set, get buzzer on
+// X,x - set, get max focuser position
+// t - get temperature
+// d - get dewpoint
+// h - get humidity
+// B,b - set, get PWM
+// a - get ADC
+// O,o - set, get opto
+// L,l - set, get LCD screens
+// M,m - set, get stepper step (in 1/10um)
+// q - get monitoring values
+
 void serialCommand(String command) {
   String param = command.substring(2); 
+  String answer = String(command.charAt(0));
+  answer += ":";
 
   switch(command.charAt(0)) {
-  case '#':
-    Serial.print(DEVICE_RESPONSE);
-    buzz(500, 1);
-    break;
-  case 'T':    // Read temperature
-    printTemp();
-    break;
-  case 'V':    // Read monitor
-    printMonitor();
-    break;
-  case 'P':    // Return current position
-    printCurrentPosition();
-    break;
-  case 'H':    // Halt focuser
-    halt();   
-    break;
-  case 'I':
-    printInMoveStatus();
-    break;
-  case 'M':    // Move focuser to new position
-    stepper.setAcceleration(readWord(PROP_ACC_AUTO));
-    moveStepper(stringToLong(param)); 
-    Serial.print("M");
-    break;
-  case 'A':
-    printADC();
-    break;
-  case 'N':
-    setPWM(param);
-    break;
-  case 'K':
-    readPWM(param);
-    break;
-  case 'O':
-    setOpto(stringToNumber(param));
-    break;
-  case 'C':
-    printOptoStatus();
-    break;
-  case 'S':
-    saveStepperSpeed(stringToNumber(param));
-    break;
-  case 'D':
-    saveDutyCycle(stringToNumber(param));
-    break;
-  case 'E':
-    saveDutyCycleRun(stringToNumber(param));
-    break;
-  case 'F':
-    saveAccAuto(stringToNumber(param));
-    break;
-  case 'G':
-    saveAccManual(stringToNumber(param));
-    break;
-  case 'J':
-    saveBuzzerOn(stringToNumber(param));
-    break;
-  case 'R':
-    saveCurrentPos(stringToLong(param));
-    break;
-  case 'B':
-    saveLCDScreens(param);
-    break;
-  case 'Q':
-    saveStepSize(stringToNumber(param));
-    break;
-  case 'X':
-    maxFocuserPos = stringToLong(param);
-    Serial.print("X");
-    break;
-  default:
-    Serial.print("ERR:");      
-    Serial.print(byte(command.charAt(1)), DEC); 
-    buzz(100, 3);
+    case '#': answer += DEVICE_RESPONSE; buzz(500, 1); break;
+    case 'R': stepper.setAcceleration(readWord(PROP_ACC_AUTO)); moveStepper(stringToLong(param)); break;
+    case 'P': stepper.setCurrentPosition(stringToLong(param)); positionSaved = true; saveFocuserPos(stepper.currentPosition()); break;
+    case 'p': answer += stepper.currentPosition(); break;
+    case 'i': answer += (stepper.distanceToGo() != 0) ? "1" : "0"; break;
+    case 'S': writeWord(PROP_STEPPER_SPEED, stringToNumber(param)); stepper.setMaxSpeed(readWord(PROP_STEPPER_SPEED)); break;
+    case 's': answer += readWord(PROP_STEPPER_SPEED); break;
+    case 'U': writeWord(PROP_ACC_MAN, stringToNumber(param)); break;
+    case 'u': answer += readWord(PROP_ACC_MAN); break;
+    case 'V': writeWord(PROP_ACC_AUTO, stringToNumber(param)); break;
+    case 'v': answer += readWord(PROP_ACC_AUTO); break;
+    case 'W': writeByte(PROP_DUTY_CYCLE_RUN, constrain(stringToNumber(param), 0, 100)); break;
+    case 'w': answer += readByte(PROP_DUTY_CYCLE_RUN); break;
+    case 'Z': writeByte(PROP_DUTY_CYCLE_STOP, constrain(stringToNumber(param), 0, 100)); break;
+    case 'z': answer += readByte(PROP_DUTY_CYCLE_STOP); break;
+    case 'H': stepper.stop(); break;
+    case 'J': writeByte(PROP_BUZZER_ON, stringToNumber(param)); break;
+    case 'j': answer += readByte(PROP_BUZZER_ON); break;
+    case 'X': writeLong(PROP_MAX_FOC_POS, stringToLong(param)); maxFocuserPos = readLong(PROP_MAX_FOC_POS); break;
+    case 'x': answer += readLong(PROP_MAX_FOC_POS); break;
+    case 't': answer += printTemp(); break;
+    case 'd': answer += formatFloat(currentDewpoint, 5, 1); break;
+    case 'h': answer += formatLong(currentHum, 3); break;
+    case 'B': setPWM(param); break;
+    case 'b': answer += printPWM(param); break;
+    case 'a': answer += readAnalogAvg(ADC_PIN, 3); break;
+    case 'O': digitalWrite(OPTO_PIN, stringToNumber(param)); break;
+    case 'o': answer += digitalRead(OPTO_PIN); break;
+    case 'L': saveLCDScreens(param); break;
+    case 'l': answer += printLCDScreens(); break;
+    case 'M': writeWord(PROP_STEP_SIZE, stringToNumber(param)); break;
+    case 'm': answer += readWord(PROP_STEP_SIZE); break;
+    case 'q': answer += printMonitor(); break;
+    
+    default: answer += " error"; buzz(100, 3);
   }
+  Serial.print(answer);
   Serial.print('\n');
 }
 
+
 // Serial commands subroutines
-void printTemp() {
+String printTemp() {
   if(sensorType > 0) {
-    Serial.print("T:");
-    Serial.print(currentTemp, 1);  
-  } 
-  else {
-    Serial.print("T:false"); 
+    return formatFloat(currentTemp, 5, 1);
+  } else {
+    return "false"; 
   }  
 }
 
-void printMonitor() {      // Position, temp, hum, dewpoint
-  if(sensorType > 0) {
-    Serial.print("V:");
-    Serial.print(currentTemp, 1); 
-    Serial.print(":");
-    Serial.print(currentHum, 0);  
-    Serial.print(":");
-    Serial.print(currentDewpoint, 1);
-  } 
-  else {
-    Serial.print("V:false"); 
-  }  
-}
-
-void printADC() {
-  Serial.print("A:");
-  Serial.print(readAnalogAvg(ADC_PIN, 3));
+String printMonitor() {      // pos, togo, temp, hum, dew, pwms, adc, opto
+  String ret = String(stepper.currentPosition());
+  ret += ":";
+  ret += stepper.distanceToGo();
+  ret += ":";
+  ret += formatFloat(currentTemp, 5, 1);
+  ret += ":";
+  ret += formatLong(currentHum, 3);
+  ret += ":";
+  ret += formatFloat(currentDewpoint, 5, 1);
+  ret += ":";
+  ret += String(readPWM(PROP_PWM6));
+  ret += ":";
+  ret += String(readPWM(PROP_PWM9));
+  ret += ":";
+  ret += String(readPWM(PROP_PWM10));
+  ret += ":";
+  ret += readAnalogAvg(ADC_PIN, 3);
+  ret += ":";
+  ret += String(digitalRead(OPTO_PIN));
+  return ret;
 }
 
 void setPWM(String param) {
@@ -140,92 +129,14 @@ void setPWM(String param) {
    case '0': writeByte(PROP_PWM10, pwm); break;
   }
   updatePWM();
-  Serial.print("N");
 }
 
-void readPWM(String param) {
-  Serial.print("K:");
+String printPWM(String param) {
   switch(param.charAt(0)) {
-    case '6': Serial.print(readByte(PROP_PWM6)); break;
-    case '9': Serial.print(readByte(PROP_PWM9)); break;
-    case '0': Serial.print(readByte(PROP_PWM10)); break;
-    case 'P': 
-      Serial.print(readPWM(PROP_PWM6));
-      Serial.print(":");
-      Serial.print(readPWM(PROP_PWM9));
-      Serial.print(":");
-      Serial.print(readPWM(PROP_PWM10));
-      break;      
+    case '6': return String(readPWM(PROP_PWM6)); break;
+    case '9': return String(readPWM(PROP_PWM9)); break;
+    case '0': return String(readPWM(PROP_PWM10)); break;
   }
-}
-
-void setOpto(byte value) {
-  digitalWrite(OPTO_PIN, value);
-  Serial.print("O");
-}
-
-void printOptoStatus() {
-  Serial.print("C:");
-  Serial.print(String(digitalRead(OPTO_PIN)));
-}
-  
-  
-void printCurrentPosition() {
-  Serial.print("P:");
-  Serial.print(stepper.currentPosition());
-}
-
-void printInMoveStatus() {
-  Serial.print("I:");
-  if(stepper.distanceToGo() == 0) 
-    Serial.print("false");
-  else
-    Serial.print("true");
-}
-
-void halt() {
-  stepper.stop();
-  Serial.print("H");
-}
-
-void saveCurrentPos(long newPos) {
-  stepper.setCurrentPosition(newPos);
-  positionSaved = true;
-  saveFocuserPos(newPos);
-  Serial.print("R");
-}
-
-void saveStepperSpeed(word stepperSpeed) {
-  writeWord(PROP_STEPPER_SPEED, stepperSpeed);
-  stepper.setMaxSpeed(readWord(PROP_STEPPER_SPEED));
-  Serial.print("S");
-}
-
-void saveDutyCycle(byte dutyCycle) {
-  if(dutyCycle > 100) dutyCycle = 100;
-  writeByte(PROP_DUTY_CYCLE_STOP, dutyCycle);
-  Serial.print("D");
-}
-
-void saveDutyCycleRun(byte dutyCycle) {
-  if(dutyCycle > 100) dutyCycle = 100;
-  writeByte(PROP_DUTY_CYCLE_RUN, dutyCycle);
-  Serial.print("E");
-}  
-
-void saveAccAuto(int acc) {
-  writeWord(PROP_ACC_AUTO, acc);
-  Serial.print("F");
-}  
-
-void saveAccManual(int acc) {
-  writeWord(PROP_ACC_MAN, acc);
-  Serial.print("G");
-}  
-
-void saveBuzzerOn(byte param) {
-  writeByte(PROP_BUZZER_ON, param);
-  Serial.print("J");
 }
 
 void saveLCDScreens(String param) {
@@ -234,11 +145,16 @@ void saveLCDScreens(String param) {
   writeByte(PROP_LCD_SCREEN_1, stringToNumber(param.substring(2,3)));
   writeByte(PROP_LCD_SCREEN_2, stringToNumber(param.substring(4,5)));
   writeByte(PROP_LCD_SCREEN_3, stringToNumber(param.substring(6)));
-  Serial.print("B");
 }
 
-void saveStepSize(int step) {
-  writeWord(PROP_STEP_SIZE, step);
-  Serial.print("Q");
+String printLCDScreens() {
+  String ret = String(readByte(PROP_LCD_SCREEN_0));
+  ret += ":";
+  ret += readByte(PROP_LCD_SCREEN_1);
+  ret += ":";
+  ret += readByte(PROP_LCD_SCREEN_2);
+  ret += ":";
+  ret += readByte(PROP_LCD_SCREEN_3);
+  return ret;
 }
 

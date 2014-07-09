@@ -48,14 +48,10 @@ Partial Class SetupDialogForm
         Me.BlueCFZ = New System.Windows.Forms.Label
         Me.Label11 = New System.Windows.Forms.Label
         Me.NumericUpDown5 = New System.Windows.Forms.NumericUpDown
-        Me.ShowMonitorCheckBox = New System.Windows.Forms.CheckBox
         Me.TextBox1 = New System.Windows.Forms.TextBox
         Me.Button2 = New System.Windows.Forms.Button
         Me.NumericUpDown8 = New System.Windows.Forms.NumericUpDown
         Me.Label10 = New System.Windows.Forms.Label
-        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown6 = New System.Windows.Forms.NumericUpDown
-        Me.COM1 = New System.Windows.Forms.ComboBox
         Me.TabPage2 = New System.Windows.Forms.TabPage
         Me.Label16 = New System.Windows.Forms.Label
         Me.TextBox5 = New System.Windows.Forms.TextBox
@@ -72,6 +68,12 @@ Partial Class SetupDialogForm
         Me.Label14 = New System.Windows.Forms.Label
         Me.Label12 = New System.Windows.Forms.Label
         Me.Label9 = New System.Windows.Forms.Label
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox
+        Me.ShowMonitorCheckBox = New System.Windows.Forms.CheckBox
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown
+        Me.NumericUpDown6 = New System.Windows.Forms.NumericUpDown
+        Me.COM1 = New System.Windows.Forms.ComboBox
         Me.LCD4ComboBox = New System.Windows.Forms.ComboBox
         Me.LCD3ComboBox = New System.Windows.Forms.ComboBox
         Me.LCD2ComboBox = New System.Windows.Forms.ComboBox
@@ -83,8 +85,6 @@ Partial Class SetupDialogForm
         Me.DutyCycleStop = New System.Windows.Forms.NumericUpDown
         Me.DutyCycleRun = New System.Windows.Forms.NumericUpDown
         Me.TempCycleTime = New System.Windows.Forms.NumericUpDown
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.StepSizeUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LCDTabControl.SuspendLayout()
@@ -92,17 +92,17 @@ Partial Class SetupDialogForm
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown8, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage2.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown6, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage2.SuspendLayout()
         CType(Me.TempCompensation, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AccASCOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AccManual, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DutyCycleStop, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DutyCycleRun, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TempCycleTime, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -354,18 +354,6 @@ Partial Class SetupDialogForm
         Me.NumericUpDown5.TabIndex = 0
         Me.NumericUpDown5.Value = New Decimal(New Integer() {5, 0, 0, 0})
         '
-        'ShowMonitorCheckBox
-        '
-        Me.ShowMonitorCheckBox.AutoSize = True
-        Me.ShowMonitorCheckBox.Checked = Global.ASCOM.JoloFocuser.My.MySettings.Default.ShowMonitor
-        Me.ShowMonitorCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.ASCOM.JoloFocuser.My.MySettings.Default, "ShowMonitor", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.ShowMonitorCheckBox.Location = New System.Drawing.Point(23, 148)
-        Me.ShowMonitorCheckBox.Name = "ShowMonitorCheckBox"
-        Me.ShowMonitorCheckBox.Size = New System.Drawing.Size(162, 17)
-        Me.ShowMonitorCheckBox.TabIndex = 39
-        Me.ShowMonitorCheckBox.Text = "Show monitor popup window"
-        Me.ShowMonitorCheckBox.UseVisualStyleBackColor = True
-        '
         'TextBox1
         '
         Me.TextBox1.BackColor = System.Drawing.SystemColors.Control
@@ -404,37 +392,6 @@ Partial Class SetupDialogForm
         Me.Label10.Size = New System.Drawing.Size(100, 13)
         Me.Label10.TabIndex = 35
         Me.Label10.Text = "Set focuser position"
-        '
-        'NumericUpDown1
-        '
-        Me.NumericUpDown1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "FocuserMax", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown1.Location = New System.Drawing.Point(131, 55)
-        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
-        Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Size = New System.Drawing.Size(103, 20)
-        Me.NumericUpDown1.TabIndex = 8
-        Me.NumericUpDown1.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserMax
-        '
-        'NumericUpDown6
-        '
-        Me.NumericUpDown6.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "StepperRPM", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown6.Location = New System.Drawing.Point(131, 86)
-        Me.NumericUpDown6.Maximum = New Decimal(New Integer() {2000, 0, 0, 0})
-        Me.NumericUpDown6.Minimum = New Decimal(New Integer() {5, 0, 0, 0})
-        Me.NumericUpDown6.Name = "NumericUpDown6"
-        Me.NumericUpDown6.Size = New System.Drawing.Size(55, 20)
-        Me.NumericUpDown6.TabIndex = 20
-        Me.NumericUpDown6.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.StepperRPM
-        '
-        'COM1
-        '
-        Me.COM1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "CommPort", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.COM1.FormattingEnabled = True
-        Me.COM1.Location = New System.Drawing.Point(131, 16)
-        Me.COM1.Name = "COM1"
-        Me.COM1.Size = New System.Drawing.Size(65, 21)
-        Me.COM1.TabIndex = 22
-        Me.COM1.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.CommPort
         '
         'TabPage2
         '
@@ -643,6 +600,71 @@ Partial Class SetupDialogForm
         Me.Label9.TabIndex = 31
         Me.Label9.Text = "Stepper duty cycle stop %"
         '
+        'PictureBox2
+        '
+        Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
+        Me.PictureBox2.Location = New System.Drawing.Point(375, 82)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(48, 49)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 25
+        Me.PictureBox2.TabStop = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.PictureBox1.Image = Global.ASCOM.JoloFocuser.My.Resources.Resources.ASCOM
+        Me.PictureBox1.Location = New System.Drawing.Point(373, 12)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(48, 56)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.PictureBox1.TabIndex = 2
+        Me.PictureBox1.TabStop = False
+        '
+        'ShowMonitorCheckBox
+        '
+        Me.ShowMonitorCheckBox.AutoSize = True
+        Me.ShowMonitorCheckBox.Checked = Global.ASCOM.JoloFocuser.My.MySettings.Default.ShowMonitor
+        Me.ShowMonitorCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.ASCOM.JoloFocuser.My.MySettings.Default, "ShowMonitor", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.ShowMonitorCheckBox.Location = New System.Drawing.Point(23, 148)
+        Me.ShowMonitorCheckBox.Name = "ShowMonitorCheckBox"
+        Me.ShowMonitorCheckBox.Size = New System.Drawing.Size(162, 17)
+        Me.ShowMonitorCheckBox.TabIndex = 39
+        Me.ShowMonitorCheckBox.Text = "Show monitor popup window"
+        Me.ShowMonitorCheckBox.UseVisualStyleBackColor = True
+        '
+        'NumericUpDown1
+        '
+        Me.NumericUpDown1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "FocuserMax", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.NumericUpDown1.Location = New System.Drawing.Point(131, 55)
+        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        Me.NumericUpDown1.Size = New System.Drawing.Size(103, 20)
+        Me.NumericUpDown1.TabIndex = 8
+        Me.NumericUpDown1.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserMax
+        '
+        'NumericUpDown6
+        '
+        Me.NumericUpDown6.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "StepperRPM", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.NumericUpDown6.Location = New System.Drawing.Point(131, 86)
+        Me.NumericUpDown6.Maximum = New Decimal(New Integer() {2000, 0, 0, 0})
+        Me.NumericUpDown6.Minimum = New Decimal(New Integer() {5, 0, 0, 0})
+        Me.NumericUpDown6.Name = "NumericUpDown6"
+        Me.NumericUpDown6.Size = New System.Drawing.Size(55, 20)
+        Me.NumericUpDown6.TabIndex = 20
+        Me.NumericUpDown6.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.StepperRPM
+        '
+        'COM1
+        '
+        Me.COM1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "CommPort", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.COM1.FormattingEnabled = True
+        Me.COM1.Location = New System.Drawing.Point(131, 16)
+        Me.COM1.Name = "COM1"
+        Me.COM1.Size = New System.Drawing.Size(65, 21)
+        Me.COM1.TabIndex = 22
+        Me.COM1.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.CommPort
+        '
         'LCD4ComboBox
         '
         Me.LCD4ComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "LCD4", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
@@ -764,28 +786,6 @@ Partial Class SetupDialogForm
         Me.TempCycleTime.TabIndex = 15
         Me.TempCycleTime.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.TempCycle
         '
-        'PictureBox2
-        '
-        Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
-        Me.PictureBox2.Location = New System.Drawing.Point(375, 82)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(48, 49)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 25
-        Me.PictureBox2.TabStop = False
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.PictureBox1.Image = Global.ASCOM.JoloFocuser.My.Resources.Resources.ASCOM
-        Me.PictureBox1.Location = New System.Drawing.Point(373, 12)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(48, 56)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
-        Me.PictureBox1.TabIndex = 2
-        Me.PictureBox1.TabStop = False
-        '
         'SetupDialogForm
         '
         Me.AcceptButton = Me.OK_Button
@@ -815,18 +815,18 @@ Partial Class SetupDialogForm
         Me.GroupBox1.PerformLayout()
         CType(Me.NumericUpDown5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TempCompensation, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AccASCOM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AccManual, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DutyCycleStop, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DutyCycleRun, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TempCycleTime, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

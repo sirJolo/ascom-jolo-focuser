@@ -73,14 +73,14 @@ Public Class SetupDialogForm
                 'Will not send command
             End Try
             If (SerialPort1.IsOpen) Then
-                SerialPort1.Write("R:" + NumericUpDown8.Value.ToString + Constants.vbLf)
+                SerialPort1.Write("P:" + NumericUpDown8.Value.ToString + Constants.vbLf)
                 Dim answer As String = ""
                 Try
                     answer = SerialPort1.ReadTo(Constants.vbLf)
-                    If (answer = "R") Then
+                    If (answer = "P:") Then
                         MessageBox.Show("Focuser position updated.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Else
-                        MessageBox.Show("Focuser response invalid, was " + answer + ", expected R", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        MessageBox.Show("Focuser response invalid, was " + answer + ", expected P", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     End If
                 Catch ex As System.TimeoutException
                     MessageBox.Show("Serial port response time out " + SerialPort1.PortName, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -119,8 +119,8 @@ Public Class SetupDialogForm
         If (MessageBox.Show("Restore default values at Advanced Settings tab?", "Restore values?", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes) Then
             DutyCycleRun.Value = 100
             DutyCycleStop.Value = 0
-            AccASCOM.Value = 100
-            AccManual.Value = 100
+            AccASCOM.Value = 1500
+            AccManual.Value = 200
             TempCompensation.Value = 0.0
             TempCycleTime.Value = 20
             BuzzerCheckBox.Checked = True

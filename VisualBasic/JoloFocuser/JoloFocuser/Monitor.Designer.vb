@@ -25,12 +25,11 @@ Partial Class MonitorForm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MonitorForm))
         Me.TabControl1 = New System.Windows.Forms.TabControl
         Me.TabPage1 = New System.Windows.Forms.TabPage
+        Me.StopButton = New System.Windows.Forms.Button
         Me.PictureBox2 = New System.Windows.Forms.PictureBox
         Me.Button3 = New System.Windows.Forms.Button
         Me.Button2 = New System.Windows.Forms.Button
         Me.Button1 = New System.Windows.Forms.Button
-        Me.AbsPosNumericUpDown = New System.Windows.Forms.NumericUpDown
-        Me.RelPosUpDown = New System.Windows.Forms.NumericUpDown
         Me.Label8 = New System.Windows.Forms.Label
         Me.Label7 = New System.Windows.Forms.Label
         Me.Label6 = New System.Windows.Forms.Label
@@ -62,6 +61,9 @@ Partial Class MonitorForm
         Me.PWM10 = New System.Windows.Forms.Label
         Me.PWM9 = New System.Windows.Forms.Label
         Me.PWM6 = New System.Windows.Forms.Label
+        Me.SaveLogCheckBox = New System.Windows.Forms.CheckBox
+        Me.AbsPosNumericUpDown = New System.Windows.Forms.NumericUpDown
+        Me.RelPosUpDown = New System.Windows.Forms.NumericUpDown
         Me.ADC_CheckBox = New System.Windows.Forms.CheckBox
         Me.OPTO_CheckBox = New System.Windows.Forms.CheckBox
         Me.PWM_D10_ComboBox = New System.Windows.Forms.ComboBox
@@ -70,10 +72,10 @@ Partial Class MonitorForm
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.AbsPosNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RelPosUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.AbsPosNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RelPosUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -88,6 +90,8 @@ Partial Class MonitorForm
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.SaveLogCheckBox)
+        Me.TabPage1.Controls.Add(Me.StopButton)
         Me.TabPage1.Controls.Add(Me.PictureBox2)
         Me.TabPage1.Controls.Add(Me.Button3)
         Me.TabPage1.Controls.Add(Me.Button2)
@@ -116,6 +120,15 @@ Partial Class MonitorForm
         Me.TabPage1.Text = "Monitor"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'StopButton
+        '
+        Me.StopButton.Location = New System.Drawing.Point(215, 69)
+        Me.StopButton.Name = "StopButton"
+        Me.StopButton.Size = New System.Drawing.Size(60, 20)
+        Me.StopButton.TabIndex = 27
+        Me.StopButton.Text = "STOP"
+        Me.StopButton.UseVisualStyleBackColor = True
+        '
         'PictureBox2
         '
         Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
@@ -129,7 +142,7 @@ Partial Class MonitorForm
         'Button3
         '
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.Button3.Location = New System.Drawing.Point(244, 46)
+        Me.Button3.Location = New System.Drawing.Point(244, 39)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(31, 20)
         Me.Button3.TabIndex = 20
@@ -157,29 +170,10 @@ Partial Class MonitorForm
         Me.Button1.Text = "-"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'AbsPosNumericUpDown
-        '
-        Me.AbsPosNumericUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Maximum", Global.ASCOM.JoloFocuser.My.MySettings.Default, "FocuserMax", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.AbsPosNumericUpDown.Location = New System.Drawing.Point(166, 46)
-        Me.AbsPosNumericUpDown.Maximum = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserMax
-        Me.AbsPosNumericUpDown.Name = "AbsPosNumericUpDown"
-        Me.AbsPosNumericUpDown.Size = New System.Drawing.Size(73, 20)
-        Me.AbsPosNumericUpDown.TabIndex = 19
-        '
-        'RelPosUpDown
-        '
-        Me.RelPosUpDown.Location = New System.Drawing.Point(192, 9)
-        Me.RelPosUpDown.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
-        Me.RelPosUpDown.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.RelPosUpDown.Name = "RelPosUpDown"
-        Me.RelPosUpDown.Size = New System.Drawing.Size(58, 20)
-        Me.RelPosUpDown.TabIndex = 19
-        Me.RelPosUpDown.Value = New Decimal(New Integer() {10, 0, 0, 0})
-        '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(8, 133)
+        Me.Label8.Location = New System.Drawing.Point(8, 111)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(55, 13)
         Me.Label8.TabIndex = 16
@@ -188,7 +182,7 @@ Partial Class MonitorForm
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(8, 111)
+        Me.Label7.Location = New System.Drawing.Point(8, 89)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(47, 13)
         Me.Label7.TabIndex = 17
@@ -197,7 +191,7 @@ Partial Class MonitorForm
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(8, 87)
+        Me.Label6.Location = New System.Drawing.Point(8, 65)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(67, 13)
         Me.Label6.TabIndex = 18
@@ -207,7 +201,7 @@ Partial Class MonitorForm
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label14.Location = New System.Drawing.Point(119, 133)
+        Me.Label14.Location = New System.Drawing.Point(119, 111)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(15, 13)
         Me.Label14.TabIndex = 13
@@ -217,7 +211,7 @@ Partial Class MonitorForm
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label13.Location = New System.Drawing.Point(119, 111)
+        Me.Label13.Location = New System.Drawing.Point(119, 89)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(16, 13)
         Me.Label13.TabIndex = 12
@@ -227,7 +221,7 @@ Partial Class MonitorForm
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label12.Location = New System.Drawing.Point(120, 87)
+        Me.Label12.Location = New System.Drawing.Point(120, 65)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(15, 13)
         Me.Label12.TabIndex = 15
@@ -248,7 +242,7 @@ Partial Class MonitorForm
         Me.DewPoint.BackColor = System.Drawing.SystemColors.Info
         Me.DewPoint.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.DewPoint.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.DewPoint.Location = New System.Drawing.Point(81, 132)
+        Me.DewPoint.Location = New System.Drawing.Point(81, 110)
         Me.DewPoint.Name = "DewPoint"
         Me.DewPoint.Size = New System.Drawing.Size(38, 16)
         Me.DewPoint.TabIndex = 8
@@ -260,7 +254,7 @@ Partial Class MonitorForm
         Me.Humidity.BackColor = System.Drawing.SystemColors.Info
         Me.Humidity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Humidity.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Humidity.Location = New System.Drawing.Point(81, 110)
+        Me.Humidity.Location = New System.Drawing.Point(81, 88)
         Me.Humidity.Name = "Humidity"
         Me.Humidity.Size = New System.Drawing.Size(38, 16)
         Me.Humidity.TabIndex = 7
@@ -272,7 +266,7 @@ Partial Class MonitorForm
         Me.Temperature.BackColor = System.Drawing.SystemColors.Info
         Me.Temperature.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Temperature.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Temperature.Location = New System.Drawing.Point(81, 87)
+        Me.Temperature.Location = New System.Drawing.Point(81, 65)
         Me.Temperature.Name = "Temperature"
         Me.Temperature.Size = New System.Drawing.Size(38, 16)
         Me.Temperature.TabIndex = 6
@@ -516,6 +510,40 @@ Partial Class MonitorForm
         Me.PWM6.Text = "0"
         Me.PWM6.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
+        'SaveLogCheckBox
+        '
+        Me.SaveLogCheckBox.AutoSize = True
+        Me.SaveLogCheckBox.Checked = Global.ASCOM.JoloFocuser.My.MySettings.Default.SaveLog
+        Me.SaveLogCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SaveLog", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.SaveLogCheckBox.Location = New System.Drawing.Point(11, 136)
+        Me.SaveLogCheckBox.Name = "SaveLogCheckBox"
+        Me.SaveLogCheckBox.Size = New System.Drawing.Size(96, 17)
+        Me.SaveLogCheckBox.TabIndex = 28
+        Me.SaveLogCheckBox.Text = "Save log to file"
+        Me.SaveLogCheckBox.UseVisualStyleBackColor = True
+        '
+        'AbsPosNumericUpDown
+        '
+        Me.AbsPosNumericUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Maximum", Global.ASCOM.JoloFocuser.My.MySettings.Default, "FocuserMax", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.AbsPosNumericUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorAbsolute", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.AbsPosNumericUpDown.Location = New System.Drawing.Point(166, 39)
+        Me.AbsPosNumericUpDown.Maximum = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserMax
+        Me.AbsPosNumericUpDown.Name = "AbsPosNumericUpDown"
+        Me.AbsPosNumericUpDown.Size = New System.Drawing.Size(73, 20)
+        Me.AbsPosNumericUpDown.TabIndex = 19
+        Me.AbsPosNumericUpDown.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorAbsolute
+        '
+        'RelPosUpDown
+        '
+        Me.RelPosUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.RelPosUpDown.Location = New System.Drawing.Point(192, 9)
+        Me.RelPosUpDown.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.RelPosUpDown.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.RelPosUpDown.Name = "RelPosUpDown"
+        Me.RelPosUpDown.Size = New System.Drawing.Size(58, 20)
+        Me.RelPosUpDown.TabIndex = 19
+        Me.RelPosUpDown.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
+        '
         'ADC_CheckBox
         '
         Me.ADC_CheckBox.AutoSize = True
@@ -592,11 +620,11 @@ Partial Class MonitorForm
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.AbsPosNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RelPosUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.AbsPosNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RelPosUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -644,4 +672,6 @@ Partial Class MonitorForm
     Friend WithEvents Button4 As System.Windows.Forms.Button
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents StopButton As System.Windows.Forms.Button
+    Friend WithEvents SaveLogCheckBox As System.Windows.Forms.CheckBox
 End Class

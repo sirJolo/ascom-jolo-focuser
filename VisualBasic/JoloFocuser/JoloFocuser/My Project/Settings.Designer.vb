@@ -129,18 +129,6 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
-        Public Property Backslash() As Decimal
-            Get
-                Return CType(Me("Backslash"),Decimal)
-            End Get
-            Set
-                Me("Backslash") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
         Public Property DutyCycle() As Decimal
             Get
                 Return CType(Me("DutyCycle"),Decimal)
@@ -159,42 +147,6 @@ Namespace My
             End Get
             Set
                 Me("StepSize") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
-        Public Property FocuserMove() As Decimal
-            Get
-                Return CType(Me("FocuserMove"),Decimal)
-            End Get
-            Set
-                Me("FocuserMove") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
-        Public Property FocuserIn() As Decimal
-            Get
-                Return CType(Me("FocuserIn"),Decimal)
-            End Get
-            Set
-                Me("FocuserIn") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
-        Public Property FocuserOut() As Decimal
-            Get
-                Return CType(Me("FocuserOut"),Decimal)
-            End Get
-            Set
-                Me("FocuserOut") = value
             End Set
         End Property
         
@@ -399,6 +351,42 @@ Namespace My
             End Get
             Set
                 Me("LCD4") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("10")>  _
+        Public Property MonitorRelative() As Decimal
+            Get
+                Return CType(Me("MonitorRelative"),Decimal)
+            End Get
+            Set
+                Me("MonitorRelative") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property MonitorAbsolute() As Decimal
+            Get
+                Return CType(Me("MonitorAbsolute"),Decimal)
+            End Get
+            Set
+                Me("MonitorAbsolute") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property SaveLog() As Boolean
+            Get
+                Return CType(Me("SaveLog"),Boolean)
+            End Get
+            Set
+                Me("SaveLog") = value
             End Set
         End Property
     End Class
