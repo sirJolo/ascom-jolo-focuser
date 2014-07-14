@@ -122,9 +122,9 @@ Partial Class MonitorForm
         '
         'StopButton
         '
-        Me.StopButton.Location = New System.Drawing.Point(215, 69)
+        Me.StopButton.Location = New System.Drawing.Point(201, 69)
         Me.StopButton.Name = "StopButton"
-        Me.StopButton.Size = New System.Drawing.Size(60, 20)
+        Me.StopButton.Size = New System.Drawing.Size(74, 20)
         Me.StopButton.TabIndex = 27
         Me.StopButton.Text = "STOP"
         Me.StopButton.UseVisualStyleBackColor = True
@@ -201,7 +201,7 @@ Partial Class MonitorForm
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label14.Location = New System.Drawing.Point(119, 111)
+        Me.Label14.Location = New System.Drawing.Point(119, 112)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(15, 13)
         Me.Label14.TabIndex = 13
@@ -211,7 +211,7 @@ Partial Class MonitorForm
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label13.Location = New System.Drawing.Point(119, 89)
+        Me.Label13.Location = New System.Drawing.Point(119, 90)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(16, 13)
         Me.Label13.TabIndex = 12
@@ -221,7 +221,7 @@ Partial Class MonitorForm
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label12.Location = New System.Drawing.Point(120, 65)
+        Me.Label12.Location = New System.Drawing.Point(120, 66)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(15, 13)
         Me.Label12.TabIndex = 15

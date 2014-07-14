@@ -56,7 +56,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("COM1")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("COM12")>  _
         Public Property CommPort() As String
             Get
                 Return CType(Me("CommPort"),String)
@@ -116,7 +116,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("5")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
         Public Property StepperRPM() As Decimal
             Get
                 Return CType(Me("StepperRPM"),Decimal)
@@ -141,9 +141,9 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
-        Public Property StepSize() As Double
+        Public Property StepSize() As Decimal
             Get
-                Return CType(Me("StepSize"),Double)
+                Return CType(Me("StepSize"),Decimal)
             End Get
             Set
                 Me("StepSize") = value
@@ -212,7 +212,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
         Public Property PWM_6() As String
             Get
                 Return CType(Me("PWM_6"),String)
@@ -224,7 +224,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
         Public Property PWM_9() As String
             Get
                 Return CType(Me("PWM_9"),String)
@@ -236,7 +236,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
         Public Property PWM_10() As String
             Get
                 Return CType(Me("PWM_10"),String)
@@ -387,6 +387,18 @@ Namespace My
             End Get
             Set
                 Me("SaveLog") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property LCDOffDuringMove() As Boolean
+            Get
+                Return CType(Me("LCDOffDuringMove"),Boolean)
+            End Get
+            Set
+                Me("LCDOffDuringMove") = value
             End Set
         End Property
     End Class

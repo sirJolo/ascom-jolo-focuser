@@ -17,9 +17,10 @@ void initializeLCD() {
 //22    100% 100% 100%
 //31  ADC=1024   3.45V
 //32  OPTO:H   345677s
-  
 void lcdUpdateQuick() {
   if(readLong(PROP_LCD_SCREEN_0) == 0) return;            // all 4 screens are 0, so do not display
+  if(readByte(PROP_LCD_OFF_DURING_MOVE) > 0 && stepper.distanceToGo() != 0) return;  // dont refresh then
+  
   while(readByte(PROP_LCD_SCREEN_0 + LCDscreen) == 0) {   // rotate through displays with 0 display time
     LCDscreen++;
     if(LCDscreen == 4) LCDscreen = 0;
@@ -91,7 +92,10 @@ void lcdUpdateLCD(String line1, String line2) {
 }
 
 String readPWM(int addr) {
+  stepper.run();
   byte pwm = readByte(addr);
+  stepper.run();
   if(pwm == 255) pwm = heaterPWM;
+  stepper.run();
   return formatLong(pwm, 3);
 }

@@ -28,17 +28,17 @@ void requestTemp() {
 }
 
 void readTemp() {
+  currentTemp = currentHum = currentDewpoint = 0.0;
   if(sensorType == 1) {
     currentTemp = sensors.getTempC(insideThermometer);
-    currentHum = 0;
   }
   if(sensorType == 3) {
     DHT.read22(TEMP_SENSOR_PIN);
     currentTemp = DHT.temperature;
     currentHum = DHT.humidity;
+    currentDewpoint = dewPoint(currentTemp, currentHum);
   }  
   updatePWM();
-  currentDewpoint = dewPoint(currentTemp, currentHum);
   tempCycleEvent = timer.after(TEMP_CYCLE, requestTemp);
 }
 

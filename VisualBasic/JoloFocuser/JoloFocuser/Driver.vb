@@ -70,6 +70,7 @@ Public Class Focuser
     Private ComPort As System.IO.Ports.SerialPort
 
     Private monitor As MonitorForm
+    Private dialog As SetupDialogForm
 
     '
     ' Constructor - Must be public for COM registration!
@@ -185,6 +186,8 @@ Public Class Focuser
                 End Try
             Catch ex As System.InvalidOperationException
                 Throw New ASCOM.DriverException("Serial port is not opened")
+            Catch ex As System.IO.IOException
+                answer = "ERROR"
             End Try
             Return answer.Trim(Constants.vbLf)
         End SyncLock
@@ -353,6 +356,13 @@ Public Class Focuser
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - OPTO out")
         End If
 
+        Dim LCDoff As String = "0"
+        If My.Settings.LCDOffDuringMove Then LCDoff = "1"
+        answer = CommandString("K:" + LCDoff)
+        If (Not answer.StartsWith("K")) Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - LCD off during move")
+        End If
+
         answer = CommandString("X:" + My.Settings.FocuserMax.ToString)
         If (Not answer.StartsWith("X")) Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - focuser max pos")
@@ -475,7 +485,7 @@ Public Class Focuser
 
     Public Sub Move(ByVal Position As Integer) Implements DeviceInterface.IFocuserV2.Move
         If (TempComp) Then
-            Throw New ASCOM.InvalidOperationException("Temperature compensation enabled during MOVE command")
+            If MessageBox.Show("Temperature compensation enabled during MOVE command - continue with focuser move?", "Continue with MOVE command?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Return
         End If
         If (Position > My.Settings.FocuserMax) Then
             Throw New ASCOM.InvalidOperationException("MOVE larger than maximum focuser position")

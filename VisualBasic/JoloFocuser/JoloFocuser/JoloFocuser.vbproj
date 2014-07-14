@@ -165,6 +165,7 @@
     <Content Include="ASCOM.png" />
     <Content Include="ReadMe.htm" />
     <Content Include="readme.txt" />
+    <None Include="Resources\arduino_logo.bmp" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

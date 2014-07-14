@@ -63,7 +63,7 @@
         SetOPTO(opto)
 
         logCounter += 1
-        If (logCounter > 20) Then
+        If (logCounter > 19) Then
             If SaveLogCheckBox.Checked Then logInfo(answer)
             logCounter = 1
         End If

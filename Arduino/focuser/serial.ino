@@ -39,6 +39,7 @@ void serialEvent() {
 // a - get ADC
 // O,o - set, get opto
 // L,l - set, get LCD screens
+// K,k - set, get LCD off during stepper move
 // M,m - set, get stepper step (in 1/10um)
 // q - get monitoring values
 
@@ -78,6 +79,8 @@ void serialCommand(String command) {
     case 'o': answer += digitalRead(OPTO_PIN); break;
     case 'L': saveLCDScreens(param); break;
     case 'l': answer += printLCDScreens(); break;
+    case 'K': writeByte(PROP_LCD_OFF_DURING_MOVE, stringToNumber(param)); break;
+    case 'k': answer += readByte(PROP_LCD_OFF_DURING_MOVE); break;
     case 'M': writeWord(PROP_STEP_SIZE, stringToNumber(param)); break;
     case 'm': answer += readWord(PROP_STEP_SIZE); break;
     case 'q': answer += printMonitor(); break;
@@ -99,25 +102,37 @@ String printTemp() {
 }
 
 String printMonitor() {      // pos, togo, temp, hum, dew, pwms, adc, opto
+  stepper.run();
   String ret = String(stepper.currentPosition());
   ret += ":";
+  stepper.run();
   ret += stepper.distanceToGo();
   ret += ":";
+  stepper.run();
   ret += formatFloat(currentTemp, 5, 1);
   ret += ":";
+  stepper.run();
   ret += formatLong(currentHum, 3);
+  stepper.run();
   ret += ":";
+  stepper.run();
   ret += formatFloat(currentDewpoint, 5, 1);
   ret += ":";
+  stepper.run();
   ret += String(readPWM(PROP_PWM6));
   ret += ":";
+  stepper.run();
   ret += String(readPWM(PROP_PWM9));
   ret += ":";
+  stepper.run();
   ret += String(readPWM(PROP_PWM10));
   ret += ":";
+  stepper.run();
   ret += readAnalogAvg(ADC_PIN, 3);
   ret += ":";
+  stepper.run();
   ret += String(digitalRead(OPTO_PIN));
+  stepper.run();
   return ret;
 }
 

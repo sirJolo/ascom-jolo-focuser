@@ -14,6 +14,7 @@ void initializeProperties() {
     writeByte(PROP_LCD_SCREEN_2, 2);
     writeByte(PROP_LCD_SCREEN_3, 5);
     writeByte(PROP_BUZZER_ON, 1); 
+    writeByte(PROP_LCD_OFF_DURING_MOVE, 1);
     writeLong(PROP_MAX_FOC_POS, 1000000);
     writeByte(PROPERTY_ADDR, 125);
   }

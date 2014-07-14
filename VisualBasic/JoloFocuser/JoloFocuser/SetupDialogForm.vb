@@ -53,8 +53,6 @@ Public Class SetupDialogForm
     End Sub
 
     Private Sub SetupDialogForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        StepSizeUpDown.Value = My.Settings.StepSize
-        TempCompensation.Value = My.Settings.StepsPerC
         COM1.Items.Clear()
         For Each sp As String In My.Computer.Ports.SerialPortNames
             COM1.Items.Add(sp)
@@ -62,7 +60,48 @@ Public Class SetupDialogForm
         calculateCFZ()
     End Sub
 
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub NumericUpDown5_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NumericUpDown5.ValueChanged, NumericUpDown2.ValueChanged
+        calculateCFZ()
+    End Sub
+
+
+    Private Sub NumericUpDown5_KeyDown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NumericUpDown5.KeyUp, NumericUpDown2.KeyUp
+        calculateCFZ()
+    End Sub
+
+    Private Sub calculateCFZ()
+        Dim ccdcfz As Double = NumericUpDown5.Value * NumericUpDown2.Value
+        Dim cfz As Double
+        cfz = 4.88 * NumericUpDown5.Value * NumericUpDown5.Value * 0.475
+        BlueCFZ.Text = Math.Round(Math.Max(ccdcfz, cfz)).ToString + " microns"
+        cfz = 4.88 * NumericUpDown5.Value * NumericUpDown5.Value * 0.51
+        GreenCFZ.Text = Math.Round(Math.Max(ccdcfz, cfz)).ToString + " microns"
+        cfz = 4.88 * NumericUpDown5.Value * NumericUpDown5.Value * 0.65
+        RedCFZ.Text = Math.Round(Math.Max(ccdcfz, cfz)).ToString + " microns"
+    End Sub
+
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        If (MessageBox.Show("Restore default values at Advanced Settings tab?", "Restore values?", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes) Then
+            DutyCycleRun.Value = 100
+            DutyCycleStop.Value = 0
+            AccASCOM.Value = 1500
+            AccManual.Value = 200
+            TempCompensation.Value = 0.0
+            TempCycleTime.Value = 20
+            BuzzerCheckBox.Checked = True
+            LCDOffCheckBox.Checked = True
+            LCD1ComboBox.Text = "5"
+            LCD2ComboBox.Text = "5"
+            LCD3ComboBox.Text = "3"
+            LCD4ComboBox.Text = "3"
+        End If
+    End Sub
+
+    Private Sub NumericUpDown5_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles NumericUpDown5.KeyUp, NumericUpDown2.KeyUp
+
+    End Sub
+
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         If (MessageBox.Show("Are you sure to set current focuser position to " + NumericUpDown8.Value.ToString + "?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes) Then
             SerialPort1.BaudRate = 9600
             SerialPort1.ReadTimeout = 2000
@@ -95,40 +134,4 @@ Public Class SetupDialogForm
             End If
         End If
     End Sub
-
-    Private Sub NumericUpDown5_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NumericUpDown5.ValueChanged
-        calculateCFZ()
-    End Sub
-
-
-    Private Sub NumericUpDown5_KeyDown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NumericUpDown5.KeyUp
-        calculateCFZ()
-    End Sub
-
-    Private Sub calculateCFZ()
-        Dim cfz As Double
-        cfz = 4.88 * NumericUpDown5.Value * NumericUpDown5.Value * 0.475
-        BlueCFZ.Text = Math.Round(cfz).ToString + " microns"
-        cfz = 4.88 * NumericUpDown5.Value * NumericUpDown5.Value * 0.51
-        GreenCFZ.Text = Math.Round(cfz).ToString + " microns"
-        cfz = 4.88 * NumericUpDown5.Value * NumericUpDown5.Value * 0.65
-        RedCFZ.Text = Math.Round(cfz).ToString + " microns"
-    End Sub
-
-    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
-        If (MessageBox.Show("Restore default values at Advanced Settings tab?", "Restore values?", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes) Then
-            DutyCycleRun.Value = 100
-            DutyCycleStop.Value = 0
-            AccASCOM.Value = 1500
-            AccManual.Value = 200
-            TempCompensation.Value = 0.0
-            TempCycleTime.Value = 20
-            BuzzerCheckBox.Checked = True
-            LCD1ComboBox.Text = "5"
-            LCD2ComboBox.Text = "5"
-            LCD3ComboBox.Text = "3"
-            LCD4ComboBox.Text = "3"
-        End If
-    End Sub
-
 End Class

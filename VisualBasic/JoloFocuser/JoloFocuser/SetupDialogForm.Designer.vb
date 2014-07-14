@@ -35,7 +35,6 @@ Partial Class SetupDialogForm
         Me.Label7 = New System.Windows.Forms.Label
         Me.Label8 = New System.Windows.Forms.Label
         Me.Label4 = New System.Windows.Forms.Label
-        Me.StepSizeUpDown = New System.Windows.Forms.NumericUpDown
         Me.Label5 = New System.Windows.Forms.Label
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel
         Me.Label1 = New System.Windows.Forms.Label
@@ -46,7 +45,10 @@ Partial Class SetupDialogForm
         Me.GreenCFZ = New System.Windows.Forms.Label
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel
         Me.BlueCFZ = New System.Windows.Forms.Label
+        Me.Label21 = New System.Windows.Forms.Label
+        Me.Label22 = New System.Windows.Forms.Label
         Me.Label11 = New System.Windows.Forms.Label
+        Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown
         Me.NumericUpDown5 = New System.Windows.Forms.NumericUpDown
         Me.TextBox1 = New System.Windows.Forms.TextBox
         Me.Button2 = New System.Windows.Forms.Button
@@ -72,8 +74,10 @@ Partial Class SetupDialogForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.ShowMonitorCheckBox = New System.Windows.Forms.CheckBox
         Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown
+        Me.StepSizeUpDown = New System.Windows.Forms.NumericUpDown
         Me.NumericUpDown6 = New System.Windows.Forms.NumericUpDown
         Me.COM1 = New System.Windows.Forms.ComboBox
+        Me.LCDOffCheckBox = New System.Windows.Forms.CheckBox
         Me.LCD4ComboBox = New System.Windows.Forms.ComboBox
         Me.LCD3ComboBox = New System.Windows.Forms.ComboBox
         Me.LCD2ComboBox = New System.Windows.Forms.ComboBox
@@ -86,16 +90,17 @@ Partial Class SetupDialogForm
         Me.DutyCycleRun = New System.Windows.Forms.NumericUpDown
         Me.TempCycleTime = New System.Windows.Forms.NumericUpDown
         Me.TableLayoutPanel1.SuspendLayout()
-        CType(Me.StepSizeUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LCDTabControl.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.StepSizeUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TempCompensation, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AccASCOM, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -169,7 +174,7 @@ Partial Class SetupDialogForm
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(17, 145)
+        Me.Label6.Location = New System.Drawing.Point(17, 142)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(88, 13)
         Me.Label6.TabIndex = 17
@@ -178,7 +183,7 @@ Partial Class SetupDialogForm
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(17, 173)
+        Me.Label7.Location = New System.Drawing.Point(17, 170)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(83, 13)
         Me.Label7.TabIndex = 18
@@ -201,15 +206,6 @@ Partial Class SetupDialogForm
         Me.Label4.Size = New System.Drawing.Size(124, 13)
         Me.Label4.TabIndex = 31
         Me.Label4.Text = "Stepper duty cycle run %"
-        '
-        'StepSizeUpDown
-        '
-        Me.StepSizeUpDown.DecimalPlaces = 1
-        Me.StepSizeUpDown.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
-        Me.StepSizeUpDown.Location = New System.Drawing.Point(131, 118)
-        Me.StepSizeUpDown.Name = "StepSizeUpDown"
-        Me.StepSizeUpDown.Size = New System.Drawing.Size(55, 20)
-        Me.StepSizeUpDown.TabIndex = 32
         '
         'Label5
         '
@@ -281,7 +277,10 @@ Partial Class SetupDialogForm
         Me.GroupBox1.Controls.Add(Me.GreenCFZ)
         Me.GroupBox1.Controls.Add(Me.LinkLabel2)
         Me.GroupBox1.Controls.Add(Me.BlueCFZ)
+        Me.GroupBox1.Controls.Add(Me.Label21)
+        Me.GroupBox1.Controls.Add(Me.Label22)
         Me.GroupBox1.Controls.Add(Me.Label11)
+        Me.GroupBox1.Controls.Add(Me.NumericUpDown2)
         Me.GroupBox1.Controls.Add(Me.NumericUpDown5)
         Me.GroupBox1.Location = New System.Drawing.Point(20, 293)
         Me.GroupBox1.Name = "GroupBox1"
@@ -333,6 +332,24 @@ Partial Class SetupDialogForm
         Me.BlueCFZ.TabIndex = 2
         Me.BlueCFZ.Text = "0 microns"
         '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(143, 63)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(21, 13)
+        Me.Label21.TabIndex = 1
+        Me.Label21.Text = "um"
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(9, 61)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(74, 13)
+        Me.Label22.TabIndex = 1
+        Me.Label22.Text = "CCD pixel size"
+        '
         'Label11
         '
         Me.Label11.AutoSize = True
@@ -342,11 +359,23 @@ Partial Class SetupDialogForm
         Me.Label11.TabIndex = 1
         Me.Label11.Text = "f ratio"
         '
+        'NumericUpDown2
+        '
+        Me.NumericUpDown2.DecimalPlaces = 1
+        Me.NumericUpDown2.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.NumericUpDown2.Location = New System.Drawing.Point(98, 59)
+        Me.NumericUpDown2.Maximum = New Decimal(New Integer() {50, 0, 0, 0})
+        Me.NumericUpDown2.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.NumericUpDown2.Name = "NumericUpDown2"
+        Me.NumericUpDown2.Size = New System.Drawing.Size(44, 20)
+        Me.NumericUpDown2.TabIndex = 0
+        Me.NumericUpDown2.Value = New Decimal(New Integer() {74, 0, 0, 65536})
+        '
         'NumericUpDown5
         '
         Me.NumericUpDown5.DecimalPlaces = 1
         Me.NumericUpDown5.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
-        Me.NumericUpDown5.Location = New System.Drawing.Point(60, 31)
+        Me.NumericUpDown5.Location = New System.Drawing.Point(98, 31)
         Me.NumericUpDown5.Maximum = New Decimal(New Integer() {50, 0, 0, 0})
         Me.NumericUpDown5.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NumericUpDown5.Name = "NumericUpDown5"
@@ -358,7 +387,7 @@ Partial Class SetupDialogForm
         '
         Me.TextBox1.BackColor = System.Drawing.SystemColors.Control
         Me.TextBox1.Enabled = False
-        Me.TextBox1.Location = New System.Drawing.Point(20, 207)
+        Me.TextBox1.Location = New System.Drawing.Point(20, 214)
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(307, 53)
@@ -369,7 +398,7 @@ Partial Class SetupDialogForm
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(253, 179)
+        Me.Button2.Location = New System.Drawing.Point(253, 186)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 36
@@ -378,7 +407,7 @@ Partial Class SetupDialogForm
         '
         'NumericUpDown8
         '
-        Me.NumericUpDown8.Location = New System.Drawing.Point(129, 180)
+        Me.NumericUpDown8.Location = New System.Drawing.Point(129, 187)
         Me.NumericUpDown8.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
         Me.NumericUpDown8.Name = "NumericUpDown8"
         Me.NumericUpDown8.Size = New System.Drawing.Size(103, 20)
@@ -387,7 +416,7 @@ Partial Class SetupDialogForm
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(18, 182)
+        Me.Label10.Location = New System.Drawing.Point(18, 189)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(100, 13)
         Me.Label10.TabIndex = 35
@@ -395,6 +424,7 @@ Partial Class SetupDialogForm
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.LCDOffCheckBox)
         Me.TabPage2.Controls.Add(Me.Label16)
         Me.TabPage2.Controls.Add(Me.TextBox5)
         Me.TabPage2.Controls.Add(Me.TextBox4)
@@ -548,7 +578,7 @@ Partial Class SetupDialogForm
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(232, 200)
+        Me.Button3.Location = New System.Drawing.Point(232, 215)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(103, 23)
         Me.Button3.TabIndex = 36
@@ -558,7 +588,7 @@ Partial Class SetupDialogForm
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(17, 111)
+        Me.Label13.Location = New System.Drawing.Point(17, 107)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(142, 13)
         Me.Label13.TabIndex = 31
@@ -567,7 +597,7 @@ Partial Class SetupDialogForm
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(236, 111)
+        Me.Label15.Location = New System.Drawing.Point(236, 107)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(34, 13)
         Me.Label15.TabIndex = 31
@@ -576,7 +606,7 @@ Partial Class SetupDialogForm
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(236, 83)
+        Me.Label14.Location = New System.Drawing.Point(236, 79)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(34, 13)
         Me.Label14.TabIndex = 31
@@ -585,7 +615,7 @@ Partial Class SetupDialogForm
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(17, 83)
+        Me.Label12.Location = New System.Drawing.Point(17, 79)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(138, 13)
         Me.Label12.TabIndex = 31
@@ -644,6 +674,17 @@ Partial Class SetupDialogForm
         Me.NumericUpDown1.TabIndex = 8
         Me.NumericUpDown1.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserMax
         '
+        'StepSizeUpDown
+        '
+        Me.StepSizeUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "StepSize", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.StepSizeUpDown.DecimalPlaces = 1
+        Me.StepSizeUpDown.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.StepSizeUpDown.Location = New System.Drawing.Point(131, 118)
+        Me.StepSizeUpDown.Name = "StepSizeUpDown"
+        Me.StepSizeUpDown.Size = New System.Drawing.Size(55, 20)
+        Me.StepSizeUpDown.TabIndex = 32
+        Me.StepSizeUpDown.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.StepSize
+        '
         'NumericUpDown6
         '
         Me.NumericUpDown6.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "StepperRPM", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
@@ -664,6 +705,19 @@ Partial Class SetupDialogForm
         Me.COM1.Size = New System.Drawing.Size(65, 21)
         Me.COM1.TabIndex = 22
         Me.COM1.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.CommPort
+        '
+        'LCDOffCheckBox
+        '
+        Me.LCDOffCheckBox.AutoSize = True
+        Me.LCDOffCheckBox.Checked = Global.ASCOM.JoloFocuser.My.MySettings.Default.LCDOffDuringMove
+        Me.LCDOffCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.LCDOffCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.ASCOM.JoloFocuser.My.MySettings.Default, "LCDOffDuringMove", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.LCDOffCheckBox.Location = New System.Drawing.Point(20, 221)
+        Me.LCDOffCheckBox.Name = "LCDOffCheckBox"
+        Me.LCDOffCheckBox.Size = New System.Drawing.Size(183, 17)
+        Me.LCDOffCheckBox.TabIndex = 51
+        Me.LCDOffCheckBox.Text = "Turn off LCD during stepper work"
+        Me.LCDOffCheckBox.UseVisualStyleBackColor = True
         '
         'LCD4ComboBox
         '
@@ -715,7 +769,7 @@ Partial Class SetupDialogForm
         Me.BuzzerCheckBox.Checked = Global.ASCOM.JoloFocuser.My.MySettings.Default.BuzzerON
         Me.BuzzerCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
         Me.BuzzerCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.ASCOM.JoloFocuser.My.MySettings.Default, "BuzzerON", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.BuzzerCheckBox.Location = New System.Drawing.Point(20, 200)
+        Me.BuzzerCheckBox.Location = New System.Drawing.Point(20, 197)
         Me.BuzzerCheckBox.Name = "BuzzerCheckBox"
         Me.BuzzerCheckBox.Size = New System.Drawing.Size(58, 17)
         Me.BuzzerCheckBox.TabIndex = 32
@@ -727,7 +781,7 @@ Partial Class SetupDialogForm
         Me.TempCompensation.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "StepsPerC", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.TempCompensation.DecimalPlaces = 1
         Me.TempCompensation.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
-        Me.TempCompensation.Location = New System.Drawing.Point(128, 171)
+        Me.TempCompensation.Location = New System.Drawing.Point(128, 168)
         Me.TempCompensation.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.TempCompensation.Minimum = New Decimal(New Integer() {1000, 0, 0, -2147483648})
         Me.TempCompensation.Name = "TempCompensation"
@@ -738,7 +792,7 @@ Partial Class SetupDialogForm
         'AccASCOM
         '
         Me.AccASCOM.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "AccASCOM", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.AccASCOM.Location = New System.Drawing.Point(175, 107)
+        Me.AccASCOM.Location = New System.Drawing.Point(175, 103)
         Me.AccASCOM.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
         Me.AccASCOM.Minimum = New Decimal(New Integer() {50, 0, 0, 0})
         Me.AccASCOM.Name = "AccASCOM"
@@ -749,7 +803,7 @@ Partial Class SetupDialogForm
         'AccManual
         '
         Me.AccManual.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "AccManual", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.AccManual.Location = New System.Drawing.Point(175, 79)
+        Me.AccManual.Location = New System.Drawing.Point(175, 75)
         Me.AccManual.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
         Me.AccManual.Minimum = New Decimal(New Integer() {50, 0, 0, 0})
         Me.AccManual.Name = "AccManual"
@@ -778,7 +832,7 @@ Partial Class SetupDialogForm
         'TempCycleTime
         '
         Me.TempCycleTime.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "TempCycle", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.TempCycleTime.Location = New System.Drawing.Point(128, 143)
+        Me.TempCycleTime.Location = New System.Drawing.Point(128, 140)
         Me.TempCycleTime.Maximum = New Decimal(New Integer() {120, 0, 0, 0})
         Me.TempCycleTime.Minimum = New Decimal(New Integer() {3, 0, 0, 0})
         Me.TempCycleTime.Name = "TempCycleTime"
@@ -807,12 +861,12 @@ Partial Class SetupDialogForm
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Jolo ASCOM Focuser Setup"
         Me.TableLayoutPanel1.ResumeLayout(False)
-        CType(Me.StepSizeUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LCDTabControl.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
@@ -820,6 +874,7 @@ Partial Class SetupDialogForm
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.StepSizeUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TempCompensation, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AccASCOM, System.ComponentModel.ISupportInitialize).EndInit()
@@ -892,5 +947,9 @@ Partial Class SetupDialogForm
     Friend WithEvents Label20 As System.Windows.Forms.Label
     Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents Label18 As System.Windows.Forms.Label
+    Friend WithEvents LCDOffCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents Label21 As System.Windows.Forms.Label
+    Friend WithEvents Label22 As System.Windows.Forms.Label
+    Friend WithEvents NumericUpDown2 As System.Windows.Forms.NumericUpDown
 
 End Class

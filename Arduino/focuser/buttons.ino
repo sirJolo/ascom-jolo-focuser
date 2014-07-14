@@ -17,7 +17,7 @@ void doButtonsCheck() {
     {
       stepper.setAcceleration(readWord(PROP_ACC_MAN) * 6);
       stepper.stop();
-      analogWrite(STEPPER_PWM_PIN, (255 * readByte(PROP_DUTY_CYCLE_STOP)/100));
+      //analogWrite(STEPPER_PWM_PIN, (255 * readByte(PROP_DUTY_CYCLE_STOP)/100));
       tempCycleEvent = timer.after(TEMP_CYCLE, requestTemp);
     }
   }
@@ -32,7 +32,7 @@ void doButtonsCheck() {
     {
       stepper.setAcceleration(readWord(PROP_ACC_MAN) * 6);
       stepper.stop();
-      analogWrite(STEPPER_PWM_PIN, (255 * readByte(PROP_DUTY_CYCLE_STOP)/100));
+      //analogWrite(STEPPER_PWM_PIN, (255 * readByte(PROP_DUTY_CYCLE_STOP)/100));
       tempCycleEvent = timer.after(TEMP_CYCLE, requestTemp);
     }
   }
