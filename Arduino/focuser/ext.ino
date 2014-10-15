@@ -20,12 +20,13 @@ void initializeExt() {
 
 void updatePWM() {
   calculateHeaterPWM();
-  updatePWMPin(PWM_PIN6, map(readByte(PROP_PWM6), 0, 100, 0, 255));
-  updatePWMPin(PWM_PIN9, map(readByte(PROP_PWM9), 0, 100, 0, 255));
-  updatePWMPin(PWM_PIN10, map(readByte(PROP_PWM10), 0, 100, 0, 255));
+  updatePWMPin(PWM_PIN6, PROP_PWM6);
+  updatePWMPin(PWM_PIN9, PROP_PWM9);
+  updatePWMPin(PWM_PIN10, PROP_PWM10);
 }
 
-void updatePWMPin(byte pin, byte value) {
+void updatePWMPin(byte pin, int addr) {
+  byte value = readByte(addr);
   if(value == 255) value = heaterPWM;
-  analogWrite(pin, value);
+  analogWrite(pin, map(value, 0, 100, 0, 255));
 }

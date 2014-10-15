@@ -83,7 +83,7 @@ void serialCommand(String command) {
     case 'k': answer += readByte(PROP_LCD_OFF_DURING_MOVE); break;
     case 'M': writeWord(PROP_STEP_SIZE, stringToNumber(param)); break;
     case 'm': answer += readWord(PROP_STEP_SIZE); break;
-    case 'q': answer += printMonitor(); break;
+    case 'q': Serial.print(answer); answer = printMonitor(); break;
     
     default: answer += " error"; buzz(100, 3);
   }
@@ -103,37 +103,30 @@ String printTemp() {
 
 String printMonitor() {      // pos, togo, temp, hum, dew, pwms, adc, opto
   stepper.run();
-  String ret = String(stepper.currentPosition());
-  ret += ":";
+  Serial.print(stepper.currentPosition());
+  Serial.print(":");
+  Serial.print(stepper.distanceToGo());
+  Serial.print(":");
   stepper.run();
-  ret += stepper.distanceToGo();
-  ret += ":";
+  Serial.print(currentTemp);
+  Serial.print(":");
+  Serial.print(currentHum);
+  Serial.print(":");
   stepper.run();
-  ret += formatFloat(currentTemp, 5, 1);
-  ret += ":";
+  Serial.print(currentDewpoint);
+  Serial.print(":");
+  Serial.print(readPWM(PROP_PWM6));
+  Serial.print(":");
   stepper.run();
-  ret += formatLong(currentHum, 3);
+  Serial.print(readPWM(PROP_PWM9));
+  Serial.print(":");
+  Serial.print(readPWM(PROP_PWM10));
+  Serial.print(":");
   stepper.run();
-  ret += ":";
-  stepper.run();
-  ret += formatFloat(currentDewpoint, 5, 1);
-  ret += ":";
-  stepper.run();
-  ret += String(readPWM(PROP_PWM6));
-  ret += ":";
-  stepper.run();
-  ret += String(readPWM(PROP_PWM9));
-  ret += ":";
-  stepper.run();
-  ret += String(readPWM(PROP_PWM10));
-  ret += ":";
-  stepper.run();
-  ret += readAnalogAvg(ADC_PIN, 3);
-  ret += ":";
-  stepper.run();
-  ret += String(digitalRead(OPTO_PIN));
-  stepper.run();
-  return ret;
+  Serial.print(readAnalogAvg(ADC_PIN, 3));
+  Serial.print(":");
+  Serial.print(digitalRead(OPTO_PIN));
+  return String();
 }
 
 void setPWM(String param) {
