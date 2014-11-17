@@ -70,7 +70,7 @@
     End Sub
 
 
-    Private Sub logInfo(ByVal logs As String)
+    Public Sub logLine(ByVal logs As String)
         Dim fileName As String = Date.Now.ToShortDateString & ".txt"
         Dim path As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\JOLOFocuser"
         Dim folderExists As Boolean = My.Computer.FileSystem.DirectoryExists(path)
@@ -83,10 +83,16 @@
         If fileExists = False Then
             My.Computer.FileSystem.WriteAllText(file, "Time;position;temperature;humidity;dewpoint;pwm6;pwm9;pwm10;adc;opto" & vbCrLf, False)
         End If
-        Dim values() As String = Split(logs, ":")
-        Dim vt As String = Date.Now & ";" & values(1) & ";" & values(3) & ";" & values(4) & ";" & values(5) & ";" & values(6) & ";" & values(7) & ";" & values(8) & ";" & values(9) & ";" & values(10) & vbCrLf
-        My.Computer.FileSystem.WriteAllText(file, vt, True)
+        Dim line As String = Date.Now & ";" & logs & vbCrLf
+        My.Computer.FileSystem.WriteAllText(file, line, True)
     End Sub
+
+    Private Sub logInfo(ByVal logs As String)
+        Dim values() As String = Split(logs, ":")
+        Dim vt As String = values(1) & ";" & values(3) & ";" & values(4) & ";" & values(5) & ";" & values(6) & ";" & values(7) & ";" & values(8) & ";" & values(9) & ";" & values(10)
+        logLine(vt)
+    End Sub
+
 
     Private Sub SetPositionSteps(ByVal position As String)
         If Me.PositionSteps.InvokeRequired Then

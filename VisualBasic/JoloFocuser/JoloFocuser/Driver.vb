@@ -1,3 +1,5 @@
+Imports System.IO.Ports
+
 'tabs=4
 ' --------------------------------------------------------------------------------
 ' TODO fill in this information for your driver, then remove this line!
@@ -67,15 +69,22 @@ Public Class Focuser
     Private lastDirection As Integer = 0
     Private sensorConnected As Boolean = False
     Private tempCompensation As Boolean = False
-    Private ComPort As System.IO.Ports.SerialPort
+    Private WithEvents ComPort As System.IO.Ports.SerialPort
+    Private comportLock As New Object
+    Private serialResponse As New StringBuilder()
 
     Private monitor As MonitorForm
     Private dialog As SetupDialogForm
+
+    Private positionCache As Integer
+    Private tempCache As Double
 
     '
     ' Constructor - Must be public for COM registration!
     '
     Public Sub New()
+        positionCache = 0
+        tempCache = 0.0
         tempCompTimer = New System.Timers.Timer()
         tempCompTimer.Interval = My.Settings.TempCycle * 1000
         tempCompTimer.Enabled = False
@@ -166,7 +175,8 @@ Public Class Focuser
     End Function
 
     Public Function CommandString(ByVal Command As String, Optional ByVal Raw As Boolean = False) As String Implements IFocuserV2.CommandString
-        SyncLock ComPort
+        SyncLock comportLock
+            loginfo("Locked " & comportLock.GetHashCode.ToString)
             CheckConnected("CommandString")
             Dim commandToSend As String = Command
             If Not (Raw) Then
@@ -175,32 +185,45 @@ Public Class Focuser
 
             Dim answer As String
             Try
+                ComPort.DiscardInBuffer()
+                ComPort.DiscardOutBuffer()
+
+                loginfo("Sending command: " & Command & " from instance: " & Me.GetHashCode.ToString)
                 ComPort.Write(commandToSend)
                 answer = ComPort.ReadTo(Constants.vbLf)
+                loginfo("Received answer: " & answer)
             Catch ex As System.TimeoutException
                 Try
+                    loginfo("#2 Sending command: " & commandToSend)
                     ComPort.Write(commandToSend)
                     answer = ComPort.ReadTo(Constants.vbLf)
+                    loginfo("#2 Received answer: " & answer)
                 Catch internalEx As System.TimeoutException
+                    loginfo("Serial port timeout for command " + Command)
                     Throw New ASCOM.DriverException("Serial port timeout for command " + Command)
                 End Try
             Catch ex As System.InvalidOperationException
+                loginfo("Serial port is not opened for command " & Command)
                 Throw New ASCOM.DriverException("Serial port is not opened")
             Catch ex As System.IO.IOException
                 answer = "ERROR"
             End Try
+            loginfo("Unlocked " & comportLock.GetHashCode.ToString)
             Return answer.Trim(Constants.vbLf)
         End SyncLock
     End Function
 
     Public Property Connected() As Boolean Implements IFocuserV2.Connected
         Get
+            loginfo("Asked if connected")
             Return IsConnected
         End Get
         Set(ByVal value As Boolean)
             If (value = IsConnected) Then
+                loginfo("Asked to connect, but already: " & value.ToString)
                 Return
             End If
+            loginfo("Asked to connect: " & value)
             If (value) Then
                 Connect()
             Else
@@ -253,19 +276,33 @@ Public Class Focuser
         ComPort.PortName = My.Settings.CommPort
         ComPort.BaudRate = 9600
         ComPort.ReadTimeout = 2000
+        ComPort.Encoding = System.Text.Encoding.ASCII
 
         Try
+            If (ComPort.IsOpen) Then
+                loginfo("Asked to open COM, but already opened, so closing...")
+                ComPort.Close()
+                System.Threading.Thread.Sleep(200)
+                loginfo("Asked to open COM, but already opened, closed now")
+            End If
             ComPort.Open()
         Catch ex As System.IO.IOException
-            Throw New ASCOM.NotConnectedException("Invalid port state")
+            Dim msg As String = "Invalid port state: " & ex.Message & " : " & ex.Data.ToString
+            loginfo(msg)
+            Throw New ASCOM.NotConnectedException(msg)
         Catch ex As System.InvalidOperationException
-            Throw New ASCOM.NotConnectedException("Port already opened")
+            Dim msg As String = "Port already opened: " & ex.Message & " : " & ex.Data.ToString
+            loginfo(msg)
+            Throw New ASCOM.NotConnectedException(msg)
         Catch ex As System.UnauthorizedAccessException
-            Throw New ASCOM.NotConnectedException("Access denied to serial port")
+            Dim msg As String = "RS access denied: " & ex.Message & " : " & ex.Data.ToString
+            loginfo(msg)
+            Throw New ASCOM.NotConnectedException(msg)
         End Try
 
         Dim answer As String = CommandString("#")
         If (answer <> DEVICE_RESPONSE) Then
+            loginfo("Device not detected")
             Throw New ASCOM.NotConnectedException("Device not detected")
         End If
         writeInitParameters()
@@ -375,9 +412,11 @@ Public Class Focuser
         monitor.running = False
         tempCompTimer.Enabled = False
         Try
+            loginfo("Asked to disconnect, so closing port...")
             ComPort.Close()
+            loginfo("Asked to disconnect, port closed.")
         Catch ex As System.InvalidOperationException
-            'Port is already closed :)
+            loginfo("Asked to disconnect, but port already closed")
         End Try
     End Sub
 
@@ -439,7 +478,7 @@ Public Class Focuser
     End Property
 
     Public Sub Dispose() Implements DeviceInterface.IFocuserV2.Dispose
-        '
+        ComPort.Dispose()
     End Sub
 
     Public Sub Halt() Implements DeviceInterface.IFocuserV2.Halt
@@ -507,9 +546,12 @@ Public Class Focuser
             Dim answer As String = CommandString("p")
             Dim values() As String = Split(answer, ":")
             If (Not answer.StartsWith("p")) Then
-                Throw New ASCOM.DriverException("Wrong device answer: expected p, got " + answer)
+                'Throw New ASCOM.DriverException("Wrong device answer: expected p, got " + answer)
+                loginfo("Wrong device answer: expected p, got " + answer)
+            Else
+                positionCache = Integer.Parse(values(1))
             End If
-            Return Integer.Parse(values(1))
+            Return positionCache
         End Get
     End Property
 
@@ -546,13 +588,23 @@ Public Class Focuser
             Dim answer As String = CommandString("t")
             Dim values() As String = Split(answer, ":")
             If (Not answer.StartsWith("t")) Then
-                Throw New ASCOM.DriverException("Wrong device answer: expected t, got " + answer)
+                'Throw New ASCOM.DriverException("Wrong device answer: expected t, got " + answer)
+                loginfo("Wrong device answer: expected t, got " + answer)
+            Else
+                If (values(1) = "false") Then
+                    Throw New ASCOM.NotConnectedException("Temperature sensor disconnected")
+                End If
+                tempCache = Double.Parse(values(1), System.Globalization.CultureInfo.InvariantCulture.NumberFormat)
             End If
-            If (values(1) = "false") Then
-                Throw New ASCOM.NotConnectedException("Temperature sensor disconnected")
-            End If
-            Return Double.Parse(values(1), System.Globalization.CultureInfo.InvariantCulture.NumberFormat)
+            Return tempCache
         End Get
     End Property
+
+    Private Sub loginfo(ByVal content As String)
+        If (Not (monitor Is Nothing)) Then
+            monitor.logLine(content)
+        End If
+    End Sub
+
 End Class
 

@@ -134,4 +134,5 @@ Public Class SetupDialogForm
             End If
         End If
     End Sub
+
 End Class
