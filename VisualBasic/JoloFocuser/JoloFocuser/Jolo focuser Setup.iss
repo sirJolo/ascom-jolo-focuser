@@ -4,8 +4,8 @@
 ;
 [Setup]
 AppName=ASCOM Jolo focuser Focuser Driver
-AppVerName=ASCOM Jolo focuser Focuser Driver 2.1.4b
-AppVersion=2.1.4b
+AppVerName=ASCOM Jolo focuser Focuser Driver 2.2
+AppVersion=2.2
 AppPublisher=Jolo <drjolo@gmail.com>
 AppPublisherURL=mailto:drjolo@gmail.com
 AppSupportURL=http://tech.groups.yahoo.com/group/ASCOM-Talk/

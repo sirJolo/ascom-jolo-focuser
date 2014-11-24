@@ -1,6 +1,9 @@
 ﻿ASCOM Jolo focuser driver
 For Arduino based focuser device
 
+24 Nov 2014 ver 2.2
+2.2 - fixed: driver error when working from scripts due to not working sync lock
+
 14 Jul 2014 ver 2.1
 2.1 - added: LCD I2C, DHT22, more setup, CFZ calc, status monitor, logging to file
 

@@ -231,9 +231,9 @@ Partial Class SetupDialogForm
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(18, 461)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(76, 13)
+        Me.Label1.Size = New System.Drawing.Size(43, 13)
         Me.Label1.TabIndex = 35
-        Me.Label1.Text = "ver. 2.1.4 beta"
+        Me.Label1.Text = "ver. 2.2"
         '
         'LCDTabControl
         '

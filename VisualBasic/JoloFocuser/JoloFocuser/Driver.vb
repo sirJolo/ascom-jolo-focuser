@@ -14,7 +14,7 @@ Imports System.IO.Ports
 '
 ' Implements:	ASCOM Focuser interface version: 1.3
 ' Author:		(Jol) Jolo (drjolo@gmail.com)
-' URL:          http://code.google.com/p/ascom-jolo-focuser/
+' URL:          https://github.com/sirJolo/ascom-jolo-focuser
 '
 ' Edit Log:
 '
@@ -55,7 +55,7 @@ Public Class Focuser
     ' Driver ID and descriptive string that shows in the Chooser
     '
     Private Const DELTA_T As Double = 0.5
-    Private Const DRIVER_VERSION As String = "2.1"
+    Private Const DRIVER_VERSION As String = "2.2"
     Private Const DEVICE_RESPONSE As String = "#:Jolo primary focuser"
 
     Private Shared driverID As String = "ASCOM.JoloFocuser.Focuser"
@@ -71,7 +71,6 @@ Public Class Focuser
     Private tempCompensation As Boolean = False
     Private WithEvents ComPort As System.IO.Ports.SerialPort
     Private comportLock As New Object
-    Private serialResponse As New StringBuilder()
 
     Private monitor As MonitorForm
     Private dialog As SetupDialogForm
@@ -176,7 +175,6 @@ Public Class Focuser
 
     Public Function CommandString(ByVal Command As String, Optional ByVal Raw As Boolean = False) As String Implements IFocuserV2.CommandString
         SyncLock comportLock
-            loginfo("Locked " & comportLock.GetHashCode.ToString)
             CheckConnected("CommandString")
             Dim commandToSend As String = Command
             If Not (Raw) Then
@@ -188,42 +186,32 @@ Public Class Focuser
                 ComPort.DiscardInBuffer()
                 ComPort.DiscardOutBuffer()
 
-                loginfo("Sending command: " & Command & " from instance: " & Me.GetHashCode.ToString)
                 ComPort.Write(commandToSend)
                 answer = ComPort.ReadTo(Constants.vbLf)
-                loginfo("Received answer: " & answer)
             Catch ex As System.TimeoutException
                 Try
-                    loginfo("#2 Sending command: " & commandToSend)
                     ComPort.Write(commandToSend)
                     answer = ComPort.ReadTo(Constants.vbLf)
-                    loginfo("#2 Received answer: " & answer)
                 Catch internalEx As System.TimeoutException
-                    loginfo("Serial port timeout for command " + Command)
                     Throw New ASCOM.DriverException("Serial port timeout for command " + Command)
                 End Try
             Catch ex As System.InvalidOperationException
-                loginfo("Serial port is not opened for command " & Command)
                 Throw New ASCOM.DriverException("Serial port is not opened")
             Catch ex As System.IO.IOException
                 answer = "ERROR"
             End Try
-            loginfo("Unlocked " & comportLock.GetHashCode.ToString)
             Return answer.Trim(Constants.vbLf)
         End SyncLock
     End Function
 
     Public Property Connected() As Boolean Implements IFocuserV2.Connected
         Get
-            loginfo("Asked if connected")
             Return IsConnected
         End Get
         Set(ByVal value As Boolean)
             If (value = IsConnected) Then
-                loginfo("Asked to connect, but already: " & value.ToString)
                 Return
             End If
-            loginfo("Asked to connect: " & value)
             If (value) Then
                 Connect()
             Else
@@ -280,29 +268,23 @@ Public Class Focuser
 
         Try
             If (ComPort.IsOpen) Then
-                loginfo("Asked to open COM, but already opened, so closing...")
                 ComPort.Close()
                 System.Threading.Thread.Sleep(200)
-                loginfo("Asked to open COM, but already opened, closed now")
             End If
             ComPort.Open()
         Catch ex As System.IO.IOException
             Dim msg As String = "Invalid port state: " & ex.Message & " : " & ex.Data.ToString
-            loginfo(msg)
             Throw New ASCOM.NotConnectedException(msg)
         Catch ex As System.InvalidOperationException
             Dim msg As String = "Port already opened: " & ex.Message & " : " & ex.Data.ToString
-            loginfo(msg)
             Throw New ASCOM.NotConnectedException(msg)
         Catch ex As System.UnauthorizedAccessException
             Dim msg As String = "RS access denied: " & ex.Message & " : " & ex.Data.ToString
-            loginfo(msg)
             Throw New ASCOM.NotConnectedException(msg)
         End Try
 
         Dim answer As String = CommandString("#")
         If (answer <> DEVICE_RESPONSE) Then
-            loginfo("Device not detected")
             Throw New ASCOM.NotConnectedException("Device not detected")
         End If
         writeInitParameters()
@@ -412,11 +394,9 @@ Public Class Focuser
         monitor.running = False
         tempCompTimer.Enabled = False
         Try
-            loginfo("Asked to disconnect, so closing port...")
             ComPort.Close()
-            loginfo("Asked to disconnect, port closed.")
         Catch ex As System.InvalidOperationException
-            loginfo("Asked to disconnect, but port already closed")
+            Throw New ASCOM.InvalidOperationException("Asked to disconnect, but port already closed")
         End Try
     End Sub
 
@@ -601,7 +581,7 @@ Public Class Focuser
     End Property
 
     Private Sub loginfo(ByVal content As String)
-        If (Not (monitor Is Nothing)) Then
+        If (Not (monitor Is Nothing)) And My.Settings.SaveLog Then
             monitor.logLine(content)
         End If
     End Sub
