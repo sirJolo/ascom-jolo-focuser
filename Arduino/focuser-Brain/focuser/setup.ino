@@ -2,14 +2,12 @@
 void setup() 
 {
   initializeSerial();
+  initializeTWI();
   initializeBuzzer();
   initializeProperties();
-  initializeButtons();
   initializeSensors();
-  initializeStepper();
   initializeExt();
-  initializeLCD();
-
+  
   buzz(50, 2);
 }
 

@@ -1,9 +1,9 @@
-void saveFocuserPos(long newPos) {
-  writeLong(getSaveFocuserPosAddress() + 1, newPos);
+void saveFocuserPos(long newPos, int focuserPosStart) {
+  writeLong(getSaveFocuserPosAddress(focuserPosStart) + 1, newPos);
 }
 
-long readFocuserPos() {
-  return readLong(getReadFocuserPosAddress() + 1);
+long readFocuserPos(int focuserPosStart) {
+  return readLong(getReadFocuserPosAddress(focuserPosStart) + 1);
 }
 
 void writeByte(word address, byte value) {
@@ -77,24 +77,24 @@ int readAnalogAvg(byte pin, byte count) {
 
 
 // Simple EEPROM wear leveling
-int getSaveFocuserPosAddress() {
+int getSaveFocuserPosAddress(int focuserPosStart) {
   for(byte x = 0; x < 20; x++) {
-    int address = FOCUSER_POS_START + 5*x;
+    int address = focuserPosStart + 5*x;
     if(EEPROM.read(address) == 0) {
       EEPROM.write(address, 0xFF);
       return address;
     }
   } 
   // Array is full, erase it and start from 0 - takes about 100ms
-  for(byte x = 0; x < 20; x++) EEPROM.write(FOCUSER_POS_START + 5*x, 0);
-  EEPROM.write(FOCUSER_POS_START, 0xFF);
-  return FOCUSER_POS_START;
+  for(byte x = 0; x < 20; x++) EEPROM.write(focuserPosStart + 5*x, 0);
+  EEPROM.write(focuserPosStart, 0xFF);
+  return focuserPosStart;
 }
 
-int getReadFocuserPosAddress() {
+int getReadFocuserPosAddress(int focuserPosStart) {
   for(byte x = 0; x < 20; x++) {
-    int address = FOCUSER_POS_START + 5*x;
-    if(EEPROM.read(address) == 0) return FOCUSER_POS_START + 5 * (x-1);
+    int address = focuserPosStart + 5*x;
+    if(EEPROM.read(address) == 0) return focuserPosStart + 5 * (x-1);
   }
 }
 
