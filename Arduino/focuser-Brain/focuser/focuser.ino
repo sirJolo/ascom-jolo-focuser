@@ -59,6 +59,7 @@ DeviceAddress insideThermometer;
 dht DHT;
   
 Timer timer;
+byte commandMap[] = {7,3,4,0,5,6,8};
 
 struct DeviceStatusStruct {
   long stepperPos[2];

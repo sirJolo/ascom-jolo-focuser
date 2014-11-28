@@ -49,11 +49,34 @@ void serialCommand(String command) {
     case 'H': haltStepper(param); break;
     case 'B': writeByte(PROP_BUZZER_ON, stringToNumber(param)); break;  //TODO - copy to slave
     case 'b': answer += readByte(PROP_BUZZER_ON); break;   
+    case 'C': sendConfig(param); break;    
    
     default: answer += " error"; buzz(100, 3);
   }
   Serial.print(answer);
   Serial.print('\n');
+}
+
+void sendConfig(String param) {  //<speed>:<acc man>:<acc auto>:<step size>:<pwm stop>:<pwm man>:<max pos>: and for stepper #2...
+  byte counter = 0;
+  byte lastIndex = 0;
+  for (byte i = 0; i < param.length(); i++) {
+    if (param.substring(i, i+1) == ":") {
+      dispatchConfig(counter, stringToLong(param.substring(lastIndex, i)));
+      lastIndex = i + 1;
+      counter++;
+    }
+    if (i == param.length() - 1) {
+      dispatchConfig(counter, stringToLong(param.substring(lastIndex, i)));
+    }
+  }
+}
+
+void dispatchConfig(byte index, long value) {
+  deviceCommand.value = value;
+  deviceCommand.device = (index > 7) ? 2 : 1;
+  deviceCommand.command = commandMap[index % 7];
+  sendCommand();
 }
 
 void moveStepper(String param) { //R:1:13444

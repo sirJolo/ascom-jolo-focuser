@@ -17,6 +17,7 @@ void requestEvent() {
 // 11,12,13,14 - PWMs
 
 // commands
+// 0 - proceed
 // 1 - stepper move
 // 2 - stepper halt
 // 3 - stepper acc
