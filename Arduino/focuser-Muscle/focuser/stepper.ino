@@ -1,32 +1,55 @@
 void initializeStepper(byte index) {
-  stepper[index].setMaxSpeed(readWord(EEPROMaddrStart[index] + PROP_STEPPER_SPEED));
-  stepper[index].setAcceleration(readWord(EEPROMaddrStart[index] + PROP_ACC_AUTO));
-  stepper[index].setCurrentPosition(readFocuserPos(EEPROMaddrStart[index]));
-  analogWrite(stepperPWMPin[index], (255 * readByte(EEPROMaddrStart[index] + PROP_DUTY_CYCLE_STOP)/100));
-  positionSaved[index] = true;
-  maxFocuserPos[index] = readLong(EEPROMaddrStart[index] + PROP_MAX_FOC_POS);
+  motors[index].maxPos = 1000000;
+  motors[index].pwmStop = 0;
+  motors[index].pwmRun = 100;
+  motors[index].pps = 100;
+  motors[index].accMan = 100;
+  motors[index].accAuto = 100;
+  motors[index].curStep = 0;  //only used for unipolar move control
+  
+  motors[index].motor.setMaxSpeed(motors[index].pps);
+  motors[index].motor.setAcceleration(motors[index].accAuto);
+  motors[index].motor.setCurrentPosition(readFocuserPos(motors[index].EEPROMstart));
+  analogWrite(motors[index].pwmPin, motors[index].pwmStop);
+  motors[index].posSaved = true;
 }
 
 
 void checkStepper(byte index) {
-  if(stepper[index].distanceToGo() == 0 && !positionSaved[index]) {
-    saveFocuserPos(stepper[index].currentPosition(), EEPROMaddrStart[index]);
-    positionSaved[index] = true;
+  if(motors[index].motor.distanceToGo() == 0 && !motors[index].posSaved) {
+    saveFocuserPos(motors[index].motor.currentPosition(), motors[index].EEPROMstart);
+    motors[index].posSaved = true;
     buzz(20, 1);
-    analogWrite(stepperPWMPin[index], (255 * readByte(EEPROMaddrStart[index] + PROP_DUTY_CYCLE_STOP)/100));
+    analogWrite(motors[index].pwmPin, motors[index].pwmStop);
   }
 }
 
 void moveStepper(byte index, long newPos) {
-  if(newPos != stepper[index].currentPosition()) {
-    if(newPos < 0 || newPos > maxFocuserPos[index]) {
+  if(newPos != motors[index].motor.currentPosition()) {
+    if(newPos < 0 || newPos > motors[index].maxPos) {
       buzz(100, 2);
     }
     else
     {
-      analogWrite(stepperPWMPin[index], (255 * readByte(EEPROMaddrStart[index] + PROP_DUTY_CYCLE_RUN)/100));
-      stepper[index].moveTo(newPos);
-      positionSaved[index] = false;
+      analogWrite(motors[index].pwmPin, motors[index].pwmRun);
+      motors[index].motor.moveTo(newPos);
+      motors[index].posSaved = false;
     }
   }
+}
+
+void forward1Step() {
+  // do forward unipolar 1 stuff
+}
+
+void backward1Step() {
+  // do backward unipolar 1 stuff
+}
+
+void forward2Step() {
+  // do forward unipolar 2 stuff
+}
+
+void backward2Step() {
+  // do backward unipolar 2 stuff
 }

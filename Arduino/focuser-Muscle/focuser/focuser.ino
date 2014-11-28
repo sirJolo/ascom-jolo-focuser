@@ -17,45 +17,54 @@
 // Stepper config
 #define STEPPER1_PWM_PIN 9
 #define STEPPER2_PWM_PIN 10
-//AccelStepper stepper1 = AccelStepper(AccelStepper::HALF4WIRE, 2, 4, A0, A1);  
-AccelStepper stepper1 = AccelStepper(AccelStepper::DRIVER, 2, 4);  
-//AccelStepper stepper2 = AccelStepper(AccelStepper::HALF4WIRE, 7, 8, A2, A3);  
-AccelStepper stepper2 = AccelStepper(AccelStepper::DRIVER, 7, 8);  
-
-// EEPROM addresses
-#define FOCUSER1_POS_START 900
-#define FOCUSER2_POS_START 800
-
-#define PROP_FOCUSER_OFFSET -200
-
-#define PROP_STEPPER_SPEED PROP_FOCUSER_OFFSET+1
-#define PROP_DUTY_CYCLE_RUN PROP_FOCUSER_OFFSET+3
-#define PROP_DUTY_CYCLE_STOP PROP_FOCUSER_OFFSET+5
-#define PROP_ACC_AUTO PROP_FOCUSER_OFFSET+10
-#define PROP_ACC_MAN PROP_FOCUSER_OFFSET+15
-#define PROP_BUZZER_ON PROP_FOCUSER_OFFSET+20
-#define PROP_MAX_FOC_POS PROP_FOCUSER_OFFSET+30
 
 // PWM config
 #define PWM1_PIN 3
 #define PWM2_PIN 5
 #define PWM3_PIN 6
 #define PWM4_PIN 11
-  
-Timer timer;
+
+// Unipolar, probably L293 drivers (so we can have PWM)
+//AccelStepper stepper1 = AccelStepper(forward1Step, backward1Step);  
+//AccelStepper stepper2 = AccelStepper(forward2Step, backward2Step);  
+
+// Bipolar A4988 drivers
+AccelStepper stepper1 = AccelStepper(AccelStepper::DRIVER, 2, 4);  
+AccelStepper stepper2 = AccelStepper(AccelStepper::DRIVER, 7, 8);  
+
+// EEPROM addresses
+#define FOCUSER1_POS_START 900
+#define FOCUSER2_POS_START 800
+#define PROP_BUZZER_ON 700  
 
 // Global vars
-boolean positionSaved[2];
-long maxFocuserPos[] = {1000000, 1000000};
-int EEPROMaddrStart[] = {FOCUSER1_POS_START, FOCUSER2_POS_START}; 
-AccelStepper stepper[] = {stepper1, stepper2};
-byte stepperPWMPin[] = {STEPPER1_PWM_PIN, STEPPER2_PWM_PIN};
+Timer timer;
+
+byte pwmPins[] = {PWM1_PIN, PWM2_PIN, PWM3_PIN, PWM4_PIN};
+byte pwmValues[] = {0,0,0,0};
+boolean commandDispatched = true;
+
+struct StepperCtx {
+  boolean posSaved;
+  long maxPos;
+  int pps;
+  int accMan;
+  int accAuto;
+  byte pwmStop;
+  byte pwmRun;
+  AccelStepper motor;
+  byte pwmPin;
+  int EEPROMstart;
+  byte curStep;
+};
+
+StepperCtx motor1, motor2;
+StepperCtx motors[] = {motor1, motor2};
 
 volatile struct {
   long stepperPos[2];
   boolean stepperMove[2];
   byte PWMs[4];
-  byte PCFs[6];
 } DeviceStatus;
 
 volatile struct {
@@ -67,8 +76,8 @@ volatile struct {
 
 void loop() 
 {
-  stepper[0].run();
-  stepper[1].run();
+  motors[0].motor.run();
+  motors[1].motor.run();
   checkStepper(0);
   checkStepper(1);
   

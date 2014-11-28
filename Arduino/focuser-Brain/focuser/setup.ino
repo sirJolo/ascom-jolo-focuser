@@ -8,6 +8,8 @@ void setup()
   initializeSensors();
   initializeExt();
   
+  initializeSlave();
+  
   buzz(50, 2);
 }
 

@@ -64,7 +64,6 @@ struct DeviceStatusStruct {
   long stepperPos[2];
   boolean stepperMove[2];
   byte PWMs[4];
-  byte PCFs[6];
 };
 
 struct DeviceCommandStruct {

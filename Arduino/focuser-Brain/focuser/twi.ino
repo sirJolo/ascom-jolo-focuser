@@ -4,6 +4,10 @@ void initializeTWI() {
   statusCycleEvent = timer.after(2000, readStatus);
 }
 
+void initializeSlave() {
+  // send stuff to slave
+}
+
 void sendCommand() {
   Wire.beginTransmission(STEPPER_CPU_ADDR);
   Wire.write((byte*) &deviceCommand, sizeof deviceCommand);
