@@ -1,6 +1,7 @@
 // Initialization routine
 void setup() 
 {
+  initializeSerial();
   initializeExt();
   initializeTWI();
   

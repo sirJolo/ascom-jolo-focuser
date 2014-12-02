@@ -12,6 +12,8 @@
 #include <PWM.h>
 
 #define I2C_ADDR 30
+#define DEVICE_RESPONSE "Jolo slave focuser"
+#define FIRMWARE "3.0"
 #define BUZZER_PIN 13
 
 // Stepper config
@@ -74,6 +76,7 @@ volatile struct {
   long value;
 } DeviceCommand;
 
+String inputString;  
 
 void loop() 
 {
