@@ -34,7 +34,11 @@ PCF8574 expander;
 #define PROPERTY_ADDR 700
 #define PROP_BUZZER_ON PROPERTY_ADDR+20
 
-// EXT
+// ADC
+#define Vin_PIN A5
+#define Vreg_PIN A6
+#define Itot_PIN A7
+#define Cust_PIN A4
 
 // Buzzer config
 #define BUZZER_PIN 13
@@ -64,7 +68,9 @@ byte commandMap[] = {7,3,4,0,5,6,8};
 struct DeviceStatusStruct {
   long stepperPos[2];
   boolean stepperMove[2];
-  byte PWMs[4];
+  byte pwmValues[4];
+  int adc6;
+  int adc7;  
 };
 
 struct DeviceCommandStruct {
@@ -72,6 +78,14 @@ struct DeviceCommandStruct {
   byte device;
   long value;
 };
+
+struct {
+  int Vin;
+  int Vreg;
+  int Itot;
+  int Cust;
+  long energy;
+} powerStatus;
 
 
 // Global vars
@@ -81,6 +95,7 @@ String inputString;                  // Serial input command string (terminated 
 int tempCycleEvent;
 int buzzCycleEvent;
 int statusCycleEvent;
+int adcCycleEvent;
 
 DeviceCommandStruct deviceCommand;
 DeviceStatusStruct deviceStatus;

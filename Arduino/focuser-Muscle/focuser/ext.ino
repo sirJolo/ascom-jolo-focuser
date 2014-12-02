@@ -9,6 +9,10 @@ void initializeExt() {
   pinMode(PWM4_PIN, OUTPUT);
   digitalWrite(PWM4_PIN, LOW);
   
+  DeviceStatus.pwmValues[0] = 0;
+  DeviceStatus.pwmValues[1] = 0;
+  DeviceStatus.pwmValues[2] = 0;
+  DeviceStatus.pwmValues[3] = 0;
 }  
 
 void initializeBuzzer() {

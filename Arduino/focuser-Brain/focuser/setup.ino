@@ -7,6 +7,7 @@ void setup()
   initializeProperties();
   initializeSensors();
   initializeExt();
+  initializeADCs();
   
   initializeSlave();
   

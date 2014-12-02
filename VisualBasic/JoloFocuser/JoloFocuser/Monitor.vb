@@ -40,14 +40,6 @@
 
         isMoving = (Integer.Parse(values(2)) <> 0)
 
-        Dim temp As Double = Double.Parse(values(3), System.Globalization.CultureInfo.InvariantCulture.NumberFormat)
-        SetTemperature(FormatNumber(temp, 1))
-
-        SetHumidity(values(4))
-
-        Dim dewpoint As Double = Double.Parse(values(5), System.Globalization.CultureInfo.InvariantCulture.NumberFormat)
-        SetDewpoint(FormatNumber(dewpoint, 1))
-
         SetPWM6(values(6))
         SetPWM9(values(7))
         SetPWM10(values(8))
@@ -121,23 +113,6 @@
         End If
     End Sub
 
-    Private Sub SetHumidity(ByVal hum As String)
-        If Me.Humidity.InvokeRequired Then
-            Dim d As New SetHumidityCallback(AddressOf SetHumidity)
-            Me.Invoke(d, New Object() {hum})
-        Else
-            Me.Humidity.Text = hum
-        End If
-    End Sub
-
-    Private Sub SetDewpoint(ByVal dp As String)
-        If Me.DewPoint.InvokeRequired Then
-            Dim d As New SetDewpointCallback(AddressOf SetDewpoint)
-            Me.Invoke(d, New Object() {dp})
-        Else
-            Me.DewPoint.Text = dp
-        End If
-    End Sub
 
     Private Sub SetPWM6(ByVal pwm As String)
         If Me.PWM6.InvokeRequired Then
@@ -209,7 +184,7 @@
         Return adc
     End Function
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click, Button8.Click, Button9.Click
         If JOLOfocuser Is Nothing Then Return
         If isMoving Then Return
         Dim position As Integer = JOLOfocuser.Position
@@ -217,7 +192,7 @@
         JOLOfocuser.Move(position)
     End Sub
 
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click, Button7.Click, Button10.Click
         If JOLOfocuser Is Nothing Then Return
         If isMoving Then Return
         Dim position As Integer = JOLOfocuser.Position
@@ -225,7 +200,7 @@
         JOLOfocuser.Move(position)
     End Sub
 
-    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click, Button6.Click
         If isMoving Then Return
         JOLOfocuser.Move(AbsPosNumericUpDown.Value)
     End Sub
@@ -274,7 +249,7 @@
         If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:0:" + pwm)
     End Sub
 
-    Private Sub StopButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StopButton.Click
+    Private Sub StopButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StopButton.Click, Button5.Click, Button12.Click
         If Not JOLOfocuser Is Nothing Then JOLOfocuser.Halt()
     End Sub
 End Class

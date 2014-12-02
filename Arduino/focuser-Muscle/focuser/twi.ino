@@ -8,6 +8,8 @@ void requestEvent() {
   for (byte i = 0; i < 2; i++) {
     DeviceStatus.stepperPos[i] = motors[i].motor.currentPosition();
     DeviceStatus.stepperMove[i] = (motors[i].motor.distanceToGo() != 0) ? true : false;
+    DeviceStatus.adc6 = analogRead(A6); 
+    DeviceStatus.adc7 - analogRead(A7);
   }
   Wire.write((byte*) &DeviceStatus, sizeof DeviceStatus);
 }
@@ -66,8 +68,8 @@ void stepperCommand() {
 void pwmCommand() {
   if(!commandDispatched) {
     byte index = DeviceCommand.device - 11;
-    pwmValues[index] = (byte) DeviceCommand.value;
-    analogWrite(pwmPins[index], pwmValues[index]);
+    DeviceStatus.pwmValues[index] = (byte) DeviceCommand.value;
+    analogWrite(pwmPins[index], DeviceStatus.pwmValues[index]);
     commandDispatched = true;
   }
 }

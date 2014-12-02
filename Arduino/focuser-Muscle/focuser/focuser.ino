@@ -41,7 +41,6 @@ AccelStepper stepper2 = AccelStepper(AccelStepper::DRIVER, 7, 8);
 Timer timer;
 
 byte pwmPins[] = {PWM1_PIN, PWM2_PIN, PWM3_PIN, PWM4_PIN};
-byte pwmValues[] = {0,0,0,0};
 boolean commandDispatched = true;
 
 struct StepperCtx {
@@ -64,7 +63,9 @@ StepperCtx motors[] = {motor1, motor2};
 volatile struct {
   long stepperPos[2];
   boolean stepperMove[2];
-  byte PWMs[4];
+  byte pwmValues[4];
+  int adc6;
+  int adc7;
 } DeviceStatus;
 
 volatile struct {
