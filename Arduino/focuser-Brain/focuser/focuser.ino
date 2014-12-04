@@ -35,25 +35,27 @@ PCF8574 expander;
 #define PROP_BUZZER_ON PROPERTY_ADDR+20
 
 // ADC
-#define Vin_PIN A5
-#define Vreg_PIN A6
+#define Vin_PIN A6
 #define Itot_PIN A7
-#define Cust_PIN A4
+
+// DC motor
+#define DCMOTOR_PWM_PIN 9
+#define DCMOTOR_CW_PIN 10
+#define DCMOTOR_CCW_PIN 11
 
 // Buzzer config
 #define BUZZER_PIN 13
 
 // Temperature sensor config
 struct TempSensor {
-  byte sensorType;                     // 0-none, 1-DS8120, 2-DHT11, 3-DHT22
-  float currentTemp;                   // Current cached temperature  
-  float currentHum;                    // Current cached humidity
-  float currentDewpoint;               // Current cached dew point temperature
-  byte heaterPWM;                      // Calculated PWM on hum  
+  byte sensorType;                    
+  float currentTemp;                  
+  float currentHum;                   
+  float currentDewpoint;               
+  byte heaterPWM;                     
   byte sensorPin;
 };
 
-#define TEMP_CYCLE 3000      // config
 #define TEMP_SENSOR1_PIN 9
 #define TEMP_SENSOR2_PIN 10
 #define TEMP_SENSOR3_PIN 11
@@ -63,39 +65,38 @@ DeviceAddress insideThermometer;
 dht DHT;
   
 Timer timer;
-byte commandMap[] = {7,3,4,0,5,6,8};
+byte configCommandMap[] = {7,3,4,0,5,6,8};
 
 struct DeviceStatusStruct {
   long stepperPos[2];
   boolean stepperMove[2];
   byte pwmValues[4];
-  int adc6;
-  int adc7;  
-};
-
-struct DeviceCommandStruct {
-  byte command;
-  byte device;
-  long value;
+  int Vreg;
+  int Cust;
 };
 
 struct {
-  int Vin;
-  int Vreg;
-  int Itot;
-  int Cust;
-  long energy;
+  byte pwm; byte dir; int time; boolean moving;
+} dcMotor;
+
+struct {
+  int Vreg; int Cust; int Vin; int Itot; float Ah; float Wh;
 } powerStatus;
+
+struct DeviceCommandStruct {
+  byte command; byte device; long value;
+};
 
 
 // Global vars
 TempSensor tempSensors[3];
-String inputString;                  // Serial input command string (terminated with \n)
+String inputString;                  
 
 int tempCycleEvent;
 int buzzCycleEvent;
 int statusCycleEvent;
 int adcCycleEvent;
+int dcMotorEvent;
 
 DeviceCommandStruct deviceCommand;
 DeviceStatusStruct deviceStatus;

@@ -32,7 +32,6 @@ void serialCommand(String command) {
     case 'p': answer += DeviceStatus.stepperPos[(byte) stringToNumber(param.substring(0,1))]; break;
     case 'i': answer += (DeviceStatus.stepperMove[(byte) stringToNumber(param.substring(0,1))]) ?  "1" : "0"; break;
     case 'H': motors[(byte) stringToNumber(param.substring(0,1))].motor.stop(); break;
-     
    
     default: answer += " error"; buzz(100, 3);
   }

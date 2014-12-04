@@ -7,7 +7,7 @@
 #include <Wire.h>
 #include <EEPROM.h>
 #include <EepromUtil.h>
-#include <AccelStepper.h>
+#include <JoloAccelStepper.h>
 #include <Timer.h>
 #include <PWM.h>
 
@@ -26,13 +26,18 @@
 #define PWM3_PIN 6
 #define PWM4_PIN 11
 
+#define Vreg_PIN A7
+#define Cust_PIN A6
+
+
 // Unipolar, probably L293 drivers (so we can have PWM)
 //AccelStepper stepper1 = AccelStepper(forward1Step, backward1Step);  
 //AccelStepper stepper2 = AccelStepper(forward2Step, backward2Step);  
 
+
 // Bipolar A4988 drivers
-AccelStepper stepper1 = AccelStepper(AccelStepper::DRIVER, 2, 4);  
-AccelStepper stepper2 = AccelStepper(AccelStepper::DRIVER, 7, 8);  
+JoloAccelStepper stepper1 = JoloAccelStepper(AccelStepper::DRIVER, 2, 4);  
+JoloAccelStepper stepper2 = JoloAccelStepper(AccelStepper::DRIVER, 7, 8);  
 
 // EEPROM addresses
 #define FOCUSER1_POS_START 900
@@ -66,8 +71,8 @@ volatile struct {
   long stepperPos[2];
   boolean stepperMove[2];
   byte pwmValues[4];
-  int adc6;
-  int adc7;
+  int Vreg;
+  int Cust;
 } DeviceStatus;
 
 volatile struct {

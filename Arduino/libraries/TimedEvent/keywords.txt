@@ -1,7 +1,0 @@
-TimedEvent	KEYWORD3
-TimedEventClass	KEYWORD3
-TimerInformation	KEYWORD2
-addTimer	KEYWORD2
-start	KEYWORD2
-stop	KEYWORD2
-loop	KEYWORD2

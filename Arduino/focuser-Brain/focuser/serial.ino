@@ -75,7 +75,7 @@ void sendConfig(String param) {  //<speed>:<acc man>:<acc auto>:<step size>:<pwm
 void dispatchConfig(byte index, long value) {
   deviceCommand.value = value;
   deviceCommand.device = (index > 7) ? 2 : 1;
-  deviceCommand.command = commandMap[index % 7];
+  deviceCommand.command = configCommandMap[index % 7];
   sendCommand();
 }
 

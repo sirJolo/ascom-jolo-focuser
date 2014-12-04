@@ -2,16 +2,20 @@ void initializeTWI() {
   Wire.begin(I2C_ADDR);  
   Wire.onRequest(requestEvent);
   Wire.onReceive(receiveEvent);
+  timer.every(500, readADCs);
 }
 
 void requestEvent() {
   for (byte i = 0; i < 2; i++) {
     DeviceStatus.stepperPos[i] = motors[i].motor.currentPosition();
     DeviceStatus.stepperMove[i] = (motors[i].motor.distanceToGo() != 0) ? true : false;
-    DeviceStatus.adc6 = analogRead(A6); 
-    DeviceStatus.adc7 - analogRead(A7);
   }
   Wire.write((byte*) &DeviceStatus, sizeof DeviceStatus);
+}
+
+void readADCs() {
+  DeviceStatus.Vreg = analogRead(Vreg_PIN); 
+  DeviceStatus.Cust - analogRead(Cust_PIN);
 }
 
 // devices

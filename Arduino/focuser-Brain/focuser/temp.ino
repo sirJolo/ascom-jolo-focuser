@@ -38,7 +38,7 @@ void requestTemp() {
 
 void readTemp() {
   for (byte i = 0; i < 3; i++) updateSensor(i);
-  tempCycleEvent = timer.after(TEMP_CYCLE, requestTemp);
+  tempCycleEvent = timer.after(3000, requestTemp);
 }
 
 void updateSensor(byte index) {
