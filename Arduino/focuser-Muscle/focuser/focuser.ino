@@ -7,7 +7,7 @@
 #include <Wire.h>
 #include <EEPROM.h>
 #include <EepromUtil.h>
-#include <JoloAccelStepper.h>
+#include <AccelStepper.h>
 #include <Timer.h>
 #include <PWM.h>
 
@@ -36,8 +36,8 @@
 
 
 // Bipolar A4988 drivers
-JoloAccelStepper stepper1 = JoloAccelStepper(AccelStepper::DRIVER, 2, 4);  
-JoloAccelStepper stepper2 = JoloAccelStepper(AccelStepper::DRIVER, 7, 8);  
+AccelStepper stepper1 = AccelStepper(AccelStepper::DRIVER, 2, 4);  
+AccelStepper stepper2 = AccelStepper(AccelStepper::DRIVER, 7, 8);  
 
 // EEPROM addresses
 #define FOCUSER1_POS_START 900
@@ -62,6 +62,7 @@ struct StepperCtx {
   byte pwmPin;
   int EEPROMstart;
   byte curStep;
+  boolean reversed;
 };
 
 StepperCtx motor1, motor2;
