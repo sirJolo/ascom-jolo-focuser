@@ -1,27 +1,29 @@
 void initializeSensors() {
+  sensor.type = sensor.temp = sensor.hum = sensor.dew = sensor.heaterPWM = 0;
+  
   int chk = DHT.read22(TEMP_SENSOR_PIN); 
   if(chk == DHTLIB_OK) {
-    sensorType = 3;
+    sensor.type = 3;
   }
 
-  if(sensorType > 0) tempCycleEvent = timer.after(2000, readTemp);
+  if(sensor.type == 3) tempCycleEvent = timer.after(2000, readTemp);
 }
 
 
 void readTemp() {
-  currentTemp = currentHum = currentDewpoint = 0.0;
-  if(sensorType == 3) {
+  sensor.temp = sensor.hum = sensor.dew = 0.0;
+  if(sensor.type == 3) {
     DHT.read22(TEMP_SENSOR_PIN);
-    currentTemp = DHT.temperature;
-    currentHum = DHT.humidity;
-    currentDewpoint = dewPoint(currentTemp, currentHum);
+    sensor.temp = DHT.temperature;
+    sensor.hum = DHT.humidity;
+    sensor.dew = dewPointFast(sensor.temp, sensor.hum);
   }  
   updatePWM();
   tempCycleEvent = timer.after(TEMP_CYCLE, readTemp);
 }
 
 void calculateHeaterPWM() {
-  heaterPWM = map(constrain(currentHum, 50, 100), 50, 100, 0, 100);
+  sensor.heaterPWM = map(constrain(sensor.hum, 50, 100), 50, 100, 0, 100);
 }
 
 // dewPoint function NOAA

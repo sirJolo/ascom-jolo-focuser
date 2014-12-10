@@ -1,12 +1,12 @@
 void initializeExt() {
   
   // PWM init
-  pinMode(PWM_PIN6, OUTPUT);
-  digitalWrite(PWM_PIN6, LOW);
-  pinMode(PWM_PIN9, OUTPUT);
-  digitalWrite(PWM_PIN9, LOW);
-  pinMode(PWM_PIN10, OUTPUT);
-  digitalWrite(PWM_PIN10, LOW);
+  pinMode(PWM1_PIN, OUTPUT);
+  digitalWrite(PWM1_PIN, LOW);
+  pinMode(PWM2_PIN, OUTPUT);
+  digitalWrite(PWM2_PIN, LOW);
+  pinMode(PWM3_PIN, OUTPUT);
+  digitalWrite(PWM3_PIN, LOW);
   
   // ADC pin
   pinMode(ADC_PIN, INPUT);
@@ -14,23 +14,16 @@ void initializeExt() {
 
 void updatePWM() {
   calculateHeaterPWM();
-  updatePWMPin(PWM_PIN6, PROP_PWM6);
-  updatePWMPin(PWM_PIN9, PROP_PWM9);
-  updatePWMPin(PWM_PIN10, PROP_PWM10);
+  updatePWMPin(PWM1_PIN, ctx.pwm1);
+  updatePWMPin(PWM1_PIN, ctx.pwm2);
+  updatePWMPin(PWM1_PIN, ctx.pwm3);
 }
 
-void updatePWMPin(byte pin, int addr) {
-  byte value = readByte(addr);
-  if(value == 255) value = heaterPWM;
-  analogWrite(pin, map(value, 0, 100, 0, 255));
+void updatePWMPin(byte pin, byte value) {
+  analogWrite(pin, map(((value == 255) ? sensor.heaterPWM : value), 0, 100, 0, 255));
 }
 
-String readPWM(int addr) {
-  stepper.run();
-  byte pwm = readByte(addr);
-  stepper.run();
-  if(pwm == 255) pwm = heaterPWM;
-  stepper.run();
-  return formatLong(pwm, 3);
+String readPWM(byte value) {
+  return formatLong(((value == 255) ? sensor.heaterPWM : value), 3);
 }
 
