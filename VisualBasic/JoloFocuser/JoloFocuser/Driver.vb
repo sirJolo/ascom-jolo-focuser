@@ -29,6 +29,7 @@ Imports System.IO.Ports
 ' 11-Nov-2013   Jol 0.1.4   Driver backslash compensation removed
 ' 28-Nov-2013   Jol 0.1.5   Production candidate
 ' 15-May-2014   Jol 0.2.0   Production candidate
+' 10-Dec-2014   Jol Carbon 8
 ' ---------------------------------------------------------------------------------
 '
 '
@@ -56,7 +57,7 @@ Public Class Focuser
     '
     Private Const DELTA_T As Double = 0.5
     Private Const DRIVER_VERSION As String = "2.2"
-    Private Const DEVICE_RESPONSE As String = "#:Jolo primary focuser"
+    Private Const DEVICE_RESPONSE As String = "#:Jolo Carbon8 focuser"
 
     Private Shared driverID As String = "ASCOM.JoloFocuser.Focuser"
     Private Shared driverDescription As String = "Jolo ASCOM focuser"
@@ -356,30 +357,11 @@ Public Class Focuser
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - PWM pin 10")
         End If
 
-        answer = CommandString("L:" + My.Settings.LCD1 + ":" + My.Settings.LCD2 + ":" + My.Settings.LCD3 + ":" + My.Settings.LCD4)
-        If (Not answer.StartsWith("L")) Then
-            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - LCD screens")
-        End If
-
         Dim buzzer As String = "0"
         If My.Settings.BuzzerON Then buzzer = "1"
         answer = CommandString("J:" + buzzer)
         If (Not answer.StartsWith("J")) Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - buzzer control")
-        End If
-
-        Dim opto As String = "0"
-        If My.Settings.OPTO_On Then opto = "1"
-        answer = CommandString("O:" + opto)
-        If (Not answer.StartsWith("O")) Then
-            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - OPTO out")
-        End If
-
-        Dim LCDoff As String = "0"
-        If My.Settings.LCDOffDuringMove Then LCDoff = "1"
-        answer = CommandString("K:" + LCDoff)
-        If (Not answer.StartsWith("K")) Then
-            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - LCD off during move")
         End If
 
         answer = CommandString("X:" + My.Settings.FocuserMax.ToString)

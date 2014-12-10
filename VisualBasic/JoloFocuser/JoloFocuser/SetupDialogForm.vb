@@ -89,11 +89,6 @@ Public Class SetupDialogForm
             TempCompensation.Value = 0.0
             TempCycleTime.Value = 20
             BuzzerCheckBox.Checked = True
-            LCDOffCheckBox.Checked = True
-            LCD1ComboBox.Text = "5"
-            LCD2ComboBox.Text = "5"
-            LCD3ComboBox.Text = "3"
-            LCD4ComboBox.Text = "3"
         End If
     End Sub
 

@@ -27,7 +27,6 @@ void moveStepper(long newPos) {
       analogWrite(STEPPER_PWM_PIN, (255 * readByte(PROP_DUTY_CYCLE_RUN)/100));
       stepper.moveTo(newPos);
       positionSaved = false;
-      lcdUpdateLCD(" FOCUSER MOVING ", "                ");
     }
   }
 }

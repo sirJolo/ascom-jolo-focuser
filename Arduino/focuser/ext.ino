@@ -1,7 +1,4 @@
 void initializeExt() {
-  // OPT init
-  pinMode(OPTO_PIN, OUTPUT);
-  digitalWrite(OPTO_PIN, LOW);
   
   // PWM init
   pinMode(PWM_PIN6, OUTPUT);
@@ -13,9 +10,6 @@ void initializeExt() {
   
   // ADC pin
   pinMode(ADC_PIN, INPUT);
-  
-  // EXT init
-  pinMode(12, INPUT);
 }  
 
 void updatePWM() {
@@ -30,3 +24,13 @@ void updatePWMPin(byte pin, int addr) {
   if(value == 255) value = heaterPWM;
   analogWrite(pin, map(value, 0, 100, 0, 255));
 }
+
+String readPWM(int addr) {
+  stepper.run();
+  byte pwm = readByte(addr);
+  stepper.run();
+  if(pwm == 255) pwm = heaterPWM;
+  stepper.run();
+  return formatLong(pwm, 3);
+}
+

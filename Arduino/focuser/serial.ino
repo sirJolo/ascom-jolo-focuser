@@ -75,12 +75,6 @@ void serialCommand(String command) {
     case 'B': setPWM(param); break;
     case 'b': answer += printPWM(param); break;
     case 'a': answer += readAnalogAvg(ADC_PIN, 3); break;
-    case 'O': digitalWrite(OPTO_PIN, stringToNumber(param)); break;
-    case 'o': answer += digitalRead(OPTO_PIN); break;
-    case 'L': saveLCDScreens(param); break;
-    case 'l': answer += printLCDScreens(); break;
-    case 'K': writeByte(PROP_LCD_OFF_DURING_MOVE, stringToNumber(param)); break;
-    case 'k': answer += readByte(PROP_LCD_OFF_DURING_MOVE); break;
     case 'M': writeWord(PROP_STEP_SIZE, stringToNumber(param)); break;
     case 'm': answer += readWord(PROP_STEP_SIZE); break;
     case 'q': Serial.print(answer); answer = printMonitor(); break;
@@ -124,8 +118,6 @@ String printMonitor() {      // pos, togo, temp, hum, dew, pwms, adc, opto
   Serial.print(":");
   stepper.run();
   Serial.print(readAnalogAvg(ADC_PIN, 3));
-  Serial.print(":");
-  Serial.print(digitalRead(OPTO_PIN));
   return String();
 }
 
@@ -147,22 +139,4 @@ String printPWM(String param) {
   }
 }
 
-void saveLCDScreens(String param) {
-  // "3:4:0:1"
-  writeByte(PROP_LCD_SCREEN_0, stringToNumber(param.substring(0,1)));
-  writeByte(PROP_LCD_SCREEN_1, stringToNumber(param.substring(2,3)));
-  writeByte(PROP_LCD_SCREEN_2, stringToNumber(param.substring(4,5)));
-  writeByte(PROP_LCD_SCREEN_3, stringToNumber(param.substring(6)));
-}
-
-String printLCDScreens() {
-  String ret = String(readByte(PROP_LCD_SCREEN_0));
-  ret += ":";
-  ret += readByte(PROP_LCD_SCREEN_1);
-  ret += ":";
-  ret += readByte(PROP_LCD_SCREEN_2);
-  ret += ":";
-  ret += readByte(PROP_LCD_SCREEN_3);
-  return ret;
-}
 

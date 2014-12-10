@@ -60,26 +60,12 @@ Partial Class SetupDialogForm
         Me.NumericUpDown6 = New System.Windows.Forms.NumericUpDown
         Me.COM1 = New System.Windows.Forms.ComboBox
         Me.TabPage2 = New System.Windows.Forms.TabPage
-        Me.LCDOffCheckBox = New System.Windows.Forms.CheckBox
-        Me.Label16 = New System.Windows.Forms.Label
-        Me.TextBox5 = New System.Windows.Forms.TextBox
-        Me.TextBox4 = New System.Windows.Forms.TextBox
-        Me.TextBox3 = New System.Windows.Forms.TextBox
-        Me.Label20 = New System.Windows.Forms.Label
-        Me.Label19 = New System.Windows.Forms.Label
-        Me.Label18 = New System.Windows.Forms.Label
-        Me.Label17 = New System.Windows.Forms.Label
-        Me.LCDTextBox = New System.Windows.Forms.TextBox
         Me.Button3 = New System.Windows.Forms.Button
         Me.Label13 = New System.Windows.Forms.Label
         Me.Label15 = New System.Windows.Forms.Label
         Me.Label14 = New System.Windows.Forms.Label
         Me.Label12 = New System.Windows.Forms.Label
         Me.Label9 = New System.Windows.Forms.Label
-        Me.LCD4ComboBox = New System.Windows.Forms.ComboBox
-        Me.LCD3ComboBox = New System.Windows.Forms.ComboBox
-        Me.LCD2ComboBox = New System.Windows.Forms.ComboBox
-        Me.LCD1ComboBox = New System.Windows.Forms.ComboBox
         Me.BuzzerCheckBox = New System.Windows.Forms.CheckBox
         Me.TempCompensation = New System.Windows.Forms.NumericUpDown
         Me.AccASCOM = New System.Windows.Forms.NumericUpDown
@@ -231,9 +217,9 @@ Partial Class SetupDialogForm
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(18, 461)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(43, 13)
+        Me.Label1.Size = New System.Drawing.Size(71, 13)
         Me.Label1.TabIndex = 35
-        Me.Label1.Text = "ver. 2.2"
+        Me.Label1.Text = "ver. Carbon 8"
         '
         'LCDTabControl
         '
@@ -478,16 +464,6 @@ Partial Class SetupDialogForm
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.LCDOffCheckBox)
-        Me.TabPage2.Controls.Add(Me.Label16)
-        Me.TabPage2.Controls.Add(Me.TextBox5)
-        Me.TabPage2.Controls.Add(Me.TextBox4)
-        Me.TabPage2.Controls.Add(Me.TextBox3)
-        Me.TabPage2.Controls.Add(Me.Label20)
-        Me.TabPage2.Controls.Add(Me.Label19)
-        Me.TabPage2.Controls.Add(Me.Label18)
-        Me.TabPage2.Controls.Add(Me.Label17)
-        Me.TabPage2.Controls.Add(Me.LCDTextBox)
         Me.TabPage2.Controls.Add(Me.Button3)
         Me.TabPage2.Controls.Add(Me.Label13)
         Me.TabPage2.Controls.Add(Me.Label15)
@@ -497,10 +473,6 @@ Partial Class SetupDialogForm
         Me.TabPage2.Controls.Add(Me.Label4)
         Me.TabPage2.Controls.Add(Me.Label6)
         Me.TabPage2.Controls.Add(Me.Label7)
-        Me.TabPage2.Controls.Add(Me.LCD4ComboBox)
-        Me.TabPage2.Controls.Add(Me.LCD3ComboBox)
-        Me.TabPage2.Controls.Add(Me.LCD2ComboBox)
-        Me.TabPage2.Controls.Add(Me.LCD1ComboBox)
         Me.TabPage2.Controls.Add(Me.BuzzerCheckBox)
         Me.TabPage2.Controls.Add(Me.TempCompensation)
         Me.TabPage2.Controls.Add(Me.AccASCOM)
@@ -515,133 +487,6 @@ Partial Class SetupDialogForm
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Advanced"
         Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'LCDOffCheckBox
-        '
-        Me.LCDOffCheckBox.AutoSize = True
-        Me.LCDOffCheckBox.Checked = Global.ASCOM.JoloFocuser.My.MySettings.Default.LCDOffDuringMove
-        Me.LCDOffCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.LCDOffCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.ASCOM.JoloFocuser.My.MySettings.Default, "LCDOffDuringMove", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.LCDOffCheckBox.Location = New System.Drawing.Point(20, 221)
-        Me.LCDOffCheckBox.Name = "LCDOffCheckBox"
-        Me.LCDOffCheckBox.Size = New System.Drawing.Size(183, 17)
-        Me.LCDOffCheckBox.TabIndex = 51
-        Me.LCDOffCheckBox.Text = "Turn off LCD during stepper work"
-        Me.LCDOffCheckBox.UseVisualStyleBackColor = True
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label16.Location = New System.Drawing.Point(17, 250)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(79, 13)
-        Me.Label16.TabIndex = 50
-        Me.Label16.Text = "LCD screens"
-        '
-        'TextBox5
-        '
-        Me.TextBox5.AutoCompleteCustomSource.AddRange(New String() {"pppppp", "ttt.t", "pp.ppp", "hh", "ddd.d"})
-        Me.TextBox5.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
-        Me.TextBox5.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.TextBox5.BackColor = System.Drawing.Color.Black
-        Me.TextBox5.Font = New System.Drawing.Font("Courier New", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.TextBox5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.TextBox5.Location = New System.Drawing.Point(188, 344)
-        Me.TextBox5.MaxLength = 100
-        Me.TextBox5.Multiline = True
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.ReadOnly = True
-        Me.TextBox5.Size = New System.Drawing.Size(147, 41)
-        Me.TextBox5.TabIndex = 48
-        Me.TextBox5.Text = "ADC=1007   3.42V" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "OPTO:1      455s"
-        '
-        'TextBox4
-        '
-        Me.TextBox4.AutoCompleteCustomSource.AddRange(New String() {"pppppp", "ttt.t", "pp.ppp", "hh", "ddd.d"})
-        Me.TextBox4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
-        Me.TextBox4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.TextBox4.BackColor = System.Drawing.Color.Black
-        Me.TextBox4.Font = New System.Drawing.Font("Courier New", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.TextBox4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.TextBox4.Location = New System.Drawing.Point(20, 344)
-        Me.TextBox4.MaxLength = 100
-        Me.TextBox4.Multiline = True
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.ReadOnly = True
-        Me.TextBox4.Size = New System.Drawing.Size(147, 41)
-        Me.TextBox4.TabIndex = 46
-        Me.TextBox4.Text = "PWM  6    9   10" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "   89%  43%  44%"
-        '
-        'TextBox3
-        '
-        Me.TextBox3.AutoCompleteCustomSource.AddRange(New String() {"pppppp", "ttt.t", "pp.ppp", "hh", "ddd.d"})
-        Me.TextBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
-        Me.TextBox3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.TextBox3.BackColor = System.Drawing.Color.Black
-        Me.TextBox3.Font = New System.Drawing.Font("Courier New", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.TextBox3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.TextBox3.Location = New System.Drawing.Point(188, 266)
-        Me.TextBox3.MaxLength = 100
-        Me.TextBox3.Multiline = True
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.ReadOnly = True
-        Me.TextBox3.Size = New System.Drawing.Size(147, 41)
-        Me.TextBox3.TabIndex = 44
-        Me.TextBox3.Text = " 12345  13.555mm" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " 87% 12.3/ 15.6C"
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(229, 312)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(12, 13)
-        Me.Label20.TabIndex = 43
-        Me.Label20.Text = "s"
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(229, 391)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(12, 13)
-        Me.Label19.TabIndex = 43
-        Me.Label19.Text = "s"
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(61, 391)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(12, 13)
-        Me.Label18.TabIndex = 43
-        Me.Label18.Text = "s"
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(61, 312)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(12, 13)
-        Me.Label17.TabIndex = 43
-        Me.Label17.Text = "s"
-        '
-        'LCDTextBox
-        '
-        Me.LCDTextBox.AutoCompleteCustomSource.AddRange(New String() {"pppppp", "ttt.t", "pp.ppp", "hh", "ddd.d"})
-        Me.LCDTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
-        Me.LCDTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.LCDTextBox.BackColor = System.Drawing.Color.Black
-        Me.LCDTextBox.Font = New System.Drawing.Font("Courier New", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.LCDTextBox.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.LCDTextBox.Location = New System.Drawing.Point(20, 266)
-        Me.LCDTextBox.MaxLength = 100
-        Me.LCDTextBox.Multiline = True
-        Me.LCDTextBox.Name = "LCDTextBox"
-        Me.LCDTextBox.ReadOnly = True
-        Me.LCDTextBox.Size = New System.Drawing.Size(147, 41)
-        Me.LCDTextBox.TabIndex = 41
-        Me.LCDTextBox.Text = " 12345  13.555mm" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Temp:     -12.5C"
         '
         'Button3
         '
@@ -697,57 +542,13 @@ Partial Class SetupDialogForm
         Me.Label9.TabIndex = 31
         Me.Label9.Text = "Stepper duty cycle stop %"
         '
-        'LCD4ComboBox
-        '
-        Me.LCD4ComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "LCD4", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.LCD4ComboBox.FormattingEnabled = True
-        Me.LCD4ComboBox.Items.AddRange(New Object() {"0", "1", "2", "3", "5", "7", "9"})
-        Me.LCD4ComboBox.Location = New System.Drawing.Point(188, 388)
-        Me.LCD4ComboBox.Name = "LCD4ComboBox"
-        Me.LCD4ComboBox.Size = New System.Drawing.Size(35, 21)
-        Me.LCD4ComboBox.TabIndex = 49
-        Me.LCD4ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.LCD4
-        '
-        'LCD3ComboBox
-        '
-        Me.LCD3ComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "LCD3", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.LCD3ComboBox.FormattingEnabled = True
-        Me.LCD3ComboBox.Items.AddRange(New Object() {"0", "1", "2", "3", "5", "7", "9"})
-        Me.LCD3ComboBox.Location = New System.Drawing.Point(20, 388)
-        Me.LCD3ComboBox.Name = "LCD3ComboBox"
-        Me.LCD3ComboBox.Size = New System.Drawing.Size(35, 21)
-        Me.LCD3ComboBox.TabIndex = 47
-        Me.LCD3ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.LCD3
-        '
-        'LCD2ComboBox
-        '
-        Me.LCD2ComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "LCD2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.LCD2ComboBox.FormattingEnabled = True
-        Me.LCD2ComboBox.Items.AddRange(New Object() {"0", "1", "2", "3", "5", "7", "9"})
-        Me.LCD2ComboBox.Location = New System.Drawing.Point(188, 310)
-        Me.LCD2ComboBox.Name = "LCD2ComboBox"
-        Me.LCD2ComboBox.Size = New System.Drawing.Size(35, 21)
-        Me.LCD2ComboBox.TabIndex = 45
-        Me.LCD2ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.LCD2
-        '
-        'LCD1ComboBox
-        '
-        Me.LCD1ComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "LCD1", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.LCD1ComboBox.FormattingEnabled = True
-        Me.LCD1ComboBox.Items.AddRange(New Object() {"0", "1", "2", "3", "5", "7", "9"})
-        Me.LCD1ComboBox.Location = New System.Drawing.Point(20, 310)
-        Me.LCD1ComboBox.Name = "LCD1ComboBox"
-        Me.LCD1ComboBox.Size = New System.Drawing.Size(35, 21)
-        Me.LCD1ComboBox.TabIndex = 42
-        Me.LCD1ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.LCD1
-        '
         'BuzzerCheckBox
         '
         Me.BuzzerCheckBox.AutoSize = True
         Me.BuzzerCheckBox.Checked = Global.ASCOM.JoloFocuser.My.MySettings.Default.BuzzerON
         Me.BuzzerCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
         Me.BuzzerCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.ASCOM.JoloFocuser.My.MySettings.Default, "BuzzerON", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.BuzzerCheckBox.Location = New System.Drawing.Point(20, 197)
+        Me.BuzzerCheckBox.Location = New System.Drawing.Point(20, 217)
         Me.BuzzerCheckBox.Name = "BuzzerCheckBox"
         Me.BuzzerCheckBox.Size = New System.Drawing.Size(58, 17)
         Me.BuzzerCheckBox.TabIndex = 32
@@ -934,20 +735,6 @@ Partial Class SetupDialogForm
     Friend WithEvents BuzzerCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents LinkLabel2 As System.Windows.Forms.LinkLabel
     Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents LCD2ComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
-    Friend WithEvents Label17 As System.Windows.Forms.Label
-    Friend WithEvents LCD1ComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents LCDTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents Label16 As System.Windows.Forms.Label
-    Friend WithEvents LCD4ComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents TextBox5 As System.Windows.Forms.TextBox
-    Friend WithEvents LCD3ComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
-    Friend WithEvents Label20 As System.Windows.Forms.Label
-    Friend WithEvents Label19 As System.Windows.Forms.Label
-    Friend WithEvents Label18 As System.Windows.Forms.Label
-    Friend WithEvents LCDOffCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents Label21 As System.Windows.Forms.Label
     Friend WithEvents Label22 As System.Windows.Forms.Label
     Friend WithEvents NumericUpDown2 As System.Windows.Forms.NumericUpDown

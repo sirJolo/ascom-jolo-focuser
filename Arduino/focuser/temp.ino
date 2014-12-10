@@ -3,35 +3,13 @@ void initializeSensors() {
   if(chk == DHTLIB_OK) {
     sensorType = 3;
   }
-  if(sensorType == 0) {
-    sensors.begin(); 
-    boolean sensorConnected = sensors.getAddress(insideThermometer, 0);
-    if(sensorConnected) {
-      sensors.setResolution(insideThermometer, 10);
-      sensors.setWaitForConversion(false);
-      sensorType=1;
-    }
-  }
-  if(sensorType > 0) tempCycleEvent = timer.after(2000, requestTemp);
+
+  if(sensorType > 0) tempCycleEvent = timer.after(2000, readTemp);
 }
 
-void requestTemp() {
-  if(stepper.distanceToGo() != 0) {
-    // dont measure during move
-    tempCycleEvent = timer.after(TEMP_CYCLE, requestTemp);
-    return;
-  }
-  if(sensorType == 1) {
-    sensors.requestTemperaturesByAddress(insideThermometer); // Send the command to get temperature. For 10 bit res it takes 188ms
-  }
-  tempCycleEvent = timer.after(188, readTemp);
-}
 
 void readTemp() {
   currentTemp = currentHum = currentDewpoint = 0.0;
-  if(sensorType == 1) {
-    currentTemp = sensors.getTempC(insideThermometer);
-  }
   if(sensorType == 3) {
     DHT.read22(TEMP_SENSOR_PIN);
     currentTemp = DHT.temperature;
@@ -39,7 +17,7 @@ void readTemp() {
     currentDewpoint = dewPoint(currentTemp, currentHum);
   }  
   updatePWM();
-  tempCycleEvent = timer.after(TEMP_CYCLE, requestTemp);
+  tempCycleEvent = timer.after(TEMP_CYCLE, readTemp);
 }
 
 void calculateHeaterPWM() {

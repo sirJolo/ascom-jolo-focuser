@@ -49,7 +49,6 @@ Partial Class MonitorForm
         Me.Button4 = New System.Windows.Forms.Button
         Me.Label19 = New System.Windows.Forms.Label
         Me.Label20 = New System.Windows.Forms.Label
-        Me.Label18 = New System.Windows.Forms.Label
         Me.Label10 = New System.Windows.Forms.Label
         Me.Label2 = New System.Windows.Forms.Label
         Me.Label15 = New System.Windows.Forms.Label
@@ -57,7 +56,6 @@ Partial Class MonitorForm
         Me.Label11 = New System.Windows.Forms.Label
         Me.Label17 = New System.Windows.Forms.Label
         Me.ADCLabel = New System.Windows.Forms.Label
-        Me.OPTOLabel = New System.Windows.Forms.Label
         Me.PWM10 = New System.Windows.Forms.Label
         Me.PWM9 = New System.Windows.Forms.Label
         Me.PWM6 = New System.Windows.Forms.Label
@@ -65,7 +63,6 @@ Partial Class MonitorForm
         Me.AbsPosNumericUpDown = New System.Windows.Forms.NumericUpDown
         Me.RelPosUpDown = New System.Windows.Forms.NumericUpDown
         Me.ADC_CheckBox = New System.Windows.Forms.CheckBox
-        Me.OPTO_CheckBox = New System.Windows.Forms.CheckBox
         Me.PWM_D10_ComboBox = New System.Windows.Forms.ComboBox
         Me.PWM_D9_ComboBox = New System.Windows.Forms.ComboBox
         Me.PWM_D6_ComboBox = New System.Windows.Forms.ComboBox
@@ -322,7 +319,6 @@ Partial Class MonitorForm
         Me.TabPage2.Controls.Add(Me.Button4)
         Me.TabPage2.Controls.Add(Me.Label19)
         Me.TabPage2.Controls.Add(Me.Label20)
-        Me.TabPage2.Controls.Add(Me.Label18)
         Me.TabPage2.Controls.Add(Me.Label10)
         Me.TabPage2.Controls.Add(Me.Label2)
         Me.TabPage2.Controls.Add(Me.Label15)
@@ -330,12 +326,10 @@ Partial Class MonitorForm
         Me.TabPage2.Controls.Add(Me.Label11)
         Me.TabPage2.Controls.Add(Me.Label17)
         Me.TabPage2.Controls.Add(Me.ADCLabel)
-        Me.TabPage2.Controls.Add(Me.OPTOLabel)
         Me.TabPage2.Controls.Add(Me.PWM10)
         Me.TabPage2.Controls.Add(Me.PWM9)
         Me.TabPage2.Controls.Add(Me.PWM6)
         Me.TabPage2.Controls.Add(Me.ADC_CheckBox)
-        Me.TabPage2.Controls.Add(Me.OPTO_CheckBox)
         Me.TabPage2.Controls.Add(Me.PWM_D10_ComboBox)
         Me.TabPage2.Controls.Add(Me.PWM_D9_ComboBox)
         Me.TabPage2.Controls.Add(Me.PWM_D6_ComboBox)
@@ -359,7 +353,7 @@ Partial Class MonitorForm
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(225, 30)
+        Me.Button4.Location = New System.Drawing.Point(225, 18)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(50, 21)
         Me.Button4.TabIndex = 35
@@ -378,47 +372,38 @@ Partial Class MonitorForm
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(10, 35)
+        Me.Label20.Location = New System.Drawing.Point(10, 23)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(35, 13)
         Me.Label20.TabIndex = 28
         Me.Label20.Text = "ADC1"
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(10, 11)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(37, 13)
-        Me.Label18.TabIndex = 27
-        Me.Label18.Text = "OPTO"
         '
         'Label10
         '
         Me.Label10.AutoSize = True
         Me.Label10.Location = New System.Drawing.Point(10, 133)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(27, 13)
+        Me.Label10.Size = New System.Drawing.Size(25, 13)
         Me.Label10.TabIndex = 32
-        Me.Label10.Text = "D10"
+        Me.Label10.Text = "Aux"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(10, 108)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(21, 13)
+        Me.Label2.Size = New System.Drawing.Size(37, 13)
         Me.Label2.TabIndex = 31
-        Me.Label2.Text = "D9"
+        Me.Label2.Text = "Cooler"
         '
         'Label15
         '
         Me.Label15.AutoSize = True
         Me.Label15.Location = New System.Drawing.Point(10, 82)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(21, 13)
+        Me.Label15.Size = New System.Drawing.Size(39, 13)
         Me.Label15.TabIndex = 30
-        Me.Label15.Text = "D6"
+        Me.Label15.Text = "Heater"
         '
         'Label16
         '
@@ -455,24 +440,12 @@ Partial Class MonitorForm
         Me.ADCLabel.BackColor = System.Drawing.SystemColors.Info
         Me.ADCLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ADCLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.ADCLabel.Location = New System.Drawing.Point(53, 34)
+        Me.ADCLabel.Location = New System.Drawing.Point(53, 22)
         Me.ADCLabel.Name = "ADCLabel"
         Me.ADCLabel.Size = New System.Drawing.Size(60, 16)
         Me.ADCLabel.TabIndex = 20
         Me.ADCLabel.Text = "0"
         Me.ADCLabel.TextAlign = System.Drawing.ContentAlignment.TopRight
-        '
-        'OPTOLabel
-        '
-        Me.OPTOLabel.BackColor = System.Drawing.SystemColors.Info
-        Me.OPTOLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.OPTOLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.OPTOLabel.Location = New System.Drawing.Point(53, 10)
-        Me.OPTOLabel.Name = "OPTOLabel"
-        Me.OPTOLabel.Size = New System.Drawing.Size(38, 16)
-        Me.OPTOLabel.TabIndex = 19
-        Me.OPTOLabel.Text = "OFF"
-        Me.OPTOLabel.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'PWM10
         '
@@ -549,24 +522,12 @@ Partial Class MonitorForm
         Me.ADC_CheckBox.AutoSize = True
         Me.ADC_CheckBox.Checked = Global.ASCOM.JoloFocuser.My.MySettings.Default.ADC_Read
         Me.ADC_CheckBox.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.ASCOM.JoloFocuser.My.MySettings.Default, "ADC_Read", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.ADC_CheckBox.Location = New System.Drawing.Point(133, 33)
+        Me.ADC_CheckBox.Location = New System.Drawing.Point(133, 21)
         Me.ADC_CheckBox.Name = "ADC_CheckBox"
         Me.ADC_CheckBox.Size = New System.Drawing.Size(72, 17)
         Me.ADC_CheckBox.TabIndex = 34
         Me.ADC_CheckBox.Text = "ADC read"
         Me.ADC_CheckBox.UseVisualStyleBackColor = True
-        '
-        'OPTO_CheckBox
-        '
-        Me.OPTO_CheckBox.AutoSize = True
-        Me.OPTO_CheckBox.Checked = Global.ASCOM.JoloFocuser.My.MySettings.Default.OPTO_On
-        Me.OPTO_CheckBox.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.ASCOM.JoloFocuser.My.MySettings.Default, "OPTO_On", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.OPTO_CheckBox.Location = New System.Drawing.Point(133, 11)
-        Me.OPTO_CheckBox.Name = "OPTO_CheckBox"
-        Me.OPTO_CheckBox.Size = New System.Drawing.Size(73, 17)
-        Me.OPTO_CheckBox.TabIndex = 34
-        Me.OPTO_CheckBox.Text = "OPTO On"
-        Me.OPTO_CheckBox.UseVisualStyleBackColor = True
         '
         'PWM_D10_ComboBox
         '
@@ -648,7 +609,6 @@ Partial Class MonitorForm
     Friend WithEvents PWM_D6_ComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents Label20 As System.Windows.Forms.Label
-    Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label15 As System.Windows.Forms.Label
@@ -656,13 +616,11 @@ Partial Class MonitorForm
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents ADCLabel As System.Windows.Forms.Label
-    Friend WithEvents OPTOLabel As System.Windows.Forms.Label
     Friend WithEvents PWM10 As System.Windows.Forms.Label
     Friend WithEvents PWM9 As System.Windows.Forms.Label
     Friend WithEvents PWM6 As System.Windows.Forms.Label
     Friend WithEvents PWM_D10_ComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents PWM_D9_ComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents OPTO_CheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents ADC_CheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents RelPosUpDown As System.Windows.Forms.NumericUpDown

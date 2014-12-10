@@ -13,7 +13,6 @@
     Delegate Sub SetPWM9Callback(ByVal PWM As String)
     Delegate Sub SetPWM10Callback(ByVal PWM As String)
     Delegate Sub SetADCCallback(ByVal PWM As String)
-    Delegate Sub SetOPTOCallback(ByVal opto As String)
 
     Public Sub New()
 
@@ -58,10 +57,6 @@
             SetADC("0")
         End If
 
-        Dim opto As String = "OFF"
-        If values(10) <> "0" Then opto = "ON"
-        SetOPTO(opto)
-
         logCounter += 1
         If (logCounter > 19) Then
             If SaveLogCheckBox.Checked Then logInfo(answer)
@@ -81,7 +76,7 @@
         Dim file As String = System.IO.Path.Combine(path, fileName)
         Dim fileExists As Boolean = My.Computer.FileSystem.FileExists(file)
         If fileExists = False Then
-            My.Computer.FileSystem.WriteAllText(file, "Time;position;temperature;humidity;dewpoint;pwm6;pwm9;pwm10;adc;opto" & vbCrLf, False)
+            My.Computer.FileSystem.WriteAllText(file, "Time;position;temperature;humidity;dewpoint;pwm6;pwm9;pwm10;adc" & vbCrLf, False)
         End If
         Dim line As String = Date.Now & ";" & logs & vbCrLf
         My.Computer.FileSystem.WriteAllText(file, line, True)
@@ -89,7 +84,7 @@
 
     Private Sub logInfo(ByVal logs As String)
         Dim values() As String = Split(logs, ":")
-        Dim vt As String = values(1) & ";" & values(3) & ";" & values(4) & ";" & values(5) & ";" & values(6) & ";" & values(7) & ";" & values(8) & ";" & values(9) & ";" & values(10)
+        Dim vt As String = values(1) & ";" & values(3) & ";" & values(4) & ";" & values(5) & ";" & values(6) & ";" & values(7) & ";" & values(8) & ";" & values(9)
         logLine(vt)
     End Sub
 
@@ -176,15 +171,6 @@
         End If
     End Sub
 
-    Private Sub SetOPTO(ByVal opto As String)
-        If Me.OPTOLabel.InvokeRequired Then
-            Dim d As New SetOPTOCallback(AddressOf SetOPTO)
-            Me.Invoke(d, New Object() {opto})
-        Else
-            Me.OPTOLabel.Text = opto
-        End If
-    End Sub
-
     Public Property running() As Boolean
         Get
             Return monitorTimer.Enabled
@@ -244,14 +230,6 @@
         ADCLabel.Enabled = ADC_CheckBox.Checked
     End Sub
 
-    Private Sub OPTO_CheckBox_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OPTO_CheckBox.CheckedChanged
-        My.Settings.Save()
-        If OPTO_CheckBox.Checked Then
-            If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("O:1")
-        Else
-            If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("O:0")
-        End If
-    End Sub
 
     Private Sub PWM_D6_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PWM_D6_ComboBox.SelectedValueChanged
         My.Settings.Save()
