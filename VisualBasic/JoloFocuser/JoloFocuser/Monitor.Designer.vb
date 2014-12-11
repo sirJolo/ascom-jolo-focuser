@@ -539,7 +539,7 @@ Partial Class MonitorForm
         Me.PWM_D10_ComboBox.Name = "PWM_D10_ComboBox"
         Me.PWM_D10_ComboBox.Size = New System.Drawing.Size(60, 21)
         Me.PWM_D10_ComboBox.TabIndex = 33
-        Me.PWM_D10_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_10
+        Me.PWM_D10_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_3
         '
         'PWM_D9_ComboBox
         '
@@ -551,7 +551,7 @@ Partial Class MonitorForm
         Me.PWM_D9_ComboBox.Name = "PWM_D9_ComboBox"
         Me.PWM_D9_ComboBox.Size = New System.Drawing.Size(60, 21)
         Me.PWM_D9_ComboBox.TabIndex = 33
-        Me.PWM_D9_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_9
+        Me.PWM_D9_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_2
         '
         'PWM_D6_ComboBox
         '
@@ -563,7 +563,7 @@ Partial Class MonitorForm
         Me.PWM_D6_ComboBox.Name = "PWM_D6_ComboBox"
         Me.PWM_D6_ComboBox.Size = New System.Drawing.Size(60, 21)
         Me.PWM_D6_ComboBox.TabIndex = 33
-        Me.PWM_D6_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_6
+        Me.PWM_D6_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_1
         '
         'MonitorForm
         '
@@ -573,7 +573,6 @@ Partial Class MonitorForm
         Me.Controls.Add(Me.TabControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
-        Me.MinimizeBox = False
         Me.Name = "MonitorForm"
         Me.Text = "Jolo Focuser Monitor"
         Me.TopMost = True

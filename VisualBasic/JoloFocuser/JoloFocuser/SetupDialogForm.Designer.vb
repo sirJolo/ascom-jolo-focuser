@@ -63,13 +63,10 @@ Partial Class SetupDialogForm
         Me.Button3 = New System.Windows.Forms.Button
         Me.Label13 = New System.Windows.Forms.Label
         Me.Label15 = New System.Windows.Forms.Label
-        Me.Label14 = New System.Windows.Forms.Label
-        Me.Label12 = New System.Windows.Forms.Label
         Me.Label9 = New System.Windows.Forms.Label
         Me.BuzzerCheckBox = New System.Windows.Forms.CheckBox
         Me.TempCompensation = New System.Windows.Forms.NumericUpDown
         Me.AccASCOM = New System.Windows.Forms.NumericUpDown
-        Me.AccManual = New System.Windows.Forms.NumericUpDown
         Me.DutyCycleStop = New System.Windows.Forms.NumericUpDown
         Me.DutyCycleRun = New System.Windows.Forms.NumericUpDown
         Me.TempCycleTime = New System.Windows.Forms.NumericUpDown
@@ -88,7 +85,6 @@ Partial Class SetupDialogForm
         Me.TabPage2.SuspendLayout()
         CType(Me.TempCompensation, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AccASCOM, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.AccManual, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DutyCycleStop, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DutyCycleRun, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TempCycleTime, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -467,8 +463,6 @@ Partial Class SetupDialogForm
         Me.TabPage2.Controls.Add(Me.Button3)
         Me.TabPage2.Controls.Add(Me.Label13)
         Me.TabPage2.Controls.Add(Me.Label15)
-        Me.TabPage2.Controls.Add(Me.Label14)
-        Me.TabPage2.Controls.Add(Me.Label12)
         Me.TabPage2.Controls.Add(Me.Label9)
         Me.TabPage2.Controls.Add(Me.Label4)
         Me.TabPage2.Controls.Add(Me.Label6)
@@ -476,7 +470,6 @@ Partial Class SetupDialogForm
         Me.TabPage2.Controls.Add(Me.BuzzerCheckBox)
         Me.TabPage2.Controls.Add(Me.TempCompensation)
         Me.TabPage2.Controls.Add(Me.AccASCOM)
-        Me.TabPage2.Controls.Add(Me.AccManual)
         Me.TabPage2.Controls.Add(Me.DutyCycleStop)
         Me.TabPage2.Controls.Add(Me.DutyCycleRun)
         Me.TabPage2.Controls.Add(Me.TempCycleTime)
@@ -500,38 +493,20 @@ Partial Class SetupDialogForm
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(17, 107)
+        Me.Label13.Location = New System.Drawing.Point(17, 96)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(142, 13)
+        Me.Label13.Size = New System.Drawing.Size(105, 13)
         Me.Label13.TabIndex = 31
-        Me.Label13.Text = "Acceleration ASCOM control"
+        Me.Label13.Text = "Stepper acceleration"
         '
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(236, 107)
+        Me.Label15.Location = New System.Drawing.Point(236, 96)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(34, 13)
         Me.Label15.TabIndex = 31
         Me.Label15.Text = "pps/s"
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(236, 79)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(34, 13)
-        Me.Label14.TabIndex = 31
-        Me.Label14.Text = "pps/s"
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(17, 79)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(138, 13)
-        Me.Label12.TabIndex = 31
-        Me.Label12.Text = "Acceleration manual control"
         '
         'Label9
         '
@@ -571,24 +546,13 @@ Partial Class SetupDialogForm
         'AccASCOM
         '
         Me.AccASCOM.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "AccASCOM", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.AccASCOM.Location = New System.Drawing.Point(175, 103)
+        Me.AccASCOM.Location = New System.Drawing.Point(175, 92)
         Me.AccASCOM.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
         Me.AccASCOM.Minimum = New Decimal(New Integer() {50, 0, 0, 0})
         Me.AccASCOM.Name = "AccASCOM"
         Me.AccASCOM.Size = New System.Drawing.Size(55, 20)
         Me.AccASCOM.TabIndex = 30
         Me.AccASCOM.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.AccASCOM
-        '
-        'AccManual
-        '
-        Me.AccManual.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "AccManual", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.AccManual.Location = New System.Drawing.Point(175, 75)
-        Me.AccManual.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
-        Me.AccManual.Minimum = New Decimal(New Integer() {50, 0, 0, 0})
-        Me.AccManual.Name = "AccManual"
-        Me.AccManual.Size = New System.Drawing.Size(55, 20)
-        Me.AccManual.TabIndex = 30
-        Me.AccManual.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.AccManual
         '
         'DutyCycleStop
         '
@@ -677,7 +641,6 @@ Partial Class SetupDialogForm
         Me.TabPage2.PerformLayout()
         CType(Me.TempCompensation, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AccASCOM, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.AccManual, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DutyCycleStop, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DutyCycleRun, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TempCycleTime, System.ComponentModel.ISupportInitialize).EndInit()
@@ -728,10 +691,7 @@ Partial Class SetupDialogForm
     Friend WithEvents NumericUpDown5 As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents Label15 As System.Windows.Forms.Label
-    Friend WithEvents Label14 As System.Windows.Forms.Label
-    Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents AccASCOM As System.Windows.Forms.NumericUpDown
-    Friend WithEvents AccManual As System.Windows.Forms.NumericUpDown
     Friend WithEvents BuzzerCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents LinkLabel2 As System.Windows.Forms.LinkLabel
     Friend WithEvents Button3 As System.Windows.Forms.Button

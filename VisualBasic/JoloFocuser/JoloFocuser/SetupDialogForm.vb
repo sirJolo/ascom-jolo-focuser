@@ -85,7 +85,6 @@ Public Class SetupDialogForm
             DutyCycleRun.Value = 100
             DutyCycleStop.Value = 0
             AccASCOM.Value = 1500
-            AccManual.Value = 200
             TempCompensation.Value = 0.0
             TempCycleTime.Value = 20
             BuzzerCheckBox.Checked = True

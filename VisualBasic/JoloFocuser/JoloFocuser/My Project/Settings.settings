@@ -32,22 +32,19 @@
     <Setting Name="DutyCycleRun" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">100</Value>
     </Setting>
-    <Setting Name="AccManual" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">200</Value>
-    </Setting>
     <Setting Name="AccASCOM" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1500</Value>
     </Setting>
     <Setting Name="BuzzerON" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="PWM_6" Type="System.String" Scope="User">
+    <Setting Name="PWM_1" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="PWM_9" Type="System.String" Scope="User">
+    <Setting Name="PWM_2" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="PWM_10" Type="System.String" Scope="User">
+    <Setting Name="PWM_3" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ADC_Read" Type="System.Boolean" Scope="User">

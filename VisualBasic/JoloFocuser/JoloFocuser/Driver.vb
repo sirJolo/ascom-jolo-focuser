@@ -327,30 +327,25 @@ Public Class Focuser
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - acceleration ASCOM")
         End If
 
-        answer = CommandString("U:" + My.Settings.AccManual.ToString)
-        If (Not answer.StartsWith("U")) Then
-            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - acceleration manual")
-        End If
-
         Dim stepsize As Integer = Math.Round(My.Settings.StepSize * 10)
         answer = CommandString("M:" + stepsize.ToString)
         If (Not answer.StartsWith("M")) Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - step size")
         End If
 
-        Dim pwm As String = My.Settings.PWM_6
+        Dim pwm As String = My.Settings.PWM_1
         If pwm = "AUTO" Then pwm = "255"
         answer = CommandString("B:6:" + pwm)
         If (Not answer.StartsWith("B")) Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - PWM pin 6")
         End If
-        pwm = My.Settings.PWM_9
+        pwm = My.Settings.PWM_2
         If pwm = "AUTO" Then pwm = "255"
         answer = CommandString("B:9:" + pwm)
         If (Not answer.StartsWith("B")) Then
             Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - PWM pin 9")
         End If
-        pwm = My.Settings.PWM_10
+        pwm = My.Settings.PWM_3
         If pwm = "AUTO" Then pwm = "255"
         answer = CommandString("B:0:" + pwm)
         If (Not answer.StartsWith("B")) Then

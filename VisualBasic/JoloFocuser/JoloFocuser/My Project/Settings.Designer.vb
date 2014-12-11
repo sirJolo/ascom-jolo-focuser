@@ -176,18 +176,6 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
-        Public Property AccManual() As Decimal
-            Get
-                Return CType(Me("AccManual"),Decimal)
-            End Get
-            Set
-                Me("AccManual") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("1500")>  _
         Public Property AccASCOM() As Decimal
             Get
@@ -213,36 +201,36 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property PWM_6() As String
+        Public Property PWM_1() As String
             Get
-                Return CType(Me("PWM_6"),String)
+                Return CType(Me("PWM_1"),String)
             End Get
             Set
-                Me("PWM_6") = value
+                Me("PWM_1") = value
             End Set
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property PWM_9() As String
+        Public Property PWM_2() As String
             Get
-                Return CType(Me("PWM_9"),String)
+                Return CType(Me("PWM_2"),String)
             End Get
             Set
-                Me("PWM_9") = value
+                Me("PWM_2") = value
             End Set
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property PWM_10() As String
+        Public Property PWM_3() As String
             Get
-                Return CType(Me("PWM_10"),String)
+                Return CType(Me("PWM_3"),String)
             End Get
             Set
-                Me("PWM_10") = value
+                Me("PWM_3") = value
             End Set
         End Property
         

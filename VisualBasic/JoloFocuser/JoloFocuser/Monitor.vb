@@ -234,21 +234,21 @@
     Private Sub PWM_D6_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PWM_D6_ComboBox.SelectedValueChanged
         My.Settings.Save()
         Dim pwm As String = "255"
-        If My.Settings.PWM_6 <> "AUTO" Then pwm = My.Settings.PWM_6
+        If My.Settings.PWM_1 <> "AUTO" Then pwm = My.Settings.PWM_1
         If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:6:" + pwm)
     End Sub
 
     Private Sub PWM_D9_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PWM_D9_ComboBox.SelectedValueChanged
         My.Settings.Save()
         Dim pwm As String = "255"
-        If My.Settings.PWM_9 <> "AUTO" Then pwm = My.Settings.PWM_9
+        If My.Settings.PWM_2 <> "AUTO" Then pwm = My.Settings.PWM_2
         If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:9:" + pwm)
     End Sub
 
     Private Sub PWM_D10_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PWM_D10_ComboBox.SelectedValueChanged
         My.Settings.Save()
         Dim pwm As String = "255"
-        If My.Settings.PWM_10 <> "AUTO" Then pwm = My.Settings.PWM_10
+        If My.Settings.PWM_3 <> "AUTO" Then pwm = My.Settings.PWM_3
         If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:0:" + pwm)
     End Sub
 
