@@ -93,6 +93,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Driver.vb" />
+    <Compile Include="ADCSetupForm.Designer.vb">
+      <DependentUpon>ADCSetupForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ADCSetupForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Monitor.Designer.vb">
+      <DependentUpon>Monitor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Monitor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -117,6 +129,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ADCSetupForm.resx">
+      <DependentUpon>ADCSetupForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Monitor.resx">
+      <DependentUpon>Monitor.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -145,6 +165,7 @@
     <Content Include="ASCOM.png" />
     <Content Include="ReadMe.htm" />
     <Content Include="readme.txt" />
+    <None Include="Resources\arduino_logo.bmp" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

@@ -1,0 +1,39 @@
+Partlist exported from D:/BEKAP/Projects/ascom-jolo-focuser/Eagle/focuser-no-jumper.sch at 2014-07-01 08:53:09
+
+Part    Value        Device          Package               Description                  MF                      MPN  NAM          OC_FARNELL OC_NEWARK
+..                   JUMPER-3PTH     1X03                                                                                                             
+..1                  JUMPER-3PTH     1X03                                                                                                             
+..2                  JUMPER-3PTH     1X03                                                                                                             
+1A      PolyFuse     PTCPTH          PTC                   Resettable Fuse PTC                                                                        
+12V     Jack 5.5/2.1 POWER_JACKCOMBO POWER_JACK_COMBO      Power Jack                                                                                 
+C1      100n         CAP_            AXIAL-5MM             Capacitor                                                                                  
+C2      470u         CAP_POLPTH1     CPOL-RADIAL-100UF-25V Capacitor Polarized                                                                        
+C3      10u          CAP_POLPTH1     CPOL-RADIAL-100UF-25V Capacitor Polarized                                                                        
+C4      100n         CAP_            AXIAL-5MM             Capacitor                                                                                  
+C5      100u         CAP_POLPTH1     CPOL-RADIAL-100UF-25V Capacitor Polarized                                                                        
+CONTROL J3           JUMPER-3PTH     1X03                                                                                                             
+D1      FR206        1N4004          DO41-10               DIODE                                                                                      
+D2      FR206        1N4004          DO41-10               DIODE                                                                                      
+D3      FR206        DIODEPTH        DIODE-1N4001          Diode                                                                                      
+D4      FR206        DIODEPTH        DIODE-1N4001          Diode                                                                                      
+D5      FR206        DIODEPTH        DIODE-1N4001          Diode                                                                                      
+D6      FR206        DIODEPTH        DIODE-1N4001          Diode                                                                                      
+D7      FR206        DIODEPTH        DIODE-1N4001          Diode                                                                                      
+D8      FR206        DIODEPTH        DIODE-1N4001          Diode                                                                                      
+IC1     78xx         V_REG_78XXSINK  TO220-IGO             Voltage Regulator                                                                          
+LED                  JUMPER-2PTH     1X02                  Jumper                                                                                     
+MANUAL  Jack 3.5mm   AUDIO-JACKPTH   AUDIO-JACK            3.5mm Audio Jack                                                                           
+NANO    MMduino      ARDUINONANO     PDIP-32                                                                         Arduino NANO                     
+OK1     4N35         4N35            DIL06                 MOTOROLA OPTO COUPLER        FAIRCHILD SEMICONDUCTOR 4N35              1328375    72K9946  
+OPTO                 JUMPER-2PTH     1X02                  Jumper                                                                                     
+PWR                  JUMPER-2PTH     1X02                  Jumper                                                                                     
+PWRLED               JUMPER-2PTH     1X02                  Jumper                                                                                     
+R1      4k7          RESISTORPTH1    AXIAL-0.3             Resistor                                                                                   
+R2      100          RESISTORPTH1    AXIAL-0.3             Resistor                                                                                   
+R3      1k           RESISTORPTH1    AXIAL-0.3             Resistor                                                                                   
+R4      1k           RESISTORPTH1    AXIAL-0.3             Resistor                                                                                   
+R5      330          RESISTORPTH1    AXIAL-0.3             Resistor                                                                                   
+RJ45    Stepper      RJ45-8PTH       RJ45-8                RJ45 Jack                                                                                  
+SG1     Buzzer       F/QMBIII        F/QMBIII              BUZZER Source: Buerklin                                                unknown    unknown  
+TEMP    Jack 3.5mm   AUDIO-JACKPTH   AUDIO-JACK            3.5mm Audio Jack                                                                           
+U1      L298         L298            MULTIWATT15           L298 Dual Full Bridge Driver                                                               

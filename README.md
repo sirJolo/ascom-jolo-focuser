@@ -1,5 +1,8 @@
-<<<<<<< HEAD
-=======
+ver 2.2 
+==================
+ - Driver local cache
+ - Other fixes
+
 ver 2.0 production
 ==================
  - EXT connector extended 
@@ -7,7 +10,7 @@ ver 2.0 production
  - encoder support removed from Arduino sketch
  - 'Connection timeout for message #' bug fixed
 
->>>>>>> Production_20_RC1
+
 ver 1.5 production
 ==================
 Changelog:

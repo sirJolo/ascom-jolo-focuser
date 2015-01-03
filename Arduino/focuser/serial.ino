@@ -20,146 +20,149 @@ void serialEvent() {
   }  
 }
 
+// COMMAND SET
+// R - move to new position
+// P,p - set, get position
+// i - get in move
+// S,s - set, get stepper speed
+// U,u - set, get manual acceleration
+// V,v - set, get ASCOM acceleration
+// W,w - set, get PWM motor run
+// Z,z - set, get PWM motor stop
+// H - halt motor
+// J,j - set, get buzzer on
+// X,x - set, get max focuser position
+// t - get temperature
+// d - get dewpoint
+// h - get humidity
+// B,b - set, get PWM
+// a - get ADC
+// O,o - set, get opto
+// L,l - set, get LCD screens
+// K,k - set, get LCD off during stepper move
+// M,m - set, get stepper step (in 1/10um)
+// q - get monitoring values
+
 void serialCommand(String command) {
   String param = command.substring(2); 
+  String answer = String(command.charAt(0));
+  answer += ":";
 
   switch(command.charAt(0)) {
-  case '#':
-    Serial.print(DEVICE_RESPONSE);
-<<<<<<< HEAD
-    buzz(BUZZ_SHORT, 2);
-=======
-    buzz(500, 1);
->>>>>>> Production_20_RC1
-    break;
-  case 'T':    // Read temperature
-    printTemp();
-    break;
-  case 'U':    // Read dewpoint
-    printDewpoint();
-    break;
-  case 'V':    // Read humidity
-    printHum();
-    break;
-  case 'P':    // Return current position
-    printCurrentPosition();
-    break;
-  case 'H':    // Halt focuser
-    halt();   
-    break;
-  case 'I':    // Focuser status
-    printInMoveStatus();
-    break;
-  case 'M':    // Move focuser to new position
-    moveStepper(stringToLong(param)); 
-    Serial.print("M");
-    break;
-  case 'S':
-    saveStepperSpeed(stringToNumber(param));
-    break;
-  case 'D':
-    saveDutyCycle(stringToNumber(param));
-    break;
-  case 'R':
-    saveCurrentPos(stringToLong(param));
-    break;
-  case 'X':
-    maxFocuserPos = stringToLong(param);
-    Serial.print("X");
-    break;
-  default:
-    Serial.print("ERR:");      
-    Serial.print(byte(command.charAt(1)), DEC); 
-    buzz(100, 3);
+    case '#': answer += DEVICE_RESPONSE; buzz(500, 1); break;
+    case 'R': stepper.setAcceleration(readWord(PROP_ACC_AUTO)); moveStepper(stringToLong(param)); break;
+    case 'P': stepper.setCurrentPosition(stringToLong(param)); positionSaved = true; saveFocuserPos(stepper.currentPosition()); break;
+    case 'p': answer += stepper.currentPosition(); break;
+    case 'i': answer += (stepper.distanceToGo() != 0) ? "1" : "0"; break;
+    case 'S': writeWord(PROP_STEPPER_SPEED, stringToNumber(param)); stepper.setMaxSpeed(readWord(PROP_STEPPER_SPEED)); break;
+    case 's': answer += readWord(PROP_STEPPER_SPEED); break;
+    case 'U': writeWord(PROP_ACC_MAN, stringToNumber(param)); break;
+    case 'u': answer += readWord(PROP_ACC_MAN); break;
+    case 'V': writeWord(PROP_ACC_AUTO, stringToNumber(param)); break;
+    case 'v': answer += readWord(PROP_ACC_AUTO); break;
+    case 'W': writeByte(PROP_DUTY_CYCLE_RUN, constrain(stringToNumber(param), 0, 100)); break;
+    case 'w': answer += readByte(PROP_DUTY_CYCLE_RUN); break;
+    case 'Z': writeByte(PROP_DUTY_CYCLE_STOP, constrain(stringToNumber(param), 0, 100)); break;
+    case 'z': answer += readByte(PROP_DUTY_CYCLE_STOP); break;
+    case 'H': stepper.stop(); break;
+    case 'J': writeByte(PROP_BUZZER_ON, stringToNumber(param)); break;
+    case 'j': answer += readByte(PROP_BUZZER_ON); break;
+    case 'X': writeLong(PROP_MAX_FOC_POS, stringToLong(param)); maxFocuserPos = readLong(PROP_MAX_FOC_POS); break;
+    case 'x': answer += readLong(PROP_MAX_FOC_POS); break;
+    case 't': answer += printTemp(); break;
+    case 'd': answer += formatFloat(currentDewpoint, 5, 1); break;
+    case 'h': answer += formatLong(currentHum, 3); break;
+    case 'B': setPWM(param); break;
+    case 'b': answer += printPWM(param); break;
+    case 'a': answer += readAnalogAvg(ADC_PIN, 3); break;
+    case 'O': digitalWrite(OPTO_PIN, stringToNumber(param)); break;
+    case 'o': answer += digitalRead(OPTO_PIN); break;
+    case 'L': saveLCDScreens(param); break;
+    case 'l': answer += printLCDScreens(); break;
+    case 'K': writeByte(PROP_LCD_OFF_DURING_MOVE, stringToNumber(param)); break;
+    case 'k': answer += readByte(PROP_LCD_OFF_DURING_MOVE); break;
+    case 'M': writeWord(PROP_STEP_SIZE, stringToNumber(param)); break;
+    case 'm': answer += readWord(PROP_STEP_SIZE); break;
+    case 'q': Serial.print(answer); answer = printMonitor(); break;
+    
+    default: answer += " error"; buzz(100, 3);
   }
+  Serial.print(answer);
   Serial.print('\n');
 }
 
+
 // Serial commands subroutines
-void printTemp() {
+String printTemp() {
   if(sensorType > 0) {
-    Serial.print("T:");
-    Serial.print(currentTemp, 1);  
-  } 
-  else {
-    Serial.print("T:false"); 
+    return formatFloat(currentTemp, 5, 1);
+  } else {
+    return "false"; 
   }  
 }
 
-void printDewpoint() {
-  if(sensorType > 0) {
-    Serial.print("U:");
-    Serial.print(currentDewpoint, 1);  
-  } 
-  else {
-    Serial.print("U:false"); 
-  }  
-}
-
-void printHum() {
-  if(sensorType > 0) {
-    Serial.print("V:");
-    Serial.print(currentHum, 0);  
-  } 
-  else {
-    Serial.print("V:false"); 
-  }  
-}
-
-void printCurrentPosition() {
-  Serial.print("P:");
+String printMonitor() {      // pos, togo, temp, hum, dew, pwms, adc, opto
+  stepper.run();
   Serial.print(stepper.currentPosition());
+  Serial.print(":");
+  Serial.print(stepper.distanceToGo());
+  Serial.print(":");
+  stepper.run();
+  Serial.print(currentTemp);
+  Serial.print(":");
+  Serial.print(currentHum);
+  Serial.print(":");
+  stepper.run();
+  Serial.print(currentDewpoint);
+  Serial.print(":");
+  Serial.print(readPWM(PROP_PWM6));
+  Serial.print(":");
+  stepper.run();
+  Serial.print(readPWM(PROP_PWM9));
+  Serial.print(":");
+  Serial.print(readPWM(PROP_PWM10));
+  Serial.print(":");
+  stepper.run();
+  Serial.print(readAnalogAvg(ADC_PIN, 3));
+  Serial.print(":");
+  Serial.print(digitalRead(OPTO_PIN));
+  return String();
 }
 
-void printInMoveStatus() {
-  Serial.print("I:");
-  if(stepper.distanceToGo() == 0) 
-    Serial.print("false");
-  else
-    Serial.print("true");
-}
-
-<<<<<<< HEAD
-void moveStepper(long newPos, boolean manualMove) {
-  if(newPos != stepper.currentPosition()) {
-    if(newPos < 0 || newPos > maxFocuserPos) {
-      buzz(BUZZ_SHORT, 2);
-    }
-    else
-    {
-      tempRequestMilis = tempReadMilis = 0;
-      analogWrite(STEPPER_PWM_PIN, 255);
-      stepper.moveTo(newPos);
-      positionSaved = false;
-    }
+void setPWM(String param) {
+  byte pwm = stringToNumber(param.substring(2));
+  switch(param.charAt(0)) {
+   case '6': writeByte(PROP_PWM6, pwm); break;
+   case '9': writeByte(PROP_PWM9, pwm); break;
+   case '0': writeByte(PROP_PWM10, pwm); break;
   }
-  if(!manualMove) Serial.print("M");
-}
-=======
->>>>>>> Production_20_RC1
-
-void halt() {
-  stepper.stop();
-  Serial.print("H");
+  updatePWM();
 }
 
-void saveCurrentPos(long newPos) {
-  stepper.setCurrentPosition(newPos);
-  positionSaved = true;
-  saveFocuserPos(newPos);
-  Serial.print("R");
+String printPWM(String param) {
+  switch(param.charAt(0)) {
+    case '6': return String(readPWM(PROP_PWM6)); break;
+    case '9': return String(readPWM(PROP_PWM9)); break;
+    case '0': return String(readPWM(PROP_PWM10)); break;
+  }
 }
 
-void saveStepperSpeed(word stepperSpeed) {
-  writeWord(STEPPER_SPEED_ADD, stepperSpeed);
-  stepper.setMaxSpeed(readWord(STEPPER_SPEED_ADD));
-  Serial.print("S");
+void saveLCDScreens(String param) {
+  // "3:4:0:1"
+  writeByte(PROP_LCD_SCREEN_0, stringToNumber(param.substring(0,1)));
+  writeByte(PROP_LCD_SCREEN_1, stringToNumber(param.substring(2,3)));
+  writeByte(PROP_LCD_SCREEN_2, stringToNumber(param.substring(4,5)));
+  writeByte(PROP_LCD_SCREEN_3, stringToNumber(param.substring(6)));
 }
 
-void saveDutyCycle(byte dutyCycle) {
-  if(dutyCycle > 100) dutyCycle = 100;
-  EEPROM.write(DUTY_CYCLE_ADDR, dutyCycle);
-  analogWrite(STEPPER_PWM_PIN, (255 * EEPROM.read(DUTY_CYCLE_ADDR)/100));
-  Serial.print("D");
+String printLCDScreens() {
+  String ret = String(readByte(PROP_LCD_SCREEN_0));
+  ret += ":";
+  ret += readByte(PROP_LCD_SCREEN_1);
+  ret += ":";
+  ret += readByte(PROP_LCD_SCREEN_2);
+  ret += ":";
+  ret += readByte(PROP_LCD_SCREEN_3);
+  return ret;
 }
 

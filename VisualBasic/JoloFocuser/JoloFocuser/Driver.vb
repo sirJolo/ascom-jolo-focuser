@@ -1,3 +1,5 @@
+Imports System.IO.Ports
+
 'tabs=4
 ' --------------------------------------------------------------------------------
 ' TODO fill in this information for your driver, then remove this line!
@@ -12,7 +14,7 @@
 '
 ' Implements:	ASCOM Focuser interface version: 1.3
 ' Author:		(Jol) Jolo (drjolo@gmail.com)
-' URL:          http://code.google.com/p/ascom-jolo-focuser/
+' URL:          https://github.com/sirJolo/ascom-jolo-focuser
 '
 ' Edit Log:
 '
@@ -26,10 +28,7 @@
 ' 08-Nov-2013   Jol 0.1.3   Max focuser position limit to 1,000,000
 ' 11-Nov-2013   Jol 0.1.4   Driver backslash compensation removed
 ' 28-Nov-2013   Jol 0.1.5   Production candidate
-<<<<<<< HEAD
-=======
 ' 15-May-2014   Jol 0.2.0   Production candidate
->>>>>>> Production_20_RC1
 ' ---------------------------------------------------------------------------------
 '
 '
@@ -56,29 +55,35 @@ Public Class Focuser
     ' Driver ID and descriptive string that shows in the Chooser
     '
     Private Const DELTA_T As Double = 0.5
-<<<<<<< HEAD
-    Private Const DRIVER_VERSION As String = "1.5"
-=======
-    Private Const DRIVER_VERSION As String = "2.0"
->>>>>>> Production_20_RC1
-    Private Const DEVICE_RESPONSE As String = "Jolo primary focuser"
+    Private Const DRIVER_VERSION As String = "2.2"
+    Private Const DEVICE_RESPONSE As String = "#:Jolo primary focuser"
 
     Private Shared driverID As String = "ASCOM.JoloFocuser.Focuser"
     Private Shared driverDescription As String = "Jolo ASCOM focuser"
 
     Private tempCompTimer As System.Timers.Timer
+
     Private compStartTemp As Double
     Private compStartPos As Integer = -1
     Private compLastTemp As Double
     Private lastDirection As Integer = 0
     Private sensorConnected As Boolean = False
     Private tempCompensation As Boolean = False
-    Private ComPort As System.IO.Ports.SerialPort
+    Private WithEvents ComPort As System.IO.Ports.SerialPort
+    Private comportLock As New Object
+
+    Private monitor As MonitorForm
+    Private dialog As SetupDialogForm
+
+    Private positionCache As Integer
+    Private tempCache As Double
 
     '
     ' Constructor - Must be public for COM registration!
     '
     Public Sub New()
+        positionCache = 0
+        tempCache = 0.0
         tempCompTimer = New System.Timers.Timer()
         tempCompTimer.Interval = My.Settings.TempCycle * 1000
         tempCompTimer.Enabled = False
@@ -86,6 +91,7 @@ Public Class Focuser
         ComPort = New System.IO.Ports.SerialPort
 
         AddHandler tempCompTimer.Elapsed, AddressOf OnTempCompensation
+        monitor = New MonitorForm()
     End Sub
 
 #Region "ASCOM Registration"
@@ -168,27 +174,34 @@ Public Class Focuser
     End Function
 
     Public Function CommandString(ByVal Command As String, Optional ByVal Raw As Boolean = False) As String Implements IFocuserV2.CommandString
-        CheckConnected("CommandString")
-        Dim commandToSend As String = Command
-        If Not (Raw) Then
-            commandToSend = Command + Constants.vbLf
-        End If
+        SyncLock comportLock
+            CheckConnected("CommandString")
+            Dim commandToSend As String = Command
+            If Not (Raw) Then
+                commandToSend = Command + Constants.vbLf
+            End If
 
-        Dim answer As String
-        Try
-            ComPort.Write(commandToSend)
-            answer = ComPort.ReadTo(Constants.vbLf)
-        Catch ex As System.TimeoutException
+            Dim answer As String
             Try
+                ComPort.DiscardInBuffer()
+                ComPort.DiscardOutBuffer()
+
                 ComPort.Write(commandToSend)
                 answer = ComPort.ReadTo(Constants.vbLf)
-            Catch internalEx As System.TimeoutException
-                Throw New ASCOM.DriverException("Serial port timeout for command " + Command)
+            Catch ex As System.TimeoutException
+                Try
+                    ComPort.Write(commandToSend)
+                    answer = ComPort.ReadTo(Constants.vbLf)
+                Catch internalEx As System.TimeoutException
+                    Throw New ASCOM.DriverException("Serial port timeout for command " + Command)
+                End Try
+            Catch ex As System.InvalidOperationException
+                Throw New ASCOM.DriverException("Serial port is not opened")
+            Catch ex As System.IO.IOException
+                answer = "ERROR"
             End Try
-        Catch ex As System.InvalidOperationException
-            Throw New ASCOM.DriverException("Serial port is not opened")
-        End Try
-        Return answer.Trim(Constants.vbLf)
+            Return answer.Trim(Constants.vbLf)
+        End SyncLock
     End Function
 
     Public Property Connected() As Boolean Implements IFocuserV2.Connected
@@ -251,35 +264,24 @@ Public Class Focuser
         ComPort.PortName = My.Settings.CommPort
         ComPort.BaudRate = 9600
         ComPort.ReadTimeout = 2000
+        ComPort.Encoding = System.Text.Encoding.ASCII
 
-        Dim retry As Integer = 1
-
-        While retry < 3
-            Try
-                ComPort.Open()
-                If ComPort.IsOpen Then
-                    Exit While
-                End If
-            Catch ex As System.IO.IOException
-                If retry = 1 Then
-                    retry += 1
-                Else
-                    Throw New ASCOM.NotConnectedException("Invalid port state")
-                End If
-            Catch ex As System.InvalidOperationException
-                If retry = 1 Then
-                    retry += 1
-                Else
-                    Throw New ASCOM.NotConnectedException("Port already opened")
-                End If
-            Catch ex As System.UnauthorizedAccessException
-                If retry = 1 Then
-                    retry += 1
-                Else
-                    Throw New ASCOM.NotConnectedException("Access denied to serial port")
-                End If
-            End Try
-        End While
+        Try
+            If (ComPort.IsOpen) Then
+                ComPort.Close()
+                System.Threading.Thread.Sleep(200)
+            End If
+            ComPort.Open()
+        Catch ex As System.IO.IOException
+            Dim msg As String = "Invalid port state: " & ex.Message & " : " & ex.Data.ToString
+            Throw New ASCOM.NotConnectedException(msg)
+        Catch ex As System.InvalidOperationException
+            Dim msg As String = "Port already opened: " & ex.Message & " : " & ex.Data.ToString
+            Throw New ASCOM.NotConnectedException(msg)
+        Catch ex As System.UnauthorizedAccessException
+            Dim msg As String = "RS access denied: " & ex.Message & " : " & ex.Data.ToString
+            Throw New ASCOM.NotConnectedException(msg)
+        End Try
 
         Dim answer As String = CommandString("#")
         If (answer <> DEVICE_RESPONSE) Then
@@ -293,39 +295,108 @@ Public Class Focuser
         Catch ex As ASCOM.NotConnectedException When (ex.Message = "Temperature sensor disconnected")
             sensorConnected = False
         End Try
+
+        If My.Settings.ShowMonitor Then
+            monitor.focuser = Me
+            monitor.Show()
+            monitor.running = True
+        End If
     End Sub
-<<<<<<< HEAD
 
 
-=======
-
-
->>>>>>> Production_20_RC1
     Private Sub writeInitParameters()
         Dim answer As String
         answer = CommandString("S:" + My.Settings.StepperRPM.ToString)
-        If (answer <> "S") Then
-            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device")
+        If (Not answer.StartsWith("S")) Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - stepper PPS")
         End If
 
-        answer = CommandString("D:" + My.Settings.DutyCycle.ToString)
-        If (answer <> "D") Then
-            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device")
+        answer = CommandString("Z:" + My.Settings.DutyCycle.ToString)
+        If (Not answer.StartsWith("Z")) Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - duty cycle stop")
+        End If
+
+        answer = CommandString("W:" + My.Settings.DutyCycleRun.ToString)
+        If (Not answer.StartsWith("W")) Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - duty cycle run")
+        End If
+
+        answer = CommandString("V:" + My.Settings.AccASCOM.ToString)
+        If (Not answer.StartsWith("V")) Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - acceleration ASCOM")
+        End If
+
+        answer = CommandString("U:" + My.Settings.AccManual.ToString)
+        If (Not answer.StartsWith("U")) Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - acceleration manual")
+        End If
+
+        Dim stepsize As Integer = Math.Round(My.Settings.StepSize * 10)
+        answer = CommandString("M:" + stepsize.ToString)
+        If (Not answer.StartsWith("M")) Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - step size")
+        End If
+
+        Dim pwm As String = My.Settings.PWM_6
+        If pwm = "AUTO" Then pwm = "255"
+        answer = CommandString("B:6:" + pwm)
+        If (Not answer.StartsWith("B")) Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - PWM pin 6")
+        End If
+        pwm = My.Settings.PWM_9
+        If pwm = "AUTO" Then pwm = "255"
+        answer = CommandString("B:9:" + pwm)
+        If (Not answer.StartsWith("B")) Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - PWM pin 9")
+        End If
+        pwm = My.Settings.PWM_10
+        If pwm = "AUTO" Then pwm = "255"
+        answer = CommandString("B:0:" + pwm)
+        If (Not answer.StartsWith("B")) Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - PWM pin 10")
+        End If
+
+        answer = CommandString("L:" + My.Settings.LCD1 + ":" + My.Settings.LCD2 + ":" + My.Settings.LCD3 + ":" + My.Settings.LCD4)
+        If (Not answer.StartsWith("L")) Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - LCD screens")
+        End If
+
+        Dim buzzer As String = "0"
+        If My.Settings.BuzzerON Then buzzer = "1"
+        answer = CommandString("J:" + buzzer)
+        If (Not answer.StartsWith("J")) Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - buzzer control")
+        End If
+
+        Dim opto As String = "0"
+        If My.Settings.OPTO_On Then opto = "1"
+        answer = CommandString("O:" + opto)
+        If (Not answer.StartsWith("O")) Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - OPTO out")
+        End If
+
+        Dim LCDoff As String = "0"
+        If My.Settings.LCDOffDuringMove Then LCDoff = "1"
+        answer = CommandString("K:" + LCDoff)
+        If (Not answer.StartsWith("K")) Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - LCD off during move")
         End If
 
         answer = CommandString("X:" + My.Settings.FocuserMax.ToString)
-        If (answer <> "X") Then
-            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device")
+        If (Not answer.StartsWith("X")) Then
+            Throw New ASCOM.NotConnectedException("Unable to write initial parameters to device - focuser max pos")
         End If
     End Sub
 
 
     Private Sub Disconnect()
+        monitor.Hide()
+        monitor.running = False
         tempCompTimer.Enabled = False
         Try
             ComPort.Close()
         Catch ex As System.InvalidOperationException
-            'Port is already closed :)
+            Throw New ASCOM.InvalidOperationException("Asked to disconnect, but port already closed")
         End Try
     End Sub
 
@@ -344,6 +415,8 @@ Public Class Focuser
     Private Sub OnTempCompensation(ByVal source As Object, ByVal e As System.Timers.ElapsedEventArgs)
         TemperatureCompensation()
     End Sub
+
+
 
     Private Sub TemperatureCompensation()
         If (Not IsMoving AndAlso My.Settings.StepsPerC <> 0) Then
@@ -369,9 +442,9 @@ Public Class Focuser
 
     ' Move without resetting temperature compensation position
     Private Sub MoveInternal(ByVal Position As Integer)
-        Dim answer As String = CommandString("M:" + Position.ToString)
-        If (answer <> "M") Then
-            Throw New ASCOM.DriverException("Wrong device answer: expected M, got " + answer)
+        Dim answer As String = CommandString("R:" + Position.ToString)
+        If (Not answer.StartsWith("R")) Then
+            Throw New ASCOM.DriverException("Wrong device answer: expected R, got " + answer)
         End If
     End Sub
 
@@ -385,19 +458,24 @@ Public Class Focuser
     End Property
 
     Public Sub Dispose() Implements DeviceInterface.IFocuserV2.Dispose
-        '
+        ComPort.Dispose()
     End Sub
 
     Public Sub Halt() Implements DeviceInterface.IFocuserV2.Halt
         Dim answer As String = CommandString("H")
-        If (answer <> "H") Then
+        If (Not answer.StartsWith("H")) Then
             Throw New ASCOM.DriverException("Wrong device answer: expected H, got " + answer)
         End If
     End Sub
 
     Public ReadOnly Property IsMoving() As Boolean Implements DeviceInterface.IFocuserV2.IsMoving
         Get
-            Return CommandBool("I")
+            Dim answer As String = CommandString("i")
+            If (Not answer.StartsWith("i")) Then
+                Throw New ASCOM.DriverException("Wrong device answer: expected i, got " + answer)
+            End If
+            Dim values() As String = Split(answer, ":")
+            Return (Integer.Parse(values(1)) <> 0)
         End Get
     End Property
 
@@ -426,7 +504,7 @@ Public Class Focuser
 
     Public Sub Move(ByVal Position As Integer) Implements DeviceInterface.IFocuserV2.Move
         If (TempComp) Then
-            Throw New ASCOM.InvalidOperationException("Temperature compensation enabled during MOVE command")
+            If MessageBox.Show("Temperature compensation enabled during MOVE command - continue with focuser move?", "Continue with MOVE command?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Return
         End If
         If (Position > My.Settings.FocuserMax) Then
             Throw New ASCOM.InvalidOperationException("MOVE larger than maximum focuser position")
@@ -445,12 +523,15 @@ Public Class Focuser
 
     Public ReadOnly Property Position() As Integer Implements DeviceInterface.IFocuserV2.Position
         Get
-            Dim answer As String = CommandString("P")
+            Dim answer As String = CommandString("p")
             Dim values() As String = Split(answer, ":")
-            If (values(0) <> "P") Then
-                Throw New ASCOM.DriverException("Wrong device answer: expected P, got " + answer)
+            If (Not answer.StartsWith("p")) Then
+                'Throw New ASCOM.DriverException("Wrong device answer: expected p, got " + answer)
+                loginfo("Wrong device answer: expected p, got " + answer)
+            Else
+                positionCache = Integer.Parse(values(1))
             End If
-            Return Integer.Parse(values(1))
+            Return positionCache
         End Get
     End Property
 
@@ -484,16 +565,26 @@ Public Class Focuser
 
     Public ReadOnly Property Temperature() As Double Implements DeviceInterface.IFocuserV2.Temperature
         Get
-            Dim answer As String = CommandString("T")
+            Dim answer As String = CommandString("t")
             Dim values() As String = Split(answer, ":")
-            If (values(0) <> "T") Then
-                Throw New ASCOM.DriverException("Wrong device answer: expected T, got " + answer)
+            If (Not answer.StartsWith("t")) Then
+                'Throw New ASCOM.DriverException("Wrong device answer: expected t, got " + answer)
+                loginfo("Wrong device answer: expected t, got " + answer)
+            Else
+                If (values(1) = "false") Then
+                    Throw New ASCOM.NotConnectedException("Temperature sensor disconnected")
+                End If
+                tempCache = Double.Parse(values(1), System.Globalization.CultureInfo.InvariantCulture.NumberFormat)
             End If
-            If (values(1) = "false") Then
-                Throw New ASCOM.NotConnectedException("Temperature sensor disconnected")
-            End If
-            Return Double.Parse(values(1), System.Globalization.CultureInfo.InvariantCulture.NumberFormat)
+            Return tempCache
         End Get
     End Property
+
+    Private Sub loginfo(ByVal content As String)
+        If (Not (monitor Is Nothing)) And My.Settings.SaveLog Then
+            monitor.logLine(content)
+        End If
+    End Sub
+
 End Class
 

@@ -5,7 +5,7 @@ Imports System.Runtime.InteropServices
 Public Class SetupDialogForm
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
         My.Settings.StepSize = StepSizeUpDown.Value
-        My.Settings.StepsPerC = CompensationUpDown.Value
+        My.Settings.StepsPerC = TempCompensation.Value
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.Close()
         My.Settings.Save()
@@ -53,12 +53,52 @@ Public Class SetupDialogForm
     End Sub
 
     Private Sub SetupDialogForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        StepSizeUpDown.Value = My.Settings.StepSize
-        CompensationUpDown.Value = My.Settings.StepsPerC
         COM1.Items.Clear()
         For Each sp As String In My.Computer.Ports.SerialPortNames
             COM1.Items.Add(sp)
         Next
+        calculateCFZ()
+    End Sub
+
+    Private Sub NumericUpDown5_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NumericUpDown5.ValueChanged, NumericUpDown2.ValueChanged
+        calculateCFZ()
+    End Sub
+
+
+    Private Sub NumericUpDown5_KeyDown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NumericUpDown5.KeyUp, NumericUpDown2.KeyUp
+        calculateCFZ()
+    End Sub
+
+    Private Sub calculateCFZ()
+        Dim ccdcfz As Double = NumericUpDown5.Value * NumericUpDown2.Value
+        Dim cfz As Double
+        cfz = 4.88 * NumericUpDown5.Value * NumericUpDown5.Value * 0.475
+        BlueCFZ.Text = Math.Round(Math.Max(ccdcfz, cfz)).ToString + " microns"
+        cfz = 4.88 * NumericUpDown5.Value * NumericUpDown5.Value * 0.51
+        GreenCFZ.Text = Math.Round(Math.Max(ccdcfz, cfz)).ToString + " microns"
+        cfz = 4.88 * NumericUpDown5.Value * NumericUpDown5.Value * 0.65
+        RedCFZ.Text = Math.Round(Math.Max(ccdcfz, cfz)).ToString + " microns"
+    End Sub
+
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        If (MessageBox.Show("Restore default values at Advanced Settings tab?", "Restore values?", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes) Then
+            DutyCycleRun.Value = 100
+            DutyCycleStop.Value = 0
+            AccASCOM.Value = 1500
+            AccManual.Value = 200
+            TempCompensation.Value = 0.0
+            TempCycleTime.Value = 20
+            BuzzerCheckBox.Checked = True
+            LCDOffCheckBox.Checked = True
+            LCD1ComboBox.Text = "5"
+            LCD2ComboBox.Text = "5"
+            LCD3ComboBox.Text = "3"
+            LCD4ComboBox.Text = "3"
+        End If
+    End Sub
+
+    Private Sub NumericUpDown5_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles NumericUpDown5.KeyUp, NumericUpDown2.KeyUp
+
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
@@ -72,14 +112,14 @@ Public Class SetupDialogForm
                 'Will not send command
             End Try
             If (SerialPort1.IsOpen) Then
-                SerialPort1.Write("R:" + NumericUpDown8.Value.ToString + Constants.vbLf)
+                SerialPort1.Write("P:" + NumericUpDown8.Value.ToString + Constants.vbLf)
                 Dim answer As String = ""
                 Try
                     answer = SerialPort1.ReadTo(Constants.vbLf)
-                    If (answer = "R") Then
+                    If (answer = "P:") Then
                         MessageBox.Show("Focuser position updated.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Else
-                        MessageBox.Show("Focuser response invalid, was " + answer + ", expected R", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        MessageBox.Show("Focuser response invalid, was " + answer + ", expected P", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     End If
                 Catch ex As System.TimeoutException
                     MessageBox.Show("Serial port response time out " + SerialPort1.PortName, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -94,4 +134,5 @@ Public Class SetupDialogForm
             End If
         End If
     End Sub
+
 End Class

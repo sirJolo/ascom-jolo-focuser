@@ -6,39 +6,56 @@
 // ver. 1.4 11-11-2013
 // ver. 1.5 - production
 // ver. 2.0 - production 2014.05
+// ver. 2.1 - production LCD 2014.07
 // 
-// 
-#include <stdlib.h>
 #include <OneWire.h>
 #include <DallasTemperature.h>
+#include <dht.h>
 #include <EEPROM.h>
 #include <EepromUtil.h>
 #include <AccelStepper.h>
 #include <Bounce.h>
 #include <Timer.h>
+#include "SoftI2CMaster.h"
+#include <LiquidCrystal_I2C.h>
 
 #define DEVICE_RESPONSE "Jolo primary focuser"
-#define FIRMWARE "2.0"
+#define FIRMWARE "2.1"
+
+#define DEBUG true
 
 // EEPROM addresses
 #define FOCUSER_POS_START 900
-#define STEPPER_SPEED_ADD 3      
-#define DUTY_CYCLE_ADDR 2  
+#define PROPERTY_ADDR 700
+#define PROP_STEPPER_SPEED PROPERTY_ADDR+1
+#define PROP_DUTY_CYCLE_RUN PROPERTY_ADDR+3
+#define PROP_DUTY_CYCLE_STOP PROPERTY_ADDR+5
+#define PROP_ACC_AUTO PROPERTY_ADDR+10
+#define PROP_ACC_MAN PROPERTY_ADDR+15
+#define PROP_BUZZER_ON PROPERTY_ADDR+20
+#define PROP_LCD_SCREEN_0 PROPERTY_ADDR+25
+#define PROP_LCD_SCREEN_1 PROPERTY_ADDR+26
+#define PROP_LCD_SCREEN_2 PROPERTY_ADDR+27
+#define PROP_LCD_SCREEN_3 PROPERTY_ADDR+28
+#define PROP_MAX_FOC_POS PROPERTY_ADDR+30
+#define PROP_PWM6 PROPERTY_ADDR+50
+#define PROP_PWM9 PROPERTY_ADDR+51
+#define PROP_PWM10 PROPERTY_ADDR+52
+#define PROP_STEP_SIZE PROPERTY_ADDR+53
+#define PROP_LCD_OFF_DURING_MOVE PROPERTY_ADDR+55
+
+// EXT
+#define OPTO_PIN A0
+#define PWM_PIN6 6
+#define PWM_PIN9 9
+#define PWM_PIN10 10
+#define ADC_PIN A1
+
+// LCD
+#define LCD_REFRESH 500
+LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
 
 // Encoder config
-<<<<<<< HEAD
-#define ENCODER_OUT_PIN 4
-#define ENCODER_IN_PIN 3
-Bounce outButton = Bounce( ENCODER_OUT_PIN, 30 ); 
-Bounce inButton = Bounce( ENCODER_IN_PIN, 30 ); 
-
-// Buzzer config
-#define BUZZER_PIN 5
-#define BUZZ_LONG 300
-#define BUZZ_SHORT 50
-#define BUZZ_PAUSE 50
-#define BUZZER_ON true
-=======
 #define ENCODER_A_PIN 8
 #define ENCODER_B_PIN 7
 Bounce aButton = Bounce( ENCODER_A_PIN, 30 ); 
@@ -46,8 +63,6 @@ Bounce bButton = Bounce( ENCODER_B_PIN, 30 );
 
 // Buzzer config
 #define BUZZER_PIN 4
-#define BUZZER_ON true      // config
->>>>>>> Production_20_RC1
 #define BUZ_LED_PIN 13
 
 // Temperature sensor config
@@ -56,74 +71,40 @@ Bounce bButton = Bounce( ENCODER_B_PIN, 30 );
 OneWire oneWire(TEMP_SENSOR_PIN);
 DallasTemperature sensors(&oneWire);
 DeviceAddress insideThermometer;
+dht DHT;
 
 // Stepper config
-<<<<<<< HEAD
-#define STEPPER_ACC 2500
-#define MANUAL_STEPPER_ACC 600
-#define STEPPER_PWM_PIN 6
-AccelStepper stepper = AccelStepper(AccelStepper::HALF4WIRE, A3, A4, A1, A5);
-=======
-#define STEPPER_ACC 2500          // config up/down
-#define MANUAL_STEPPER_ACC 600    // config up/down
 #define STEPPER_PWM_PIN 11
-#define MSI2_PIN A5
-#define MSI1_PIN A4
-
+AccelStepper stepper = AccelStepper(AccelStepper::HALF4WIRE, A5, A4, A3, A2);  
+//AccelStepper stepper = AccelStepper(AccelStepper::DRIVER, A4, A3);  
+  
 Timer timer;
->>>>>>> Production_20_RC1
 
 // Global vars
-AccelStepper stepper;
 boolean positionSaved;               // Flag indicates if stepper position was saved as new focuser position
 byte sensorType = 0;                 // 0-none, 1-DS8120, 2-DHT11, 3-DHT22
 float currentTemp;                   // Current cached temperature  
 float currentHum;                    // Current cached humidity
 float currentDewpoint;               // Current cached dew point temperature
+byte heaterPWM = 0;                  // Calculated PWM on hum
+byte LCDscreen = 0;                  // Current LCD screen
+byte lcdCycle = 0;
 String inputString;                  // Serial input command string (terminated with \n)
 
-<<<<<<< HEAD
-byte buzzes = 0;                     // Number of buzzes to do 
-int buzz_time = 0;                   // Next buzz period 
-unsigned long buzz_next_action = 0;  // Time to next buzz action change
-=======
 int tempCycleEvent;
 int buzzCycleEvent;
->>>>>>> Production_20_RC1
+int lcdCycleEvent;
 
 long maxFocuserPos = 1000000;        // Maximum focuser position
 
-<<<<<<< HEAD
-
-=======
->>>>>>> Production_20_RC1
 void loop() 
 {
   stepper.run();
   checkStepper();
 
-<<<<<<< HEAD
-  if(stepper.distanceToGo() == 0 && !positionSaved) {
-    saveFocuserPos(stepper.currentPosition());
-    positionSaved = true;
-    buzz(BUZZ_SHORT, 1);
-    analogWrite(STEPPER_PWM_PIN, (255 * EEPROM.read(DUTY_CYCLE_ADDR)/100));
-    tempRequestMilis = millis() + 500;
-  }
-
-  // Temperature read loop
-  if(sensorConnected && tempRequestMilis != 0 && tempRequestMilis < millis()) requestTemp();  
-  if(sensorConnected && tempReadMilis != 0 && tempReadMilis < millis()) readTemp();  
-
-  // Buzzer call
-  doBuzz();
-
-  // Manual control
-=======
->>>>>>> Production_20_RC1
   doButtonsCheck();
   
-  if( stepper.distanceToGo() == 0) {timer.update();}
+  timer.update();
 }
 
 
