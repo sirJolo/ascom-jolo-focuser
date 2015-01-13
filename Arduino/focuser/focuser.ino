@@ -7,6 +7,7 @@
 #include <dht.h>
 #include <EEPROM.h>
 #include <JoloAccelStepper.h>
+//#include <AccelStepper.h>
 #include <Timer.h>
 
 #define DEVICE_RESPONSE "Jolo Carbon8 focuser"
@@ -40,10 +41,10 @@ struct {
 #define PWM1_PIN 9
 #define PWM2_PIN 10
 #define PWM3_PIN 11
-#define ADC_PIN A6
+#define ADC_PIN A0
 
 // Buzzer config
-#define BUZZER_PIN 4
+#define BUZZER_PIN 8
 #define BUZ_LED_PIN 13
 
 // Temperature sensor config
@@ -53,7 +54,8 @@ dht DHT;
 
 // Stepper config
 #define STEPPER_PWM_PIN 3
-JoloAccelStepper stepper = JoloAccelStepper(AccelStepper::FUNCTION, A0,A1,A2,A3);  
+JoloAccelStepper stepper = JoloAccelStepper(AccelStepper::FUNCTION, 4, 5, 6, 7);  
+//AccelStepper stepper = AccelStepper(AccelStepper::FULL4WIRE, 4, 5, 6, 7);
   
 Timer timer;
 

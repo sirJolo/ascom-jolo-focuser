@@ -1,6 +1,6 @@
 void initializeSerial() {
   // Initialize serial
-  Serial.begin(9600);
+  Serial.begin(57600);
   Serial.setTimeout(2000);
 
   inputString = "";
@@ -63,8 +63,8 @@ void serialCommand(String command) {
     case 'X': ctx.maxPos = stringToLong(param); break;
     case 'x': answer += ctx.maxPos; break;
     case 't': answer += printTemp(); break;
-    case 'd': answer += formatFloat(sensor.dew, 5, 1); break;
-    case 'h': answer += formatLong(sensor.hum, 3); break;
+    case 'd': answer += sensor.dew; break;
+    case 'h': answer += sensor.hum; break;
     case 'B': setPWM(param); break;
     case 'b': answer += printPWM(param); break;
     case 'a': answer += readAnalogAvg(ADC_PIN, 3); break;
@@ -86,7 +86,7 @@ String printTemp() {
   }  
 }
 
-String printMonitor() {      // pos, togo, temp, hum, dew, pwms, adc, opto
+String printMonitor() {      
   stepper.run();
   Serial.print(stepper.currentPosition());
   Serial.print(":");
