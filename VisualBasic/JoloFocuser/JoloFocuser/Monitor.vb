@@ -9,9 +9,9 @@
     Delegate Sub SetTemperatureCallback(ByVal temp As String)
     Delegate Sub SetHumidityCallback(ByVal hum As String)
     Delegate Sub SetDewpointCallback(ByVal dewpoint As String)
-    Delegate Sub SetPWM6Callback(ByVal PWM As String)
-    Delegate Sub SetPWM9Callback(ByVal PWM As String)
-    Delegate Sub SetPWM10Callback(ByVal PWM As String)
+    Delegate Sub SetPWM1Callback(ByVal PWM As String)
+    Delegate Sub SetPWM2Callback(ByVal PWM As String)
+    Delegate Sub SetPWM3Callback(ByVal PWM As String)
     Delegate Sub SetADCCallback(ByVal PWM As String)
 
     Public Sub New()
@@ -47,9 +47,9 @@
         Dim dewpoint As Double = Double.Parse(values(5), System.Globalization.CultureInfo.InvariantCulture.NumberFormat)
         SetDewpoint(FormatNumber(dewpoint, 1))
 
-        SetPWM6(values(6))
-        SetPWM9(values(7))
-        SetPWM10(values(8))
+        SetPWM1(values(6))
+        SetPWM2(values(7))
+        SetPWM3(values(8))
 
         If My.Settings.ADC_Read Then
             SetADC(values(9))
@@ -134,31 +134,31 @@
         End If
     End Sub
 
-    Private Sub SetPWM6(ByVal pwm As String)
-        If Me.PWM6.InvokeRequired Then
-            Dim d As New SetPWM6Callback(AddressOf SetPWM6)
+    Private Sub SetPWM1(ByVal pwm As String)
+        If Me.PWM1.InvokeRequired Then
+            Dim d As New SetPWM1Callback(AddressOf SetPWM1)
             Me.Invoke(d, New Object() {pwm})
         Else
-            Me.PWM6.Text = pwm
+            Me.PWM1.Text = pwm
         End If
     End Sub
 
 
-    Private Sub SetPWM9(ByVal pwm As String)
-        If Me.PWM9.InvokeRequired Then
-            Dim d As New SetPWM9Callback(AddressOf SetPWM9)
+    Private Sub SetPWM2(ByVal pwm As String)
+        If Me.PWM2.InvokeRequired Then
+            Dim d As New SetPWM2Callback(AddressOf SetPWM2)
             Me.Invoke(d, New Object() {pwm})
         Else
-            Me.PWM9.Text = pwm
+            Me.PWM2.Text = pwm
         End If
     End Sub
 
-    Private Sub SetPWM10(ByVal pwm As String)
-        If Me.PWM10.InvokeRequired Then
-            Dim d As New SetPWM10Callback(AddressOf SetPWM10)
+    Private Sub SetPWM3(ByVal pwm As String)
+        If Me.PWM3.InvokeRequired Then
+            Dim d As New SetPWM3Callback(AddressOf SetPWM3)
             Me.Invoke(d, New Object() {pwm})
         Else
-            Me.PWM10.Text = pwm
+            Me.PWM3.Text = pwm
         End If
     End Sub
 
@@ -231,28 +231,29 @@
     End Sub
 
 
-    Private Sub PWM_D6_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PWM_D6_ComboBox.SelectedValueChanged
+    Private Sub PWM_1_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PWM_1_ComboBox.SelectedIndexChanged
         My.Settings.Save()
-        Dim pwm As String = "255"
-        If My.Settings.PWM_1 <> "AUTO" Then pwm = My.Settings.PWM_1
-        If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:6:" + pwm)
+        Dim pwm As String = PWM_1_ComboBox.Text
+        If pwm = "AUTO" Then pwm = "255"
+        If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:1:" + pwm)
     End Sub
 
-    Private Sub PWM_D9_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PWM_D9_ComboBox.SelectedValueChanged
+    Private Sub PWM_2_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PWM_2_ComboBox.SelectedIndexChanged
         My.Settings.Save()
-        Dim pwm As String = "255"
-        If My.Settings.PWM_2 <> "AUTO" Then pwm = My.Settings.PWM_2
-        If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:9:" + pwm)
+        Dim pwm As String = PWM_2_ComboBox.Text
+        If pwm = "AUTO" Then pwm = "255"
+        If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:2:" + pwm)
     End Sub
 
-    Private Sub PWM_D10_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PWM_D10_ComboBox.SelectedValueChanged
+    Private Sub PWM_3_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PWM_3_ComboBox.SelectedIndexChanged
         My.Settings.Save()
-        Dim pwm As String = "255"
-        If My.Settings.PWM_3 <> "AUTO" Then pwm = My.Settings.PWM_3
-        If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:0:" + pwm)
+        Dim pwm As String = PWM_3_ComboBox.Text
+        If pwm = "AUTO" Then pwm = "255"
+        If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:3:" + pwm)
     End Sub
 
     Private Sub StopButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StopButton.Click
         If Not JOLOfocuser Is Nothing Then JOLOfocuser.Halt()
     End Sub
+
 End Class

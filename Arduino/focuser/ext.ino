@@ -15,8 +15,8 @@ void initializeExt() {
 void updatePWM() {
   calculateHeaterPWM();
   updatePWMPin(PWM1_PIN, ctx.pwm1);
-  updatePWMPin(PWM1_PIN, ctx.pwm2);
-  updatePWMPin(PWM1_PIN, ctx.pwm3);
+  updatePWMPin(PWM2_PIN, ctx.pwm2);
+  updatePWMPin(PWM3_PIN, ctx.pwm3);
 }
 
 void updatePWMPin(byte pin, byte value) {

@@ -25,11 +25,14 @@ Partial Class MonitorForm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MonitorForm))
         Me.TabControl1 = New System.Windows.Forms.TabControl
         Me.TabPage1 = New System.Windows.Forms.TabPage
+        Me.SaveLogCheckBox = New System.Windows.Forms.CheckBox
         Me.StopButton = New System.Windows.Forms.Button
         Me.PictureBox2 = New System.Windows.Forms.PictureBox
         Me.Button3 = New System.Windows.Forms.Button
         Me.Button2 = New System.Windows.Forms.Button
         Me.Button1 = New System.Windows.Forms.Button
+        Me.AbsPosNumericUpDown = New System.Windows.Forms.NumericUpDown
+        Me.RelPosUpDown = New System.Windows.Forms.NumericUpDown
         Me.Label8 = New System.Windows.Forms.Label
         Me.Label7 = New System.Windows.Forms.Label
         Me.Label6 = New System.Windows.Forms.Label
@@ -56,23 +59,20 @@ Partial Class MonitorForm
         Me.Label11 = New System.Windows.Forms.Label
         Me.Label17 = New System.Windows.Forms.Label
         Me.ADCLabel = New System.Windows.Forms.Label
-        Me.PWM10 = New System.Windows.Forms.Label
-        Me.PWM9 = New System.Windows.Forms.Label
-        Me.PWM6 = New System.Windows.Forms.Label
-        Me.SaveLogCheckBox = New System.Windows.Forms.CheckBox
-        Me.AbsPosNumericUpDown = New System.Windows.Forms.NumericUpDown
-        Me.RelPosUpDown = New System.Windows.Forms.NumericUpDown
+        Me.PWM3 = New System.Windows.Forms.Label
+        Me.PWM2 = New System.Windows.Forms.Label
+        Me.PWM1 = New System.Windows.Forms.Label
         Me.ADC_CheckBox = New System.Windows.Forms.CheckBox
-        Me.PWM_D10_ComboBox = New System.Windows.Forms.ComboBox
-        Me.PWM_D9_ComboBox = New System.Windows.Forms.ComboBox
-        Me.PWM_D6_ComboBox = New System.Windows.Forms.ComboBox
+        Me.PWM_3_ComboBox = New System.Windows.Forms.ComboBox
+        Me.PWM_2_ComboBox = New System.Windows.Forms.ComboBox
+        Me.PWM_1_ComboBox = New System.Windows.Forms.ComboBox
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage2.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AbsPosNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RelPosUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage2.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -116,6 +116,18 @@ Partial Class MonitorForm
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Monitor"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'SaveLogCheckBox
+        '
+        Me.SaveLogCheckBox.AutoSize = True
+        Me.SaveLogCheckBox.Checked = Global.ASCOM.JoloFocuser.My.MySettings.Default.SaveLog
+        Me.SaveLogCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SaveLog", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.SaveLogCheckBox.Location = New System.Drawing.Point(11, 136)
+        Me.SaveLogCheckBox.Name = "SaveLogCheckBox"
+        Me.SaveLogCheckBox.Size = New System.Drawing.Size(96, 17)
+        Me.SaveLogCheckBox.TabIndex = 28
+        Me.SaveLogCheckBox.Text = "Save log to file"
+        Me.SaveLogCheckBox.UseVisualStyleBackColor = True
         '
         'StopButton
         '
@@ -166,6 +178,28 @@ Partial Class MonitorForm
         Me.Button1.TabIndex = 20
         Me.Button1.Text = "-"
         Me.Button1.UseVisualStyleBackColor = True
+        '
+        'AbsPosNumericUpDown
+        '
+        Me.AbsPosNumericUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Maximum", Global.ASCOM.JoloFocuser.My.MySettings.Default, "FocuserMax", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.AbsPosNumericUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorAbsolute", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.AbsPosNumericUpDown.Location = New System.Drawing.Point(166, 39)
+        Me.AbsPosNumericUpDown.Maximum = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserMax
+        Me.AbsPosNumericUpDown.Name = "AbsPosNumericUpDown"
+        Me.AbsPosNumericUpDown.Size = New System.Drawing.Size(73, 20)
+        Me.AbsPosNumericUpDown.TabIndex = 19
+        Me.AbsPosNumericUpDown.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorAbsolute
+        '
+        'RelPosUpDown
+        '
+        Me.RelPosUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.RelPosUpDown.Location = New System.Drawing.Point(192, 9)
+        Me.RelPosUpDown.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.RelPosUpDown.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.RelPosUpDown.Name = "RelPosUpDown"
+        Me.RelPosUpDown.Size = New System.Drawing.Size(58, 20)
+        Me.RelPosUpDown.TabIndex = 19
+        Me.RelPosUpDown.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
         '
         'Label8
         '
@@ -326,13 +360,13 @@ Partial Class MonitorForm
         Me.TabPage2.Controls.Add(Me.Label11)
         Me.TabPage2.Controls.Add(Me.Label17)
         Me.TabPage2.Controls.Add(Me.ADCLabel)
-        Me.TabPage2.Controls.Add(Me.PWM10)
-        Me.TabPage2.Controls.Add(Me.PWM9)
-        Me.TabPage2.Controls.Add(Me.PWM6)
+        Me.TabPage2.Controls.Add(Me.PWM3)
+        Me.TabPage2.Controls.Add(Me.PWM2)
+        Me.TabPage2.Controls.Add(Me.PWM1)
         Me.TabPage2.Controls.Add(Me.ADC_CheckBox)
-        Me.TabPage2.Controls.Add(Me.PWM_D10_ComboBox)
-        Me.TabPage2.Controls.Add(Me.PWM_D9_ComboBox)
-        Me.TabPage2.Controls.Add(Me.PWM_D6_ComboBox)
+        Me.TabPage2.Controls.Add(Me.PWM_3_ComboBox)
+        Me.TabPage2.Controls.Add(Me.PWM_2_ComboBox)
+        Me.TabPage2.Controls.Add(Me.PWM_1_ComboBox)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -447,75 +481,41 @@ Partial Class MonitorForm
         Me.ADCLabel.Text = "0"
         Me.ADCLabel.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
-        'PWM10
+        'PWM3
         '
-        Me.PWM10.BackColor = System.Drawing.SystemColors.Info
-        Me.PWM10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PWM10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.PWM10.Location = New System.Drawing.Point(53, 131)
-        Me.PWM10.Name = "PWM10"
-        Me.PWM10.Size = New System.Drawing.Size(35, 16)
-        Me.PWM10.TabIndex = 21
-        Me.PWM10.Text = "0"
-        Me.PWM10.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.PWM3.BackColor = System.Drawing.SystemColors.Info
+        Me.PWM3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PWM3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.PWM3.Location = New System.Drawing.Point(53, 131)
+        Me.PWM3.Name = "PWM3"
+        Me.PWM3.Size = New System.Drawing.Size(35, 16)
+        Me.PWM3.TabIndex = 21
+        Me.PWM3.Text = "0"
+        Me.PWM3.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
-        'PWM9
+        'PWM2
         '
-        Me.PWM9.BackColor = System.Drawing.SystemColors.Info
-        Me.PWM9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PWM9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.PWM9.Location = New System.Drawing.Point(53, 107)
-        Me.PWM9.Name = "PWM9"
-        Me.PWM9.Size = New System.Drawing.Size(35, 16)
-        Me.PWM9.TabIndex = 23
-        Me.PWM9.Text = "0"
-        Me.PWM9.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.PWM2.BackColor = System.Drawing.SystemColors.Info
+        Me.PWM2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PWM2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.PWM2.Location = New System.Drawing.Point(53, 107)
+        Me.PWM2.Name = "PWM2"
+        Me.PWM2.Size = New System.Drawing.Size(35, 16)
+        Me.PWM2.TabIndex = 23
+        Me.PWM2.Text = "0"
+        Me.PWM2.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
-        'PWM6
+        'PWM1
         '
-        Me.PWM6.BackColor = System.Drawing.SystemColors.Info
-        Me.PWM6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PWM6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.PWM6.Location = New System.Drawing.Point(53, 81)
-        Me.PWM6.Name = "PWM6"
-        Me.PWM6.Size = New System.Drawing.Size(35, 16)
-        Me.PWM6.TabIndex = 22
-        Me.PWM6.Text = "0"
-        Me.PWM6.TextAlign = System.Drawing.ContentAlignment.TopRight
-        '
-        'SaveLogCheckBox
-        '
-        Me.SaveLogCheckBox.AutoSize = True
-        Me.SaveLogCheckBox.Checked = Global.ASCOM.JoloFocuser.My.MySettings.Default.SaveLog
-        Me.SaveLogCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SaveLog", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.SaveLogCheckBox.Location = New System.Drawing.Point(11, 136)
-        Me.SaveLogCheckBox.Name = "SaveLogCheckBox"
-        Me.SaveLogCheckBox.Size = New System.Drawing.Size(96, 17)
-        Me.SaveLogCheckBox.TabIndex = 28
-        Me.SaveLogCheckBox.Text = "Save log to file"
-        Me.SaveLogCheckBox.UseVisualStyleBackColor = True
-        '
-        'AbsPosNumericUpDown
-        '
-        Me.AbsPosNumericUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Maximum", Global.ASCOM.JoloFocuser.My.MySettings.Default, "FocuserMax", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.AbsPosNumericUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorAbsolute", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.AbsPosNumericUpDown.Location = New System.Drawing.Point(166, 39)
-        Me.AbsPosNumericUpDown.Maximum = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserMax
-        Me.AbsPosNumericUpDown.Name = "AbsPosNumericUpDown"
-        Me.AbsPosNumericUpDown.Size = New System.Drawing.Size(73, 20)
-        Me.AbsPosNumericUpDown.TabIndex = 19
-        Me.AbsPosNumericUpDown.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorAbsolute
-        '
-        'RelPosUpDown
-        '
-        Me.RelPosUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.RelPosUpDown.Location = New System.Drawing.Point(192, 9)
-        Me.RelPosUpDown.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
-        Me.RelPosUpDown.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.RelPosUpDown.Name = "RelPosUpDown"
-        Me.RelPosUpDown.Size = New System.Drawing.Size(58, 20)
-        Me.RelPosUpDown.TabIndex = 19
-        Me.RelPosUpDown.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
+        Me.PWM1.BackColor = System.Drawing.SystemColors.Info
+        Me.PWM1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PWM1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.PWM1.Location = New System.Drawing.Point(53, 81)
+        Me.PWM1.Name = "PWM1"
+        Me.PWM1.Size = New System.Drawing.Size(35, 16)
+        Me.PWM1.TabIndex = 22
+        Me.PWM1.Text = "0"
+        Me.PWM1.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'ADC_CheckBox
         '
@@ -529,41 +529,38 @@ Partial Class MonitorForm
         Me.ADC_CheckBox.Text = "ADC read"
         Me.ADC_CheckBox.UseVisualStyleBackColor = True
         '
-        'PWM_D10_ComboBox
+        'PWM_3_ComboBox
         '
-        Me.PWM_D10_ComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "PWM_10", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.PWM_D10_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.PWM_D10_ComboBox.FormattingEnabled = True
-        Me.PWM_D10_ComboBox.Items.AddRange(New Object() {"0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "AUTO"})
-        Me.PWM_D10_ComboBox.Location = New System.Drawing.Point(133, 129)
-        Me.PWM_D10_ComboBox.Name = "PWM_D10_ComboBox"
-        Me.PWM_D10_ComboBox.Size = New System.Drawing.Size(60, 21)
-        Me.PWM_D10_ComboBox.TabIndex = 33
-        Me.PWM_D10_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_3
+        Me.PWM_3_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.PWM_3_ComboBox.FormattingEnabled = True
+        Me.PWM_3_ComboBox.Items.AddRange(New Object() {"0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "AUTO"})
+        Me.PWM_3_ComboBox.Location = New System.Drawing.Point(133, 129)
+        Me.PWM_3_ComboBox.Name = "PWM_3_ComboBox"
+        Me.PWM_3_ComboBox.Size = New System.Drawing.Size(60, 21)
+        Me.PWM_3_ComboBox.TabIndex = 33
+        Me.PWM_3_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_3
         '
-        'PWM_D9_ComboBox
+        'PWM_2_ComboBox
         '
-        Me.PWM_D9_ComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "PWM_9", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.PWM_D9_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.PWM_D9_ComboBox.FormattingEnabled = True
-        Me.PWM_D9_ComboBox.Items.AddRange(New Object() {"0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "AUTO"})
-        Me.PWM_D9_ComboBox.Location = New System.Drawing.Point(133, 104)
-        Me.PWM_D9_ComboBox.Name = "PWM_D9_ComboBox"
-        Me.PWM_D9_ComboBox.Size = New System.Drawing.Size(60, 21)
-        Me.PWM_D9_ComboBox.TabIndex = 33
-        Me.PWM_D9_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_2
+        Me.PWM_2_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.PWM_2_ComboBox.FormattingEnabled = True
+        Me.PWM_2_ComboBox.Items.AddRange(New Object() {"0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "AUTO"})
+        Me.PWM_2_ComboBox.Location = New System.Drawing.Point(133, 104)
+        Me.PWM_2_ComboBox.Name = "PWM_2_ComboBox"
+        Me.PWM_2_ComboBox.Size = New System.Drawing.Size(60, 21)
+        Me.PWM_2_ComboBox.TabIndex = 33
+        Me.PWM_2_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_2
         '
-        'PWM_D6_ComboBox
+        'PWM_1_ComboBox
         '
-        Me.PWM_D6_ComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "PWM_6", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.PWM_D6_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.PWM_D6_ComboBox.FormattingEnabled = True
-        Me.PWM_D6_ComboBox.Items.AddRange(New Object() {"0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "AUTO"})
-        Me.PWM_D6_ComboBox.Location = New System.Drawing.Point(133, 79)
-        Me.PWM_D6_ComboBox.Name = "PWM_D6_ComboBox"
-        Me.PWM_D6_ComboBox.Size = New System.Drawing.Size(60, 21)
-        Me.PWM_D6_ComboBox.TabIndex = 33
-        Me.PWM_D6_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_1
+        Me.PWM_1_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.PWM_1_ComboBox.FormattingEnabled = True
+        Me.PWM_1_ComboBox.Items.AddRange(New Object() {"0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "AUTO"})
+        Me.PWM_1_ComboBox.Location = New System.Drawing.Point(133, 79)
+        Me.PWM_1_ComboBox.Name = "PWM_1_ComboBox"
+        Me.PWM_1_ComboBox.Size = New System.Drawing.Size(60, 21)
+        Me.PWM_1_ComboBox.TabIndex = 33
+        Me.PWM_1_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_1
         '
         'MonitorForm
         '
@@ -580,11 +577,11 @@ Partial Class MonitorForm
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.AbsPosNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RelPosUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.AbsPosNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RelPosUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -605,7 +602,7 @@ Partial Class MonitorForm
     Friend WithEvents PositionSteps As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
-    Friend WithEvents PWM_D6_ComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents PWM_1_ComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents Label20 As System.Windows.Forms.Label
     Friend WithEvents Label10 As System.Windows.Forms.Label
@@ -615,11 +612,11 @@ Partial Class MonitorForm
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents ADCLabel As System.Windows.Forms.Label
-    Friend WithEvents PWM10 As System.Windows.Forms.Label
-    Friend WithEvents PWM9 As System.Windows.Forms.Label
-    Friend WithEvents PWM6 As System.Windows.Forms.Label
-    Friend WithEvents PWM_D10_ComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents PWM_D9_ComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents PWM3 As System.Windows.Forms.Label
+    Friend WithEvents PWM2 As System.Windows.Forms.Label
+    Friend WithEvents PWM1 As System.Windows.Forms.Label
+    Friend WithEvents PWM_3_ComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents PWM_2_ComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents ADC_CheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents RelPosUpDown As System.Windows.Forms.NumericUpDown

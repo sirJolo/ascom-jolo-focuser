@@ -213,9 +213,9 @@ Partial Class SetupDialogForm
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(18, 461)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(71, 13)
+        Me.Label1.Size = New System.Drawing.Size(82, 13)
         Me.Label1.TabIndex = 35
-        Me.Label1.Text = "ver. Carbon 8"
+        Me.Label1.Text = "JoloFocuser 2.5"
         '
         'LCDTabControl
         '

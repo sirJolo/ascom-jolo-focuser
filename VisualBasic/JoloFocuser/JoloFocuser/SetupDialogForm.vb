@@ -97,7 +97,7 @@ Public Class SetupDialogForm
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         If (MessageBox.Show("Are you sure to set current focuser position to " + NumericUpDown8.Value.ToString + "?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes) Then
-            SerialPort1.BaudRate = 9600
+            SerialPort1.BaudRate = 57600
             SerialPort1.ReadTimeout = 2000
             SerialPort1.PortName = COM1.Text
             Try

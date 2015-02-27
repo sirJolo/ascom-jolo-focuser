@@ -1,6 +1,9 @@
 ﻿ASCOM Jolo focuser driver
 For Arduino based focuser device
 
+24 Jan 2015 ver 2.5
+2.5 - simplified - focuser only with PWMs and DHT22 read
+
 24 Nov 2014 ver 2.2
 2.2 - fixed: driver error when working from scripts due to not working sync lock
 
