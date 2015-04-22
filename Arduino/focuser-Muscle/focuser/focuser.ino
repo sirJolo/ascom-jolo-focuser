@@ -31,13 +31,10 @@
 
 
 // Unipolar, probably L293 drivers (so we can have PWM)
-//AccelStepper stepper1 = AccelStepper(forward1Step, backward1Step);  
-//AccelStepper stepper2 = AccelStepper(forward2Step, backward2Step);  
+AccelStepper stepper1 = AccelStepper(forward1Step, backward1Step);  
+AccelStepper stepper2 = AccelStepper(forward2Step, backward2Step);  
 
 
-// Bipolar A4988 drivers
-AccelStepper stepper1 = AccelStepper(AccelStepper::DRIVER, 2, 4);  
-AccelStepper stepper2 = AccelStepper(AccelStepper::DRIVER, 7, 8);  
 
 // EEPROM addresses
 #define FOCUSER1_POS_START 900
