@@ -1,6 +1,6 @@
 void initializeSerial() {
   // Initialize serial
-  Serial.begin(57600);
+  Serial.begin(19200);
   Serial.setTimeout(2000);
 
   inputString = "";
@@ -49,23 +49,23 @@ void serialCommand(String command) {
     case 'P': stepper.setCurrentPosition(stringToLong(param)); positionSaved = true; saveFocuserPos(stepper.currentPosition()); break;
     case 'p': answer += stepper.currentPosition(); break;
     case 'i': answer += (stepper.distanceToGo() != 0) ? "1" : "0"; break;
-    case 'S': ctx.stepperSpeed = stringToNumber(param); stepper.setMaxSpeed(ctx.stepperSpeed); break;
+    case 'S': ctx.stepperSpeed = stringToNumber(param); stepper.setMaxSpeed(ctx.stepperSpeed); saveConfig(); break;
     case 's': answer += ctx.stepperSpeed; break;
-    case 'V': ctx.acc = stringToNumber(param); break;
+    case 'V': ctx.acc = stringToNumber(param); saveConfig(); break;
     case 'v': answer += ctx.acc; break;
-    case 'W': ctx.pwmRun = constrain(stringToNumber(param), 0, 100); break;
+    case 'W': ctx.pwmRun = constrain(stringToNumber(param), 0, 100); saveConfig(); break;
     case 'w': answer += ctx.pwmRun; break;
-    case 'Z': ctx.pwmStop = constrain(stringToNumber(param), 0, 100); break;
+    case 'Z': ctx.pwmStop = constrain(stringToNumber(param), 0, 100); saveConfig(); break;
     case 'z': answer += ctx.pwmStop; break;
     case 'H': stepper.stop(); break;
-    case 'J': ctx.buzzer = stringToNumber(param); break;
+    case 'J': ctx.buzzer = stringToNumber(param); saveConfig(); break;
     case 'j': answer += ctx.buzzer; break;
-    case 'X': ctx.maxPos = stringToLong(param); break;
+    case 'X': ctx.maxPos = stringToLong(param); saveConfig(); break;
     case 'x': answer += ctx.maxPos; break;
     case 't': answer += printTemp(); break;
     case 'd': answer += sensor.dew; break;
     case 'h': answer += sensor.hum; break;
-    case 'B': setPWM(param); break;
+    case 'B': setPWM(param); saveConfig(); break;
     case 'b': answer += printPWM(param); break;
     case 'a': answer += readAnalogAvg(ADC_PIN, 3); break;
     case 'q': Serial.print(answer); answer = printMonitor(); break;

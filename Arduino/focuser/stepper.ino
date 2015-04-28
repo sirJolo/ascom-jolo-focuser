@@ -1,11 +1,5 @@
 void initializeStepper() {
-  ctx.stepperSpeed = 100;
-  ctx.pwmRun = 100;
-  ctx.pwmStop = 0;
-  ctx.acc = 500;
-  ctx.buzzer = 1;
-  ctx.maxPos = 1000000;
-  ctx.pwm1 = ctx.pwm2 = ctx.pwm3 = 0;  
+  loadConfig();
   
   stepper.setMaxSpeed(ctx.stepperSpeed);
   stepper.setAcceleration(ctx.acc);

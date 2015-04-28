@@ -104,6 +104,91 @@
 <wire x1="0" y1="92.38" x2="0" y2="21.59" width="0" layer="20"/>
 </plain>
 <libraries>
+<library name="jolo-lib">
+<packages>
+<package name="FT232RL">
+<pad name="12" x="0" y="0" drill="0.9" shape="square"/>
+<pad name="11" x="0" y="2.54" drill="0.9" shape="square"/>
+<pad name="10" x="0" y="5.08" drill="0.9" shape="square"/>
+<pad name="9" x="0" y="7.62" drill="0.9" shape="square"/>
+<pad name="8" x="0" y="10.16" drill="0.9" shape="square"/>
+<pad name="7" x="0" y="12.7" drill="0.9" shape="square"/>
+<pad name="6" x="0" y="15.24" drill="0.9" shape="square"/>
+<pad name="5" x="0" y="17.78" drill="0.9" shape="square"/>
+<pad name="4" x="0" y="20.32" drill="0.9" shape="square"/>
+<pad name="3" x="0" y="22.86" drill="0.9" shape="square"/>
+<pad name="2" x="0" y="25.4" drill="0.9" shape="square"/>
+<pad name="1" x="0" y="27.94" drill="0.9" shape="square"/>
+<wire x1="-1.27" y1="29.21" x2="-1.27" y2="-5.08" width="0.127" layer="21"/>
+<text x="6.35" y="20.32" size="1.27" layer="21">FT232RL</text>
+<pad name="17" x="20.32" y="0" drill="0.9" shape="square"/>
+<pad name="18" x="20.32" y="2.54" drill="0.9" shape="square"/>
+<pad name="19" x="20.32" y="5.08" drill="0.9" shape="square"/>
+<pad name="20" x="20.32" y="7.62" drill="0.9" shape="square"/>
+<pad name="21" x="20.32" y="10.16" drill="0.9" shape="square"/>
+<pad name="22" x="20.32" y="12.7" drill="0.9" shape="square"/>
+<pad name="23" x="20.32" y="15.24" drill="0.9" shape="square"/>
+<pad name="24" x="20.32" y="17.78" drill="0.9" shape="square"/>
+<pad name="25" x="20.32" y="20.32" drill="0.9" shape="square"/>
+<pad name="26" x="20.32" y="22.86" drill="0.9" shape="square"/>
+<pad name="27" x="20.32" y="25.4" drill="0.9" shape="square"/>
+<pad name="28" x="20.32" y="27.94" drill="0.9" shape="square"/>
+<pad name="14" x="7.62" y="-2.54" drill="0.9" shape="square"/>
+<pad name="13" x="3.81" y="-2.54" drill="0.9" shape="square"/>
+<pad name="15" x="12.7" y="-2.54" drill="0.9" shape="square"/>
+<pad name="16" x="16.51" y="-2.54" drill="0.9" shape="square"/>
+<wire x1="-1.27" y1="-5.08" x2="21.59" y2="-5.08" width="0.127" layer="21"/>
+<wire x1="21.59" y1="-5.08" x2="21.59" y2="29.21" width="0.127" layer="21"/>
+<wire x1="21.59" y1="29.21" x2="16.51" y2="29.21" width="0.127" layer="21"/>
+<wire x1="16.51" y1="29.21" x2="3.81" y2="29.21" width="0.127" layer="21"/>
+<wire x1="3.81" y1="29.21" x2="-1.27" y2="29.21" width="0.127" layer="21"/>
+<wire x1="3.81" y1="29.21" x2="3.81" y2="36.83" width="0.127" layer="21"/>
+<wire x1="3.81" y1="36.83" x2="16.51" y2="36.83" width="0.127" layer="21"/>
+<wire x1="16.51" y1="36.83" x2="16.51" y2="29.21" width="0.127" layer="21"/>
+</package>
+<package name="ARDUINO-MINI-PRO">
+<pad name="BLK" x="0" y="0" drill="1.1" diameter="1.9304"/>
+<pad name="GND2" x="2.54" y="0" drill="1.1" diameter="1.9304"/>
+<pad name="VCC" x="5.08" y="0" drill="1.1" diameter="1.9304"/>
+<pad name="RX" x="7.62" y="0" drill="1.1" diameter="1.9304"/>
+<pad name="TX" x="10.16" y="0" drill="1.1" diameter="1.9304"/>
+<pad name="GRN" x="12.7" y="0" drill="1.1" diameter="1.9304"/>
+<pad name="TXO" x="-1.27" y="-2.54" drill="1.1" diameter="1.9304"/>
+<pad name="RXI" x="-1.27" y="-5.08" drill="1.1" diameter="1.9304"/>
+<pad name="RST" x="-1.27" y="-7.62" drill="1.1" diameter="1.9304"/>
+<pad name="GND" x="-1.27" y="-10.16" drill="1.1" diameter="1.9304"/>
+<pad name="2" x="-1.27" y="-12.7" drill="1.1" diameter="1.9304"/>
+<pad name="3" x="-1.27" y="-15.24" drill="1.1" diameter="1.9304"/>
+<pad name="4" x="-1.27" y="-17.78" drill="1.1" diameter="1.9304"/>
+<pad name="5" x="-1.27" y="-20.32" drill="1.1" diameter="1.9304"/>
+<pad name="6" x="-1.27" y="-22.86" drill="1.1" diameter="1.9304"/>
+<pad name="7" x="-1.27" y="-25.4" drill="1.1" diameter="1.9304"/>
+<pad name="8" x="-1.27" y="-27.94" drill="1.1" diameter="1.9304"/>
+<pad name="9" x="-1.27" y="-30.48" drill="1.1" diameter="1.9304"/>
+<pad name="RAW" x="13.97" y="-2.54" drill="1.1" diameter="1.9304"/>
+<pad name="GND3" x="13.97" y="-5.08" drill="1.1" diameter="1.9304"/>
+<pad name="RST2" x="13.97" y="-7.62" drill="1.1" diameter="1.9304"/>
+<pad name="VCC2" x="13.97" y="-10.16" drill="1.1" diameter="1.9304"/>
+<pad name="A3" x="13.97" y="-12.7" drill="1.1" diameter="1.9304"/>
+<pad name="A2" x="13.97" y="-15.24" drill="1.1" diameter="1.9304"/>
+<pad name="A1" x="13.97" y="-17.78" drill="1.1" diameter="1.9304"/>
+<pad name="A0" x="13.97" y="-20.32" drill="1.1" diameter="1.9304"/>
+<pad name="13" x="13.97" y="-22.86" drill="1.1" diameter="1.9304"/>
+<pad name="12" x="13.97" y="-25.4" drill="1.1" diameter="1.9304"/>
+<pad name="11" x="13.97" y="-27.94" drill="1.1" diameter="1.9304"/>
+<pad name="10" x="13.97" y="-30.48" drill="1.1" diameter="1.9304"/>
+<pad name="A4" x="10.795" y="-13.97" drill="1.1" diameter="1.9304"/>
+<pad name="A5" x="10.795" y="-11.43" drill="1.1" diameter="1.9304"/>
+<pad name="A6" x="10.795" y="-24.13" drill="1.1" diameter="1.9304"/>
+<pad name="A7" x="10.795" y="-21.59" drill="1.1" diameter="1.9304"/>
+<wire x1="-2.54" y1="1.27" x2="-2.54" y2="-31.75" width="0.127" layer="21"/>
+<wire x1="-2.54" y1="-31.75" x2="15.24" y2="-31.75" width="0.127" layer="21"/>
+<wire x1="15.24" y1="-31.75" x2="15.24" y2="1.27" width="0.127" layer="21"/>
+<wire x1="15.24" y1="1.27" x2="-2.54" y2="1.27" width="0.127" layer="21"/>
+<text x="0" y="-34.29" size="1.27" layer="25">Arduino Mini Pro</text>
+</package>
+</packages>
+</library>
 <library name="SparkFun">
 <description>&lt;h3&gt;SparkFun Electronics' preferred foot prints&lt;/h3&gt;
 We've spent an enormous amount of time creating and checking these footprints and parts. If you enjoy using this library, please buy one of our products at www.sparkfun.com.
@@ -316,87 +401,6 @@ http://www.st.com&lt;p&gt;
 </package>
 </packages>
 </library>
-<library name="jolo-lib">
-<packages>
-<package name="FT232RL">
-<pad name="24" x="0" y="0" drill="0.9" shape="square"/>
-<pad name="23" x="0" y="2.54" drill="0.9" shape="square"/>
-<pad name="22" x="0" y="5.08" drill="0.9" shape="square"/>
-<pad name="21" x="0" y="7.62" drill="0.9" shape="square"/>
-<pad name="20" x="0" y="10.16" drill="0.9" shape="square"/>
-<pad name="19" x="0" y="12.7" drill="0.9" shape="square"/>
-<pad name="18" x="0" y="15.24" drill="0.9" shape="square"/>
-<pad name="17" x="0" y="17.78" drill="0.9" shape="square"/>
-<pad name="16" x="0" y="20.32" drill="0.9" shape="square"/>
-<pad name="15" x="0" y="22.86" drill="0.9" shape="square"/>
-<pad name="14" x="0" y="25.4" drill="0.9" shape="square"/>
-<pad name="13" x="0" y="27.94" drill="0.9" shape="square"/>
-<wire x1="-1.27" y1="35.56" x2="-1.27" y2="-1.27" width="0.127" layer="21"/>
-<text x="3.81" y="1.27" size="1.27" layer="21">FT232RL</text>
-<wire x1="-1.27" y1="-1.27" x2="16.51" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="16.51" y1="-1.27" x2="16.51" y2="35.56" width="0.127" layer="21"/>
-<wire x1="16.51" y1="35.56" x2="13.97" y2="35.56" width="0.127" layer="21"/>
-<wire x1="13.97" y1="35.56" x2="1.27" y2="35.56" width="0.127" layer="21"/>
-<wire x1="1.27" y1="35.56" x2="-1.27" y2="35.56" width="0.127" layer="21"/>
-<pad name="1" x="15.24" y="0" drill="0.8" shape="square"/>
-<pad name="2" x="15.24" y="2.54" drill="0.8" shape="square"/>
-<pad name="3" x="15.24" y="5.08" drill="0.8" shape="square"/>
-<pad name="4" x="15.24" y="7.62" drill="0.8" shape="square"/>
-<pad name="5" x="15.24" y="10.16" drill="0.8" shape="square"/>
-<pad name="6" x="15.24" y="12.7" drill="0.8" shape="square"/>
-<pad name="7" x="15.24" y="15.24" drill="0.8" shape="square"/>
-<pad name="8" x="15.24" y="17.78" drill="0.8" shape="square"/>
-<pad name="9" x="15.24" y="20.32" drill="0.8" shape="square"/>
-<pad name="10" x="15.24" y="22.86" drill="0.8" shape="square"/>
-<pad name="11" x="15.24" y="25.4" drill="0.8" shape="square"/>
-<pad name="12" x="15.24" y="27.94" drill="0.8" shape="square"/>
-<wire x1="1.27" y1="35.56" x2="1.27" y2="41.91" width="0.127" layer="21"/>
-<wire x1="1.27" y1="41.91" x2="13.97" y2="41.91" width="0.127" layer="21"/>
-<wire x1="13.97" y1="41.91" x2="13.97" y2="35.56" width="0.127" layer="21"/>
-</package>
-<package name="ARDUINO-MINI">
-<pad name="9" x="0" y="0" drill="0.8" shape="square"/>
-<pad name="8" x="0" y="2.54" drill="0.8" shape="square"/>
-<pad name="7" x="0" y="5.08" drill="0.8" shape="square"/>
-<pad name="6" x="0" y="7.62" drill="0.8" shape="square"/>
-<pad name="5" x="0" y="10.16" drill="0.8" shape="square"/>
-<pad name="4" x="0" y="12.7" drill="0.8" shape="square"/>
-<pad name="3" x="0" y="15.24" drill="0.8" shape="square"/>
-<pad name="2" x="0" y="17.78" drill="0.8" shape="square"/>
-<pad name="NC" x="0" y="20.32" drill="0.8" shape="square"/>
-<pad name="GND4" x="0" y="22.86" drill="0.8" shape="square"/>
-<pad name="RX2" x="0" y="25.4" drill="0.8" shape="square"/>
-<pad name="TX2" x="0" y="27.94" drill="0.8" shape="square"/>
-<pad name="10" x="15.24" y="0" drill="0.8" shape="square"/>
-<pad name="11" x="15.24" y="2.54" drill="0.8" shape="square"/>
-<pad name="12" x="15.24" y="5.08" drill="0.8" shape="square"/>
-<pad name="13" x="15.24" y="7.62" drill="0.8" shape="square"/>
-<pad name="A0" x="15.24" y="10.16" drill="0.8" shape="square"/>
-<pad name="A1" x="15.24" y="12.7" drill="0.8" shape="square"/>
-<pad name="A2" x="15.24" y="15.24" drill="0.8" shape="square"/>
-<pad name="A3" x="15.24" y="17.78" drill="0.8" shape="square"/>
-<pad name="5V2" x="15.24" y="20.32" drill="0.8" shape="square"/>
-<pad name="R" x="15.24" y="22.86" drill="0.8" shape="square"/>
-<pad name="GND2" x="15.24" y="25.4" drill="0.8" shape="square"/>
-<pad name="9V" x="15.24" y="27.94" drill="0.8" shape="square"/>
-<pad name="IO7" x="2.54" y="27.94" drill="0.8" shape="square"/>
-<pad name="TX" x="5.08" y="27.94" drill="0.8" shape="square"/>
-<pad name="RX" x="7.62" y="27.94" drill="0.8" shape="square"/>
-<pad name="5V3" x="10.16" y="27.94" drill="0.8" shape="square"/>
-<pad name="GND3" x="12.7" y="27.94" drill="0.8" shape="square"/>
-<pad name="A4" x="2.54" y="0" drill="0.8" shape="square"/>
-<pad name="A5" x="5.08" y="0" drill="0.8" shape="square"/>
-<pad name="GND" x="12.7" y="0" drill="0.8" shape="square"/>
-<pad name="5V" x="10.16" y="0" drill="0.8" shape="square"/>
-<pad name="A7" x="5.08" y="2.54" drill="0.8" shape="square"/>
-<pad name="A6" x="2.54" y="2.54" drill="0.8" shape="square"/>
-<wire x1="-1.27" y1="29.21" x2="16.51" y2="29.21" width="0.127" layer="21"/>
-<wire x1="16.51" y1="29.21" x2="16.51" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="16.51" y1="-1.27" x2="-1.27" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="-1.27" y1="-1.27" x2="-1.27" y2="29.21" width="0.127" layer="21"/>
-</package>
-</packages>
-</library>
 </libraries>
 <attributes>
 </attributes>
@@ -583,6 +587,8 @@ design rules under a new name.</description>
 </pass>
 </autorouter>
 <elements>
+<element name="FT232PL" library="jolo-lib" package="FT232RL" value="FT232RL" x="34.29" y="55.88" rot="R90"/>
+<element name="U$2" library="jolo-lib" package="ARDUINO-MINI-PRO" value="ARDUINO-MINI-PRO" x="45.72" y="76.2"/>
 <element name="J1" library="SparkFun" package="POWER_JACK_PTH" value="12Vin" x="-2.54" y="85.09" rot="R270"/>
 <element name="STEPPER" library="SparkFun" package="RJ45-8" value="RJ45-8PTH" x="7.62" y="31.75" rot="R270"/>
 <element name="SENSOR" library="SparkFun" package="RJ9" value="RJ9PTH" x="7.62" y="46.99" rot="R270"/>
@@ -611,17 +617,30 @@ design rules under a new name.</description>
 <element name="JP5" library="SparkFun" package="SCREWTERMINAL-3.5MM-2" value="12V" x="66.04" y="86.36"/>
 <element name="JP6" library="SparkFun" package="SCREWTERMINAL-3.5MM-2" value="PWM1" x="63.5" y="26.67"/>
 <element name="JP7" library="SparkFun" package="SCREWTERMINAL-3.5MM-2" value="PWM2" x="55.88" y="26.67"/>
-<element name="U$2" library="jolo-lib" package="FT232RL" value="FT232RL" x="-20.32" y="24.13"/>
-<element name="U$4" library="jolo-lib" package="ARDUINO-MINI" value="ARDUINO-MINI" x="-39.37" y="24.13"/>
-<element name="C7" library="SparkFun" package="CAP-PTH-SMALL" value="100n" x="-39.37" y="19.05"/>
 </elements>
 <signals>
+<signal name="3V3OUT">
+<contactref element="FT232PL" pad="4"/>
+</signal>
+<signal name="VCC">
+<contactref element="U$2" pad="VCC"/>
+<contactref element="FT232PL" pad="6"/>
+<wire x1="19.05" y1="55.88" x2="50.8" y2="76.2" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="GND2">
+<contactref element="U$2" pad="GND2"/>
+<contactref element="FT232PL" pad="14"/>
+<wire x1="36.83" y1="63.5" x2="48.26" y2="76.2" width="0" layer="19" extent="1-1"/>
+</signal>
 <signal name="GND">
+<contactref element="U$2" pad="GND"/>
 <contactref element="C1" pad="2"/>
 <contactref element="C2" pad="1"/>
 <contactref element="J1" pad="GNDBREAK"/>
 <contactref element="J1" pad="GND"/>
 <contactref element="Q1" pad="D"/>
+<contactref element="FT232PL" pad="1"/>
+<contactref element="U$2" pad="GND3"/>
 <contactref element="IC1" pad="13"/>
 <contactref element="IC1" pad="12"/>
 <contactref element="IC1" pad="4"/>
@@ -639,33 +658,33 @@ design rules under a new name.</description>
 <contactref element="JP5" pad="1"/>
 <contactref element="JP3" pad="1"/>
 <contactref element="JP4" pad="1"/>
-<contactref element="U$2" pad="13"/>
-<contactref element="U$4" pad="GND"/>
-<contactref element="U$4" pad="GND3"/>
 <wire x1="58.42" y1="86.36" x2="66.04" y2="86.36" width="0" layer="19" extent="1-1"/>
 <wire x1="50.8" y1="86.36" x2="58.42" y2="86.36" width="0" layer="19" extent="1-1"/>
 <wire x1="39.37" y1="88.34" x2="50.8" y2="86.36" width="0" layer="19" extent="1-1"/>
 <wire x1="27.94" y1="82.55" x2="39.37" y2="88.34" width="0" layer="19" extent="1-1"/>
 <wire x1="19.05" y1="82.55" x2="27.94" y2="82.55" width="0" layer="19" extent="1-1"/>
 <wire x1="8.16" y1="80.39" x2="19.05" y2="82.55" width="0" layer="19" extent="1-1"/>
-<wire x1="5.16" y1="85.09" x2="8.16" y2="80.39" width="0" layer="19" extent="1-1"/>
 <wire x1="67.31" y1="71.12" x2="66.04" y2="86.36" width="0" layer="19" extent="1-1"/>
 <wire x1="72.39" y1="72.39" x2="67.31" y2="71.12" width="0" layer="19" extent="1-1"/>
 <wire x1="72.39" y1="68.58" x2="72.39" y2="72.39" width="0" layer="19" extent="1-1"/>
+<wire x1="59.69" y1="71.12" x2="67.31" y2="71.12" width="0" layer="19" extent="1-1"/>
 <wire x1="80.01" y1="71.12" x2="72.39" y2="72.39" width="0" layer="19" extent="1-1"/>
 <wire x1="80.01" y1="62.23" x2="80.01" y2="71.12" width="0" layer="19" extent="1-1"/>
 <wire x1="77.47" y1="50.8" x2="80.01" y2="62.23" width="0" layer="19" extent="1-1"/>
 <wire x1="72.39" y1="50.8" x2="77.47" y2="50.8" width="0" layer="19" extent="1-1"/>
 <wire x1="67.31" y1="50.8" x2="72.39" y2="50.8" width="0" layer="19" extent="1-1"/>
+<wire x1="44.45" y1="66.04" x2="59.69" y2="71.12" width="0" layer="19" extent="1-1"/>
 <wire x1="67.31" y1="34.29" x2="67.31" y2="50.8" width="0" layer="19" extent="1-1"/>
-<wire x1="34.29" y1="35.56" x2="67.31" y2="34.29" width="0" layer="19" extent="1-1"/>
-<wire x1="31.75" y1="35.56" x2="34.29" y2="35.56" width="0" layer="19" extent="1-1"/>
+<wire x1="6.35" y1="55.88" x2="8.16" y2="80.39" width="0" layer="19" extent="1-1"/>
+<wire x1="16.51" y1="45.085" x2="6.35" y2="55.88" width="0" layer="19" extent="1-1"/>
+<wire x1="31.75" y1="35.56" x2="16.51" y2="45.085" width="0" layer="19" extent="1-1"/>
+<wire x1="34.29" y1="35.56" x2="31.75" y2="35.56" width="0" layer="19" extent="1-1"/>
 <wire x1="34.29" y1="27.94" x2="34.29" y2="35.56" width="0" layer="19" extent="1-1"/>
 <wire x1="31.75" y1="27.94" x2="34.29" y2="27.94" width="0" layer="19" extent="1-1"/>
-<wire x1="16.51" y1="45.085" x2="31.75" y2="35.56" width="0" layer="19" extent="1-1"/>
-<wire x1="-20.32" y1="52.07" x2="16.51" y2="45.085" width="0" layer="19" extent="1-1"/>
-<wire x1="-26.67" y1="52.07" x2="-20.32" y2="52.07" width="0" layer="19" extent="1-1"/>
-<wire x1="-26.67" y1="24.13" x2="-26.67" y2="52.07" width="0" layer="19" extent="1-1"/>
+<wire x1="5.16" y1="85.09" x2="8.16" y2="80.39" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="GRN">
+<contactref element="U$2" pad="GRN"/>
 </signal>
 <signal name="+12V">
 <contactref element="J1" pad="PWR"/>
@@ -697,15 +716,18 @@ design rules under a new name.</description>
 <contactref element="JP6" pad="1"/>
 <wire x1="63.5" y1="26.67" x2="64.77" y2="34.29" width="0" layer="19" extent="1-1"/>
 </signal>
+<signal name="N$4">
+<contactref element="FT232PL" pad="18"/>
+<contactref element="U$2" pad="TXO"/>
+<wire x1="31.75" y1="76.2" x2="44.45" y2="73.66" width="0" layer="19" extent="1-1"/>
+</signal>
 <signal name="N$6">
 <contactref element="Q1" pad="G"/>
-<contactref element="U$4" pad="8"/>
-<wire x1="-39.37" y1="26.67" x2="69.85" y2="34.29" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$7">
 <contactref element="Q2" pad="G"/>
-<contactref element="U$4" pad="9"/>
-<wire x1="-39.37" y1="24.13" x2="55.88" y2="34.29" width="0" layer="19" extent="1-1"/>
+<contactref element="U$2" pad="9"/>
+<wire x1="44.45" y1="45.72" x2="55.88" y2="34.29" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$8">
 <contactref element="IC1" pad="11"/>
@@ -736,43 +758,50 @@ design rules under a new name.</description>
 <wire x1="13.97" y1="28.575" x2="16.51" y2="27.305" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$12">
+<contactref element="U$2" pad="10"/>
 <contactref element="IC1" pad="9"/>
 <contactref element="IC1" pad="1"/>
-<contactref element="U$4" pad="10"/>
+<wire x1="41.91" y1="35.56" x2="59.69" y2="45.72" width="0" layer="19" extent="1-1"/>
 <wire x1="24.13" y1="27.94" x2="41.91" y2="35.56" width="0" layer="19" extent="1-1"/>
-<wire x1="-24.13" y1="24.13" x2="24.13" y2="27.94" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$13">
+<contactref element="U$2" pad="A3"/>
 <contactref element="IC1" pad="10"/>
-<contactref element="U$4" pad="A3"/>
-<wire x1="-24.13" y1="41.91" x2="39.37" y2="35.56" width="0" layer="19" extent="1-1"/>
+<wire x1="39.37" y1="35.56" x2="59.69" y2="63.5" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$14">
+<contactref element="U$2" pad="A2"/>
 <contactref element="IC1" pad="15"/>
-<contactref element="U$4" pad="A2"/>
-<wire x1="-24.13" y1="39.37" x2="26.67" y2="35.56" width="0" layer="19" extent="1-1"/>
+<wire x1="26.67" y1="35.56" x2="59.69" y2="60.96" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$15">
+<contactref element="U$2" pad="A1"/>
 <contactref element="IC1" pad="2"/>
-<contactref element="U$4" pad="A1"/>
-<wire x1="-24.13" y1="36.83" x2="26.67" y2="27.94" width="0" layer="19" extent="1-1"/>
+<wire x1="26.67" y1="27.94" x2="59.69" y2="58.42" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$16">
+<contactref element="U$2" pad="A0"/>
 <contactref element="IC1" pad="7"/>
-<contactref element="U$4" pad="A0"/>
-<wire x1="-24.13" y1="34.29" x2="39.37" y2="27.94" width="0" layer="19" extent="1-1"/>
+<wire x1="39.37" y1="27.94" x2="59.69" y2="55.88" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$18">
+<contactref element="U$2" pad="13"/>
 <contactref element="SG1" pad="+"/>
-<contactref element="U$4" pad="13"/>
-<wire x1="-24.13" y1="31.75" x2="39.37" y2="81.84" width="0" layer="19" extent="1-1"/>
+<wire x1="59.69" y1="53.34" x2="39.37" y2="81.84" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$19">
 <contactref element="R1" pad="P$1"/>
 <contactref element="SENSOR" pad="2"/>
-<contactref element="U$4" pad="11"/>
+<contactref element="U$2" pad="11"/>
+<wire x1="30.48" y1="50.8" x2="59.69" y2="48.26" width="0" layer="19" extent="1-1"/>
 <wire x1="16.51" y1="47.625" x2="30.48" y2="50.8" width="0" layer="19" extent="1-1"/>
-<wire x1="-24.13" y1="26.67" x2="16.51" y2="47.625" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$23">
+<contactref element="IC2" pad="OUT"/>
+<contactref element="C4" pad="2"/>
+<contactref element="JP1" pad="2"/>
+<wire x1="67.31" y1="73.66" x2="72.39" y2="74.93" width="0" layer="19" extent="1-1"/>
+<wire x1="80.01" y1="67.62" x2="72.39" y2="74.93" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$20">
 <contactref element="Q2" pad="S"/>
@@ -783,57 +812,26 @@ design rules under a new name.</description>
 <contactref element="IC3" pad="OUT"/>
 <contactref element="C5" pad="2"/>
 <contactref element="JP2" pad="2"/>
+<contactref element="U$2" pad="VCC2"/>
 <contactref element="IC1" pad="16"/>
 <contactref element="SENSOR" pad="1"/>
 <contactref element="C3" pad="1"/>
 <contactref element="R1" pad="P$2"/>
-<contactref element="U$4" pad="5V2"/>
 <wire x1="77.47" y1="53.34" x2="80.01" y2="58.73" width="0" layer="19" extent="1-1"/>
 <wire x1="72.39" y1="53.34" x2="77.47" y2="53.34" width="0" layer="19" extent="1-1"/>
 <wire x1="67.31" y1="53.34" x2="72.39" y2="53.34" width="0" layer="19" extent="1-1"/>
-<wire x1="22.86" y1="50.8" x2="67.31" y2="53.34" width="0" layer="19" extent="1-1"/>
+<wire x1="59.69" y1="66.04" x2="67.31" y2="53.34" width="0" layer="19" extent="1-1"/>
+<wire x1="22.86" y1="50.8" x2="59.69" y2="66.04" width="0" layer="19" extent="1-1"/>
 <wire x1="13.97" y1="48.895" x2="22.86" y2="50.8" width="0" layer="19" extent="1-1"/>
 <wire x1="24.13" y1="35.56" x2="22.86" y2="50.8" width="0" layer="19" extent="1-1"/>
-<wire x1="-24.13" y1="44.45" x2="13.97" y2="48.895" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="RAW">
-<contactref element="U$4" pad="9V"/>
-</signal>
-<signal name="GND2">
-<contactref element="U$4" pad="GND2"/>
-</signal>
-<signal name="VCC">
-<contactref element="U$4" pad="5V"/>
-</signal>
-<signal name="GRN">
-<contactref element="U$4" pad="GND4"/>
-</signal>
-<signal name="2.8V">
-<contactref element="IC2" pad="OUT"/>
-<contactref element="C4" pad="2"/>
-<contactref element="JP1" pad="2"/>
-<wire x1="67.31" y1="73.66" x2="72.39" y2="74.93" width="0" layer="19" extent="1-1"/>
-<wire x1="80.01" y1="67.62" x2="72.39" y2="74.93" width="0" layer="19" extent="1-1"/>
+<contactref element="U$2" pad="RAW"/>
 </signal>
 <signal name="N$1">
-<contactref element="U$2" pad="2"/>
-<contactref element="C7" pad="2"/>
-<wire x1="-36.83" y1="19.05" x2="-5.08" y2="26.67" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="N$3">
-<contactref element="C7" pad="1"/>
-<contactref element="U$4" pad="R"/>
-<wire x1="-39.37" y1="19.05" x2="-24.13" y2="46.99" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="N$4">
-<contactref element="U$2" pad="1"/>
-<contactref element="U$4" pad="RX2"/>
-<wire x1="-39.37" y1="49.53" x2="-5.08" y2="24.13" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="N$5">
-<contactref element="U$2" pad="5"/>
-<contactref element="U$4" pad="TX2"/>
-<wire x1="-39.37" y1="52.07" x2="-5.08" y2="34.29" width="0" layer="19" extent="1-1"/>
+<contactref element="FT232PL" pad="17"/>
+<contactref element="U$2" pad="RXI"/>
+<wire x1="34.29" y1="76.2" x2="44.45" y2="71.12" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 </board>

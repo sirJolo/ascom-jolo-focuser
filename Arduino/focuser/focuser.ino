@@ -15,18 +15,19 @@
 
 // EEPROM addresses
 #define FOCUSER_POS_START 900
+#define CONFIG_VERSION "ls1"
+#define CONFIG_START 800
 
 struct {
-  int stepperSpeed;
-  byte pwmRun;
-  byte pwmStop;
-  int acc;
-  byte buzzer;
-  long maxPos;
-  byte pwm1;
-  byte pwm2;
-  byte pwm3;
-} ctx;
+ // This is for mere detection if they are your settings
+  char version[4];
+  
+  int stepperSpeed; byte pwmRun; byte pwmStop; int acc; 
+  byte buzzer; long maxPos; byte pwm1; byte pwm2; byte pwm3;
+} ctx = {
+  100, 100, 0, 500,
+  1, 1000000, 0,0,0
+};
 
 struct {
   byte type;
@@ -47,7 +48,7 @@ struct {
 #define BUZ_LED_PIN 13
 
 // Temperature sensor config
-#define TEMP_CYCLE 3000      // config
+#define TEMP_CYCLE 5000      // config
 #define TEMP_SENSOR_PIN 8
 dht DHT;
 

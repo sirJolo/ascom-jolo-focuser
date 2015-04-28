@@ -263,7 +263,7 @@ Public Class Focuser
 
     Private Sub Connect()
         ComPort.PortName = My.Settings.CommPort
-        ComPort.BaudRate = 57600
+        ComPort.BaudRate = 19200
         ComPort.ReadTimeout = 2000
         ComPort.Encoding = System.Text.Encoding.ASCII
 
