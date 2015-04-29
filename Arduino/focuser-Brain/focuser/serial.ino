@@ -1,6 +1,6 @@
 void initializeSerial() {
   // Initialize serial
-  Serial.begin(9600);
+  Serial.begin(19200);
   Serial.setTimeout(2000);
 
   inputString = "";
@@ -33,7 +33,6 @@ void serialEvent() {
 // F,f - set, get digi IO                              F:3:1       f:0
 // a - get ADC                                         a:1
 // q - get monitoring values                           q
-// C - save config                                     C:<speed>:<acc man>:<acc auto>:<step size>:<pwm stop>:<pwm man>:<max pos>: and for stepper #2...
 
 void serialCommand(String command) {
   String param = command.substring(2); 
@@ -44,64 +43,67 @@ void serialCommand(String command) {
     case '#': answer += DEVICE_RESPONSE; buzz(500, 1); break;
     case 'R': moveStepper(param); break;
     case 'P': setCurPos(param); break;
-    case 'p': answer += deviceStatus.stepperPos[(byte) stringToNumber(param.substring(0,1))]; break;
-    case 'i': answer += (deviceStatus.stepperMove[(byte) stringToNumber(param.substring(0,1))]) ?  "1" : "0"; break;
     case 'H': haltStepper(param); break;
-    case 'B': writeByte(PROP_BUZZER_ON, stringToNumber(param)); break;  //TODO - copy to slave
-    case 'b': answer += readByte(PROP_BUZZER_ON); break;   
-    case 'C': sendConfig(param); break;    
-   
+    case 'B': writeByte(ctx.buzzer, stringToNumber(param)); saveConfig(); break; 
+    case 'b': answer += readByte(ctx.buzzer); break;  
+    //case 'p': answer += deviceStatus.stepperPos[(byte) stringToNumber(param.substring(0,1))]; break;
+    //case 'i': answer += (deviceStatus.stepperMove[(byte) stringToNumber(param.substring(0,1))]) ?  "1" : "0"; break;
+ 
     default: answer += " error"; buzz(100, 3);
   }
   Serial.print(answer);
   Serial.print('\n');
 }
 
-void sendConfig(String param) {  //<speed>:<acc man>:<acc auto>:<step size>:<pwm stop>:<pwm man>:<max pos>: and for stepper #2...
-  byte counter = 0;
-  byte lastIndex = 0;
-  for (byte i = 0; i < param.length(); i++) {
-    if (param.substring(i, i+1) == ":") {
-      dispatchConfig(counter, stringToLong(param.substring(lastIndex, i)));
-      lastIndex = i + 1;
-      counter++;
-    }
-    if (i == param.length() - 1) {
-      dispatchConfig(counter, stringToLong(param.substring(lastIndex, i)));
-    }
-  }
-}
-
-void dispatchConfig(byte index, long value) {
-  deviceCommand.value = value;
-  deviceCommand.device = (index > 7) ? 2 : 1;
-  deviceCommand.command = configCommandMap[index % 7];
-  sendCommand();
-}
 
 void moveStepper(String param) { //R:1:13444
-  deviceCommand.command = 1; 
-  deviceCommand.device = (byte) stringToNumber(param.substring(0,1));
-  deviceCommand.value = stringToLong(param.substring(2));
-  sendCommand();
+  byte index = param.charAt(0) - '0';
+  long newPos = stringToLong(param.substring(2));
+  moveStepper(index, newPos);
 }
 
 void setCurPos(String param) { //P:1:3344
-  deviceCommand.command = 9; 
-  deviceCommand.device = (byte) stringToNumber(param.substring(0,1));
-  deviceCommand.value = stringToLong(param.substring(2));  
-  sendCommand();
+  byte index = param.charAt(0) - '0';
+  motors[index].setCurrentPosition(stringToLong(param.substring(2)));
+  saveFocuserPos(abs(motors[index].currentPosition()), steppers[index].EEPROMstart);
+  steppers[index].posSaved = true;
+  analogWrite(steppers[index].pwmPin, steppers[index].pwmStop);  
 }
 
 void haltStepper(String param) {
-  deviceCommand.command = 2; 
-  deviceCommand.device = (byte) stringToNumber(param.substring(0,1));
-  deviceCommand.value = 0;  
-  sendCommand();  
+  byte index = param.charAt(0) - '0';
+  motors[index].stop();
+  saveFocuserPos(abs(motors[index].currentPosition()), steppers[index].EEPROMstart);
 }
 
 String printTemp() {
   
+}
+
+void setPWM(String param) {
+  byte index = param.charAt(0) - '0';
+  byte pwm = stringToNumber(param.substring(2));
+  pwmValues[index] = pwm;
+  updatePWM();
+}
+
+String printPWM(String param) {
+  byte index = param.charAt(0) - '0';
+  return String(pwmValues[index]);
+}
+
+void printPowers() {
+  Serial.print(powerStatus.Vreg);
+  Serial.print(":");
+  Serial.print(powerStatus.Cust);
+  Serial.print(":");
+  Serial.print(powerStatus.Vin);
+  Serial.print(":");
+  Serial.print(powerStatus.Itot);
+  Serial.print(":");
+  Serial.print(powerStatus.Ah);
+  Serial.print(":");
+  Serial.print(powerStatus.Wh);
 }
 
 /*
@@ -142,23 +144,9 @@ String printMonitor() {      // pos, togo, temp, hum, dew, pwms, adc, opto
   return String();
 }
 
-void setPWM(String param) {
-  byte pwm = stringToNumber(param.substring(2));
-  switch(param.charAt(0)) {
-   case '6': writeByte(PROP_PWM6, pwm); break;
-   case '9': writeByte(PROP_PWM9, pwm); break;
-   case '0': writeByte(PROP_PWM10, pwm); break;
-  }
-  updatePWM();
-}
 
-String printPWM(String param) {
-  switch(param.charAt(0)) {
-    case '6': return String(readPWM(PROP_PWM6)); break;
-    case '9': return String(readPWM(PROP_PWM9)); break;
-    case '0': return String(readPWM(PROP_PWM10)); break;
-  }
-}
+
+
 
 */
 

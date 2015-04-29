@@ -4,5 +4,5 @@ void initializeBuzzer() {
 }  
 
 void buzz(byte buzzTime, byte buzzCount) {
-  if(readByte(PROP_BUZZER_ON) != 0) timer.oscillate(BUZZER_PIN, buzzTime, LOW, buzzCount);
+  if(readByte(ctx.buzzer) != 0) timer.oscillate(BUZZER_PIN, buzzTime, LOW, buzzCount);
 }

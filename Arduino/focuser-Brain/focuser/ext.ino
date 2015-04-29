@@ -1,18 +1,18 @@
 void initializeExt() {
-  expander.begin(0x20);
-  expander.pinMode(0, OUTPUT);
-  expander.pinMode(1, OUTPUT);
-  expander.pinMode(2, OUTPUT);
-  expander.pinMode(3, OUTPUT);
-  expander.pinMode(4, OUTPUT);
-  expander.pinMode(5, OUTPUT);
-  expander.pinMode(6, OUTPUT);
-  expander.pinMode(7, OUTPUT);
-  expander.clear();
+  // PWM init
+  pinMode(PWM1_PIN, OUTPUT);
+  digitalWrite(PWM1_PIN, LOW);
+  pinMode(PWM2_PIN, OUTPUT);
+  digitalWrite(PWM2_PIN, LOW);
+  pinMode(PWM3_PIN, OUTPUT);
+  digitalWrite(PWM3_PIN, LOW);
+  pinMode(PWM4_PIN, OUTPUT);
+  digitalWrite(PWM4_PIN, LOW);
 }  
 
-void updatePWMPin(byte pin, int addr) {
-  byte value = readByte(addr);
-  if(value == 255) value = 0;
-  analogWrite(pin, map(value, 0, 100, 0, 255));
+void updatePWM() {
+  for(byte i = 0; i < 4; i++) {
+    analogWrite(pwmPins[i], map(pwmValues[i], 0, 100, 0, 255));
+  }
 }
+

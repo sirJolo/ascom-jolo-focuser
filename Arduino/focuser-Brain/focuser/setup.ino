@@ -2,14 +2,14 @@
 void setup() 
 {
   initializeSerial();
-  initializeTWI();
   initializeBuzzer();
   initializeProperties();
   initializeSensors();
   initializeExt();
   initializeADCs();
-  
-  initializeSlave();
+  initializeStepper(1);
+  initializeStepper(0);
+  intializeDCmotor();
   
   buzz(50, 2);
 }
