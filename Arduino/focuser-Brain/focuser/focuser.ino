@@ -37,8 +37,7 @@ struct StepperCtx {
   int EEPROMstart; byte curStep; boolean reversed;
 };
 
-StepperCtx stepper1, stepper2;
-StepperCtx steppers[] = {stepper1, stepper2};
+StepperCtx steppers[] = {{false,0,0,0,0,0,0,0,0,0,false}, {false,0,0,0,0,0,0,0,0,0,false}};
 
 // DC motor config ---------------------------------------------------------------------------//
 #define DCMOTOR_PWM_PIN 9
@@ -80,10 +79,15 @@ struct TempSensor {
 #define TEMP_SENSOR1_PIN 9
 #define TEMP_SENSOR2_PIN 10
 #define TEMP_SENSOR3_PIN 11
+#define NO_SENSOR 0
+#define DS_SENSOR 1
+#define DHT_SENSOR 3
 OneWire oneWire(TEMP_SENSOR1_PIN);
 DallasTemperature sensors(&oneWire);
 DeviceAddress insideThermometer;
 dht DHT;
+
+TempSensor tempSensors[] = {{0,0.0,0.0,0.0,0,0}, {0,0.0,0.0,0.0,0,0}, {0,0.0,0.0,0.0,0,0}};
   
 // Properties config --------------------------------------------------------------------------//
 struct {
@@ -100,7 +104,6 @@ struct {
 Timer timer;
 
 // Global vars -------------------------------------------------------------------------------//
-TempSensor tempSensors[3];
 String inputString;                  
 
 int tempCycleEvent;
