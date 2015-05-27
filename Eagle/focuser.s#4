@@ -6424,13 +6424,22 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="SUPPLY46" gate="+5V" pin="+5V"/>
 </segment>
 <segment>
-<pinref part="U1" gate="G$1" pin="5V@2"/>
 <pinref part="SUPPLY35" gate="+5V" pin="+5V"/>
-<wire x1="116.84" y1="129.54" x2="116.84" y2="134.62" width="0.1524" layer="91"/>
 <pinref part="C5" gate="G$1" pin="1"/>
 <wire x1="116.84" y1="134.62" x2="116.84" y2="137.16" width="0.1524" layer="91"/>
 <wire x1="119.38" y1="134.62" x2="116.84" y2="134.62" width="0.1524" layer="91"/>
+<pinref part="U1" gate="G$1" pin="5V@2"/>
+<wire x1="116.84" y1="129.54" x2="116.84" y2="132.08" width="0.1524" layer="91"/>
 <junction x="116.84" y="134.62"/>
+<pinref part="U1" gate="G$1" pin="5V@0"/>
+<wire x1="116.84" y1="132.08" x2="116.84" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="121.92" y1="129.54" x2="121.92" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="121.92" y1="132.08" x2="119.38" y2="132.08" width="0.1524" layer="91"/>
+<pinref part="U1" gate="G$1" pin="5V@1"/>
+<wire x1="119.38" y1="132.08" x2="116.84" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="119.38" y1="129.54" x2="119.38" y2="132.08" width="0.1524" layer="91"/>
+<junction x="116.84" y="132.08"/>
+<junction x="119.38" y="132.08"/>
 </segment>
 </net>
 <net name="N$59" class="0">

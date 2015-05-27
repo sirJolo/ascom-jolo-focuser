@@ -5415,6 +5415,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="SUPPLY19" library="supply2" deviceset="DGND" device=""/>
 <part name="JP1" library="pinhead" deviceset="PINHD-1X10" device=""/>
 <part name="SUPPLY24" library="supply2" deviceset="DGND" device=""/>
+<part name="5V" library="SparkFun" deviceset="POWER_JACK" device="COMBO" value="Jack 5.5/2.1"/>
 </parts>
 <sheets>
 <sheet>
@@ -5531,7 +5532,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <instance part="C10" gate="G$1" x="88.9" y="7.62" rot="R270"/>
 <instance part="P+1" gate="G$1" x="25.4" y="15.24"/>
 <instance part="U1" gate="G$1" x="73.66" y="109.22" rot="R270"/>
-<instance part="SUPPLY18" gate="G$1" x="22.86" y="134.62" rot="R180"/>
+<instance part="SUPPLY18" gate="G$1" x="22.86" y="137.16" rot="R180"/>
 <instance part="R13" gate="G$1" x="7.62" y="162.56"/>
 <instance part="R14" gate="G$1" x="7.62" y="154.94"/>
 <instance part="R15" gate="G$1" x="22.86" y="162.56"/>
@@ -5539,6 +5540,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <instance part="SUPPLY19" gate="G$1" x="30.48" y="170.18" rot="R180"/>
 <instance part="JP1" gate="A" x="63.5" y="48.26" rot="R270"/>
 <instance part="SUPPLY24" gate="G$1" x="50.8" y="40.64"/>
+<instance part="5V" gate="G$1" x="22.86" y="213.36" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -5786,6 +5788,13 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="U$14" gate="G$1" pin="GNDOUT"/>
 <wire x1="5.08" y1="180.34" x2="7.62" y2="180.34" width="0.1524" layer="91"/>
 <junction x="7.62" y="180.34"/>
+<pinref part="5V" gate="G$1" pin="GND"/>
+<wire x1="25.4" y1="210.82" x2="25.4" y2="200.66" width="0.1524" layer="91"/>
+<wire x1="25.4" y1="200.66" x2="7.62" y2="200.66" width="0.1524" layer="91"/>
+<pinref part="5V" gate="G$1" pin="GNDBREAK"/>
+<wire x1="27.94" y1="210.82" x2="27.94" y2="200.66" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="200.66" x2="25.4" y2="200.66" width="0.1524" layer="91"/>
+<junction x="25.4" y="200.66"/>
 </segment>
 <segment>
 <pinref part="C8" gate="G$1" pin="-"/>
@@ -5828,7 +5837,24 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <segment>
 <pinref part="SUPPLY18" gate="G$1" pin="DGND"/>
 <pinref part="U1" gate="G$1" pin="GND@4"/>
+<wire x1="22.86" y1="134.62" x2="22.86" y2="132.08" width="0.1524" layer="91"/>
+<pinref part="U1" gate="G$1" pin="GND@0"/>
 <wire x1="22.86" y1="132.08" x2="22.86" y2="129.54" width="0.1524" layer="91"/>
+<wire x1="22.86" y1="132.08" x2="25.4" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="25.4" y1="132.08" x2="27.94" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="132.08" x2="30.48" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="132.08" x2="33.02" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="33.02" y1="132.08" x2="33.02" y2="129.54" width="0.1524" layer="91"/>
+<pinref part="U1" gate="G$1" pin="GND@1"/>
+<wire x1="30.48" y1="129.54" x2="30.48" y2="132.08" width="0.1524" layer="91"/>
+<pinref part="U1" gate="G$1" pin="GND@2"/>
+<wire x1="27.94" y1="129.54" x2="27.94" y2="132.08" width="0.1524" layer="91"/>
+<pinref part="U1" gate="G$1" pin="GND@3"/>
+<wire x1="25.4" y1="129.54" x2="25.4" y2="132.08" width="0.1524" layer="91"/>
+<junction x="25.4" y="132.08"/>
+<junction x="27.94" y="132.08"/>
+<junction x="30.48" y="132.08"/>
+<junction x="22.86" y="132.08"/>
 </segment>
 <segment>
 <pinref part="SUPPLY19" gate="G$1" pin="DGND"/>
@@ -6360,6 +6386,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="SUPPLY2" gate="+5V" pin="+5V"/>
 <wire x1="5.08" y1="208.28" x2="10.16" y2="208.28" width="0.1524" layer="91"/>
 <wire x1="10.16" y1="208.28" x2="10.16" y2="213.36" width="0.1524" layer="91"/>
+<pinref part="5V" gate="G$1" pin="PWR"/>
+<wire x1="30.48" y1="210.82" x2="30.48" y2="208.28" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="208.28" x2="10.16" y2="208.28" width="0.1524" layer="91"/>
+<junction x="10.16" y="208.28"/>
 </segment>
 <segment>
 <pinref part="SUPPLY10" gate="+5V" pin="+5V"/>
