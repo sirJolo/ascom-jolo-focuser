@@ -7,30 +7,30 @@ void initializeSensors() {
 }
 
 void initializeDHT(byte pin, byte index) {
-  tempSensors[index].sensorType = 0;
+  tempSensors[index].sensorType = NO_SENSOR;
   int chk = DHT.read22(pin);  
-  if(chk == DHTLIB_OK) tempSensors[index].sensorType = 3;
+  if(chk == DHTLIB_OK) tempSensors[index].sensorType = DHT_SENSOR;
   tempSensors[index].sensorPin = pin;
 }
 
 void initializeDallas(byte pin, byte index) {
-  tempSensors[index].sensorType = 0;
+  tempSensors[index].sensorType = NO_SENSOR;
   sensors.begin(); 
   boolean sensorConnected = sensors.getAddress(insideThermometer, 0);
   if(sensorConnected) {
     sensors.setResolution(insideThermometer, 10);
     sensors.setWaitForConversion(false);
-    tempSensors[index].sensorType = 1;
+    tempSensors[index].sensorType = DS_SENSOR;
   }
   tempSensors[index].sensorPin = pin;
 }
 
 boolean isTempAvailable() {
-  return tempSensors[0].sensorType > 0 ||tempSensors[1].sensorType > 0 ||tempSensors[2].sensorType > 0;  
+  return (tempSensors[0].sensorType != NO_SENSOR || tempSensors[1].sensorType != NO_SENSOR || tempSensors[2].sensorType != NO_SENSOR);  
 }
 
 void requestTemp() {
-  if(tempSensors[0].sensorType == 1) {
+  if(tempSensors[0].sensorType == DS_SENSOR) {
     sensors.requestTemperaturesByAddress(insideThermometer); // Send the command to get temperature. For 10 bit res it takes 188ms
   }
   tempCycleEvent = timer.after(188, readTemp);
@@ -44,10 +44,10 @@ void readTemp() {
 void updateSensor(byte index) {
   tempSensors[index].currentTemp = tempSensors[index].currentHum = tempSensors[index].currentDewpoint = 0.0;
   tempSensors[index].heaterPWM = 0;
-  if(tempSensors[index].sensorType == 1) {
+  if(tempSensors[index].sensorType == DS_SENSOR) {
     tempSensors[index].currentTemp = sensors.getTempC(insideThermometer);
   }
-  if(tempSensors[index].sensorType == 3) {
+  if(tempSensors[index].sensorType == DHT_SENSOR) {
     DHT.read22(tempSensors[index].sensorPin);
     tempSensors[index].currentTemp = DHT.temperature;
     tempSensors[index].currentHum = DHT.humidity;
