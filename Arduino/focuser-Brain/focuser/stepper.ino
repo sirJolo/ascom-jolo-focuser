@@ -48,6 +48,7 @@ void moveStepper(byte index, long newPos) {
   //}    
 //}
 
+// stepper1 A6, A7, A8, A9
 void forward1Step() {
   // do forward unipolar 1 stuff
 }
@@ -56,6 +57,7 @@ void backward1Step() {
   // do backward unipolar 1 stuff
 }
 
+// stepper2 A10, A11, A12, A13
 void forward2Step() {
   // do forward unipolar 2 stuff
 }
