@@ -6,7 +6,7 @@
 // 
 #include <OneWire.h>
 #include <DallasTemperature.h>
-#include <AccelStepper.h>
+#include <JoloAccelStepper.h>
 #include <dht.h>
 #include <EEPROM.h>
 #include <EepromUtil.h>
@@ -21,22 +21,20 @@
 // EEPROM addresses --------------------------------------------------------------------------//
 #define FOCUSER1_POS_START 1000
 #define FOCUSER2_POS_START 2000
-int FocusersADDR[] = {FOCUSER1_POS_START, FOCUSER2_POS_START};
 #define CONFIG_VERSION "ls1"
 #define CONFIG_START 500
 
 // Stepper config ----------------------------------------------------------------------------//
-#define STEPPER_PWM_PIN 45
-AccelStepper motors[] = { AccelStepper(forward1Step, backward1Step),
-                          AccelStepper(forward2Step, backward2Step)}; 
+#define STEPPER1_PWM_PIN 46
+#define STEPPER2_PWM_PIN 45
+JoloAccelStepper motors[] = { JoloAccelStepper(JoloAccelStepper::FUNCTION, A6, A7, A8, A9, true),
+                              JoloAccelStepper(JoloAccelStepper::FUNCTION, A10, A11, A12, A13, true)}; 
 
 struct StepperCtx {
-  boolean posSaved; long maxPos; int pps; int accMan; int accAuto;
-  byte pwmStop; byte pwmRun; byte pwmPin;
-  int EEPROMstart; byte curStep; boolean reversed;
+  boolean posSaved; int EEPROMstart; int pwmPin;
 };
 
-StepperCtx steppers[] = {{false,0,0,0,0,0,0,0,0,0,false}, {false,0,0,0,0,0,0,0,0,0,false}};
+StepperCtx steppers[] = {{false, FOCUSER1_POS_START, STEPPER1_PWM_PIN}, {false, FOCUSER2_POS_START, STEPPER2_PWM_PIN}};
 
 // DC motor config ---------------------------------------------------------------------------//
 #define DCMOTOR_PWM_PIN 8
@@ -91,12 +89,12 @@ TempSensor tempSensors[] = {{0,0.0,0.0,0.0,0,0}, {0,0.0,0.0,0.0,0,0}, {0,0.0,0.0
 // Properties config --------------------------------------------------------------------------//
 struct {
   char ver[4];
-  int stepperSpeed[2]; byte pwmRun[2]; byte pwmStop[2]; int acc[2];
-  byte buzzer; long maxPos[2];
+  int stepperSpeed[2]; byte pwmRun[2]; byte pwmStop[2]; int accAuto[2]; int accMan[2];
+  byte buzzer; long maxPos[2]; boolean reversed[2]; byte mode[2]; byte dcPWM;
 } ctx = {
   CONFIG_VERSION,
-  {100,100}, {100,100}, {0,0}, {400,400},
-  1, {1000000,1000000}
+  {100,100}, {100,100}, {0,0}, {400,400}, {200,200},
+  1, {1000000,1000000}, {false, false}, {0,0}, 100
 };
 
 // Other -------------------------------------------------------------------------------------//

@@ -3,6 +3,7 @@ void initializeSerial() {
   Serial.begin(19200);
   Serial.setTimeout(2000);
 
+  inputString.reserve(15);
   inputString = "";
 }  
 
@@ -23,30 +24,32 @@ void serialEvent() {
 // COMMAND SET
 // R - move to new position                            R:1:13444
 // P,p - set, get position                             P:1:3344    p:1
+// M - set motor mode (uni / bi)                       M:1:0
 // i - get in move                                     i:1
 // H - halt motor
-// B,b - set, get buzzer on                            J:1         j
+// B,b - set, get buzzer on                            B:1         b
 // u - get powers
 // s - get sensors
 // Q,q - set, get PWM                                  B:3:90      b:1
-// F,f - set, get digi IO                              F:3:1       f:0
-// a - get ADC                                         a:1
-// q - get monitoring values                           q
+
 
 void serialCommand(String command) {
   String param = command.substring(2); 
-  String answer = String(command.charAt(0));
+  String answer;
+  answer.reserve(120);
+  answer = String(command.charAt(0));
   answer += ":";
 
   switch(command.charAt(0)) {
     case '#': answer += DEVICE_RESPONSE; buzz(500, 1); break;
     case 'R': moveStepper(param); break;
     case 'P': setCurPos(param); break;
+    case 'M': setStepperMode(param); break;
     case 'H': haltStepper(param); break;
     case 'B': writeByte(ctx.buzzer, stringToNumber(param)); saveConfig(); break; 
     case 'b': answer += readByte(ctx.buzzer); break;  
-    case 'u': printPowers(); break;
-    case 's': printSensors(); break;
+    case 'u': answer += printPowers(); break;
+    case 's': answer += printSensors(); break;
     case 'Q': setPWM(param); break;
     case 'q': answer += getPWM(param); break;
     //case 'p': answer += deviceStatus.stepperPos[(byte) stringToNumber(param.substring(0,1))]; break;
@@ -70,7 +73,12 @@ void setCurPos(String param) { //P:1:3344
   motors[index].setCurrentPosition(stringToLong(param.substring(2)));
   saveFocuserPos(abs(motors[index].currentPosition()), steppers[index].EEPROMstart);
   steppers[index].posSaved = true;
-  analogWrite(steppers[index].pwmPin, steppers[index].pwmStop);  
+  analogWrite(steppers[index].pwmPin, ctx.pwmStop[index]);  
+}
+
+void setStepperMode(String param) {
+  byte index = param.charAt(0) - '0';
+  motors[index].setMode(stringToLong(param.substring(2)));
 }
 
 void haltStepper(String param) {
@@ -92,33 +100,28 @@ String getPWM(String param) {
   return String(pwmValues[index]);
 }
 
-void printSensors() {
+String printSensors() {
+  String buf; buf.reserve(100); buf = "";
   for(byte i = 0; i < 3; i++) {
-    Serial.print(tempSensors[i].sensorType);
-    Serial.print(":");
-    Serial.print(tempSensors[i].currentTemp);
-    Serial.print(":");
-    Serial.print(tempSensors[i].currentHum);
-    Serial.print(":");
-    Serial.print(tempSensors[i].currentDewpoint);
-    Serial.print(":");
-    Serial.print(tempSensors[i].heaterPWM);
-    if (i<2) Serial.print(":");
+    buf += tempSensors[i].sensorType + ":";
+    buf += String(tempSensors[i].currentTemp, 1) + ":";
+    buf += String(tempSensors[i].currentHum, 0) + ":";
+    buf += String(tempSensors[i].currentDewpoint, 1) + ":";
+    buf += tempSensors[i].heaterPWM;
+    if (i<2) buf += ":";
   } 
+  return buf;
 }
 
-void printPowers() {
-  Serial.print(powerStatus.Vreg);
-  Serial.print(":");
-  Serial.print(powerStatus.Cust);
-  Serial.print(":");
-  Serial.print(powerStatus.Vin);
-  Serial.print(":");
-  Serial.print(powerStatus.Itot);
-  Serial.print(":");
-  Serial.print(powerStatus.Ah);
-  Serial.print(":");
-  Serial.print(powerStatus.Wh);
+String printPowers() {
+  String buf; buf.reserve(40); buf = "";
+  buf += String(powerStatus.Vreg) + ":";
+  buf += String(powerStatus.Cust) + ":";
+  buf += String(powerStatus.Vin) + ":";
+  buf += String(powerStatus.Itot); + ":";
+  buf += String(powerStatus.Ah, 1) + ":";
+  buf += String(powerStatus.Wh, 1);
+  return buf;
 }
 
 

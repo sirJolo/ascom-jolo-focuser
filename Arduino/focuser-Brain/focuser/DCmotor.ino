@@ -3,7 +3,7 @@ void intializeDCmotor() {
   
   dcMotor.moving = false;
   dcMotor.time = 0;
-  dcMotor.pwm = 0;
+  dcMotor.pwm = ctx.dcPWM;
   dcMotor.dir = 1;
 }
 
