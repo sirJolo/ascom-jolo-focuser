@@ -38,24 +38,23 @@ struct {
 } sensor;
 
 // EXT
-#define PWM1_PIN 9
-#define PWM2_PIN 10
-#define PWM3_PIN 11
-#define ADC_PIN A0
+#define PWM1_PIN 6
+#define PWM2_PIN 9
+#define PWM3_PIN 5
+#define ADC_PIN A3
 
 // Buzzer config
-#define BUZZER_PIN 2
-#define BUZ_LED_PIN 13
+#define BUZZER_PIN 12
+#define BUZ_LED_PIN 4
 
 // Temperature sensor config
 #define TEMP_CYCLE 5000      // config
-#define TEMP_SENSOR_PIN 8
+#define TEMP_SENSOR_PIN 11
 dht DHT;
 
 // Stepper config
-#define STEPPER_PWM_PIN 3
-//AccelStepper stepper = AccelStepper(AccelStepper::FUNCTION, 5, 4, 6, 7); 
-AccelStepper stepper = AccelStepper(AccelStepper::HALF4WIRE, 4, 5, 6, 7);  
+#define STEPPER_PWM_PIN 10
+AccelStepper stepper = AccelStepper(AccelStepper::HALF4WIRE, 13, A0, A1, A2);  
   
 Timer timer;
 
