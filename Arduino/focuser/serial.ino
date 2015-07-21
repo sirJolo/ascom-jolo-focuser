@@ -1,6 +1,6 @@
 void initializeSerial() {
   // Initialize serial
-  Serial.begin(19200);
+  Serial.begin(57600);
   Serial.setTimeout(2000);
 
   inputString = "";
@@ -45,7 +45,7 @@ void serialCommand(String command) {
 
   switch(command.charAt(0)) {
     case '#': answer += DEVICE_RESPONSE; buzz(500, 1); break;
-    case 'R': stepper.setAcceleration(ctx.acc); moveStepper(stringToLong(param)); break;
+    case 'R': stepper.setAcceleration(ctx.acc); analogWrite(STEPPER_PWM_PIN, (255 * ctx.pwmRun/100)); moveStepper(stringToLong(param)); break;
     case 'P': stepper.setCurrentPosition(stringToLong(param)); positionSaved = true; saveFocuserPos(stepper.currentPosition()); break;
     case 'p': answer += stepper.currentPosition(); break;
     case 'i': answer += (stepper.distanceToGo() != 0) ? "1" : "0"; break;
@@ -105,8 +105,6 @@ String printMonitor() {
   stepper.run();
   Serial.print(readPWM(ctx.pwm2));
   Serial.print(":");
-  Serial.print(readPWM(ctx.pwm3));
-  Serial.print(":");
   stepper.run();
   Serial.print(readAnalogAvg(ADC_PIN, 3));
   return String();
@@ -117,7 +115,6 @@ void setPWM(String param) {
   switch(param.charAt(0)) {
    case '1': ctx.pwm1 = pwm; break;
    case '2': ctx.pwm2 = pwm; break;
-   case '3': ctx.pwm3 = pwm; break;
   }
   updatePWM();
 }
@@ -126,7 +123,6 @@ String printPWM(String param) {
   switch(param.charAt(0)) {
     case '1': return String(readPWM(ctx.pwm1)); break;
     case '2': return String(readPWM(ctx.pwm2)); break;
-    case '3': return String(readPWM(ctx.pwm3)); break;
   }
 }
 

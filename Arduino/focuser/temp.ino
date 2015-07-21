@@ -3,16 +3,16 @@ void initializeSensors() {
   
   int chk = DHT.read22(TEMP_SENSOR_PIN); 
   if(chk == DHTLIB_OK) {
-    sensor.type = 3;
+    sensor.type = SENSOR_DHT22;
   }
 
-  if(sensor.type == 3) tempCycleEvent = timer.after(2000, readTemp);
+  if(sensor.type == SENSOR_DHT22) tempCycleEvent = timer.after(2000, readTemp);
 }
 
 
 void readTemp() {
   sensor.temp = sensor.hum = sensor.dew = 0.0;
-  if(sensor.type == 3) {
+  if(sensor.type == SENSOR_DHT22) {
     DHT.read22(TEMP_SENSOR_PIN);
     sensor.temp = DHT.temperature;
     sensor.hum = DHT.humidity;

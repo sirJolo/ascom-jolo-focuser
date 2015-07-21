@@ -2,12 +2,14 @@
 // ascom-jolo-focuser github project
 // 
 // Author: jolo drjolo@gmail.com
-// ver. Carbon8 10.12.2014
+// ver. APO130 18.07.2015
 // 
 #include <dht.h>
 #include <EEPROM.h>
+#include <EepromUtil.h>
 #include <AccelStepper.h>
 #include <Timer.h>
+#include <Bounce.h>
 
 #define DEVICE_RESPONSE "Jolo Carbon8 focuser"
 #define FIRMWARE "2.2"
@@ -19,14 +21,14 @@
 #define CONFIG_START 800
 
 struct {
- // This is for mere detection if they are your settings
-  char version[4];
-  
   int stepperSpeed; byte pwmRun; byte pwmStop; int acc; 
   byte buzzer; long maxPos; byte pwm1; byte pwm2; byte pwm3;
+ // This is for mere detection if they are your settings
+  char version_of_program[4];
 } ctx = {
   100, 100, 0, 500,
-  1, 1000000, 0,0,0
+  1, 10000, 0,0,0,
+  CONFIG_VERSION
 };
 
 struct {
@@ -43,6 +45,12 @@ struct {
 #define PWM3_PIN 5
 #define ADC_PIN A3
 
+// Buttons
+#define BUTTON_A_PIN 8
+#define BUTTON_B_PIN 7
+Bounce aButton = Bounce( BUTTON_A_PIN, 30 ); 
+Bounce bButton = Bounce( BUTTON_B_PIN, 30 ); 
+
 // Buzzer config
 #define BUZZER_PIN 12
 #define BUZ_LED_PIN 4
@@ -50,11 +58,13 @@ struct {
 // Temperature sensor config
 #define TEMP_CYCLE 5000      // config
 #define TEMP_SENSOR_PIN 11
+#define SENSOR_DHT22 3
+#define SENSOR_DS1820 1
 dht DHT;
 
 // Stepper config
 #define STEPPER_PWM_PIN 10
-AccelStepper stepper = AccelStepper(AccelStepper::HALF4WIRE, 13, A0, A1, A2);  
+AccelStepper stepper = AccelStepper(AccelStepper::HALF4WIRE, A2, 13, A1, A0);  
   
 Timer timer;
 
@@ -69,6 +79,7 @@ void loop()
 {
   stepper.run();
   checkStepper();
+  doButtonsCheck();  
 
   timer.update();
 }

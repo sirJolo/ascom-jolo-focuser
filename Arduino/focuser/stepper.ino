@@ -1,6 +1,4 @@
 void initializeStepper() {
-  loadConfig();
-  
   stepper.setMaxSpeed(ctx.stepperSpeed);
   stepper.setAcceleration(ctx.acc);
   stepper.setCurrentPosition(readFocuserPos());
@@ -25,7 +23,8 @@ void moveStepper(long newPos) {
     }
     else
     {
-      analogWrite(STEPPER_PWM_PIN, (255 * ctx.pwmRun/100));
+      //analogWrite(STEPPER_PWM_PIN, (255 * ctx.pwmRun/100));
+      //stepper.setAcceleration(ctx.acc);
       stepper.moveTo(newPos);
       positionSaved = false;
     }
