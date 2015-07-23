@@ -3,6 +3,7 @@ void initializeSerial() {
   Serial.begin(57600);
   Serial.setTimeout(2000);
 
+  inputString.reserve(15);
   inputString = "";
 }  
 
@@ -28,6 +29,7 @@ void serialEvent() {
 // V,v - set, get acceleration
 // W,w - set, get PWM motor run
 // Z,z - set, get PWM motor stop
+// Y,y - set, get motor mode 0-uni, 1-bipolar
 // H - halt motor
 // J,j - set, get buzzer on
 // X,x - set, get max focuser position
@@ -44,7 +46,7 @@ void serialCommand(String command) {
   answer += ":";
 
   switch(command.charAt(0)) {
-    case '#': answer += DEVICE_RESPONSE; buzz(500, 1); break;
+    case '#': answer += DEVICE_RESPONSE; buzz(200, 1); break;
     case 'R': stepper.setAcceleration(ctx.acc); analogWrite(STEPPER_PWM_PIN, (255 * ctx.pwmRun/100)); moveStepper(stringToLong(param)); break;
     case 'P': stepper.setCurrentPosition(stringToLong(param)); positionSaved = true; saveFocuserPos(stepper.currentPosition()); break;
     case 'p': answer += stepper.currentPosition(); break;
@@ -57,6 +59,8 @@ void serialCommand(String command) {
     case 'w': answer += ctx.pwmRun; break;
     case 'Z': ctx.pwmStop = constrain(stringToNumber(param), 0, 100); saveConfig(); break;
     case 'z': answer += ctx.pwmStop; break;
+    case 'Y': ctx.stepperMode = stringToNumber(param); stepper.setMode(ctx.stepperMode); saveConfig(); break;
+    case 'y': answer += ctx.stepperMode; break;
     case 'H': stepper.stop(); break;
     case 'J': ctx.buzzer = stringToNumber(param); saveConfig(); break;
     case 'j': answer += ctx.buzzer; break;
@@ -105,6 +109,8 @@ String printMonitor() {
   stepper.run();
   Serial.print(readPWM(ctx.pwm2));
   Serial.print(":");
+  Serial.print(readPWM(ctx.pwm3));
+  Serial.print(":");
   stepper.run();
   Serial.print(readAnalogAvg(ADC_PIN, 3));
   return String();
@@ -115,6 +121,7 @@ void setPWM(String param) {
   switch(param.charAt(0)) {
    case '1': ctx.pwm1 = pwm; break;
    case '2': ctx.pwm2 = pwm; break;
+   case '3': ctx.pwm3 = pwm; break;
   }
   updatePWM();
 }
@@ -123,7 +130,9 @@ String printPWM(String param) {
   switch(param.charAt(0)) {
     case '1': return String(readPWM(ctx.pwm1)); break;
     case '2': return String(readPWM(ctx.pwm2)); break;
+    case '3': return String(readPWM(ctx.pwm3)); break;
   }
 }
+
 
 
