@@ -8240,7 +8240,7 @@ Audio, scart, microphone, headphone&lt;p&gt;
 <instance part="SUPPLY9" gate="+12V" x="-55.88" y="215.9"/>
 <instance part="C1" gate="G$1" x="-63.5" y="198.12"/>
 <instance part="C2" gate="G$1" x="-68.58" y="187.96"/>
-<instance part="C3" gate="G$1" x="147.32" y="205.74" rot="R90"/>
+<instance part="C3" gate="G$1" x="149.86" y="205.74" rot="R90"/>
 <instance part="SUPPLY23" gate="1" x="160.02" y="205.74" rot="R90"/>
 <instance part="C6" gate="G$1" x="226.06" y="190.5" rot="R270"/>
 <instance part="SUPPLY38" gate="1" x="215.9" y="190.5" rot="R270"/>
@@ -8499,6 +8499,8 @@ Audio, scart, microphone, headphone&lt;p&gt;
 <junction x="-55.88" y="187.96"/>
 <pinref part="R14" gate="G$1" pin="1"/>
 <wire x1="-55.88" y1="167.64" x2="-25.4" y2="167.64" width="0.1524" layer="91"/>
+<pinref part="U$3" gate="G$1" pin="Z2"/>
+<wire x1="-76.2" y1="198.12" x2="-76.2" y2="208.28" width="0.1524" layer="91"/>
 <wire x1="-76.2" y1="208.28" x2="-68.58" y2="208.28" width="0.1524" layer="91"/>
 <wire x1="-68.58" y1="208.28" x2="-63.5" y2="208.28" width="0.1524" layer="91"/>
 <pinref part="C2" gate="G$1" pin="1"/>
@@ -8508,10 +8510,6 @@ Audio, scart, microphone, headphone&lt;p&gt;
 <pinref part="C1" gate="G$1" pin="+"/>
 <wire x1="-63.5" y1="200.66" x2="-63.5" y2="208.28" width="0.1524" layer="91"/>
 <junction x="-63.5" y="208.28"/>
-<wire x1="-76.2" y1="208.28" x2="-76.2" y2="205.74" width="0.1524" layer="91"/>
-<wire x1="-76.2" y1="205.74" x2="-81.28" y2="205.74" width="0.1524" layer="91"/>
-<pinref part="U$3" gate="G$1" pin="Z1"/>
-<wire x1="-81.28" y1="205.74" x2="-81.28" y2="198.12" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="SUPPLY6" gate="+12V" pin="+12V"/>
@@ -8521,7 +8519,7 @@ Audio, scart, microphone, headphone&lt;p&gt;
 <wire x1="86.36" y1="205.74" x2="109.22" y2="205.74" width="0.1524" layer="91"/>
 <wire x1="109.22" y1="205.74" x2="132.08" y2="205.74" width="0.1524" layer="91"/>
 <wire x1="132.08" y1="205.74" x2="137.16" y2="205.74" width="0.1524" layer="91"/>
-<wire x1="142.24" y1="205.74" x2="137.16" y2="205.74" width="0.1524" layer="91"/>
+<wire x1="144.78" y1="205.74" x2="137.16" y2="205.74" width="0.1524" layer="91"/>
 <junction x="137.16" y="205.74"/>
 <wire x1="137.16" y1="205.74" x2="137.16" y2="198.12" width="0.1524" layer="91"/>
 <pinref part="C4" gate="G$1" pin="+"/>
@@ -9054,16 +9052,14 @@ Audio, scart, microphone, headphone&lt;p&gt;
 <net name="N$26" class="0">
 <segment>
 <pinref part="12VIN1" gate="G$1" pin="PWR"/>
-<wire x1="-78.74" y1="208.28" x2="-99.06" y2="208.28" width="0.1524" layer="91"/>
+<pinref part="U$3" gate="G$1" pin="Z1"/>
+<wire x1="-81.28" y1="198.12" x2="-81.28" y2="208.28" width="0.1524" layer="91"/>
+<wire x1="-81.28" y1="208.28" x2="-99.06" y2="208.28" width="0.1524" layer="91"/>
 <pinref part="12VIN2" gate="G$1" pin="PWR"/>
 <wire x1="-99.06" y1="208.28" x2="-101.6" y2="208.28" width="0.1524" layer="91"/>
 <wire x1="-101.6" y1="193.04" x2="-99.06" y2="193.04" width="0.1524" layer="91"/>
 <wire x1="-99.06" y1="193.04" x2="-99.06" y2="208.28" width="0.1524" layer="91"/>
 <junction x="-99.06" y="208.28"/>
-<wire x1="-78.74" y1="208.28" x2="-78.74" y2="200.66" width="0.1524" layer="91"/>
-<pinref part="U$3" gate="G$1" pin="Z2"/>
-<wire x1="-78.74" y1="200.66" x2="-76.2" y2="200.66" width="0.1524" layer="91"/>
-<wire x1="-76.2" y1="200.66" x2="-76.2" y2="198.12" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$32" class="0">
@@ -9239,7 +9235,7 @@ Audio, scart, microphone, headphone&lt;p&gt;
 <pinref part="C3" gate="G$1" pin="2"/>
 <wire x1="157.48" y1="205.74" x2="154.94" y2="205.74" width="0.1524" layer="91"/>
 <pinref part="C4" gate="G$1" pin="-"/>
-<wire x1="154.94" y1="205.74" x2="149.86" y2="205.74" width="0.1524" layer="91"/>
+<wire x1="154.94" y1="205.74" x2="152.4" y2="205.74" width="0.1524" layer="91"/>
 <wire x1="152.4" y1="198.12" x2="154.94" y2="198.12" width="0.1524" layer="91"/>
 <wire x1="154.94" y1="198.12" x2="154.94" y2="205.74" width="0.1524" layer="91"/>
 <junction x="154.94" y="205.74"/>
@@ -9799,8 +9795,7 @@ Audio, scart, microphone, headphone&lt;p&gt;
 <wire x1="109.22" y1="38.1" x2="106.68" y2="38.1" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="20(SDA)"/>
 <wire x1="106.68" y1="38.1" x2="106.68" y2="76.2" width="0.1524" layer="91"/>
-<pinref part="J5" gate="G$1" pin="5"/>
-<wire x1="104.14" y1="-12.7" x2="104.14" y2="30.48" width="0.1524" layer="91"/>
+<wire x1="104.14" y1="-15.24" x2="104.14" y2="30.48" width="0.1524" layer="91"/>
 <junction x="104.14" y="30.48"/>
 </segment>
 </net>

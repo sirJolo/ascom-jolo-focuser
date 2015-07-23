@@ -2,7 +2,7 @@
 // ascom-jolo-focuser github project
 //
 // Author: jolo drjolo@gmail.com
-// ver. APO130 18.07.2015
+// ver. AstroHub 2.9.0
 //
 #include <dht.h>
 #include <EEPROM.h>
@@ -12,12 +12,12 @@
 #include <Bounce.h>
 
 #define DEVICE_RESPONSE "Jolo Carbon8 focuser"
-#define FIRMWARE "2.2"
+#define FIRMWARE "2.9.0"
 
 
 // EEPROM addresses
 #define FOCUSER_POS_START 900
-#define CONFIG_VERSION "ls2"
+#define CONFIG_VERSION "ls1"
 #define CONFIG_START 800
 
 struct {
@@ -42,30 +42,31 @@ struct {
 } sensor;
 
 // EXT
-#define PWM1_PIN 6
-#define PWM2_PIN 9
-#define PWM3_PIN 5
+#define PWM1_PIN 9
+#define PWM2_PIN 10
+#define PWM3_PIN 11
+#define PWM3_PIN 12
 #define ADC_PIN A3
 
 // Buttons
-#define BUTTON_A_PIN 8
-#define BUTTON_B_PIN 7
+#define BUTTON_A_PIN A0
+#define BUTTON_B_PIN A1
 Bounce aButton = Bounce( BUTTON_A_PIN, 30 );
 Bounce bButton = Bounce( BUTTON_B_PIN, 30 );
 
 // Buzzer config
-#define BUZZER_PIN 12
+#define BUZZER_PIN 30
 
 // Temperature sensor config
 #define TEMP_CYCLE 5000      // config
-#define TEMP_SENSOR_PIN 11
+#define TEMP_SENSOR_PIN 5
 #define SENSOR_DHT22 3
 #define SENSOR_DS1820 1
 dht DHT;
 
 // Stepper config
-#define STEPPER_PWM_PIN 10
-AccelStepper stepper = AccelStepper(AccelStepper::HALF4WIRE, A2, 13, A1, A0);
+#define STEPPER_PWM_PIN 46
+AccelStepper stepper = AccelStepper(AccelStepper::HALF4WIRE, A7, A6, A9, A8);
 
 Timer timer;
 

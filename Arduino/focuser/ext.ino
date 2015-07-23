@@ -1,4 +1,10 @@
 void initializeExt() {
+  // Turn relays on
+  digitalWrite(39, HIGH);
+  digitalWrite(40, HIGH);
+  digitalWrite(41, HIGH);
+  digitalWrite(42, HIGH);
+  digitalWrite(43, HIGH);  
   
   // PWM init
   pinMode(PWM1_PIN, OUTPUT);
