@@ -60,7 +60,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="MonitorRelative" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">20</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="MonitorAbsolute" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
