@@ -284,7 +284,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("10")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("20")>  _
         Public Property MonitorRelative() As Decimal
             Get
                 Return CType(Me("MonitorRelative"),Decimal)
@@ -315,6 +315,18 @@ Namespace My
             End Get
             Set
                 Me("SaveLog") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property DCmotorPWM() As String
+            Get
+                Return CType(Me("DCmotorPWM"),String)
+            End Get
+            Set
+                Me("DCmotorPWM") = value
             End Set
         End Property
     End Class

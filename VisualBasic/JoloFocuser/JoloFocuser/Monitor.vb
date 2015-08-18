@@ -195,7 +195,7 @@
         Return adc
     End Function
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click, Button8.Click
         If JOLOfocuser Is Nothing Then Return
         If isMoving Then Return
         Dim position As Integer = JOLOfocuser.Position
@@ -203,7 +203,7 @@
         JOLOfocuser.Move(position)
     End Sub
 
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click, Button7.Click
         If JOLOfocuser Is Nothing Then Return
         If isMoving Then Return
         Dim position As Integer = JOLOfocuser.Position
@@ -211,12 +211,12 @@
         JOLOfocuser.Move(position)
     End Sub
 
-    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click, Button6.Click
         If isMoving Then Return
         JOLOfocuser.Move(AbsPosNumericUpDown.Value)
     End Sub
 
-    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
+    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Using F As ADCSetupForm = New ADCSetupForm()
             Dim result As System.Windows.Forms.DialogResult = F.ShowDialog()
             If result = DialogResult.OK Then
@@ -225,34 +225,34 @@
         End Using
     End Sub
 
-    Private Sub ADC_CheckBox_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ADC_CheckBox.CheckedChanged
+    Private Sub ADC_CheckBox_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         My.Settings.Save()
         ADCLabel.Enabled = ADC_CheckBox.Checked
     End Sub
 
 
-    Private Sub PWM_1_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PWM_1_ComboBox.SelectedIndexChanged
+    Private Sub PWM_1_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         My.Settings.Save()
         Dim pwm As String = PWM_1_ComboBox.Text
         If pwm = "AUTO" Then pwm = "255"
         If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:1:" + pwm)
     End Sub
 
-    Private Sub PWM_2_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PWM_2_ComboBox.SelectedIndexChanged
+    Private Sub PWM_2_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         My.Settings.Save()
         Dim pwm As String = PWM_2_ComboBox.Text
         If pwm = "AUTO" Then pwm = "255"
         If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:2:" + pwm)
     End Sub
 
-    Private Sub PWM_3_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PWM_3_ComboBox.SelectedIndexChanged
+    Private Sub PWM_3_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         My.Settings.Save()
         Dim pwm As String = PWM_3_ComboBox.Text
         If pwm = "AUTO" Then pwm = "255"
         If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:3:" + pwm)
     End Sub
 
-    Private Sub StopButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StopButton.Click
+    Private Sub StopButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StopButton.Click, Stop2Button.Click
         If Not JOLOfocuser Is Nothing Then JOLOfocuser.Halt()
     End Sub
 
