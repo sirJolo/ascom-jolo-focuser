@@ -25,10 +25,26 @@ Partial Class MonitorForm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MonitorForm))
         Me.TabControl1 = New System.Windows.Forms.TabControl
         Me.TabPage1 = New System.Windows.Forms.TabPage
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox
+        Me.PWM_4_ComboBox = New System.Windows.Forms.ComboBox
+        Me.PWM4 = New System.Windows.Forms.Label
+        Me.PWM2 = New System.Windows.Forms.Label
+        Me.Label44 = New System.Windows.Forms.Label
+        Me.PWM3 = New System.Windows.Forms.Label
+        Me.PWM1 = New System.Windows.Forms.Label
+        Me.Label42 = New System.Windows.Forms.Label
+        Me.Label37 = New System.Windows.Forms.Label
+        Me.Label41 = New System.Windows.Forms.Label
+        Me.Label51 = New System.Windows.Forms.Label
+        Me.Label17 = New System.Windows.Forms.Label
+        Me.Label40 = New System.Windows.Forms.Label
+        Me.Label15 = New System.Windows.Forms.Label
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
         Me.DCmotorStopButton = New System.Windows.Forms.Button
-        Me.Button10 = New System.Windows.Forms.Button
-        Me.Button11 = New System.Windows.Forms.Button
+        Me.DCmotorNumericUpDown = New System.Windows.Forms.NumericUpDown
+        Me.DCPlusButton = New System.Windows.Forms.Button
+        Me.DCMinusButton = New System.Windows.Forms.Button
         Me.Label9 = New System.Windows.Forms.Label
         Me.Label1 = New System.Windows.Forms.Label
         Me.GroupBox4 = New System.Windows.Forms.GroupBox
@@ -75,158 +91,140 @@ Partial Class MonitorForm
         Me.Label38 = New System.Windows.Forms.Label
         Me.Vin = New System.Windows.Forms.Label
         Me.Label20 = New System.Windows.Forms.Label
-        Me.GroupBox5 = New System.Windows.Forms.GroupBox
-        Me.PWM4 = New System.Windows.Forms.Label
-        Me.PWM2 = New System.Windows.Forms.Label
-        Me.Label44 = New System.Windows.Forms.Label
-        Me.PWM3 = New System.Windows.Forms.Label
-        Me.PWM1 = New System.Windows.Forms.Label
-        Me.Label42 = New System.Windows.Forms.Label
-        Me.Label37 = New System.Windows.Forms.Label
-        Me.Label41 = New System.Windows.Forms.Label
-        Me.Label51 = New System.Windows.Forms.Label
-        Me.Label17 = New System.Windows.Forms.Label
-        Me.Label40 = New System.Windows.Forms.Label
-        Me.Label15 = New System.Windows.Forms.Label
         Me.GroupBox6 = New System.Windows.Forms.GroupBox
         Me.Position2Steps = New System.Windows.Forms.Label
         Me.Label10 = New System.Windows.Forms.Label
         Me.Stop2Button = New System.Windows.Forms.Button
         Me.Position2MM = New System.Windows.Forms.Label
         Me.Label16 = New System.Windows.Forms.Label
-        Me.Button6 = New System.Windows.Forms.Button
-        Me.Button7 = New System.Windows.Forms.Button
-        Me.Button8 = New System.Windows.Forms.Button
+        Me.Foc2GoB = New System.Windows.Forms.Button
+        Me.Foc2PlusButton = New System.Windows.Forms.Button
+        Me.Foc2MinusButton = New System.Windows.Forms.Button
         Me.GroupBoxFoc1 = New System.Windows.Forms.GroupBox
         Me.PositionSteps = New System.Windows.Forms.Label
         Me.Label3 = New System.Windows.Forms.Label
         Me.StopButton = New System.Windows.Forms.Button
         Me.PositionMM = New System.Windows.Forms.Label
         Me.Label5 = New System.Windows.Forms.Label
-        Me.Button3 = New System.Windows.Forms.Button
-        Me.Button2 = New System.Windows.Forms.Button
-        Me.Button1 = New System.Windows.Forms.Button
+        Me.Foc1GoButton = New System.Windows.Forms.Button
+        Me.Foc1PlusButton = New System.Windows.Forms.Button
+        Me.Foc1MinusButton = New System.Windows.Forms.Button
         Me.TabPage2 = New System.Windows.Forms.TabPage
+        Me.GroupBox11 = New System.Windows.Forms.GroupBox
+        Me.TextBox1 = New System.Windows.Forms.TextBox
+        Me.Label30 = New System.Windows.Forms.Label
+        Me.Foc1SetPosButton = New System.Windows.Forms.Button
+        Me.Foc2SetPosButton = New System.Windows.Forms.Button
+        Me.Label60 = New System.Windows.Forms.Label
+        Me.Foc2SetPosition = New System.Windows.Forms.NumericUpDown
         Me.GroupBox10 = New System.Windows.Forms.GroupBox
-        Me.CheckBox3 = New System.Windows.Forms.CheckBox
         Me.GroupBox9 = New System.Windows.Forms.GroupBox
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox
-        Me.NumericUpDown10 = New System.Windows.Forms.NumericUpDown
+        Me.Foc2CompSensor = New System.Windows.Forms.ComboBox
         Me.Label45 = New System.Windows.Forms.Label
         Me.Label46 = New System.Windows.Forms.Label
         Me.Label49 = New System.Windows.Forms.Label
-        Me.NumericUpDown14 = New System.Windows.Forms.NumericUpDown
         Me.Label53 = New System.Windows.Forms.Label
-        Me.Button13 = New System.Windows.Forms.Button
         Me.Label57 = New System.Windows.Forms.Label
         Me.Label58 = New System.Windows.Forms.Label
-        Me.NumericUpDown16 = New System.Windows.Forms.NumericUpDown
         Me.Label59 = New System.Windows.Forms.Label
-        Me.Label60 = New System.Windows.Forms.Label
         Me.Label61 = New System.Windows.Forms.Label
         Me.Label62 = New System.Windows.Forms.Label
         Me.Label63 = New System.Windows.Forms.Label
         Me.GroupBox8 = New System.Windows.Forms.GroupBox
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox
+        Me.Foc1CompSensor = New System.Windows.Forms.ComboBox
+        Me.Foc1MotorType = New System.Windows.Forms.ComboBox
         Me.Label43 = New System.Windows.Forms.Label
         Me.Label18 = New System.Windows.Forms.Label
         Me.Label39 = New System.Windows.Forms.Label
         Me.Label31 = New System.Windows.Forms.Label
-        Me.Button5 = New System.Windows.Forms.Button
         Me.Label22 = New System.Windows.Forms.Label
         Me.Label21 = New System.Windows.Forms.Label
         Me.Label19 = New System.Windows.Forms.Label
-        Me.Label30 = New System.Windows.Forms.Label
         Me.Label11 = New System.Windows.Forms.Label
         Me.Label29 = New System.Windows.Forms.Label
         Me.Label2 = New System.Windows.Forms.Label
-        Me.Button12 = New System.Windows.Forms.Button
-        Me.Button9 = New System.Windows.Forms.Button
-        Me.Button4 = New System.Windows.Forms.Button
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox
-        Me.DCmotor_PWM_ComboBox = New System.Windows.Forms.ComboBox
-        Me.DCmotorNumericUpDown = New System.Windows.Forms.NumericUpDown
-        Me.PWM_4_ComboBox = New System.Windows.Forms.ComboBox
+        Me.MotorSetRestoreDefaultsButton = New System.Windows.Forms.Button
+        Me.MotorSetCancelButton = New System.Windows.Forms.Button
+        Me.MotorSetSaveButton = New System.Windows.Forms.Button
         Me.PWM_2_ComboBox = New System.Windows.Forms.ComboBox
         Me.PWM_3_ComboBox = New System.Windows.Forms.ComboBox
         Me.PWM_1_ComboBox = New System.Windows.Forms.ComboBox
+        Me.DCmotor_PWM_ComboBox = New System.Windows.Forms.ComboBox
         Me.RelPos2UpDown = New System.Windows.Forms.NumericUpDown
         Me.AbsPos2NumericUpDown = New System.Windows.Forms.NumericUpDown
         Me.RelPosUpDown = New System.Windows.Forms.NumericUpDown
         Me.AbsPosNumericUpDown = New System.Windows.Forms.NumericUpDown
         Me.SaveLogCheckBox = New System.Windows.Forms.CheckBox
-        Me.ComboBox3 = New System.Windows.Forms.ComboBox
-        Me.ComboBox4 = New System.Windows.Forms.ComboBox
-        Me.NumericUpDown11 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown12 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown13 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown15 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown17 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown18 = New System.Windows.Forms.NumericUpDown
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox
-        Me.NumericUpDown9 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown8 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown5 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown4 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown3 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown7 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown6 = New System.Windows.Forms.NumericUpDown
-        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown
-        Me.GroupBox11 = New System.Windows.Forms.GroupBox
-        Me.TabPage3 = New System.Windows.Forms.TabPage
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox
+        Me.Foc1SetPosition = New System.Windows.Forms.NumericUpDown
+        Me.DCMotorReversed = New System.Windows.Forms.CheckBox
+        Me.Foc2Reversed = New System.Windows.Forms.CheckBox
+        Me.Foc2MotorType = New System.Windows.Forms.ComboBox
+        Me.Foc2Compensation = New System.Windows.Forms.NumericUpDown
+        Me.Foc2TempCycle = New System.Windows.Forms.NumericUpDown
+        Me.Foc2StepSize = New System.Windows.Forms.NumericUpDown
+        Me.Foc2PWMRun = New System.Windows.Forms.NumericUpDown
+        Me.Foc2PWMStop = New System.Windows.Forms.NumericUpDown
+        Me.Foc2Acc = New System.Windows.Forms.NumericUpDown
+        Me.Foc2MaxPosition = New System.Windows.Forms.NumericUpDown
+        Me.Foc2Speed = New System.Windows.Forms.NumericUpDown
+        Me.Foc1Reversed = New System.Windows.Forms.CheckBox
+        Me.Foc1Compensation = New System.Windows.Forms.NumericUpDown
+        Me.Foc1TempCycle = New System.Windows.Forms.NumericUpDown
+        Me.Foc1StepSize = New System.Windows.Forms.NumericUpDown
+        Me.Foc1PWMRun = New System.Windows.Forms.NumericUpDown
+        Me.Foc1PWMStop = New System.Windows.Forms.NumericUpDown
+        Me.Foc1Acc = New System.Windows.Forms.NumericUpDown
+        Me.Foc1MaxPosition = New System.Windows.Forms.NumericUpDown
+        Me.Foc1Speed = New System.Windows.Forms.NumericUpDown
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.DCmotorNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
-        Me.GroupBox5.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         Me.GroupBoxFoc1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
+        Me.GroupBox11.SuspendLayout()
+        CType(Me.Foc2SetPosition, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox10.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
-        CType(Me.NumericUpDown10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown14, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown16, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox8.SuspendLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DCmotorNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RelPos2UpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AbsPos2NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RelPosUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AbsPosNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown11, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown12, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown13, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown15, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown17, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown18, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox11.SuspendLayout()
+        CType(Me.Foc1SetPosition, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Foc2Compensation, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Foc2TempCycle, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Foc2StepSize, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Foc2PWMRun, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Foc2PWMStop, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Foc2Acc, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Foc2MaxPosition, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Foc2Speed, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Foc1Compensation, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Foc1TempCycle, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Foc1StepSize, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Foc1PWMRun, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Foc1PWMStop, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Foc1Acc, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Foc1MaxPosition, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Foc1Speed, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Location = New System.Drawing.Point(1, 2)
+        resources.ApplyResources(Me.TabControl1, "TabControl1")
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(775, 354)
-        Me.TabControl1.TabIndex = 5
         '
         'TabPage1
         '
@@ -240,120 +238,191 @@ Partial Class MonitorForm
         Me.TabPage1.Controls.Add(Me.GroupBox6)
         Me.TabPage1.Controls.Add(Me.GroupBoxFoc1)
         Me.TabPage1.Controls.Add(Me.SaveLogCheckBox)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        resources.ApplyResources(Me.TabPage1, "TabPage1")
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(767, 328)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Monitor"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.Controls.Add(Me.PWM_4_ComboBox)
+        Me.GroupBox5.Controls.Add(Me.PWM_2_ComboBox)
+        Me.GroupBox5.Controls.Add(Me.PWM_3_ComboBox)
+        Me.GroupBox5.Controls.Add(Me.PWM_1_ComboBox)
+        Me.GroupBox5.Controls.Add(Me.PWM4)
+        Me.GroupBox5.Controls.Add(Me.PWM2)
+        Me.GroupBox5.Controls.Add(Me.Label44)
+        Me.GroupBox5.Controls.Add(Me.PWM3)
+        Me.GroupBox5.Controls.Add(Me.PWM1)
+        Me.GroupBox5.Controls.Add(Me.Label42)
+        Me.GroupBox5.Controls.Add(Me.Label37)
+        Me.GroupBox5.Controls.Add(Me.Label41)
+        Me.GroupBox5.Controls.Add(Me.Label51)
+        Me.GroupBox5.Controls.Add(Me.Label17)
+        Me.GroupBox5.Controls.Add(Me.Label40)
+        Me.GroupBox5.Controls.Add(Me.Label15)
+        resources.ApplyResources(Me.GroupBox5, "GroupBox5")
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.TabStop = False
+        '
+        'PWM_4_ComboBox
+        '
+        Me.PWM_4_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.PWM_4_ComboBox.FormattingEnabled = True
+        Me.PWM_4_ComboBox.Items.AddRange(New Object() {resources.GetString("PWM_4_ComboBox.Items"), resources.GetString("PWM_4_ComboBox.Items1"), resources.GetString("PWM_4_ComboBox.Items2"), resources.GetString("PWM_4_ComboBox.Items3"), resources.GetString("PWM_4_ComboBox.Items4"), resources.GetString("PWM_4_ComboBox.Items5"), resources.GetString("PWM_4_ComboBox.Items6"), resources.GetString("PWM_4_ComboBox.Items7"), resources.GetString("PWM_4_ComboBox.Items8"), resources.GetString("PWM_4_ComboBox.Items9"), resources.GetString("PWM_4_ComboBox.Items10"), resources.GetString("PWM_4_ComboBox.Items11"), resources.GetString("PWM_4_ComboBox.Items12")})
+        resources.ApplyResources(Me.PWM_4_ComboBox, "PWM_4_ComboBox")
+        Me.PWM_4_ComboBox.Name = "PWM_4_ComboBox"
+        '
+        'PWM4
+        '
+        Me.PWM4.BackColor = System.Drawing.SystemColors.Info
+        Me.PWM4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        resources.ApplyResources(Me.PWM4, "PWM4")
+        Me.PWM4.Name = "PWM4"
+        '
+        'PWM2
+        '
+        Me.PWM2.BackColor = System.Drawing.SystemColors.Info
+        Me.PWM2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        resources.ApplyResources(Me.PWM2, "PWM2")
+        Me.PWM2.Name = "PWM2"
+        '
+        'Label44
+        '
+        resources.ApplyResources(Me.Label44, "Label44")
+        Me.Label44.Name = "Label44"
+        '
+        'PWM3
+        '
+        Me.PWM3.BackColor = System.Drawing.SystemColors.Info
+        Me.PWM3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        resources.ApplyResources(Me.PWM3, "PWM3")
+        Me.PWM3.Name = "PWM3"
+        '
+        'PWM1
+        '
+        Me.PWM1.BackColor = System.Drawing.SystemColors.Info
+        Me.PWM1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        resources.ApplyResources(Me.PWM1, "PWM1")
+        Me.PWM1.Name = "PWM1"
+        '
+        'Label42
+        '
+        resources.ApplyResources(Me.Label42, "Label42")
+        Me.Label42.Name = "Label42"
+        '
+        'Label37
+        '
+        resources.ApplyResources(Me.Label37, "Label37")
+        Me.Label37.Name = "Label37"
+        '
+        'Label41
+        '
+        resources.ApplyResources(Me.Label41, "Label41")
+        Me.Label41.Name = "Label41"
+        '
+        'Label51
+        '
+        resources.ApplyResources(Me.Label51, "Label51")
+        Me.Label51.Name = "Label51"
+        '
+        'Label17
+        '
+        resources.ApplyResources(Me.Label17, "Label17")
+        Me.Label17.Name = "Label17"
+        '
+        'Label40
+        '
+        resources.ApplyResources(Me.Label40, "Label40")
+        Me.Label40.Name = "Label40"
+        '
+        'Label15
+        '
+        resources.ApplyResources(Me.Label15, "Label15")
+        Me.Label15.Name = "Label15"
+        '
+        'PictureBox2
+        '
+        resources.ApplyResources(Me.PictureBox2, "PictureBox2")
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.TabStop = False
         '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.DCmotor_PWM_ComboBox)
         Me.GroupBox1.Controls.Add(Me.DCmotorStopButton)
         Me.GroupBox1.Controls.Add(Me.DCmotorNumericUpDown)
-        Me.GroupBox1.Controls.Add(Me.Button10)
-        Me.GroupBox1.Controls.Add(Me.Button11)
+        Me.GroupBox1.Controls.Add(Me.DCPlusButton)
+        Me.GroupBox1.Controls.Add(Me.DCMinusButton)
         Me.GroupBox1.Controls.Add(Me.Label9)
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Location = New System.Drawing.Point(420, 200)
+        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(210, 117)
-        Me.GroupBox1.TabIndex = 31
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "DC motor"
         '
         'DCmotorStopButton
         '
-        Me.DCmotorStopButton.Location = New System.Drawing.Point(126, 80)
+        resources.ApplyResources(Me.DCmotorStopButton, "DCmotorStopButton")
         Me.DCmotorStopButton.Name = "DCmotorStopButton"
-        Me.DCmotorStopButton.Size = New System.Drawing.Size(74, 20)
-        Me.DCmotorStopButton.TabIndex = 27
-        Me.DCmotorStopButton.Text = "STOP"
         Me.DCmotorStopButton.UseVisualStyleBackColor = True
         '
-        'Button10
+        'DCmotorNumericUpDown
         '
-        Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.Button10.Location = New System.Drawing.Point(180, 22)
-        Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(20, 20)
-        Me.Button10.TabIndex = 20
-        Me.Button10.Text = "+"
-        Me.Button10.UseVisualStyleBackColor = True
+        Me.DCmotorNumericUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorDCRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.DCmotorNumericUpDown.Increment = New Decimal(New Integer() {10, 0, 0, 0})
+        resources.ApplyResources(Me.DCmotorNumericUpDown, "DCmotorNumericUpDown")
+        Me.DCmotorNumericUpDown.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
+        Me.DCmotorNumericUpDown.Minimum = New Decimal(New Integer() {10, 0, 0, 0})
+        Me.DCmotorNumericUpDown.Name = "DCmotorNumericUpDown"
+        Me.DCmotorNumericUpDown.UseWaitCursor = True
+        Me.DCmotorNumericUpDown.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorDCRelative
         '
-        'Button11
+        'DCPlusButton
         '
-        Me.Button11.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.Button11.Location = New System.Drawing.Point(91, 22)
-        Me.Button11.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button11.Name = "Button11"
-        Me.Button11.Size = New System.Drawing.Size(20, 20)
-        Me.Button11.TabIndex = 20
-        Me.Button11.Text = "-"
-        Me.Button11.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.DCPlusButton, "DCPlusButton")
+        Me.DCPlusButton.Name = "DCPlusButton"
+        Me.DCPlusButton.UseVisualStyleBackColor = True
+        '
+        'DCMinusButton
+        '
+        resources.ApplyResources(Me.DCMinusButton, "DCMinusButton")
+        Me.DCMinusButton.Name = "DCMinusButton"
+        Me.DCMinusButton.UseVisualStyleBackColor = True
         '
         'Label9
         '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(14, 53)
+        resources.ApplyResources(Me.Label9, "Label9")
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(34, 13)
-        Me.Label9.TabIndex = 17
-        Me.Label9.Text = "PWM"
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(14, 24)
+        resources.ApplyResources(Me.Label1, "Label1")
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(56, 13)
-        Me.Label1.TabIndex = 18
-        Me.Label1.Text = "Move [ms]"
         '
         'GroupBox4
         '
         Me.GroupBox4.Controls.Add(Me.Label28)
         Me.GroupBox4.Controls.Add(Me.Temperature3)
         Me.GroupBox4.Controls.Add(Me.Label32)
-        Me.GroupBox4.Location = New System.Drawing.Point(260, 253)
+        resources.ApplyResources(Me.GroupBox4, "GroupBox4")
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(146, 64)
-        Me.GroupBox4.TabIndex = 29
         Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "Sensor 3"
         '
         'Label28
         '
-        Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(13, 26)
+        resources.ApplyResources(Me.Label28, "Label28")
         Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(67, 13)
-        Me.Label28.TabIndex = 18
-        Me.Label28.Text = "Temperature"
         '
         'Temperature3
         '
         Me.Temperature3.BackColor = System.Drawing.SystemColors.Info
         Me.Temperature3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Temperature3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Temperature3.Location = New System.Drawing.Point(86, 26)
+        resources.ApplyResources(Me.Temperature3, "Temperature3")
         Me.Temperature3.Name = "Temperature3"
-        Me.Temperature3.Size = New System.Drawing.Size(38, 16)
-        Me.Temperature3.TabIndex = 6
-        Me.Temperature3.Text = "0.0"
-        Me.Temperature3.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label32
         '
-        Me.Label32.AutoSize = True
-        Me.Label32.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label32.Location = New System.Drawing.Point(125, 27)
+        resources.ApplyResources(Me.Label32, "Label32")
         Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(15, 13)
-        Me.Label32.TabIndex = 15
-        Me.Label32.Text = "C"
         '
         'GroupBox3
         '
@@ -366,105 +435,60 @@ Partial Class MonitorForm
         Me.GroupBox3.Controls.Add(Me.Label25)
         Me.GroupBox3.Controls.Add(Me.Label26)
         Me.GroupBox3.Controls.Add(Me.Label27)
-        Me.GroupBox3.Location = New System.Drawing.Point(260, 125)
+        resources.ApplyResources(Me.GroupBox3, "GroupBox3")
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(146, 106)
-        Me.GroupBox3.TabIndex = 29
         Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Sensor 2"
         '
         'Label4
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(13, 26)
+        resources.ApplyResources(Me.Label4, "Label4")
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(67, 13)
-        Me.Label4.TabIndex = 18
-        Me.Label4.Text = "Temperature"
         '
         'Temperature2
         '
         Me.Temperature2.BackColor = System.Drawing.SystemColors.Info
         Me.Temperature2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Temperature2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Temperature2.Location = New System.Drawing.Point(86, 26)
+        resources.ApplyResources(Me.Temperature2, "Temperature2")
         Me.Temperature2.Name = "Temperature2"
-        Me.Temperature2.Size = New System.Drawing.Size(38, 16)
-        Me.Temperature2.TabIndex = 6
-        Me.Temperature2.Text = "0.0"
-        Me.Temperature2.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Humidity2
         '
         Me.Humidity2.BackColor = System.Drawing.SystemColors.Info
         Me.Humidity2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Humidity2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Humidity2.Location = New System.Drawing.Point(86, 49)
+        resources.ApplyResources(Me.Humidity2, "Humidity2")
         Me.Humidity2.Name = "Humidity2"
-        Me.Humidity2.Size = New System.Drawing.Size(38, 16)
-        Me.Humidity2.TabIndex = 7
-        Me.Humidity2.Text = "0"
-        Me.Humidity2.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Dewpoint2
         '
         Me.Dewpoint2.BackColor = System.Drawing.SystemColors.Info
         Me.Dewpoint2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Dewpoint2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Dewpoint2.Location = New System.Drawing.Point(86, 71)
+        resources.ApplyResources(Me.Dewpoint2, "Dewpoint2")
         Me.Dewpoint2.Name = "Dewpoint2"
-        Me.Dewpoint2.Size = New System.Drawing.Size(38, 16)
-        Me.Dewpoint2.TabIndex = 8
-        Me.Dewpoint2.Text = "0.0"
-        Me.Dewpoint2.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label23
         '
-        Me.Label23.AutoSize = True
-        Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label23.Location = New System.Drawing.Point(125, 27)
+        resources.ApplyResources(Me.Label23, "Label23")
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(15, 13)
-        Me.Label23.TabIndex = 15
-        Me.Label23.Text = "C"
         '
         'Label24
         '
-        Me.Label24.AutoSize = True
-        Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label24.Location = New System.Drawing.Point(124, 51)
+        resources.ApplyResources(Me.Label24, "Label24")
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(16, 13)
-        Me.Label24.TabIndex = 12
-        Me.Label24.Text = "%"
         '
         'Label25
         '
-        Me.Label25.AutoSize = True
-        Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label25.Location = New System.Drawing.Point(124, 73)
+        resources.ApplyResources(Me.Label25, "Label25")
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(15, 13)
-        Me.Label25.TabIndex = 13
-        Me.Label25.Text = "C"
         '
         'Label26
         '
-        Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(13, 50)
+        resources.ApplyResources(Me.Label26, "Label26")
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(47, 13)
-        Me.Label26.TabIndex = 17
-        Me.Label26.Text = "Humidity"
         '
         'Label27
         '
-        Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(13, 72)
+        resources.ApplyResources(Me.Label27, "Label27")
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(55, 13)
-        Me.Label27.TabIndex = 16
-        Me.Label27.Text = "Dew point"
         '
         'GroupBox2
         '
@@ -477,105 +501,60 @@ Partial Class MonitorForm
         Me.GroupBox2.Controls.Add(Me.Label14)
         Me.GroupBox2.Controls.Add(Me.Label7)
         Me.GroupBox2.Controls.Add(Me.Label8)
-        Me.GroupBox2.Location = New System.Drawing.Point(260, 10)
+        resources.ApplyResources(Me.GroupBox2, "GroupBox2")
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(146, 106)
-        Me.GroupBox2.TabIndex = 29
         Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Sensor 1"
         '
         'Label6
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(13, 26)
+        resources.ApplyResources(Me.Label6, "Label6")
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(67, 13)
-        Me.Label6.TabIndex = 18
-        Me.Label6.Text = "Temperature"
         '
         'Temperature
         '
         Me.Temperature.BackColor = System.Drawing.SystemColors.Info
         Me.Temperature.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Temperature.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Temperature.Location = New System.Drawing.Point(86, 26)
+        resources.ApplyResources(Me.Temperature, "Temperature")
         Me.Temperature.Name = "Temperature"
-        Me.Temperature.Size = New System.Drawing.Size(38, 16)
-        Me.Temperature.TabIndex = 6
-        Me.Temperature.Text = "0.0"
-        Me.Temperature.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Humidity
         '
         Me.Humidity.BackColor = System.Drawing.SystemColors.Info
         Me.Humidity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Humidity.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Humidity.Location = New System.Drawing.Point(86, 49)
+        resources.ApplyResources(Me.Humidity, "Humidity")
         Me.Humidity.Name = "Humidity"
-        Me.Humidity.Size = New System.Drawing.Size(38, 16)
-        Me.Humidity.TabIndex = 7
-        Me.Humidity.Text = "0"
-        Me.Humidity.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'DewPoint
         '
         Me.DewPoint.BackColor = System.Drawing.SystemColors.Info
         Me.DewPoint.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.DewPoint.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.DewPoint.Location = New System.Drawing.Point(86, 71)
+        resources.ApplyResources(Me.DewPoint, "DewPoint")
         Me.DewPoint.Name = "DewPoint"
-        Me.DewPoint.Size = New System.Drawing.Size(38, 16)
-        Me.DewPoint.TabIndex = 8
-        Me.DewPoint.Text = "0.0"
-        Me.DewPoint.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label12
         '
-        Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label12.Location = New System.Drawing.Point(125, 27)
+        resources.ApplyResources(Me.Label12, "Label12")
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(15, 13)
-        Me.Label12.TabIndex = 15
-        Me.Label12.Text = "C"
         '
         'Label13
         '
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label13.Location = New System.Drawing.Point(124, 51)
+        resources.ApplyResources(Me.Label13, "Label13")
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(16, 13)
-        Me.Label13.TabIndex = 12
-        Me.Label13.Text = "%"
         '
         'Label14
         '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label14.Location = New System.Drawing.Point(124, 73)
+        resources.ApplyResources(Me.Label14, "Label14")
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(15, 13)
-        Me.Label14.TabIndex = 13
-        Me.Label14.Text = "C"
         '
         'Label7
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(13, 50)
+        resources.ApplyResources(Me.Label7, "Label7")
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(47, 13)
-        Me.Label7.TabIndex = 17
-        Me.Label7.Text = "Humidity"
         '
         'Label8
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(13, 72)
+        resources.ApplyResources(Me.Label8, "Label8")
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(55, 13)
-        Me.Label8.TabIndex = 16
-        Me.Label8.Text = "Dew point"
         '
         'GroupBox7
         '
@@ -598,357 +577,119 @@ Partial Class MonitorForm
         Me.GroupBox7.Controls.Add(Me.Label38)
         Me.GroupBox7.Controls.Add(Me.Vin)
         Me.GroupBox7.Controls.Add(Me.Label20)
-        Me.GroupBox7.Location = New System.Drawing.Point(642, 10)
+        resources.ApplyResources(Me.GroupBox7, "GroupBox7")
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(114, 307)
-        Me.GroupBox7.TabIndex = 29
         Me.GroupBox7.TabStop = False
-        Me.GroupBox7.Text = "Power control"
         '
         'V3_CheckBox
         '
-        Me.V3_CheckBox.AutoSize = True
-        Me.V3_CheckBox.Location = New System.Drawing.Point(19, 150)
+        resources.ApplyResources(Me.V3_CheckBox, "V3_CheckBox")
         Me.V3_CheckBox.Name = "V3_CheckBox"
-        Me.V3_CheckBox.Size = New System.Drawing.Size(72, 17)
-        Me.V3_CheckBox.TabIndex = 47
-        Me.V3_CheckBox.Text = "12V out 3"
         Me.V3_CheckBox.UseVisualStyleBackColor = True
         '
         'Vreg_CheckBox
         '
-        Me.Vreg_CheckBox.AutoSize = True
-        Me.Vreg_CheckBox.Location = New System.Drawing.Point(19, 196)
+        resources.ApplyResources(Me.Vreg_CheckBox, "Vreg_CheckBox")
         Me.Vreg_CheckBox.Name = "Vreg_CheckBox"
-        Me.Vreg_CheckBox.Size = New System.Drawing.Size(69, 17)
-        Me.Vreg_CheckBox.TabIndex = 47
-        Me.Vreg_CheckBox.Text = "V reg out"
         Me.Vreg_CheckBox.UseVisualStyleBackColor = True
         '
         'V2_CheckBox
         '
-        Me.V2_CheckBox.AutoSize = True
-        Me.V2_CheckBox.Location = New System.Drawing.Point(19, 127)
+        resources.ApplyResources(Me.V2_CheckBox, "V2_CheckBox")
         Me.V2_CheckBox.Name = "V2_CheckBox"
-        Me.V2_CheckBox.Size = New System.Drawing.Size(72, 17)
-        Me.V2_CheckBox.TabIndex = 47
-        Me.V2_CheckBox.Text = "12V out 2"
         Me.V2_CheckBox.UseVisualStyleBackColor = True
         '
         'V4_CheckBox
         '
-        Me.V4_CheckBox.AutoSize = True
-        Me.V4_CheckBox.Location = New System.Drawing.Point(19, 173)
+        resources.ApplyResources(Me.V4_CheckBox, "V4_CheckBox")
         Me.V4_CheckBox.Name = "V4_CheckBox"
-        Me.V4_CheckBox.Size = New System.Drawing.Size(72, 17)
-        Me.V4_CheckBox.TabIndex = 47
-        Me.V4_CheckBox.Text = "12V out 4"
         Me.V4_CheckBox.UseVisualStyleBackColor = True
         '
         'V1_CheckBox
         '
-        Me.V1_CheckBox.AutoSize = True
-        Me.V1_CheckBox.Location = New System.Drawing.Point(19, 104)
+        resources.ApplyResources(Me.V1_CheckBox, "V1_CheckBox")
         Me.V1_CheckBox.Name = "V1_CheckBox"
-        Me.V1_CheckBox.Size = New System.Drawing.Size(72, 17)
-        Me.V1_CheckBox.TabIndex = 47
-        Me.V1_CheckBox.Text = "12V out 1"
         Me.V1_CheckBox.UseVisualStyleBackColor = True
         '
         'Label54
         '
-        Me.Label54.AutoSize = True
-        Me.Label54.Location = New System.Drawing.Point(8, 223)
+        resources.ApplyResources(Me.Label54, "Label54")
         Me.Label54.Name = "Label54"
-        Me.Label54.Size = New System.Drawing.Size(92, 13)
-        Me.Label54.TabIndex = 46
-        Me.Label54.Text = "Energy consumed"
         '
         'Label50
         '
-        Me.Label50.AutoSize = True
-        Me.Label50.Location = New System.Drawing.Point(14, 77)
+        resources.ApplyResources(Me.Label50, "Label50")
         Me.Label50.Name = "Label50"
-        Me.Label50.Size = New System.Drawing.Size(25, 13)
-        Me.Label50.TabIndex = 46
-        Me.Label50.Text = "I tot"
         '
         'Label47
         '
-        Me.Label47.AutoSize = True
-        Me.Label47.Location = New System.Drawing.Point(14, 51)
+        resources.ApplyResources(Me.Label47, "Label47")
         Me.Label47.Name = "Label47"
-        Me.Label47.Size = New System.Drawing.Size(32, 13)
-        Me.Label47.TabIndex = 46
-        Me.Label47.Text = "V reg"
         '
         'EnergyWh
         '
         Me.EnergyWh.BackColor = System.Drawing.SystemColors.Info
         Me.EnergyWh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.EnergyWh.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.EnergyWh.Location = New System.Drawing.Point(20, 272)
+        resources.ApplyResources(Me.EnergyWh, "EnergyWh")
         Me.EnergyWh.Name = "EnergyWh"
-        Me.EnergyWh.Size = New System.Drawing.Size(35, 16)
-        Me.EnergyWh.TabIndex = 39
-        Me.EnergyWh.Text = "0"
-        Me.EnergyWh.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'EnergyAh
         '
         Me.EnergyAh.BackColor = System.Drawing.SystemColors.Info
         Me.EnergyAh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.EnergyAh.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.EnergyAh.Location = New System.Drawing.Point(20, 243)
+        resources.ApplyResources(Me.EnergyAh, "EnergyAh")
         Me.EnergyAh.Name = "EnergyAh"
-        Me.EnergyAh.Size = New System.Drawing.Size(35, 16)
-        Me.EnergyAh.TabIndex = 39
-        Me.EnergyAh.Text = "0"
-        Me.EnergyAh.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label56
         '
-        Me.Label56.AutoSize = True
-        Me.Label56.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label56.Location = New System.Drawing.Point(57, 273)
+        resources.ApplyResources(Me.Label56, "Label56")
         Me.Label56.Name = "Label56"
-        Me.Label56.Size = New System.Drawing.Size(26, 13)
-        Me.Label56.TabIndex = 42
-        Me.Label56.Text = "Wh"
         '
         'Label55
         '
-        Me.Label55.AutoSize = True
-        Me.Label55.Location = New System.Drawing.Point(14, 26)
+        resources.ApplyResources(Me.Label55, "Label55")
         Me.Label55.Name = "Label55"
-        Me.Label55.Size = New System.Drawing.Size(25, 13)
-        Me.Label55.TabIndex = 46
-        Me.Label55.Text = "V in"
         '
         'Label52
         '
-        Me.Label52.AutoSize = True
-        Me.Label52.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label52.Location = New System.Drawing.Point(57, 244)
+        resources.ApplyResources(Me.Label52, "Label52")
         Me.Label52.Name = "Label52"
-        Me.Label52.Size = New System.Drawing.Size(22, 13)
-        Me.Label52.TabIndex = 42
-        Me.Label52.Text = "Ah"
         '
         'Itot
         '
         Me.Itot.BackColor = System.Drawing.SystemColors.Info
         Me.Itot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Itot.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Itot.Location = New System.Drawing.Point(48, 76)
+        resources.ApplyResources(Me.Itot, "Itot")
         Me.Itot.Name = "Itot"
-        Me.Itot.Size = New System.Drawing.Size(35, 16)
-        Me.Itot.TabIndex = 39
-        Me.Itot.Text = "0"
-        Me.Itot.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label48
         '
-        Me.Label48.AutoSize = True
-        Me.Label48.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label48.Location = New System.Drawing.Point(85, 77)
+        resources.ApplyResources(Me.Label48, "Label48")
         Me.Label48.Name = "Label48"
-        Me.Label48.Size = New System.Drawing.Size(15, 13)
-        Me.Label48.TabIndex = 42
-        Me.Label48.Text = "A"
         '
         'Vreg
         '
         Me.Vreg.BackColor = System.Drawing.SystemColors.Info
         Me.Vreg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Vreg.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Vreg.Location = New System.Drawing.Point(48, 50)
+        resources.ApplyResources(Me.Vreg, "Vreg")
         Me.Vreg.Name = "Vreg"
-        Me.Vreg.Size = New System.Drawing.Size(35, 16)
-        Me.Vreg.TabIndex = 39
-        Me.Vreg.Text = "0"
-        Me.Vreg.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label38
         '
-        Me.Label38.AutoSize = True
-        Me.Label38.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label38.Location = New System.Drawing.Point(85, 51)
+        resources.ApplyResources(Me.Label38, "Label38")
         Me.Label38.Name = "Label38"
-        Me.Label38.Size = New System.Drawing.Size(15, 13)
-        Me.Label38.TabIndex = 42
-        Me.Label38.Text = "V"
         '
         'Vin
         '
         Me.Vin.BackColor = System.Drawing.SystemColors.Info
         Me.Vin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Vin.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Vin.Location = New System.Drawing.Point(48, 25)
+        resources.ApplyResources(Me.Vin, "Vin")
         Me.Vin.Name = "Vin"
-        Me.Vin.Size = New System.Drawing.Size(35, 16)
-        Me.Vin.TabIndex = 39
-        Me.Vin.Text = "0"
-        Me.Vin.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label20
         '
-        Me.Label20.AutoSize = True
-        Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label20.Location = New System.Drawing.Point(85, 26)
+        resources.ApplyResources(Me.Label20, "Label20")
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(15, 13)
-        Me.Label20.TabIndex = 42
-        Me.Label20.Text = "V"
-        '
-        'GroupBox5
-        '
-        Me.GroupBox5.Controls.Add(Me.PWM_4_ComboBox)
-        Me.GroupBox5.Controls.Add(Me.PWM_2_ComboBox)
-        Me.GroupBox5.Controls.Add(Me.PWM_3_ComboBox)
-        Me.GroupBox5.Controls.Add(Me.PWM_1_ComboBox)
-        Me.GroupBox5.Controls.Add(Me.PWM4)
-        Me.GroupBox5.Controls.Add(Me.PWM2)
-        Me.GroupBox5.Controls.Add(Me.Label44)
-        Me.GroupBox5.Controls.Add(Me.PWM3)
-        Me.GroupBox5.Controls.Add(Me.PWM1)
-        Me.GroupBox5.Controls.Add(Me.Label42)
-        Me.GroupBox5.Controls.Add(Me.Label37)
-        Me.GroupBox5.Controls.Add(Me.Label41)
-        Me.GroupBox5.Controls.Add(Me.Label51)
-        Me.GroupBox5.Controls.Add(Me.Label17)
-        Me.GroupBox5.Controls.Add(Me.Label40)
-        Me.GroupBox5.Controls.Add(Me.Label15)
-        Me.GroupBox5.Location = New System.Drawing.Point(420, 10)
-        Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(209, 157)
-        Me.GroupBox5.TabIndex = 29
-        Me.GroupBox5.TabStop = False
-        Me.GroupBox5.Text = "PWM control"
-        '
-        'PWM4
-        '
-        Me.PWM4.BackColor = System.Drawing.SystemColors.Info
-        Me.PWM4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PWM4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.PWM4.Location = New System.Drawing.Point(57, 122)
-        Me.PWM4.Name = "PWM4"
-        Me.PWM4.Size = New System.Drawing.Size(35, 16)
-        Me.PWM4.TabIndex = 39
-        Me.PWM4.Text = "0"
-        Me.PWM4.TextAlign = System.Drawing.ContentAlignment.TopRight
-        '
-        'PWM2
-        '
-        Me.PWM2.BackColor = System.Drawing.SystemColors.Info
-        Me.PWM2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PWM2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.PWM2.Location = New System.Drawing.Point(57, 58)
-        Me.PWM2.Name = "PWM2"
-        Me.PWM2.Size = New System.Drawing.Size(35, 16)
-        Me.PWM2.TabIndex = 39
-        Me.PWM2.Text = "0"
-        Me.PWM2.TextAlign = System.Drawing.ContentAlignment.TopRight
-        '
-        'Label44
-        '
-        Me.Label44.AutoSize = True
-        Me.Label44.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label44.Location = New System.Drawing.Point(92, 123)
-        Me.Label44.Name = "Label44"
-        Me.Label44.Size = New System.Drawing.Size(16, 13)
-        Me.Label44.TabIndex = 42
-        Me.Label44.Text = "%"
-        '
-        'PWM3
-        '
-        Me.PWM3.BackColor = System.Drawing.SystemColors.Info
-        Me.PWM3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PWM3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.PWM3.Location = New System.Drawing.Point(57, 90)
-        Me.PWM3.Name = "PWM3"
-        Me.PWM3.Size = New System.Drawing.Size(35, 16)
-        Me.PWM3.TabIndex = 39
-        Me.PWM3.Text = "0"
-        Me.PWM3.TextAlign = System.Drawing.ContentAlignment.TopRight
-        '
-        'PWM1
-        '
-        Me.PWM1.BackColor = System.Drawing.SystemColors.Info
-        Me.PWM1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PWM1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.PWM1.Location = New System.Drawing.Point(57, 25)
-        Me.PWM1.Name = "PWM1"
-        Me.PWM1.Size = New System.Drawing.Size(35, 16)
-        Me.PWM1.TabIndex = 39
-        Me.PWM1.Text = "0"
-        Me.PWM1.TextAlign = System.Drawing.ContentAlignment.TopRight
-        '
-        'Label42
-        '
-        Me.Label42.AutoSize = True
-        Me.Label42.Location = New System.Drawing.Point(14, 123)
-        Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(43, 13)
-        Me.Label42.TabIndex = 46
-        Me.Label42.Text = "PWM 4"
-        '
-        'Label37
-        '
-        Me.Label37.AutoSize = True
-        Me.Label37.Location = New System.Drawing.Point(14, 59)
-        Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(43, 13)
-        Me.Label37.TabIndex = 46
-        Me.Label37.Text = "PWM 2"
-        '
-        'Label41
-        '
-        Me.Label41.AutoSize = True
-        Me.Label41.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label41.Location = New System.Drawing.Point(92, 91)
-        Me.Label41.Name = "Label41"
-        Me.Label41.Size = New System.Drawing.Size(16, 13)
-        Me.Label41.TabIndex = 42
-        Me.Label41.Text = "%"
-        '
-        'Label51
-        '
-        Me.Label51.AutoSize = True
-        Me.Label51.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label51.Location = New System.Drawing.Point(92, 59)
-        Me.Label51.Name = "Label51"
-        Me.Label51.Size = New System.Drawing.Size(16, 13)
-        Me.Label51.TabIndex = 42
-        Me.Label51.Text = "%"
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label17.Location = New System.Drawing.Point(92, 26)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(16, 13)
-        Me.Label17.TabIndex = 42
-        Me.Label17.Text = "%"
-        '
-        'Label40
-        '
-        Me.Label40.AutoSize = True
-        Me.Label40.Location = New System.Drawing.Point(14, 91)
-        Me.Label40.Name = "Label40"
-        Me.Label40.Size = New System.Drawing.Size(43, 13)
-        Me.Label40.TabIndex = 46
-        Me.Label40.Text = "PWM 3"
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(14, 26)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(43, 13)
-        Me.Label15.TabIndex = 46
-        Me.Label15.Text = "PWM 1"
         '
         'GroupBox6
         '
@@ -957,101 +698,62 @@ Partial Class MonitorForm
         Me.GroupBox6.Controls.Add(Me.Stop2Button)
         Me.GroupBox6.Controls.Add(Me.Position2MM)
         Me.GroupBox6.Controls.Add(Me.Label16)
-        Me.GroupBox6.Controls.Add(Me.Button6)
+        Me.GroupBox6.Controls.Add(Me.Foc2GoB)
         Me.GroupBox6.Controls.Add(Me.RelPos2UpDown)
-        Me.GroupBox6.Controls.Add(Me.Button7)
+        Me.GroupBox6.Controls.Add(Me.Foc2PlusButton)
         Me.GroupBox6.Controls.Add(Me.AbsPos2NumericUpDown)
-        Me.GroupBox6.Controls.Add(Me.Button8)
-        Me.GroupBox6.Location = New System.Drawing.Point(11, 124)
+        Me.GroupBox6.Controls.Add(Me.Foc2MinusButton)
+        resources.ApplyResources(Me.GroupBox6, "GroupBox6")
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(236, 106)
-        Me.GroupBox6.TabIndex = 29
         Me.GroupBox6.TabStop = False
-        Me.GroupBox6.Text = "Secondary focuser"
         '
         'Position2Steps
         '
         Me.Position2Steps.BackColor = System.Drawing.SystemColors.Info
         Me.Position2Steps.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Position2Steps.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Position2Steps.Location = New System.Drawing.Point(16, 20)
+        resources.ApplyResources(Me.Position2Steps, "Position2Steps")
         Me.Position2Steps.Name = "Position2Steps"
-        Me.Position2Steps.Size = New System.Drawing.Size(50, 16)
-        Me.Position2Steps.TabIndex = 9
-        Me.Position2Steps.Text = "0"
-        Me.Position2Steps.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label10
         '
-        Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label10.Location = New System.Drawing.Point(66, 21)
+        resources.ApplyResources(Me.Label10, "Label10")
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(37, 13)
-        Me.Label10.TabIndex = 11
-        Me.Label10.Text = "steps"
         '
         'Stop2Button
         '
-        Me.Stop2Button.Location = New System.Drawing.Point(148, 74)
+        resources.ApplyResources(Me.Stop2Button, "Stop2Button")
         Me.Stop2Button.Name = "Stop2Button"
-        Me.Stop2Button.Size = New System.Drawing.Size(74, 20)
-        Me.Stop2Button.TabIndex = 27
-        Me.Stop2Button.Text = "STOP"
         Me.Stop2Button.UseVisualStyleBackColor = True
         '
         'Position2MM
         '
         Me.Position2MM.BackColor = System.Drawing.SystemColors.Info
         Me.Position2MM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Position2MM.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Position2MM.Location = New System.Drawing.Point(16, 43)
+        resources.ApplyResources(Me.Position2MM, "Position2MM")
         Me.Position2MM.Name = "Position2MM"
-        Me.Position2MM.Size = New System.Drawing.Size(50, 16)
-        Me.Position2MM.TabIndex = 10
-        Me.Position2MM.Text = "0.000"
-        Me.Position2MM.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label16
         '
-        Me.Label16.AutoSize = True
-        Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label16.Location = New System.Drawing.Point(66, 44)
+        resources.ApplyResources(Me.Label16, "Label16")
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(25, 13)
-        Me.Label16.TabIndex = 14
-        Me.Label16.Text = "mm"
         '
-        'Button6
+        'Foc2GoB
         '
-        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.Button6.Location = New System.Drawing.Point(191, 47)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(31, 20)
-        Me.Button6.TabIndex = 20
-        Me.Button6.Text = "GO"
-        Me.Button6.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.Foc2GoB, "Foc2GoB")
+        Me.Foc2GoB.Name = "Foc2GoB"
+        Me.Foc2GoB.UseVisualStyleBackColor = True
         '
-        'Button7
+        'Foc2PlusButton
         '
-        Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.Button7.Location = New System.Drawing.Point(202, 19)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(20, 20)
-        Me.Button7.TabIndex = 20
-        Me.Button7.Text = "+"
-        Me.Button7.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.Foc2PlusButton, "Foc2PlusButton")
+        Me.Foc2PlusButton.Name = "Foc2PlusButton"
+        Me.Foc2PlusButton.UseVisualStyleBackColor = True
         '
-        'Button8
+        'Foc2MinusButton
         '
-        Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.Button8.Location = New System.Drawing.Point(113, 19)
-        Me.Button8.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(20, 20)
-        Me.Button8.TabIndex = 20
-        Me.Button8.Text = "-"
-        Me.Button8.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.Foc2MinusButton, "Foc2MinusButton")
+        Me.Foc2MinusButton.Name = "Foc2MinusButton"
+        Me.Foc2MinusButton.UseVisualStyleBackColor = True
         '
         'GroupBoxFoc1
         '
@@ -1060,863 +762,611 @@ Partial Class MonitorForm
         Me.GroupBoxFoc1.Controls.Add(Me.StopButton)
         Me.GroupBoxFoc1.Controls.Add(Me.PositionMM)
         Me.GroupBoxFoc1.Controls.Add(Me.Label5)
-        Me.GroupBoxFoc1.Controls.Add(Me.Button3)
+        Me.GroupBoxFoc1.Controls.Add(Me.Foc1GoButton)
         Me.GroupBoxFoc1.Controls.Add(Me.RelPosUpDown)
-        Me.GroupBoxFoc1.Controls.Add(Me.Button2)
+        Me.GroupBoxFoc1.Controls.Add(Me.Foc1PlusButton)
         Me.GroupBoxFoc1.Controls.Add(Me.AbsPosNumericUpDown)
-        Me.GroupBoxFoc1.Controls.Add(Me.Button1)
-        Me.GroupBoxFoc1.Location = New System.Drawing.Point(11, 10)
+        Me.GroupBoxFoc1.Controls.Add(Me.Foc1MinusButton)
+        resources.ApplyResources(Me.GroupBoxFoc1, "GroupBoxFoc1")
         Me.GroupBoxFoc1.Name = "GroupBoxFoc1"
-        Me.GroupBoxFoc1.Size = New System.Drawing.Size(236, 106)
-        Me.GroupBoxFoc1.TabIndex = 29
         Me.GroupBoxFoc1.TabStop = False
-        Me.GroupBoxFoc1.Text = "Primary focuser"
         '
         'PositionSteps
         '
         Me.PositionSteps.BackColor = System.Drawing.SystemColors.Info
         Me.PositionSteps.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PositionSteps.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.PositionSteps.Location = New System.Drawing.Point(16, 20)
+        resources.ApplyResources(Me.PositionSteps, "PositionSteps")
         Me.PositionSteps.Name = "PositionSteps"
-        Me.PositionSteps.Size = New System.Drawing.Size(50, 16)
-        Me.PositionSteps.TabIndex = 9
-        Me.PositionSteps.Text = "0"
-        Me.PositionSteps.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label3
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label3.Location = New System.Drawing.Point(66, 21)
+        resources.ApplyResources(Me.Label3, "Label3")
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(37, 13)
-        Me.Label3.TabIndex = 11
-        Me.Label3.Text = "steps"
         '
         'StopButton
         '
-        Me.StopButton.Location = New System.Drawing.Point(148, 74)
+        resources.ApplyResources(Me.StopButton, "StopButton")
         Me.StopButton.Name = "StopButton"
-        Me.StopButton.Size = New System.Drawing.Size(74, 20)
-        Me.StopButton.TabIndex = 27
-        Me.StopButton.Text = "STOP"
         Me.StopButton.UseVisualStyleBackColor = True
         '
         'PositionMM
         '
         Me.PositionMM.BackColor = System.Drawing.SystemColors.Info
         Me.PositionMM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PositionMM.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.PositionMM.Location = New System.Drawing.Point(16, 43)
+        resources.ApplyResources(Me.PositionMM, "PositionMM")
         Me.PositionMM.Name = "PositionMM"
-        Me.PositionMM.Size = New System.Drawing.Size(50, 16)
-        Me.PositionMM.TabIndex = 10
-        Me.PositionMM.Text = "0.000"
-        Me.PositionMM.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label5
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label5.Location = New System.Drawing.Point(66, 44)
+        resources.ApplyResources(Me.Label5, "Label5")
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(25, 13)
-        Me.Label5.TabIndex = 14
-        Me.Label5.Text = "mm"
         '
-        'Button3
+        'Foc1GoButton
         '
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.Button3.Location = New System.Drawing.Point(191, 47)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(31, 20)
-        Me.Button3.TabIndex = 20
-        Me.Button3.Text = "GO"
-        Me.Button3.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.Foc1GoButton, "Foc1GoButton")
+        Me.Foc1GoButton.Name = "Foc1GoButton"
+        Me.Foc1GoButton.UseVisualStyleBackColor = True
         '
-        'Button2
+        'Foc1PlusButton
         '
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.Button2.Location = New System.Drawing.Point(202, 19)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(20, 20)
-        Me.Button2.TabIndex = 20
-        Me.Button2.Text = "+"
-        Me.Button2.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.Foc1PlusButton, "Foc1PlusButton")
+        Me.Foc1PlusButton.Name = "Foc1PlusButton"
+        Me.Foc1PlusButton.UseVisualStyleBackColor = True
         '
-        'Button1
+        'Foc1MinusButton
         '
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.Button1.Location = New System.Drawing.Point(113, 19)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(20, 20)
-        Me.Button1.TabIndex = 20
-        Me.Button1.Text = "-"
-        Me.Button1.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.Foc1MinusButton, "Foc1MinusButton")
+        Me.Foc1MinusButton.Name = "Foc1MinusButton"
+        Me.Foc1MinusButton.UseVisualStyleBackColor = True
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.CheckBox1)
         Me.TabPage2.Controls.Add(Me.GroupBox11)
         Me.TabPage2.Controls.Add(Me.GroupBox10)
         Me.TabPage2.Controls.Add(Me.GroupBox9)
         Me.TabPage2.Controls.Add(Me.GroupBox8)
-        Me.TabPage2.Controls.Add(Me.Button12)
-        Me.TabPage2.Controls.Add(Me.Button9)
-        Me.TabPage2.Controls.Add(Me.Button4)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Controls.Add(Me.MotorSetRestoreDefaultsButton)
+        Me.TabPage2.Controls.Add(Me.MotorSetCancelButton)
+        Me.TabPage2.Controls.Add(Me.MotorSetSaveButton)
+        resources.ApplyResources(Me.TabPage2, "TabPage2")
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(767, 328)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Motor settings"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'GroupBox11
+        '
+        Me.GroupBox11.Controls.Add(Me.TextBox1)
+        Me.GroupBox11.Controls.Add(Me.Foc1SetPosition)
+        Me.GroupBox11.Controls.Add(Me.Label30)
+        Me.GroupBox11.Controls.Add(Me.Foc1SetPosButton)
+        Me.GroupBox11.Controls.Add(Me.Foc2SetPosButton)
+        Me.GroupBox11.Controls.Add(Me.Label60)
+        Me.GroupBox11.Controls.Add(Me.Foc2SetPosition)
+        resources.ApplyResources(Me.GroupBox11, "GroupBox11")
+        Me.GroupBox11.Name = "GroupBox11"
+        Me.GroupBox11.TabStop = False
+        '
+        'TextBox1
+        '
+        resources.ApplyResources(Me.TextBox1, "TextBox1")
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ReadOnly = True
+        '
+        'Label30
+        '
+        resources.ApplyResources(Me.Label30, "Label30")
+        Me.Label30.Name = "Label30"
+        '
+        'Foc1SetPosButton
+        '
+        resources.ApplyResources(Me.Foc1SetPosButton, "Foc1SetPosButton")
+        Me.Foc1SetPosButton.Name = "Foc1SetPosButton"
+        Me.Foc1SetPosButton.UseVisualStyleBackColor = True
+        '
+        'Foc2SetPosButton
+        '
+        resources.ApplyResources(Me.Foc2SetPosButton, "Foc2SetPosButton")
+        Me.Foc2SetPosButton.Name = "Foc2SetPosButton"
+        Me.Foc2SetPosButton.UseVisualStyleBackColor = True
+        '
+        'Label60
+        '
+        resources.ApplyResources(Me.Label60, "Label60")
+        Me.Label60.Name = "Label60"
+        '
+        'Foc2SetPosition
+        '
+        Me.Foc2SetPosition.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        resources.ApplyResources(Me.Foc2SetPosition, "Foc2SetPosition")
+        Me.Foc2SetPosition.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
+        Me.Foc2SetPosition.Name = "Foc2SetPosition"
         '
         'GroupBox10
         '
-        Me.GroupBox10.Controls.Add(Me.CheckBox3)
-        Me.GroupBox10.Location = New System.Drawing.Point(522, 8)
+        Me.GroupBox10.Controls.Add(Me.DCMotorReversed)
+        resources.ApplyResources(Me.GroupBox10, "GroupBox10")
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(228, 55)
-        Me.GroupBox10.TabIndex = 30
         Me.GroupBox10.TabStop = False
-        Me.GroupBox10.Text = "DC motor"
-        '
-        'CheckBox3
-        '
-        Me.CheckBox3.AutoSize = True
-        Me.CheckBox3.Location = New System.Drawing.Point(150, 19)
-        Me.CheckBox3.Name = "CheckBox3"
-        Me.CheckBox3.Size = New System.Drawing.Size(72, 17)
-        Me.CheckBox3.TabIndex = 53
-        Me.CheckBox3.Text = "Reversed"
-        Me.CheckBox3.UseVisualStyleBackColor = True
         '
         'GroupBox9
         '
-        Me.GroupBox9.Controls.Add(Me.CheckBox2)
-        Me.GroupBox9.Controls.Add(Me.ComboBox3)
-        Me.GroupBox9.Controls.Add(Me.ComboBox4)
-        Me.GroupBox9.Controls.Add(Me.NumericUpDown10)
-        Me.GroupBox9.Controls.Add(Me.NumericUpDown11)
-        Me.GroupBox9.Controls.Add(Me.NumericUpDown12)
+        Me.GroupBox9.Controls.Add(Me.Foc2Reversed)
+        Me.GroupBox9.Controls.Add(Me.Foc2CompSensor)
+        Me.GroupBox9.Controls.Add(Me.Foc2MotorType)
+        Me.GroupBox9.Controls.Add(Me.Foc2Compensation)
+        Me.GroupBox9.Controls.Add(Me.Foc2TempCycle)
+        Me.GroupBox9.Controls.Add(Me.Foc2StepSize)
         Me.GroupBox9.Controls.Add(Me.Label45)
-        Me.GroupBox9.Controls.Add(Me.NumericUpDown13)
+        Me.GroupBox9.Controls.Add(Me.Foc2PWMRun)
         Me.GroupBox9.Controls.Add(Me.Label46)
         Me.GroupBox9.Controls.Add(Me.Label49)
-        Me.GroupBox9.Controls.Add(Me.NumericUpDown14)
+        Me.GroupBox9.Controls.Add(Me.Foc2PWMStop)
         Me.GroupBox9.Controls.Add(Me.Label53)
         Me.GroupBox9.Controls.Add(Me.Label57)
-        Me.GroupBox9.Controls.Add(Me.NumericUpDown15)
+        Me.GroupBox9.Controls.Add(Me.Foc2Acc)
         Me.GroupBox9.Controls.Add(Me.Label58)
-        Me.GroupBox9.Controls.Add(Me.NumericUpDown17)
-        Me.GroupBox9.Controls.Add(Me.NumericUpDown18)
+        Me.GroupBox9.Controls.Add(Me.Foc2MaxPosition)
+        Me.GroupBox9.Controls.Add(Me.Foc2Speed)
         Me.GroupBox9.Controls.Add(Me.Label59)
         Me.GroupBox9.Controls.Add(Me.Label61)
         Me.GroupBox9.Controls.Add(Me.Label62)
         Me.GroupBox9.Controls.Add(Me.Label63)
-        Me.GroupBox9.Location = New System.Drawing.Point(263, 7)
+        resources.ApplyResources(Me.GroupBox9, "GroupBox9")
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(243, 307)
-        Me.GroupBox9.TabIndex = 30
         Me.GroupBox9.TabStop = False
-        Me.GroupBox9.Text = "Secondary focuser"
         '
-        'CheckBox2
+        'Foc2CompSensor
         '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Location = New System.Drawing.Point(145, 195)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(72, 17)
-        Me.CheckBox2.TabIndex = 53
-        Me.CheckBox2.Text = "Reversed"
-        Me.CheckBox2.UseVisualStyleBackColor = True
-        '
-        'NumericUpDown10
-        '
-        Me.NumericUpDown10.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown10.DecimalPlaces = 2
-        Me.NumericUpDown10.Location = New System.Drawing.Point(170, 245)
-        Me.NumericUpDown10.Name = "NumericUpDown10"
-        Me.NumericUpDown10.Size = New System.Drawing.Size(58, 20)
-        Me.NumericUpDown10.TabIndex = 31
+        Me.Foc2CompSensor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Foc2CompSensor.FormattingEnabled = True
+        Me.Foc2CompSensor.Items.AddRange(New Object() {resources.GetString("Foc2CompSensor.Items"), resources.GetString("Foc2CompSensor.Items1"), resources.GetString("Foc2CompSensor.Items2"), resources.GetString("Foc2CompSensor.Items3")})
+        resources.ApplyResources(Me.Foc2CompSensor, "Foc2CompSensor")
+        Me.Foc2CompSensor.Name = "Foc2CompSensor"
         '
         'Label45
         '
-        Me.Label45.AutoSize = True
-        Me.Label45.Location = New System.Drawing.Point(18, 272)
+        resources.ApplyResources(Me.Label45, "Label45")
         Me.Label45.Name = "Label45"
-        Me.Label45.Size = New System.Drawing.Size(108, 13)
-        Me.Label45.TabIndex = 28
-        Me.Label45.Text = "Compensation sensor"
         '
         'Label46
         '
-        Me.Label46.AutoSize = True
-        Me.Label46.Location = New System.Drawing.Point(18, 170)
+        resources.ApplyResources(Me.Label46, "Label46")
         Me.Label46.Name = "Label46"
-        Me.Label46.Size = New System.Drawing.Size(57, 13)
-        Me.Label46.TabIndex = 28
-        Me.Label46.Text = "Motor type"
         '
         'Label49
         '
-        Me.Label49.AutoSize = True
-        Me.Label49.Location = New System.Drawing.Point(18, 247)
+        resources.ApplyResources(Me.Label49, "Label49")
         Me.Label49.Name = "Label49"
-        Me.Label49.Size = New System.Drawing.Size(120, 13)
-        Me.Label49.TabIndex = 28
-        Me.Label49.Text = "Compensation [steps/C]"
-        '
-        'NumericUpDown14
-        '
-        Me.NumericUpDown14.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown14.Location = New System.Drawing.Point(170, 92)
-        Me.NumericUpDown14.Name = "NumericUpDown14"
-        Me.NumericUpDown14.Size = New System.Drawing.Size(58, 20)
-        Me.NumericUpDown14.TabIndex = 31
         '
         'Label53
         '
-        Me.Label53.AutoSize = True
-        Me.Label53.Location = New System.Drawing.Point(18, 222)
+        resources.ApplyResources(Me.Label53, "Label53")
         Me.Label53.Name = "Label53"
-        Me.Label53.Size = New System.Drawing.Size(76, 13)
-        Me.Label53.TabIndex = 28
-        Me.Label53.Text = "Temp cycle [s]"
-        '
-        'Button13
-        '
-        Me.Button13.Location = New System.Drawing.Point(167, 135)
-        Me.Button13.Name = "Button13"
-        Me.Button13.Size = New System.Drawing.Size(53, 20)
-        Me.Button13.TabIndex = 27
-        Me.Button13.Text = "Set"
-        Me.Button13.UseVisualStyleBackColor = True
         '
         'Label57
         '
-        Me.Label57.AutoSize = True
-        Me.Label57.Location = New System.Drawing.Point(18, 144)
+        resources.ApplyResources(Me.Label57, "Label57")
         Me.Label57.Name = "Label57"
-        Me.Label57.Size = New System.Drawing.Size(73, 13)
-        Me.Label57.TabIndex = 28
-        Me.Label57.Text = "Step size [um]"
         '
         'Label58
         '
-        Me.Label58.AutoSize = True
-        Me.Label58.Location = New System.Drawing.Point(18, 119)
+        resources.ApplyResources(Me.Label58, "Label58")
         Me.Label58.Name = "Label58"
-        Me.Label58.Size = New System.Drawing.Size(69, 13)
-        Me.Label58.TabIndex = 28
-        Me.Label58.Text = "PWM run [%]"
-        '
-        'NumericUpDown16
-        '
-        Me.NumericUpDown16.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown16.Location = New System.Drawing.Point(131, 109)
-        Me.NumericUpDown16.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
-        Me.NumericUpDown16.Name = "NumericUpDown16"
-        Me.NumericUpDown16.Size = New System.Drawing.Size(89, 20)
-        Me.NumericUpDown16.TabIndex = 31
         '
         'Label59
         '
-        Me.Label59.AutoSize = True
-        Me.Label59.Location = New System.Drawing.Point(18, 94)
+        resources.ApplyResources(Me.Label59, "Label59")
         Me.Label59.Name = "Label59"
-        Me.Label59.Size = New System.Drawing.Size(74, 13)
-        Me.Label59.TabIndex = 28
-        Me.Label59.Text = "PWM stop [%]"
-        '
-        'Label60
-        '
-        Me.Label60.AutoSize = True
-        Me.Label60.Location = New System.Drawing.Point(10, 111)
-        Me.Label60.Name = "Label60"
-        Me.Label60.Size = New System.Drawing.Size(96, 13)
-        Me.Label60.TabIndex = 28
-        Me.Label60.Text = "Secondary focuser"
         '
         'Label61
         '
-        Me.Label61.AutoSize = True
-        Me.Label61.Location = New System.Drawing.Point(18, 69)
+        resources.ApplyResources(Me.Label61, "Label61")
         Me.Label61.Name = "Label61"
-        Me.Label61.Size = New System.Drawing.Size(102, 13)
-        Me.Label61.TabIndex = 28
-        Me.Label61.Text = "Acceleration [pps/s]"
         '
         'Label62
         '
-        Me.Label62.AutoSize = True
-        Me.Label62.Location = New System.Drawing.Point(18, 19)
+        resources.ApplyResources(Me.Label62, "Label62")
         Me.Label62.Name = "Label62"
-        Me.Label62.Size = New System.Drawing.Size(104, 13)
-        Me.Label62.TabIndex = 28
-        Me.Label62.Text = "Max focuser position"
         '
         'Label63
         '
-        Me.Label63.AutoSize = True
-        Me.Label63.Location = New System.Drawing.Point(18, 44)
+        resources.ApplyResources(Me.Label63, "Label63")
         Me.Label63.Name = "Label63"
-        Me.Label63.Size = New System.Drawing.Size(64, 13)
-        Me.Label63.TabIndex = 28
-        Me.Label63.Text = "Speed [pps]"
         '
         'GroupBox8
         '
-        Me.GroupBox8.Controls.Add(Me.CheckBox1)
-        Me.GroupBox8.Controls.Add(Me.ComboBox2)
-        Me.GroupBox8.Controls.Add(Me.ComboBox1)
-        Me.GroupBox8.Controls.Add(Me.NumericUpDown9)
-        Me.GroupBox8.Controls.Add(Me.NumericUpDown8)
-        Me.GroupBox8.Controls.Add(Me.NumericUpDown5)
+        Me.GroupBox8.Controls.Add(Me.Foc1Reversed)
+        Me.GroupBox8.Controls.Add(Me.Foc1CompSensor)
+        Me.GroupBox8.Controls.Add(Me.Foc1MotorType)
+        Me.GroupBox8.Controls.Add(Me.Foc1Compensation)
+        Me.GroupBox8.Controls.Add(Me.Foc1TempCycle)
+        Me.GroupBox8.Controls.Add(Me.Foc1StepSize)
         Me.GroupBox8.Controls.Add(Me.Label43)
-        Me.GroupBox8.Controls.Add(Me.NumericUpDown4)
+        Me.GroupBox8.Controls.Add(Me.Foc1PWMRun)
         Me.GroupBox8.Controls.Add(Me.Label18)
         Me.GroupBox8.Controls.Add(Me.Label39)
-        Me.GroupBox8.Controls.Add(Me.NumericUpDown3)
+        Me.GroupBox8.Controls.Add(Me.Foc1PWMStop)
         Me.GroupBox8.Controls.Add(Me.Label31)
         Me.GroupBox8.Controls.Add(Me.Label22)
-        Me.GroupBox8.Controls.Add(Me.NumericUpDown2)
+        Me.GroupBox8.Controls.Add(Me.Foc1Acc)
         Me.GroupBox8.Controls.Add(Me.Label21)
-        Me.GroupBox8.Controls.Add(Me.NumericUpDown6)
-        Me.GroupBox8.Controls.Add(Me.NumericUpDown1)
+        Me.GroupBox8.Controls.Add(Me.Foc1MaxPosition)
+        Me.GroupBox8.Controls.Add(Me.Foc1Speed)
         Me.GroupBox8.Controls.Add(Me.Label19)
         Me.GroupBox8.Controls.Add(Me.Label11)
         Me.GroupBox8.Controls.Add(Me.Label29)
         Me.GroupBox8.Controls.Add(Me.Label2)
-        Me.GroupBox8.Location = New System.Drawing.Point(7, 6)
+        resources.ApplyResources(Me.GroupBox8, "GroupBox8")
         Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(243, 308)
-        Me.GroupBox8.TabIndex = 30
         Me.GroupBox8.TabStop = False
-        Me.GroupBox8.Text = "Primary focuser"
         '
-        'CheckBox1
+        'Foc1CompSensor
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(145, 195)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(72, 17)
-        Me.CheckBox1.TabIndex = 53
-        Me.CheckBox1.Text = "Reversed"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.Foc1CompSensor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Foc1CompSensor.FormattingEnabled = True
+        Me.Foc1CompSensor.Items.AddRange(New Object() {resources.GetString("Foc1CompSensor.Items"), resources.GetString("Foc1CompSensor.Items1"), resources.GetString("Foc1CompSensor.Items2"), resources.GetString("Foc1CompSensor.Items3")})
+        resources.ApplyResources(Me.Foc1CompSensor, "Foc1CompSensor")
+        Me.Foc1CompSensor.Name = "Foc1CompSensor"
+        '
+        'Foc1MotorType
+        '
+        Me.Foc1MotorType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Foc1MotorType.FormattingEnabled = True
+        Me.Foc1MotorType.Items.AddRange(New Object() {resources.GetString("Foc1MotorType.Items"), resources.GetString("Foc1MotorType.Items1")})
+        resources.ApplyResources(Me.Foc1MotorType, "Foc1MotorType")
+        Me.Foc1MotorType.Name = "Foc1MotorType"
         '
         'Label43
         '
-        Me.Label43.AutoSize = True
-        Me.Label43.Location = New System.Drawing.Point(18, 272)
+        resources.ApplyResources(Me.Label43, "Label43")
         Me.Label43.Name = "Label43"
-        Me.Label43.Size = New System.Drawing.Size(108, 13)
-        Me.Label43.TabIndex = 28
-        Me.Label43.Text = "Compensation sensor"
         '
         'Label18
         '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(18, 170)
+        resources.ApplyResources(Me.Label18, "Label18")
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(57, 13)
-        Me.Label18.TabIndex = 28
-        Me.Label18.Text = "Motor type"
         '
         'Label39
         '
-        Me.Label39.AutoSize = True
-        Me.Label39.Location = New System.Drawing.Point(18, 247)
+        resources.ApplyResources(Me.Label39, "Label39")
         Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(120, 13)
-        Me.Label39.TabIndex = 28
-        Me.Label39.Text = "Compensation [steps/C]"
         '
         'Label31
         '
-        Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(18, 222)
+        resources.ApplyResources(Me.Label31, "Label31")
         Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(76, 13)
-        Me.Label31.TabIndex = 28
-        Me.Label31.Text = "Temp cycle [s]"
-        '
-        'Button5
-        '
-        Me.Button5.Location = New System.Drawing.Point(167, 58)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(53, 20)
-        Me.Button5.TabIndex = 27
-        Me.Button5.Text = "Set"
-        Me.Button5.UseVisualStyleBackColor = True
         '
         'Label22
         '
-        Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(18, 144)
+        resources.ApplyResources(Me.Label22, "Label22")
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(73, 13)
-        Me.Label22.TabIndex = 28
-        Me.Label22.Text = "Step size [um]"
         '
         'Label21
         '
-        Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(18, 119)
+        resources.ApplyResources(Me.Label21, "Label21")
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(69, 13)
-        Me.Label21.TabIndex = 28
-        Me.Label21.Text = "PWM run [%]"
         '
         'Label19
         '
-        Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(18, 94)
+        resources.ApplyResources(Me.Label19, "Label19")
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(74, 13)
-        Me.Label19.TabIndex = 28
-        Me.Label19.Text = "PWM stop [%]"
-        '
-        'Label30
-        '
-        Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(10, 34)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(79, 13)
-        Me.Label30.TabIndex = 28
-        Me.Label30.Text = "Primary focuser"
         '
         'Label11
         '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(18, 69)
+        resources.ApplyResources(Me.Label11, "Label11")
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(102, 13)
-        Me.Label11.TabIndex = 28
-        Me.Label11.Text = "Acceleration [pps/s]"
         '
         'Label29
         '
-        Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(18, 19)
+        resources.ApplyResources(Me.Label29, "Label29")
         Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(104, 13)
-        Me.Label29.TabIndex = 28
-        Me.Label29.Text = "Max focuser position"
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(18, 44)
+        resources.ApplyResources(Me.Label2, "Label2")
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(64, 13)
-        Me.Label2.TabIndex = 28
-        Me.Label2.Text = "Speed [pps]"
         '
-        'Button12
+        'MotorSetRestoreDefaultsButton
         '
-        Me.Button12.Location = New System.Drawing.Point(529, 295)
-        Me.Button12.Name = "Button12"
-        Me.Button12.Size = New System.Drawing.Size(99, 20)
-        Me.Button12.TabIndex = 27
-        Me.Button12.Text = "Restore defaults"
-        Me.Button12.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.MotorSetRestoreDefaultsButton, "MotorSetRestoreDefaultsButton")
+        Me.MotorSetRestoreDefaultsButton.Name = "MotorSetRestoreDefaultsButton"
+        Me.MotorSetRestoreDefaultsButton.UseVisualStyleBackColor = True
         '
-        'Button9
+        'MotorSetCancelButton
         '
-        Me.Button9.Location = New System.Drawing.Point(635, 295)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(53, 20)
-        Me.Button9.TabIndex = 27
-        Me.Button9.Text = "Cancel"
-        Me.Button9.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.MotorSetCancelButton, "MotorSetCancelButton")
+        Me.MotorSetCancelButton.Name = "MotorSetCancelButton"
+        Me.MotorSetCancelButton.UseVisualStyleBackColor = True
         '
-        'Button4
+        'MotorSetSaveButton
         '
-        Me.Button4.Location = New System.Drawing.Point(694, 295)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(53, 20)
-        Me.Button4.TabIndex = 27
-        Me.Button4.Text = "Save"
-        Me.Button4.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.MotorSetSaveButton, "MotorSetSaveButton")
+        Me.MotorSetSaveButton.Name = "MotorSetSaveButton"
+        Me.MotorSetSaveButton.UseVisualStyleBackColor = True
         '
-        'PictureBox2
+        'PWM_2_ComboBox
         '
-        Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
-        Me.PictureBox2.Location = New System.Drawing.Point(199, 268)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(48, 49)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 26
-        Me.PictureBox2.TabStop = False
+        Me.PWM_2_ComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "PWM_2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.PWM_2_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.PWM_2_ComboBox.FormattingEnabled = True
+        Me.PWM_2_ComboBox.Items.AddRange(New Object() {resources.GetString("PWM_2_ComboBox.Items"), resources.GetString("PWM_2_ComboBox.Items1"), resources.GetString("PWM_2_ComboBox.Items2"), resources.GetString("PWM_2_ComboBox.Items3"), resources.GetString("PWM_2_ComboBox.Items4"), resources.GetString("PWM_2_ComboBox.Items5"), resources.GetString("PWM_2_ComboBox.Items6"), resources.GetString("PWM_2_ComboBox.Items7"), resources.GetString("PWM_2_ComboBox.Items8"), resources.GetString("PWM_2_ComboBox.Items9"), resources.GetString("PWM_2_ComboBox.Items10"), resources.GetString("PWM_2_ComboBox.Items11"), resources.GetString("PWM_2_ComboBox.Items12")})
+        resources.ApplyResources(Me.PWM_2_ComboBox, "PWM_2_ComboBox")
+        Me.PWM_2_ComboBox.Name = "PWM_2_ComboBox"
+        Me.PWM_2_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_2
+        '
+        'PWM_3_ComboBox
+        '
+        Me.PWM_3_ComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "PWM_3", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.PWM_3_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.PWM_3_ComboBox.FormattingEnabled = True
+        Me.PWM_3_ComboBox.Items.AddRange(New Object() {resources.GetString("PWM_3_ComboBox.Items"), resources.GetString("PWM_3_ComboBox.Items1"), resources.GetString("PWM_3_ComboBox.Items2"), resources.GetString("PWM_3_ComboBox.Items3"), resources.GetString("PWM_3_ComboBox.Items4"), resources.GetString("PWM_3_ComboBox.Items5"), resources.GetString("PWM_3_ComboBox.Items6"), resources.GetString("PWM_3_ComboBox.Items7"), resources.GetString("PWM_3_ComboBox.Items8"), resources.GetString("PWM_3_ComboBox.Items9"), resources.GetString("PWM_3_ComboBox.Items10"), resources.GetString("PWM_3_ComboBox.Items11"), resources.GetString("PWM_3_ComboBox.Items12")})
+        resources.ApplyResources(Me.PWM_3_ComboBox, "PWM_3_ComboBox")
+        Me.PWM_3_ComboBox.Name = "PWM_3_ComboBox"
+        Me.PWM_3_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_3
+        '
+        'PWM_1_ComboBox
+        '
+        Me.PWM_1_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.PWM_1_ComboBox.FormattingEnabled = True
+        Me.PWM_1_ComboBox.Items.AddRange(New Object() {resources.GetString("PWM_1_ComboBox.Items"), resources.GetString("PWM_1_ComboBox.Items1"), resources.GetString("PWM_1_ComboBox.Items2"), resources.GetString("PWM_1_ComboBox.Items3"), resources.GetString("PWM_1_ComboBox.Items4"), resources.GetString("PWM_1_ComboBox.Items5"), resources.GetString("PWM_1_ComboBox.Items6"), resources.GetString("PWM_1_ComboBox.Items7"), resources.GetString("PWM_1_ComboBox.Items8"), resources.GetString("PWM_1_ComboBox.Items9"), resources.GetString("PWM_1_ComboBox.Items10"), resources.GetString("PWM_1_ComboBox.Items11"), resources.GetString("PWM_1_ComboBox.Items12")})
+        resources.ApplyResources(Me.PWM_1_ComboBox, "PWM_1_ComboBox")
+        Me.PWM_1_ComboBox.Name = "PWM_1_ComboBox"
+        Me.PWM_1_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_1
         '
         'DCmotor_PWM_ComboBox
         '
         Me.DCmotor_PWM_ComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.ASCOM.JoloFocuser.My.MySettings.Default, "DCmotorPWM", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.DCmotor_PWM_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.DCmotor_PWM_ComboBox.FormattingEnabled = True
-        Me.DCmotor_PWM_ComboBox.Items.AddRange(New Object() {"0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"})
-        Me.DCmotor_PWM_ComboBox.Location = New System.Drawing.Point(140, 51)
+        Me.DCmotor_PWM_ComboBox.Items.AddRange(New Object() {resources.GetString("DCmotor_PWM_ComboBox.Items"), resources.GetString("DCmotor_PWM_ComboBox.Items1"), resources.GetString("DCmotor_PWM_ComboBox.Items2"), resources.GetString("DCmotor_PWM_ComboBox.Items3"), resources.GetString("DCmotor_PWM_ComboBox.Items4"), resources.GetString("DCmotor_PWM_ComboBox.Items5"), resources.GetString("DCmotor_PWM_ComboBox.Items6"), resources.GetString("DCmotor_PWM_ComboBox.Items7"), resources.GetString("DCmotor_PWM_ComboBox.Items8"), resources.GetString("DCmotor_PWM_ComboBox.Items9"), resources.GetString("DCmotor_PWM_ComboBox.Items10")})
+        resources.ApplyResources(Me.DCmotor_PWM_ComboBox, "DCmotor_PWM_ComboBox")
         Me.DCmotor_PWM_ComboBox.Name = "DCmotor_PWM_ComboBox"
-        Me.DCmotor_PWM_ComboBox.Size = New System.Drawing.Size(60, 21)
-        Me.DCmotor_PWM_ComboBox.TabIndex = 34
         Me.DCmotor_PWM_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.DCmotorPWM
-        '
-        'DCmotorNumericUpDown
-        '
-        Me.DCmotorNumericUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.DCmotorNumericUpDown.Increment = New Decimal(New Integer() {10, 0, 0, 0})
-        Me.DCmotorNumericUpDown.Location = New System.Drawing.Point(117, 22)
-        Me.DCmotorNumericUpDown.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
-        Me.DCmotorNumericUpDown.Minimum = New Decimal(New Integer() {10, 0, 0, 0})
-        Me.DCmotorNumericUpDown.Name = "DCmotorNumericUpDown"
-        Me.DCmotorNumericUpDown.Size = New System.Drawing.Size(58, 20)
-        Me.DCmotorNumericUpDown.TabIndex = 19
-        Me.DCmotorNumericUpDown.UseWaitCursor = True
-        Me.DCmotorNumericUpDown.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
-        '
-        'PWM_4_ComboBox
-        '
-        Me.PWM_4_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.PWM_4_ComboBox.FormattingEnabled = True
-        Me.PWM_4_ComboBox.Items.AddRange(New Object() {"0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "Heater", "Cooler"})
-        Me.PWM_4_ComboBox.Location = New System.Drawing.Point(114, 120)
-        Me.PWM_4_ComboBox.Name = "PWM_4_ComboBox"
-        Me.PWM_4_ComboBox.Size = New System.Drawing.Size(83, 21)
-        Me.PWM_4_ComboBox.TabIndex = 51
-        Me.PWM_4_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_1
-        '
-        'PWM_2_ComboBox
-        '
-        Me.PWM_2_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.PWM_2_ComboBox.FormattingEnabled = True
-        Me.PWM_2_ComboBox.Items.AddRange(New Object() {"0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "Heater", "Cooler"})
-        Me.PWM_2_ComboBox.Location = New System.Drawing.Point(114, 56)
-        Me.PWM_2_ComboBox.Name = "PWM_2_ComboBox"
-        Me.PWM_2_ComboBox.Size = New System.Drawing.Size(83, 21)
-        Me.PWM_2_ComboBox.TabIndex = 51
-        Me.PWM_2_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_1
-        '
-        'PWM_3_ComboBox
-        '
-        Me.PWM_3_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.PWM_3_ComboBox.FormattingEnabled = True
-        Me.PWM_3_ComboBox.Items.AddRange(New Object() {"0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "Heater", "Cooler"})
-        Me.PWM_3_ComboBox.Location = New System.Drawing.Point(114, 88)
-        Me.PWM_3_ComboBox.Name = "PWM_3_ComboBox"
-        Me.PWM_3_ComboBox.Size = New System.Drawing.Size(83, 21)
-        Me.PWM_3_ComboBox.TabIndex = 51
-        Me.PWM_3_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_1
-        '
-        'PWM_1_ComboBox
-        '
-        Me.PWM_1_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.PWM_1_ComboBox.FormattingEnabled = True
-        Me.PWM_1_ComboBox.Items.AddRange(New Object() {"0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "Heater", "Cooler"})
-        Me.PWM_1_ComboBox.Location = New System.Drawing.Point(114, 23)
-        Me.PWM_1_ComboBox.Name = "PWM_1_ComboBox"
-        Me.PWM_1_ComboBox.Size = New System.Drawing.Size(83, 21)
-        Me.PWM_1_ComboBox.TabIndex = 51
-        Me.PWM_1_ComboBox.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_1
         '
         'RelPos2UpDown
         '
-        Me.RelPos2UpDown.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.RelPos2UpDown.Location = New System.Drawing.Point(139, 19)
+        Me.RelPos2UpDown.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        resources.ApplyResources(Me.RelPos2UpDown, "RelPos2UpDown")
         Me.RelPos2UpDown.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.RelPos2UpDown.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.RelPos2UpDown.Name = "RelPos2UpDown"
-        Me.RelPos2UpDown.Size = New System.Drawing.Size(58, 20)
-        Me.RelPos2UpDown.TabIndex = 19
-        Me.RelPos2UpDown.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
+        Me.RelPos2UpDown.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative2
         '
         'AbsPos2NumericUpDown
         '
         Me.AbsPos2NumericUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Maximum", Global.ASCOM.JoloFocuser.My.MySettings.Default, "FocuserMax", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.AbsPos2NumericUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorAbsolute", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.AbsPos2NumericUpDown.Location = New System.Drawing.Point(113, 47)
+        Me.AbsPos2NumericUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorAbsolute2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        resources.ApplyResources(Me.AbsPos2NumericUpDown, "AbsPos2NumericUpDown")
         Me.AbsPos2NumericUpDown.Maximum = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserMax
         Me.AbsPos2NumericUpDown.Name = "AbsPos2NumericUpDown"
-        Me.AbsPos2NumericUpDown.Size = New System.Drawing.Size(73, 20)
-        Me.AbsPos2NumericUpDown.TabIndex = 19
-        Me.AbsPos2NumericUpDown.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorAbsolute
+        Me.AbsPos2NumericUpDown.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorAbsolute2
         '
         'RelPosUpDown
         '
         Me.RelPosUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.RelPosUpDown.Location = New System.Drawing.Point(139, 19)
+        resources.ApplyResources(Me.RelPosUpDown, "RelPosUpDown")
         Me.RelPosUpDown.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.RelPosUpDown.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.RelPosUpDown.Name = "RelPosUpDown"
-        Me.RelPosUpDown.Size = New System.Drawing.Size(58, 20)
-        Me.RelPosUpDown.TabIndex = 19
         Me.RelPosUpDown.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
         '
         'AbsPosNumericUpDown
         '
         Me.AbsPosNumericUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Maximum", Global.ASCOM.JoloFocuser.My.MySettings.Default, "FocuserMax", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.AbsPosNumericUpDown.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorAbsolute", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.AbsPosNumericUpDown.Location = New System.Drawing.Point(113, 47)
+        resources.ApplyResources(Me.AbsPosNumericUpDown, "AbsPosNumericUpDown")
         Me.AbsPosNumericUpDown.Maximum = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserMax
         Me.AbsPosNumericUpDown.Name = "AbsPosNumericUpDown"
-        Me.AbsPosNumericUpDown.Size = New System.Drawing.Size(73, 20)
-        Me.AbsPosNumericUpDown.TabIndex = 19
         Me.AbsPosNumericUpDown.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorAbsolute
         '
         'SaveLogCheckBox
         '
-        Me.SaveLogCheckBox.AutoSize = True
+        resources.ApplyResources(Me.SaveLogCheckBox, "SaveLogCheckBox")
         Me.SaveLogCheckBox.Checked = Global.ASCOM.JoloFocuser.My.MySettings.Default.SaveLog
         Me.SaveLogCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.ASCOM.JoloFocuser.My.MySettings.Default, "SaveLog", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.SaveLogCheckBox.Location = New System.Drawing.Point(11, 300)
         Me.SaveLogCheckBox.Name = "SaveLogCheckBox"
-        Me.SaveLogCheckBox.Size = New System.Drawing.Size(96, 17)
-        Me.SaveLogCheckBox.TabIndex = 28
-        Me.SaveLogCheckBox.Text = "Save log to file"
         Me.SaveLogCheckBox.UseVisualStyleBackColor = True
         '
-        'ComboBox3
+        'CheckBox1
         '
-        Me.ComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Items.AddRange(New Object() {"OFF", "Sensor 1", "Sensor 2", "Sensor 3"})
-        Me.ComboBox3.Location = New System.Drawing.Point(145, 269)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(83, 21)
-        Me.ComboBox3.TabIndex = 52
-        Me.ComboBox3.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_1
+        resources.ApplyResources(Me.CheckBox1, "CheckBox1")
+        Me.CheckBox1.Checked = Global.ASCOM.JoloFocuser.My.MySettings.Default.BuzzerON
+        Me.CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox1.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.ASCOM.JoloFocuser.My.MySettings.Default, "BuzzerON", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.UseVisualStyleBackColor = True
         '
-        'ComboBox4
+        'Foc1SetPosition
         '
-        Me.ComboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox4.FormattingEnabled = True
-        Me.ComboBox4.Items.AddRange(New Object() {"bipolar", "unipolar"})
-        Me.ComboBox4.Location = New System.Drawing.Point(145, 167)
-        Me.ComboBox4.Name = "ComboBox4"
-        Me.ComboBox4.Size = New System.Drawing.Size(83, 21)
-        Me.ComboBox4.TabIndex = 52
-        Me.ComboBox4.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_1
+        Me.Foc1SetPosition.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        resources.ApplyResources(Me.Foc1SetPosition, "Foc1SetPosition")
+        Me.Foc1SetPosition.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
+        Me.Foc1SetPosition.Name = "Foc1SetPosition"
+        Me.Foc1SetPosition.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
         '
-        'NumericUpDown11
+        'DCMotorReversed
         '
-        Me.NumericUpDown11.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown11.Location = New System.Drawing.Point(170, 220)
-        Me.NumericUpDown11.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
-        Me.NumericUpDown11.Minimum = New Decimal(New Integer() {5, 0, 0, 0})
-        Me.NumericUpDown11.Name = "NumericUpDown11"
-        Me.NumericUpDown11.Size = New System.Drawing.Size(58, 20)
-        Me.NumericUpDown11.TabIndex = 31
-        Me.NumericUpDown11.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
+        resources.ApplyResources(Me.DCMotorReversed, "DCMotorReversed")
+        Me.DCMotorReversed.Checked = Global.ASCOM.JoloFocuser.My.MySettings.Default.DCmotorReversed
+        Me.DCMotorReversed.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.ASCOM.JoloFocuser.My.MySettings.Default, "DCmotorReversed", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.DCMotorReversed.Name = "DCMotorReversed"
+        Me.DCMotorReversed.UseVisualStyleBackColor = True
         '
-        'NumericUpDown12
+        'Foc2Reversed
         '
-        Me.NumericUpDown12.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown12.DecimalPlaces = 2
-        Me.NumericUpDown12.Location = New System.Drawing.Point(170, 142)
-        Me.NumericUpDown12.Name = "NumericUpDown12"
-        Me.NumericUpDown12.Size = New System.Drawing.Size(58, 20)
-        Me.NumericUpDown12.TabIndex = 31
-        Me.NumericUpDown12.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
+        resources.ApplyResources(Me.Foc2Reversed, "Foc2Reversed")
+        Me.Foc2Reversed.Checked = Global.ASCOM.JoloFocuser.My.MySettings.Default.Reversed2
+        Me.Foc2Reversed.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.ASCOM.JoloFocuser.My.MySettings.Default, "Reversed2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.Foc2Reversed.Name = "Foc2Reversed"
+        Me.Foc2Reversed.UseVisualStyleBackColor = True
         '
-        'NumericUpDown13
+        'Foc2MotorType
         '
-        Me.NumericUpDown13.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown13.Location = New System.Drawing.Point(170, 117)
-        Me.NumericUpDown13.Name = "NumericUpDown13"
-        Me.NumericUpDown13.Size = New System.Drawing.Size(58, 20)
-        Me.NumericUpDown13.TabIndex = 31
-        Me.NumericUpDown13.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
+        Me.Foc2MotorType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Foc2MotorType.FormattingEnabled = True
+        Me.Foc2MotorType.Items.AddRange(New Object() {resources.GetString("Foc2MotorType.Items"), resources.GetString("Foc2MotorType.Items1")})
+        resources.ApplyResources(Me.Foc2MotorType, "Foc2MotorType")
+        Me.Foc2MotorType.Name = "Foc2MotorType"
+        Me.Foc2MotorType.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_1
         '
-        'NumericUpDown15
+        'Foc2Compensation
         '
-        Me.NumericUpDown15.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown15.Location = New System.Drawing.Point(170, 67)
-        Me.NumericUpDown15.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
-        Me.NumericUpDown15.Minimum = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.NumericUpDown15.Name = "NumericUpDown15"
-        Me.NumericUpDown15.Size = New System.Drawing.Size(58, 20)
-        Me.NumericUpDown15.TabIndex = 31
-        Me.NumericUpDown15.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
+        Me.Foc2Compensation.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "StepsPerC2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.Foc2Compensation.DecimalPlaces = 2
+        resources.ApplyResources(Me.Foc2Compensation, "Foc2Compensation")
+        Me.Foc2Compensation.Name = "Foc2Compensation"
+        Me.Foc2Compensation.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.StepsPerC2
         '
-        'NumericUpDown17
+        'Foc2TempCycle
         '
-        Me.NumericUpDown17.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown17.Location = New System.Drawing.Point(139, 17)
-        Me.NumericUpDown17.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
-        Me.NumericUpDown17.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.NumericUpDown17.Name = "NumericUpDown17"
-        Me.NumericUpDown17.Size = New System.Drawing.Size(89, 20)
-        Me.NumericUpDown17.TabIndex = 31
-        Me.NumericUpDown17.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
+        Me.Foc2TempCycle.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "TempCycle2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        resources.ApplyResources(Me.Foc2TempCycle, "Foc2TempCycle")
+        Me.Foc2TempCycle.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
+        Me.Foc2TempCycle.Minimum = New Decimal(New Integer() {5, 0, 0, 0})
+        Me.Foc2TempCycle.Name = "Foc2TempCycle"
+        Me.Foc2TempCycle.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.TempCycle2
         '
-        'NumericUpDown18
+        'Foc2StepSize
         '
-        Me.NumericUpDown18.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown18.Location = New System.Drawing.Point(170, 42)
-        Me.NumericUpDown18.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
-        Me.NumericUpDown18.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.NumericUpDown18.Name = "NumericUpDown18"
-        Me.NumericUpDown18.Size = New System.Drawing.Size(58, 20)
-        Me.NumericUpDown18.TabIndex = 31
-        Me.NumericUpDown18.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
+        Me.Foc2StepSize.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "StepSize2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.Foc2StepSize.DecimalPlaces = 2
+        resources.ApplyResources(Me.Foc2StepSize, "Foc2StepSize")
+        Me.Foc2StepSize.Name = "Foc2StepSize"
+        Me.Foc2StepSize.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.StepSize2
         '
-        'ComboBox2
+        'Foc2PWMRun
         '
-        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Items.AddRange(New Object() {"OFF", "Sensor 1", "Sensor 2", "Sensor 3"})
-        Me.ComboBox2.Location = New System.Drawing.Point(145, 269)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(83, 21)
-        Me.ComboBox2.TabIndex = 52
-        Me.ComboBox2.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_1
+        Me.Foc2PWMRun.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "DutyCycleRun2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        resources.ApplyResources(Me.Foc2PWMRun, "Foc2PWMRun")
+        Me.Foc2PWMRun.Name = "Foc2PWMRun"
+        Me.Foc2PWMRun.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.DutyCycleRun2
         '
-        'ComboBox1
+        'Foc2PWMStop
         '
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"bipolar", "unipolar"})
-        Me.ComboBox1.Location = New System.Drawing.Point(145, 167)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(83, 21)
-        Me.ComboBox1.TabIndex = 52
-        Me.ComboBox1.Text = Global.ASCOM.JoloFocuser.My.MySettings.Default.PWM_1
+        Me.Foc2PWMStop.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "DutyCycle2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        resources.ApplyResources(Me.Foc2PWMStop, "Foc2PWMStop")
+        Me.Foc2PWMStop.Name = "Foc2PWMStop"
+        Me.Foc2PWMStop.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.DutyCycle2
         '
-        'NumericUpDown9
+        'Foc2Acc
         '
-        Me.NumericUpDown9.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown9.DecimalPlaces = 2
-        Me.NumericUpDown9.Location = New System.Drawing.Point(170, 245)
-        Me.NumericUpDown9.Name = "NumericUpDown9"
-        Me.NumericUpDown9.Size = New System.Drawing.Size(58, 20)
-        Me.NumericUpDown9.TabIndex = 31
-        Me.NumericUpDown9.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
+        Me.Foc2Acc.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "AccASCOM2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        resources.ApplyResources(Me.Foc2Acc, "Foc2Acc")
+        Me.Foc2Acc.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
+        Me.Foc2Acc.Minimum = New Decimal(New Integer() {100, 0, 0, 0})
+        Me.Foc2Acc.Name = "Foc2Acc"
+        Me.Foc2Acc.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.AccASCOM2
         '
-        'NumericUpDown8
+        'Foc2MaxPosition
         '
-        Me.NumericUpDown8.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown8.Location = New System.Drawing.Point(170, 220)
-        Me.NumericUpDown8.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
-        Me.NumericUpDown8.Minimum = New Decimal(New Integer() {5, 0, 0, 0})
-        Me.NumericUpDown8.Name = "NumericUpDown8"
-        Me.NumericUpDown8.Size = New System.Drawing.Size(58, 20)
-        Me.NumericUpDown8.TabIndex = 31
-        Me.NumericUpDown8.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
+        Me.Foc2MaxPosition.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "FocuserMax2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        resources.ApplyResources(Me.Foc2MaxPosition, "Foc2MaxPosition")
+        Me.Foc2MaxPosition.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
+        Me.Foc2MaxPosition.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.Foc2MaxPosition.Name = "Foc2MaxPosition"
+        Me.Foc2MaxPosition.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserMax2
         '
-        'NumericUpDown5
+        'Foc2Speed
         '
-        Me.NumericUpDown5.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown5.DecimalPlaces = 2
-        Me.NumericUpDown5.Location = New System.Drawing.Point(170, 142)
-        Me.NumericUpDown5.Name = "NumericUpDown5"
-        Me.NumericUpDown5.Size = New System.Drawing.Size(58, 20)
-        Me.NumericUpDown5.TabIndex = 31
-        Me.NumericUpDown5.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
+        Me.Foc2Speed.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "StepperRPM2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        resources.ApplyResources(Me.Foc2Speed, "Foc2Speed")
+        Me.Foc2Speed.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.Foc2Speed.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.Foc2Speed.Name = "Foc2Speed"
+        Me.Foc2Speed.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.StepperRPM2
         '
-        'NumericUpDown4
+        'Foc1Reversed
         '
-        Me.NumericUpDown4.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown4.Location = New System.Drawing.Point(170, 117)
-        Me.NumericUpDown4.Name = "NumericUpDown4"
-        Me.NumericUpDown4.Size = New System.Drawing.Size(58, 20)
-        Me.NumericUpDown4.TabIndex = 31
-        Me.NumericUpDown4.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
+        resources.ApplyResources(Me.Foc1Reversed, "Foc1Reversed")
+        Me.Foc1Reversed.Checked = Global.ASCOM.JoloFocuser.My.MySettings.Default.Reversed
+        Me.Foc1Reversed.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.ASCOM.JoloFocuser.My.MySettings.Default, "Reversed", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.Foc1Reversed.Name = "Foc1Reversed"
+        Me.Foc1Reversed.UseVisualStyleBackColor = True
         '
-        'NumericUpDown3
+        'Foc1Compensation
         '
-        Me.NumericUpDown3.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown3.Location = New System.Drawing.Point(170, 92)
-        Me.NumericUpDown3.Name = "NumericUpDown3"
-        Me.NumericUpDown3.Size = New System.Drawing.Size(58, 20)
-        Me.NumericUpDown3.TabIndex = 31
-        Me.NumericUpDown3.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
+        Me.Foc1Compensation.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "StepsPerC", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.Foc1Compensation.DecimalPlaces = 2
+        resources.ApplyResources(Me.Foc1Compensation, "Foc1Compensation")
+        Me.Foc1Compensation.Name = "Foc1Compensation"
+        Me.Foc1Compensation.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.StepsPerC
         '
-        'NumericUpDown2
+        'Foc1TempCycle
         '
-        Me.NumericUpDown2.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown2.Location = New System.Drawing.Point(170, 67)
-        Me.NumericUpDown2.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
-        Me.NumericUpDown2.Minimum = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.NumericUpDown2.Name = "NumericUpDown2"
-        Me.NumericUpDown2.Size = New System.Drawing.Size(58, 20)
-        Me.NumericUpDown2.TabIndex = 31
-        Me.NumericUpDown2.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
+        Me.Foc1TempCycle.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "TempCycle", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        resources.ApplyResources(Me.Foc1TempCycle, "Foc1TempCycle")
+        Me.Foc1TempCycle.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
+        Me.Foc1TempCycle.Minimum = New Decimal(New Integer() {5, 0, 0, 0})
+        Me.Foc1TempCycle.Name = "Foc1TempCycle"
+        Me.Foc1TempCycle.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.TempCycle
         '
-        'NumericUpDown7
+        'Foc1StepSize
         '
-        Me.NumericUpDown7.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown7.Location = New System.Drawing.Point(131, 32)
-        Me.NumericUpDown7.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
-        Me.NumericUpDown7.Name = "NumericUpDown7"
-        Me.NumericUpDown7.Size = New System.Drawing.Size(89, 20)
-        Me.NumericUpDown7.TabIndex = 31
-        Me.NumericUpDown7.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
+        Me.Foc1StepSize.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "StepSize", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.Foc1StepSize.DecimalPlaces = 2
+        resources.ApplyResources(Me.Foc1StepSize, "Foc1StepSize")
+        Me.Foc1StepSize.Name = "Foc1StepSize"
+        Me.Foc1StepSize.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.StepSize
         '
-        'NumericUpDown6
+        'Foc1PWMRun
         '
-        Me.NumericUpDown6.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown6.Location = New System.Drawing.Point(139, 17)
-        Me.NumericUpDown6.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
-        Me.NumericUpDown6.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.NumericUpDown6.Name = "NumericUpDown6"
-        Me.NumericUpDown6.Size = New System.Drawing.Size(89, 20)
-        Me.NumericUpDown6.TabIndex = 31
-        Me.NumericUpDown6.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
+        Me.Foc1PWMRun.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "DutyCycleRun", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        resources.ApplyResources(Me.Foc1PWMRun, "Foc1PWMRun")
+        Me.Foc1PWMRun.Name = "Foc1PWMRun"
+        Me.Foc1PWMRun.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.DutyCycleRun
         '
-        'NumericUpDown1
+        'Foc1PWMStop
         '
-        Me.NumericUpDown1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "MonitorRelative", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown1.Location = New System.Drawing.Point(170, 42)
-        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
-        Me.NumericUpDown1.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Size = New System.Drawing.Size(58, 20)
-        Me.NumericUpDown1.TabIndex = 31
-        Me.NumericUpDown1.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.MonitorRelative
+        Me.Foc1PWMStop.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "DutyCycle", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        resources.ApplyResources(Me.Foc1PWMStop, "Foc1PWMStop")
+        Me.Foc1PWMStop.Name = "Foc1PWMStop"
+        Me.Foc1PWMStop.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.DutyCycle
         '
-        'GroupBox11
+        'Foc1Acc
         '
-        Me.GroupBox11.Controls.Add(Me.NumericUpDown7)
-        Me.GroupBox11.Controls.Add(Me.Label30)
-        Me.GroupBox11.Controls.Add(Me.Button5)
-        Me.GroupBox11.Controls.Add(Me.Button13)
-        Me.GroupBox11.Controls.Add(Me.Label60)
-        Me.GroupBox11.Controls.Add(Me.NumericUpDown16)
-        Me.GroupBox11.Location = New System.Drawing.Point(522, 95)
-        Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(228, 172)
-        Me.GroupBox11.TabIndex = 31
-        Me.GroupBox11.TabStop = False
-        Me.GroupBox11.Text = "Set focuser position"
+        Me.Foc1Acc.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "AccASCOM", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        resources.ApplyResources(Me.Foc1Acc, "Foc1Acc")
+        Me.Foc1Acc.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
+        Me.Foc1Acc.Minimum = New Decimal(New Integer() {100, 0, 0, 0})
+        Me.Foc1Acc.Name = "Foc1Acc"
+        Me.Foc1Acc.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.AccASCOM
         '
-        'TabPage3
+        'Foc1MaxPosition
         '
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(767, 328)
-        Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "Other settings"
-        Me.TabPage3.UseVisualStyleBackColor = True
+        Me.Foc1MaxPosition.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "FocuserMax", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        resources.ApplyResources(Me.Foc1MaxPosition, "Foc1MaxPosition")
+        Me.Foc1MaxPosition.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
+        Me.Foc1MaxPosition.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.Foc1MaxPosition.Name = "Foc1MaxPosition"
+        Me.Foc1MaxPosition.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.FocuserMax
+        '
+        'Foc1Speed
+        '
+        Me.Foc1Speed.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.ASCOM.JoloFocuser.My.MySettings.Default, "StepperRPM", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        resources.ApplyResources(Me.Foc1Speed, "Foc1Speed")
+        Me.Foc1Speed.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.Foc1Speed.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.Foc1Speed.Name = "Foc1Speed"
+        Me.Foc1Speed.Value = Global.ASCOM.JoloFocuser.My.MySettings.Default.StepperRPM
         '
         'MonitorForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(780, 361)
         Me.Controls.Add(Me.TabControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.Name = "MonitorForm"
-        Me.Text = "Jolo Focuser Monitor"
         Me.TopMost = True
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox5.PerformLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.DCmotorNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
@@ -1925,45 +1375,42 @@ Partial Class MonitorForm
         Me.GroupBox2.PerformLayout()
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout()
-        Me.GroupBox5.ResumeLayout(False)
-        Me.GroupBox5.PerformLayout()
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout()
         Me.GroupBoxFoc1.ResumeLayout(False)
         Me.GroupBoxFoc1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
+        Me.TabPage2.PerformLayout()
+        Me.GroupBox11.ResumeLayout(False)
+        Me.GroupBox11.PerformLayout()
+        CType(Me.Foc2SetPosition, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox10.ResumeLayout(False)
         Me.GroupBox10.PerformLayout()
         Me.GroupBox9.ResumeLayout(False)
         Me.GroupBox9.PerformLayout()
-        CType(Me.NumericUpDown10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown14, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown16, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox8.ResumeLayout(False)
         Me.GroupBox8.PerformLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DCmotorNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RelPos2UpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AbsPos2NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RelPosUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AbsPosNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown11, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown12, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown13, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown15, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown17, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown18, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox11.ResumeLayout(False)
-        Me.GroupBox11.PerformLayout()
+        CType(Me.Foc1SetPosition, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Foc2Compensation, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Foc2TempCycle, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Foc2StepSize, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Foc2PWMRun, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Foc2PWMStop, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Foc2Acc, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Foc2MaxPosition, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Foc2Speed, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Foc1Compensation, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Foc1TempCycle, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Foc1StepSize, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Foc1PWMRun, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Foc1PWMStop, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Foc1Acc, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Foc1MaxPosition, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Foc1Speed, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1983,10 +1430,10 @@ Partial Class MonitorForm
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents PositionSteps As System.Windows.Forms.Label
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
-    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents Foc1MinusButton As System.Windows.Forms.Button
     Friend WithEvents RelPosUpDown As System.Windows.Forms.NumericUpDown
-    Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents Foc1GoButton As System.Windows.Forms.Button
+    Friend WithEvents Foc1PlusButton As System.Windows.Forms.Button
     Friend WithEvents AbsPosNumericUpDown As System.Windows.Forms.NumericUpDown
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
     Friend WithEvents StopButton As System.Windows.Forms.Button
@@ -1996,8 +1443,8 @@ Partial Class MonitorForm
     Friend WithEvents DCmotor_PWM_ComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents DCmotorStopButton As System.Windows.Forms.Button
     Friend WithEvents DCmotorNumericUpDown As System.Windows.Forms.NumericUpDown
-    Friend WithEvents Button10 As System.Windows.Forms.Button
-    Friend WithEvents Button11 As System.Windows.Forms.Button
+    Friend WithEvents DCPlusButton As System.Windows.Forms.Button
+    Friend WithEvents DCMinusButton As System.Windows.Forms.Button
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label15 As System.Windows.Forms.Label
@@ -2040,11 +1487,11 @@ Partial Class MonitorForm
     Friend WithEvents Stop2Button As System.Windows.Forms.Button
     Friend WithEvents Position2MM As System.Windows.Forms.Label
     Friend WithEvents Label16 As System.Windows.Forms.Label
-    Friend WithEvents Button6 As System.Windows.Forms.Button
+    Friend WithEvents Foc2GoB As System.Windows.Forms.Button
     Friend WithEvents RelPos2UpDown As System.Windows.Forms.NumericUpDown
-    Friend WithEvents Button7 As System.Windows.Forms.Button
+    Friend WithEvents Foc2PlusButton As System.Windows.Forms.Button
     Friend WithEvents AbsPos2NumericUpDown As System.Windows.Forms.NumericUpDown
-    Friend WithEvents Button8 As System.Windows.Forms.Button
+    Friend WithEvents Foc2MinusButton As System.Windows.Forms.Button
     Friend WithEvents Label50 As System.Windows.Forms.Label
     Friend WithEvents Label47 As System.Windows.Forms.Label
     Friend WithEvents Itot As System.Windows.Forms.Label
@@ -2064,60 +1511,61 @@ Partial Class MonitorForm
     Friend WithEvents Label56 As System.Windows.Forms.Label
     Friend WithEvents Label52 As System.Windows.Forms.Label
     Friend WithEvents GroupBox8 As System.Windows.Forms.GroupBox
-    Friend WithEvents Button4 As System.Windows.Forms.Button
-    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
-    Friend WithEvents NumericUpDown4 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents NumericUpDown3 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents NumericUpDown2 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents MotorSetSaveButton As System.Windows.Forms.Button
+    Friend WithEvents Foc1MotorType As System.Windows.Forms.ComboBox
+    Friend WithEvents Foc1PWMRun As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Foc1PWMStop As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Foc1Acc As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label21 As System.Windows.Forms.Label
-    Friend WithEvents NumericUpDown1 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Foc1Speed As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents NumericUpDown5 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Foc1StepSize As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label22 As System.Windows.Forms.Label
-    Friend WithEvents NumericUpDown7 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents NumericUpDown6 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Foc1SetPosition As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Foc1MaxPosition As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label30 As System.Windows.Forms.Label
     Friend WithEvents Label29 As System.Windows.Forms.Label
-    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
-    Friend WithEvents NumericUpDown9 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents NumericUpDown8 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Foc1Reversed As System.Windows.Forms.CheckBox
+    Friend WithEvents Foc1Compensation As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Foc1TempCycle As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label39 As System.Windows.Forms.Label
     Friend WithEvents Label31 As System.Windows.Forms.Label
-    Friend WithEvents Button5 As System.Windows.Forms.Button
-    Friend WithEvents ComboBox2 As System.Windows.Forms.ComboBox
+    Friend WithEvents Foc1SetPosButton As System.Windows.Forms.Button
+    Friend WithEvents Foc1CompSensor As System.Windows.Forms.ComboBox
     Friend WithEvents Label43 As System.Windows.Forms.Label
     Friend WithEvents GroupBox10 As System.Windows.Forms.GroupBox
-    Friend WithEvents CheckBox3 As System.Windows.Forms.CheckBox
+    Friend WithEvents DCMotorReversed As System.Windows.Forms.CheckBox
     Friend WithEvents GroupBox9 As System.Windows.Forms.GroupBox
-    Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
-    Friend WithEvents ComboBox3 As System.Windows.Forms.ComboBox
-    Friend WithEvents ComboBox4 As System.Windows.Forms.ComboBox
-    Friend WithEvents NumericUpDown10 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents NumericUpDown11 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents NumericUpDown12 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Foc2Reversed As System.Windows.Forms.CheckBox
+    Friend WithEvents Foc2CompSensor As System.Windows.Forms.ComboBox
+    Friend WithEvents Foc2MotorType As System.Windows.Forms.ComboBox
+    Friend WithEvents Foc2Compensation As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Foc2TempCycle As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Foc2StepSize As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label45 As System.Windows.Forms.Label
-    Friend WithEvents NumericUpDown13 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Foc2PWMRun As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label46 As System.Windows.Forms.Label
     Friend WithEvents Label49 As System.Windows.Forms.Label
-    Friend WithEvents NumericUpDown14 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Foc2PWMStop As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label53 As System.Windows.Forms.Label
-    Friend WithEvents Button13 As System.Windows.Forms.Button
+    Friend WithEvents Foc2SetPosButton As System.Windows.Forms.Button
     Friend WithEvents Label57 As System.Windows.Forms.Label
-    Friend WithEvents NumericUpDown15 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Foc2Acc As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label58 As System.Windows.Forms.Label
-    Friend WithEvents NumericUpDown16 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents NumericUpDown17 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents NumericUpDown18 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Foc2SetPosition As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Foc2MaxPosition As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Foc2Speed As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label59 As System.Windows.Forms.Label
     Friend WithEvents Label60 As System.Windows.Forms.Label
     Friend WithEvents Label61 As System.Windows.Forms.Label
     Friend WithEvents Label62 As System.Windows.Forms.Label
     Friend WithEvents Label63 As System.Windows.Forms.Label
-    Friend WithEvents Button12 As System.Windows.Forms.Button
-    Friend WithEvents Button9 As System.Windows.Forms.Button
+    Friend WithEvents MotorSetRestoreDefaultsButton As System.Windows.Forms.Button
+    Friend WithEvents MotorSetCancelButton As System.Windows.Forms.Button
     Friend WithEvents GroupBox11 As System.Windows.Forms.GroupBox
-    Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
 End Class

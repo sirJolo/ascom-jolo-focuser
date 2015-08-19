@@ -12,7 +12,6 @@
     Delegate Sub SetPWM1Callback(ByVal PWM As String)
     Delegate Sub SetPWM2Callback(ByVal PWM As String)
     Delegate Sub SetPWM3Callback(ByVal PWM As String)
-    Delegate Sub SetADCCallback(ByVal PWM As String)
 
     Public Sub New()
 
@@ -50,12 +49,6 @@
         SetPWM1(values(6))
         SetPWM2(values(7))
         SetPWM3(values(8))
-
-        If My.Settings.ADC_Read Then
-            SetADC(values(9))
-        Else
-            SetADC("0")
-        End If
 
         logCounter += 1
         If (logCounter > 19) Then
@@ -162,15 +155,6 @@
         End If
     End Sub
 
-    Private Sub SetADC(ByVal adc As String)
-        If Me.ADCLabel.InvokeRequired Then
-            Dim d As New SetADCCallback(AddressOf SetADC)
-            Me.Invoke(d, New Object() {adc})
-        Else
-            Me.ADCLabel.Text = calculateADCvalue(adc)
-        End If
-    End Sub
-
     Public Property running() As Boolean
         Get
             Return monitorTimer.Enabled
@@ -188,14 +172,7 @@
     End Property
 
 
-    Function calculateADCvalue(ByVal adcRaw As String) As String
-        Dim adc As String = ""
-        Dim rescaled As Double = Integer.Parse(adcRaw) * Double.Parse(My.Settings.ADC_A, System.Globalization.CultureInfo.InvariantCulture.NumberFormat) + Double.Parse(My.Settings.ADC_B, System.Globalization.CultureInfo.InvariantCulture.NumberFormat)
-        adc = adc + FormatNumber(rescaled, 2) + My.Settings.ADC_suffix
-        Return adc
-    End Function
-
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click, Button8.Click
+    Private Sub Foc1MinusButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Foc1MinusButton.Click
         If JOLOfocuser Is Nothing Then Return
         If isMoving Then Return
         Dim position As Integer = JOLOfocuser.Position
@@ -203,7 +180,7 @@
         JOLOfocuser.Move(position)
     End Sub
 
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click, Button7.Click
+    Private Sub Foc1PlusButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Foc1PlusButton.Click
         If JOLOfocuser Is Nothing Then Return
         If isMoving Then Return
         Dim position As Integer = JOLOfocuser.Position
@@ -211,49 +188,51 @@
         JOLOfocuser.Move(position)
     End Sub
 
-    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click, Button6.Click
+    Private Sub Foc1GoButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Foc1GoButton.Click
         If isMoving Then Return
         JOLOfocuser.Move(AbsPosNumericUpDown.Value)
     End Sub
 
-    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Using F As ADCSetupForm = New ADCSetupForm()
-            Dim result As System.Windows.Forms.DialogResult = F.ShowDialog()
-            If result = DialogResult.OK Then
-                My.Settings.Save()
-            End If
-        End Using
-    End Sub
 
-    Private Sub ADC_CheckBox_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        My.Settings.Save()
-        ADCLabel.Enabled = ADC_CheckBox.Checked
-    End Sub
-
-
-    Private Sub PWM_1_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        My.Settings.Save()
-        Dim pwm As String = PWM_1_ComboBox.Text
-        If pwm = "AUTO" Then pwm = "255"
-        If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:1:" + pwm)
-    End Sub
-
-    Private Sub PWM_2_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        My.Settings.Save()
-        Dim pwm As String = PWM_2_ComboBox.Text
-        If pwm = "AUTO" Then pwm = "255"
-        If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:2:" + pwm)
-    End Sub
-
-    Private Sub PWM_3_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        My.Settings.Save()
-        Dim pwm As String = PWM_3_ComboBox.Text
-        If pwm = "AUTO" Then pwm = "255"
-        If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:3:" + pwm)
-    End Sub
-
-    Private Sub StopButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StopButton.Click, Stop2Button.Click
+    Private Sub StopButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StopButton.Click
         If Not JOLOfocuser Is Nothing Then JOLOfocuser.Halt()
     End Sub
 
+
+    Private Sub PWM_1_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PWM_1_ComboBox.SelectedIndexChanged
+        My.Settings.PWM_1 = PWM_1_ComboBox.SelectedIndex
+        My.Settings.Save()
+        Dim pwm As String = getPWMFromCombo(PWM_1_ComboBox.SelectedIndex)
+        If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:1:" + pwm)
+    End Sub
+
+    Private Sub PWM_2_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PWM_2_ComboBox.SelectedIndexChanged
+        My.Settings.PWM_2 = PWM_2_ComboBox.SelectedIndex
+        My.Settings.Save()
+        Dim pwm As String = getPWMFromCombo(PWM_2_ComboBox.SelectedIndex)
+        If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:2:" + pwm)
+    End Sub
+
+    Private Sub PWM_3_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PWM_3_ComboBox.SelectedIndexChanged
+        My.Settings.PWM_3 = PWM_3_ComboBox.SelectedIndex
+        My.Settings.Save()
+        Dim pwm As String = getPWMFromCombo(PWM_3_ComboBox.SelectedIndex)
+        If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:3:" + pwm)
+    End Sub
+
+    Private Sub PWM_4_ComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PWM_4_ComboBox.SelectedIndexChanged
+        My.Settings.PWM_4 = PWM_4_ComboBox.SelectedIndex
+        My.Settings.Save()
+        Dim pwm As String = getPWMFromCombo(PWM_4_ComboBox.SelectedIndex)
+        If Not JOLOfocuser Is Nothing Then JOLOfocuser.CommandString("B:4:" + pwm)
+    End Sub
+
+    Function getPWMFromCombo(ByVal index As Integer) As String
+        If index <= 10 Then
+            Return (10 * 10).ToString
+        End If
+        If index = 11 Then Return "255"
+        If index = 12 Then Return "254"
+        Return "0"
+    End Function
 End Class

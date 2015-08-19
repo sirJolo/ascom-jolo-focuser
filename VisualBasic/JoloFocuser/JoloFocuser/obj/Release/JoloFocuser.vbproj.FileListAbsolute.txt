@@ -29,4 +29,7 @@ D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Rel
 D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Release\JoloFocuser.dll
 D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Release\JoloFocuser.pdb
 D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Release\ASCOM.JoloFocuser.MonitorForm.resources
-D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Release\ASCOM.JoloFocuser.ADCSetupForm.resources
+D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Release\ASCOM.JoloFocuser.MonitorForm.pl-PL.resources
+D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\bin\Release\pl-PL\JoloFocuser.resources.dll
+D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Release\pl-PL\JoloFocuser.resources.dll
+D:\BEKAP\Projects\ascom-jolo-focuser\VisualBasic\JoloFocuser\JoloFocuser\obj\Release\ASCOM.JoloFocuser.SetupDialogForm.pl-PL.resources

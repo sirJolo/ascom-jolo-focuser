@@ -236,66 +236,6 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property ADC_Read() As Boolean
-            Get
-                Return CType(Me("ADC_Read"),Boolean)
-            End Get
-            Set
-                Me("ADC_Read") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("1")>  _
-        Public Property ADC_A() As String
-            Get
-                Return CType(Me("ADC_A"),String)
-            End Get
-            Set
-                Me("ADC_A") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
-        Public Property ADC_B() As String
-            Get
-                Return CType(Me("ADC_B"),String)
-            End Get
-            Set
-                Me("ADC_B") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property ADC_suffix() As String
-            Get
-                Return CType(Me("ADC_suffix"),String)
-            End Get
-            Set
-                Me("ADC_suffix") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
-        Public Property MonitorRelative() As Decimal
-            Get
-                Return CType(Me("MonitorRelative"),Decimal)
-            End Get
-            Set
-                Me("MonitorRelative") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
         Public Property MonitorAbsolute() As Decimal
             Get
@@ -327,6 +267,246 @@ Namespace My
             End Get
             Set
                 Me("DCmotorPWM") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("10000")>  _
+        Public Property FocuserMax2() As Decimal
+            Get
+                Return CType(Me("FocuserMax2"),Decimal)
+            End Get
+            Set
+                Me("FocuserMax2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("20")>  _
+        Public Property TempCycle2() As Decimal
+            Get
+                Return CType(Me("TempCycle2"),Decimal)
+            End Get
+            Set
+                Me("TempCycle2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property StepsPerC2() As Decimal
+            Get
+                Return CType(Me("StepsPerC2"),Decimal)
+            End Get
+            Set
+                Me("StepsPerC2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property DutyCycle2() As Decimal
+            Get
+                Return CType(Me("DutyCycle2"),Decimal)
+            End Get
+            Set
+                Me("DutyCycle2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property StepSize2() As Decimal
+            Get
+                Return CType(Me("StepSize2"),Decimal)
+            End Get
+            Set
+                Me("StepSize2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("100")>  _
+        Public Property DutyCycleRun2() As Decimal
+            Get
+                Return CType(Me("DutyCycleRun2"),Decimal)
+            End Get
+            Set
+                Me("DutyCycleRun2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1500")>  _
+        Public Property AccASCOM2() As Decimal
+            Get
+                Return CType(Me("AccASCOM2"),Decimal)
+            End Get
+            Set
+                Me("AccASCOM2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property PWM_4() As String
+            Get
+                Return CType(Me("PWM_4"),String)
+            End Get
+            Set
+                Me("PWM_4") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
+        Public Property StepperRPM2() As Decimal
+            Get
+                Return CType(Me("StepperRPM2"),Decimal)
+            End Get
+            Set
+                Me("StepperRPM2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property MotorType() As Integer
+            Get
+                Return CType(Me("MotorType"),Integer)
+            End Get
+            Set
+                Me("MotorType") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property MotorType2() As Integer
+            Get
+                Return CType(Me("MotorType2"),Integer)
+            End Get
+            Set
+                Me("MotorType2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property Reversed() As Boolean
+            Get
+                Return CType(Me("Reversed"),Boolean)
+            End Get
+            Set
+                Me("Reversed") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property Reversed2() As Boolean
+            Get
+                Return CType(Me("Reversed2"),Boolean)
+            End Get
+            Set
+                Me("Reversed2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property CompSensor() As Integer
+            Get
+                Return CType(Me("CompSensor"),Integer)
+            End Get
+            Set
+                Me("CompSensor") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property CompSensor2() As Integer
+            Get
+                Return CType(Me("CompSensor2"),Integer)
+            End Get
+            Set
+                Me("CompSensor2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property DCmotorReversed() As Boolean
+            Get
+                Return CType(Me("DCmotorReversed"),Boolean)
+            End Get
+            Set
+                Me("DCmotorReversed") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1")>  _
+        Public Property MonitorRelative() As Decimal
+            Get
+                Return CType(Me("MonitorRelative"),Decimal)
+            End Get
+            Set
+                Me("MonitorRelative") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1")>  _
+        Public Property MonitorRelative2() As Decimal
+            Get
+                Return CType(Me("MonitorRelative2"),Decimal)
+            End Get
+            Set
+                Me("MonitorRelative2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property MonitorAbsolute2() As Decimal
+            Get
+                Return CType(Me("MonitorAbsolute2"),Decimal)
+            End Get
+            Set
+                Me("MonitorAbsolute2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("100")>  _
+        Public Property MonitorDCRelative() As Decimal
+            Get
+                Return CType(Me("MonitorDCRelative"),Decimal)
+            End Get
+            Set
+                Me("MonitorDCRelative") = value
             End Set
         End Property
     End Class
